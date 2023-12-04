@@ -12,21 +12,14 @@
 
 ## BINGO 팀원 소개
 
-# 개발자들
-
-
-| [<img src="https://avatars.githubusercontent.com/u/90203932?v=4" width="100">](https://github.com/cocomong98) | [<img src="https://avatars.githubusercontent.com/u/54162245?v=4" width="100">](https://github.com/pangil5634) | [<img src="https://avatars.githubusercontent.com/u/143606589?v=4" width="100">](https://github.com/caaaaarroooot) | [<img src="https://avatars.githubusercontent.com/u/141024382?v=4" width="100">](https://github.com/dbseend)
-|:---------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------: | 
-|                                                   김용현                                                    |                                                   김광일                                                    |                                                   이지윤                                                      |                                           윤성현                                                    |                                      김용현                                                      |
-
-
 ## 개발자
 
-| 종류 | <div style="width:15vw">멤버</div> | <div style="width:15vw">멤버</div> | <div style="width:15vw">멤버</div> | <div style="width:15vw">멤버</div> |
-| :--: | :--------------------------------: | :--------------------------------: | :--------------------------------: | :--------------------------------: |
-| Name |               김광일               |               김용현               |               이지윤               |               윤성현               |
-| PART |                WEB                 |                WEB                 |                WEB                 |               SERVER               |
-| Age  |                 23                 |                 26                 |                 23                 |                 21                 |
+| 종류  |                                       <div style="width:15vw">멤버</div>                                       |                                      <div style="width:15vw">멤버</div>                                       |                                        <div style="width:15vw">멤버</div>                                         |                                     <div style="width:15vw">멤버</div>                                      |
+| :---: | :------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------: |
+| Photo | [<img src="https://avatars.githubusercontent.com/u/143606589?v=4" width="100">](https://github.com/pangil5634) | [<img src="https://avatars.githubusercontent.com/u/90203932?v=4" width="100">](https://github.com/cocomong98) | [<img src="https://avatars.githubusercontent.com/u/143606589?v=4" width="100">](https://github.com/caaaaarroooot) | [<img src="https://avatars.githubusercontent.com/u/141024382?v=4" width="100">](https://github.com/dbseend) |
+| Name  |                                                     김광일                                                     |                                                    김용현                                                     |                                                      이지윤                                                       |                                                   윤성현                                                    |
+| PART  |                                                      WEB                                                       |                                                      WEB                                                      |                                                        WEB                                                        |                                                   SERVER                                                    |
+|  Age  |                                                       23                                                       |                                                      26                                                       |                                                        23                                                         |                                                     21                                                      |
 
 ## 디자이너 & 기획자
 
