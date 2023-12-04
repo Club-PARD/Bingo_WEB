@@ -1,24 +1,11 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { Div } from './Components/Div';
+import Long from './Components/Long';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Div>
+      {/* h3 : "속보: BINGO 롱커톤 1위 수상" */}
+      <Long/>
+    </Div>
   );
 }
 
