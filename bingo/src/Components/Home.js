@@ -1,6 +1,7 @@
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
-export const Div = styled.div `
+const Div = styled.div `
     display: ${props => props.display || "flex"};
     justify-content: ${props => props.justifyContent || "center"};
     flex-direction: ${props => props.flexDirection || "row"};
@@ -16,4 +17,14 @@ export const Div = styled.div `
     position: ${props => props.position || ''};
     background-image: ${props => props.backgroundImage || ''};
 
-`;
+`
+
+const Home =()=> {
+    return(
+        <>
+            <Div> 속보 : BINGO 롱커톤 1위 수상</Div>
+        </>
+    )
+}
+
+export default Home;
