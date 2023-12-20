@@ -1,18 +1,24 @@
+import styled from 'styled-components';
+
 export const Div = styled.div`
     display: ${props => props.display || "flex"};
-    justify-content: ${props => props.justifyContent || "center"};
-    align-items: ${props => props.alignItems || "center"};
-    flex-direction: ${props => props.flexDirection || "row"};
+    justify-content: ${props => props.justifyContent || ''};
+    align-items: ${props => props.alignItems || ''};
+    flex-direction: ${props => props.flexDirection || ''};
     
     width : ${props => props.width || ''};
     height : ${props => props.height || ''};
 
     border : ${props => props.border || ''};
-    box-sizing : ${props => props.boxSizing || "border-box"};
+    border-radius: ${props => props.borderRadius || ''};
+    box-sizing : ${props => props.boxSizing || 'border-box'};
+
+    color: ${props => props.color || ''};
     background-color: ${props => props.backgroundColor || ''};
-    color: ${props => props.backgroundColor || " white"};
-    padding : ${props => props.padding || "10px"};
+
+    
     margin : ${props => props.margin || "0px"};
-    position: ${props => props.position || ''};
-    background-image: ${props => props.backgroundImage || ''};
+    padding : ${props => props.padding || "0px"};
+    
 `;
+
