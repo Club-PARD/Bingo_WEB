@@ -47,9 +47,6 @@ const LoginPage = () => {
         <LoginDiv>
             <AboutUs>프로그램 설명</AboutUs>
             <Login>
-                <ID />
-                <PW />
-                <LoginBtn />
                 <GoogleLoginButton />
             </Login>
         </LoginDiv>
