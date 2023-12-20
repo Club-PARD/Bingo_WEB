@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React from "react";
 import styled from "styled-components";
 import {ID, LoginBtn, PW} from "../Preset/LoginPreset";
