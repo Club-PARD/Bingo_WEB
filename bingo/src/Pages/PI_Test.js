@@ -3,7 +3,7 @@ import {Div} from "../Components/NormalComponents/Section";
 import {P} from "../Components/NormalComponents/Text";
 import {ID, PW} from "../Preset/LoginPreset";
 import {Textarea} from '../Components/NormalComponents/Form'
-import { StyledComponentWrapper, ThemeButton } from "./testThemePage";
+import { StyledComponentWrapper, ThemeButton } from "../Components/test/testThemePage";
 
 function PI_Test() {
     return (
