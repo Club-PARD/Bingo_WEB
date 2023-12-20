@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import theme from '../Theme/testTheme';
+import theme from '../../Theme/testTheme';
 
 const StyledComponentWrapper = styled.div `
     font-family: ${theme.fonts.main};
