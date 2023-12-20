@@ -1,8 +1,9 @@
 import {Button, Fieldset, Input, Legend} from "../Components/NormalComponents/Form";
 import {Div} from "../Components/NormalComponents/Section";
 import {P} from "../Components/NormalComponents/Text";
-import { ID, PW } from "../Preset/LoginPreset";
+import {ID, PW} from "../Preset/LoginPreset";
 import {Textarea} from '../Components/NormalComponents/Form'
+import { StyledComponentWrapper, ThemeButton } from "./testThemePage";
 
 function PI_Test() {
     return (
@@ -13,14 +14,20 @@ function PI_Test() {
             height="100vh"
             backgroundColor="#F5F5DC"
             flexDirection="column">
-            <Fieldset>
+
+            <StyledComponentWrapper>
+                <h1>Hello, React Theme Example</h1>
+                <p>This is a simple example of using a theme in React with styled-components.</p>
+                <ThemeButton>Click me</ThemeButton>
+            </StyledComponentWrapper>
+            {/* <Fieldset>
                 <Legend fontSize="20px" align="left" padding="0px 20px">타이틀</Legend>
                 <P>안녕하세요</P>
                 <br />
                 <P>Textarea 테스트입니다.</P>
                 <Textarea></Textarea>
-            </Fieldset>
-
+            </Fieldset> */
+            }
 
             {/* <Div>
                 <Div
@@ -86,13 +93,12 @@ function PI_Test() {
                     </Div>
 
                 </Div>
-            </Div> */}
+            </Div> */
+            }
 
         </Div>
 
     );
 }
-
-
 
 export default PI_Test;
