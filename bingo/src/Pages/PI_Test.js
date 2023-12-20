@@ -4,6 +4,7 @@ import {P} from "../Components/NormalComponents/Text";
 import {ID, PW} from "../Preset/LoginPreset";
 import {Textarea} from '../Components/NormalComponents/Form'
 import { StyledComponentWrapper, ThemeButton } from "../Components/test/testThemePage";
+import { Img } from "../Components/NormalComponents/Etc";
 
 function PI_Test() {
     return (
@@ -14,12 +15,16 @@ function PI_Test() {
             height="100vh"
             backgroundColor="#F5F5DC"
             flexDirection="column">
+            
+            <Img src={require("../assets/image/test.png") }/>
 
-            <StyledComponentWrapper>
+            {/* <StyledComponentWrapper>
                 <h1>Hello, React Theme Example</h1>
                 <p>This is a simple example of using a theme in React with styled-components.</p>
                 <ThemeButton>Click me</ThemeButton>
-            </StyledComponentWrapper>
+            </StyledComponentWrapper> */}
+
+
             {/* <Fieldset>
                 <Legend fontSize="20px" align="left" padding="0px 20px">타이틀</Legend>
                 <P>안녕하세요</P>
