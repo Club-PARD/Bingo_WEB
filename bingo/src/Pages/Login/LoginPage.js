@@ -21,32 +21,29 @@ const LoginDiv = styled.div`
 
 // 여기서부터는 로그인 화면에서 보여줄 서비스의 간략한 설명
 const AboutUs = styled.div`
-    flex : 70%;
-    border : 5px solid red;
+    position: absolute;
+    left: 0;
+    width: 70%;
+    border : 1px solid red;
 `
 
 // 여기서부터는 로그인 관련 화면과 종속 컴포넌트
 const Login = styled.div`
-    flex : 30%;
-    border : 5px solid blue;
-    display : flex;
-    flex-direction : column;
-    padding : 50px 10px 0px 10px;
-    align-items: center;
-`;
-const Input = styled.input`
-    border : 1px solid black;
-`;
-const Btn = styled.button`
-    border-radius : 25px;
-    background-color : beige;
+    border: 1px solid blue;
+    padding: 1%;
+    right: 0;
+    height: 100%;
+    position: absolute;
+    left: 70%; // 수정된 부분
 `;
 
 const LoginPage = () => {
     return (
         <LoginDiv>
             <AboutUs>
-                <Img src="/img/test1.png"/>
+                <Img src="/img/Login/mac_silver.jpg" width={"100%"}/>
+                <Img src="/img/Login/mac_pink.jpg" width={"100%"}/>
+                <Img src="/img/Login/mac_silver.jpg" width={"100%"}/>
             </AboutUs>
             <Login>
                 <GoogleLoginButton />
