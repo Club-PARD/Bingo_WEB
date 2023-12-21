@@ -1,5 +1,5 @@
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
-import Home from "./Components/Home";
+import Home from "./Pages/Home/Home";
 import PI_Test from "./Pages/PI_Test";
 import LoginPage from "./Pages/Login/LoginPage";
 import Workspace from "./Pages/Workspace/WorkspaceView";
