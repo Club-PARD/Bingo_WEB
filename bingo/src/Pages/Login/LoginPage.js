@@ -54,7 +54,7 @@ const LoginPage = () => {
                 <Img src="/img/Login/img4.png" width={"100%"}/>
             </AboutUs>
             <Login>
-                <P>Bingo</P>
+                <h1>Your Own Retrospect, Bingo</h1>
                 <GoogleLoginButton />
             </Login>
         </LoginDiv>
