@@ -22,11 +22,6 @@ function WorkspaceCreate() {
         setIntroduce(event.target.value);
     };
 
-    const onButtonClick = (event) => {
-        event.preventDefault();
-        alert(title); 
-        alert(introduce);  
-    };
     const [newProfileImage, setNewProfileImage] = useState("/img/test1.png");
     const profileImageRef = useRef();
     return (
@@ -77,7 +72,7 @@ function WorkspaceCreate() {
                     src={newProfileImage} />
                 </Div>
                 <Link to = "/WorkspaceList">
-                    <Button onClick={onButtonClick}>생성하기</Button>
+                    <Button>생성하기</Button>
                 </Link>
             </Div>
         </>
