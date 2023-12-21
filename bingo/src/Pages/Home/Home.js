@@ -26,6 +26,8 @@ const Workspaces = [
 const Home =()=> {
     return(
         <>
+            <P fontSize="20px" fontWeight="bolder">현재 워크스페이스</P>
+            <hr />
             <Div
                 flexDirection="row"
             >
