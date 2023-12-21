@@ -5,7 +5,7 @@ import { P } from "../../Components/NormalComponents/Text";
 import WorkspaceCard from "./WorkspaceCard";
 
 // 불러온 값 저장하기
-const Workspaces = [
+const WorkspaceData = [
     {
         name : "Hello",
         desc : "3!4! Bingo!",
@@ -32,7 +32,7 @@ const Home =()=> {
                 flexDirection="row"
             >
                 {/* 현재는 더미값이지만 장기적으로는 워크스페이스 데이터 기반으로 카드 출력  */}
-                {Workspaces.map((workspace, index) => (
+                {WorkspaceData.map((workspace, index) => (
                     <WorkspaceCard
                         key={index}
                         name={workspace.name}

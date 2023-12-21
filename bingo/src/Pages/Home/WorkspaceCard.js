@@ -8,9 +8,10 @@ const WorkspaceCard = ({ name, desc, period }) => (
         flexDirection="column"
         margin="10px"
         padding="0px 0px 10px 10px"
-        border="1px solid brown"
+        border="1px solid black"
         borderRadius="5%"
         width="20%"
+        backgroundColor="#ffffcc"
     >
         <h1>{name}</h1>
         <h2>{desc}</h2>
