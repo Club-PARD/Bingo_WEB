@@ -72,7 +72,7 @@ function WorkspaceCreate() {
                     src={newProfileImage} />
                 </Div>
                 <Link to = "/WorkspaceList">
-                    <Button>생성하기</Button>
+                    <Button onclick={ButtonClick}>생성하기</Button>
                 </Link>
             </Div>
         </>
