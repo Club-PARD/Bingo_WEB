@@ -16,7 +16,7 @@ function PI_Test() {
             backgroundColor="#F5F5DC"
             flexDirection="column">
             
-            <Img src={require("../assets/image/test.png") }/>
+            <Img src="/img/test1.png"/>
 
             {/* <StyledComponentWrapper>
                 <h1>Hello, React Theme Example</h1>

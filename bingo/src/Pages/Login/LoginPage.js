@@ -1,9 +1,9 @@
 /* eslint-disable */
-
 import React from "react";
 import styled from "styled-components";
-import {ID, LoginBtn, PW} from "../Preset/LoginPreset";
+import {ID, LoginBtn, PW} from "../../Preset/LoginPreset";
 import GoogleLoginButton from "./GoogleLogin";
+import { Img } from "../../Components/NormalComponents/Etc";
 
 // 로그인 화면 전체를 감싸는 Div
 // 서비스에 가장 먼저 접속할 화면이 로그인 화면이기 때문에, 로그인 기능과 더불어 서비스에 대한 간략한 설명을 첨부하면 좋을 것 같아 7:3 비율로 화면을 나누었습니다
@@ -45,7 +45,9 @@ const Btn = styled.button`
 const LoginPage = () => {
     return (
         <LoginDiv>
-            <AboutUs>프로그램 설명</AboutUs>
+            <AboutUs>
+                <Img src="/img/test1.png"/>
+            </AboutUs>
             <Login>
                 <GoogleLoginButton />
             </Login>

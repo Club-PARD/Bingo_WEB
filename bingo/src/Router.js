@@ -1,7 +1,7 @@
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import Home from "./Components/Home";
 import PI_Test from "./Pages/PI_Test";
-import LoginPage from "./Pages/LoginPage";
+import LoginPage from "./Pages/Login/LoginPage";
 import Workspace from "./Pages/Workspace/WorkspaceView";
 import WorkspaceCreate from "./Pages/Workspace/WorkspaceCreate";
 import RetrospectCreate from "./Pages/Retrospect/RetrospectCreate";
