@@ -9,7 +9,7 @@ const WorkspaceCard = ({ name, desc, period }) => (
         margin="10px"
         padding="0px 0px 10px 10px"
         border="1px solid black"
-        borderRadius="5%"
+        borderRadius="15px"
         width="20%"
         backgroundColor="#ffffcc"
     >

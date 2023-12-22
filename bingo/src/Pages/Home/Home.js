@@ -32,8 +32,8 @@ const Home =()=> {
             <Div flexDirection="row" justifyContent="space-between" padding="1%" alignItems="center">
                 {/* 빙고 로고, 현재 페이지 이름 표시 부분 */}
                 <Div flexDirection="row">
-                    <Img src="/img/Home/logo.png" width={"10%"}/>
-                    <P fontSize="30px" fontWeight="bolder" margin="0 1% 0 0%">현재 워크스페이스</P>
+                    <Img src="/img/Home/logo.jpg" width={"10%"}/>
+                    <P fontSize="30px" fontWeight="bolder" marginRight="10px">현재 워크스페이스</P>
                 </Div>
                 {/* 새 워크스페이스 생성 버튼 */}
                 <Button borderRadius="5px" padding="1%" fontWeight="bolder" fontSize="15px">새 워크스페이스 생성</Button>
@@ -42,6 +42,7 @@ const Home =()=> {
             {/* 워크스페이스 카드 부분 */}
             <Div
                 flexDirection="row"
+                justifyContent="center"
             >
                 {/* 현재는 더미값이지만 장기적으로는 워크스페이스 데이터 기반으로 카드 출력  */}
                 {WorkspaceData.map((workspace, index) => (
