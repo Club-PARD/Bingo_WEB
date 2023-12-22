@@ -3,7 +3,7 @@ import {Button, Fieldset, Input, Legend} from "../../Components/NormalComponents
 import {Div} from "../../Components/NormalComponents/Section";
 import {Label, P} from "../../Components/NormalComponents/Text";
 import {KPT, FFF} from '../../Preset/RetrospectWaysPreset';
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 function RadioCard({value, label, selectedValue, onChange}) {
     return (
@@ -41,13 +41,21 @@ function RetrospectCreate() {
 
     const [questions, setQuestions] = useState([]);
     const [SelectedWays, setSelectedWays] = useState('Custom');
+    const navigate = useNavigate();
+
     const handleRadioChange = (value) => {
         setSelectedWays(value);
+        // "Custom"이 아닌 경우에 questions를 빈 배열로 초기화
+        if (value !== 'Custom') {
+            setQuestions([]);
+        }
     };
 
     const MyConfirm = () => {
+
         if (window.confirm("생성하시겠습니까?")) {
             alert("생성되었습니다.");
+            navigate("/RetrospectList");
         } else {
             alert("취소되었습니다.")
         }
@@ -152,7 +160,7 @@ function RetrospectCreate() {
                         </Div>
                 }
                 {
-                    SelectedWays === 'FFF' && <Div flexDirection= "column">
+                    SelectedWays === 'FFF' && <Div flexDirection="column">
                             <Div
                                 // flexDirection="column"
                                 justifyContent="space-between" alignItems="center" border="1px solid black" width="500px" margin="10px 0px" padding="10px" borderRadius="10px">
