@@ -39,7 +39,7 @@ function WorkspaceCreate() {
                 <Div>워크스페이스 생성 페이지입니다.</Div>
                 <Div flexDirection="column"
                 alignItems="center">
-                    <label>워크 스페이스의 이름을 적으세요:</label>
+                    <Label>워크 스페이스의 이름을 적으세요:</Label>
                     <Input type="text"
                         placeholder="Beeingo" 
                         value={title}
@@ -49,7 +49,7 @@ function WorkspaceCreate() {
                 </Div>
                 <Div flexDirection="column"
                 alignItems="center">
-                    <label>워크 스페이스의 소개를 적으세요:</label>
+                    <Label>워크 스페이스의 소개를 적으세요:</Label>
                     <Input type="text"
                         placeholder="워크스페이스 소개를 작성하시오"
                         value={introduce}
