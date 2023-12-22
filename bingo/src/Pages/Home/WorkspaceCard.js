@@ -6,9 +6,12 @@ import { P } from "../../Components/NormalComponents/Text";
 const WorkspaceCard = ({ name, desc, period }) => (
     <Div 
         flexDirection="column"
-        margin="1%"
-        border="1px solid red"
-        width="15%"
+        margin="10px"
+        padding="0px 0px 10px 10px"
+        border="1px solid black"
+        borderRadius="15px"
+        width="20%"
+        backgroundColor="#ffffcc"
     >
         <h1>{name}</h1>
         <h2>{desc}</h2>

@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { Link } from "react-router-dom";
 import { Div } from "../../Components/NormalComponents/Section";
 import { Img } from "../../Components/NormalComponents/Etc.js"

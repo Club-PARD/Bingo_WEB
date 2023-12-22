@@ -5,6 +5,7 @@ export const P = styled.p `
     font-weight: ${props => props.fontWeight || ''};
     color : ${props => props.color || ''};
     margin : ${props => props.margin || '0px'};
+    margin-right : ${props => props.marginRight || '0px'};
     padding : ${props => props.margin || '0px'};
 `;
 
