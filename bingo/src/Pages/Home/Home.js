@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { Div } from "../../Components/NormalComponents/Section";
 import { P } from "../../Components/NormalComponents/Text";
 import WorkspaceCard from "./WorkspaceCard";
+import { Button } from "../../Components/NormalComponents/Form";
+import { Img } from "../../Components/NormalComponents/Etc";
 
 // 불러온 값 저장하기
 const WorkspaceData = [
@@ -26,8 +28,18 @@ const WorkspaceData = [
 const Home =()=> {
     return(
         <>
-            <P fontSize="20px" fontWeight="bolder">현재 워크스페이스</P>
+            {/* 상단바 부분 */}
+            <Div flexDirection="row" justifyContent="space-between" padding="1%" alignItems="center">
+                {/* 빙고 로고, 현재 페이지 이름 표시 부분 */}
+                <Div flexDirection="row">
+                    <Img src="/img/Home/logo.png" width={"10%"}/>
+                    <P fontSize="30px" fontWeight="bolder" margin="0 1% 0 0%">현재 워크스페이스</P>
+                </Div>
+                {/* 새 워크스페이스 생성 버튼 */}
+                <Button borderRadius="5px" padding="1%" fontWeight="bolder" fontSize="15px">새 워크스페이스 생성</Button>
+            </Div>
             <hr />
+            {/* 워크스페이스 카드 부분 */}
             <Div
                 flexDirection="row"
             >
