@@ -1,4 +1,4 @@
-import {BrowserRouter as Router, Route, Routes} from "react-router-dom
+import {BrowserRouter as Router, Route, Routes} from "react-router-dom"
 import PI_Test from "./Pages/Retrospect/PI_Test";
 import Home from "./Pages/Home/Home";
 import LoginPage from "./Pages/Login/LoginPage";

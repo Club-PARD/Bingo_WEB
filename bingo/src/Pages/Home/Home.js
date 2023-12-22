@@ -22,7 +22,12 @@ const WorkspaceData = [
         name : "명성",
         desc : "맛있어",
         period : "231111 ~ 231111",
-    }
+    },
+    {
+        name : "맹륜진사갈비",
+        desc : "맹구 마지막 우승",
+        period : "130512 ~ ",
+    },
 ];
 
 const Home =()=> {
