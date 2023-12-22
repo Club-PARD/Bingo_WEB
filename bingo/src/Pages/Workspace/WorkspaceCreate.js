@@ -4,15 +4,9 @@ import { Link } from "react-router-dom";
 import { Div } from "../../Components/NormalComponents/Section";
 import { Img } from "../../Components/NormalComponents/Etc.js"
 import { Button, Input } from "../../Components/NormalComponents/Form";
-import styled from "styled-components";
-import { useState, useRef } from "react";
-//import {Testimage} from "../../../public/img/test1.png";
+import React, { useState, useRef } from "react";
 
-const EX = styled.div`
-    justify-content: space-evenly;
-    width: 0vw;
-    border: 1px solid black;
-`;
+
 function WorkspaceCreate() {
     const [title, setTitle] = useState('');
     const onChangeTitle = (event) => {
@@ -26,6 +20,21 @@ function WorkspaceCreate() {
 
     const [newProfileImage, setNewProfileImage] = useState("/img/test1.png");
     const profileImageRef = useRef();
+
+    const generateRandomValue = () => {
+        const characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        let randomValue = '';
+        const length = 6; // 6자리 난수 생성
+    
+        for (let i = 0; i < length; i++) {
+            const randomIndex = Math.floor(Math.random() * characters.length);
+            randomValue += characters.charAt(randomIndex);
+        }
+    };
+
+    const onButtonClick = () => {
+        generateRandomValue();
+    };
     return (
         <>
             <Div alignItems="center" flexDirection=" column" justifyContent="space-evenly" height="100vh" width="100vw">
@@ -55,7 +64,7 @@ function WorkspaceCreate() {
                     onClick={() => profileImageRef.current.click()}>
                         프로필 사진 바꾸기
                     </Div>
-                    <input
+                    <Input
                         type="file"
                         style={{ display: "none" }}
                         ref={profileImageRef}
@@ -74,7 +83,7 @@ function WorkspaceCreate() {
                     src={newProfileImage} />
                 </Div>
                 <Link to = "/WorkspaceList">
-                    <Button onclick={ButtonClick}>생성하기</Button>
+                    <Button onClick={onButtonClick}>생성하기</Button>
                 </Link>
             </Div>
         </>
