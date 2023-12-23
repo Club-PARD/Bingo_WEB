@@ -1,11 +1,13 @@
 import { Div } from "../../Components/NormalComponents/Section";
 import { P } from "../../Components/NormalComponents/Text";
+import Editor from "./Editor";
 
 function RetrospectWrite() {
     return (
         // 전체 총괄 Div
-        <Div alignItems="center" justifyContent="center">
+        <Div alignItems="center" justifyContent="center" flexDirection="column">
             <P fontSize="30px" fontWeight="bolder">회고 작성하기</P>
+            <Editor />
         </Div>
     );
 }
