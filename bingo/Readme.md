@@ -12,28 +12,35 @@ src
  ┃ ┃ ┣ Form.js
  ┃ ┃ ┣ Section.js
  ┃ ┃ ┗ Text.js
- ┃ ┣ test
+ ┃ ┗ test
  ┃ ┃ ┗ testThemePage.js
- ┃ ┗ Home.js
+ ┣ Contexts
+ ┃ ┗ EditorContext.js
  ┣ Pages
+ ┃ ┣ Home
+ ┃ ┃ ┣ Home.js
+ ┃ ┃ ┗ WorkspaceCard.js
+ ┃ ┣ Login
+ ┃ ┃ ┣ GoogleLogin.js
+ ┃ ┃ ┗ LoginPage.js
  ┃ ┣ Retrospect
+ ┃ ┃ ┣ Editor.js
+ ┃ ┃ ┣ PI_Test.js
  ┃ ┃ ┣ RetrospectCreate.js
  ┃ ┃ ┣ RetrospectList.js
- ┃ ┃ ┗ RetrospectView.js
- ┃ ┣ Workspace
+ ┃ ┃ ┣ RetrospectView.js
+ ┃ ┃ ┗ RetrospectWrite.js
+ ┃ ┗ Workspace
  ┃ ┃ ┣ WorkspaceCreate.js
  ┃ ┃ ┣ WorkspaceList.js
  ┃ ┃ ┗ WorkspaceView.js
- ┃ ┣ GoogleLogin.js
- ┃ ┣ LoginPage.js
- ┃ ┗ PI_Test.js
  ┣ Preset
- ┃ ┗ LoginPreset.js
+ ┃ ┣ WorkspacePreset
+ ┃ ┃ ┗ WorkspaceCreatePreset.js
+ ┃ ┣ LoginPreset.js
+ ┃ ┗ RetrospectWaysPreset.js
  ┣ Theme
  ┃ ┗ testTheme.js
- ┣ assets
- ┃ ┗ image
- ┃ ┃ ┗ test.png
  ┣ App.css
  ┣ App.js
  ┣ App.test.js
