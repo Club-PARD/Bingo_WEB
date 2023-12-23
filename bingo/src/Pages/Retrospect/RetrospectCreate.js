@@ -42,12 +42,15 @@ function RetrospectCreate() {
     const [questions, setQuestions] = useState([]);
     const [SelectedWays, setSelectedWays] = useState('Custom');
     const navigate = useNavigate();
+    const [selectedQuestions, setSelectedQuestions] = useState({}); // 새로운 상태 추가
 
     const handleRadioChange = (value) => {
         setSelectedWays(value);
         // "Custom"이 아닌 경우에 questions를 빈 배열로 초기화
         if (value !== 'Custom') {
+            setQuestions(Array(3).fill(''));
             setQuestions([]);
+            setSelectedQuestions({});
         }
     };
 
@@ -60,15 +63,20 @@ function RetrospectCreate() {
             alert("취소되었습니다.")
         }
     }
-
     const AddQuestion = () => {
+        const newQuestionId = questions.length + 1;
+
         setQuestions([
             ...questions, {
-                id: questions.length + 1
+                id: newQuestionId
             }
         ]);
-    }
 
+        setSelectedQuestions((prevSelectedQuestions) => ({
+            ...prevSelectedQuestions,
+            [newQuestionId]: '', // Set the default value for the new question
+        }));
+    };
     return (
         <Div flexDirection="column" height="auto">
             <Div
@@ -210,16 +218,23 @@ function RetrospectCreate() {
                                 questions.map((question, index) => (
                                     <div key={question.id}>
                                         <Div
-                                            // flexDirection="column"
-                                            justifyContent="space-between" alignItems="center" border="1px solid black" width="500px" margin="10px 0px" padding="10px" borderRadius="10px">
+                                            justifyContent="space-between"
+                                            alignItems="center"
+                                            border="1px solid black"
+                                            width="500px"
+                                            margin="10px 0px"
+                                            padding="10px"
+                                            borderRadius="10px">
                                             <Label margin="0px 10px 0px 0px" width="20%">질문</Label>
-                                            <Input
-                                                type="text"
-                                                placeholder="회고 제목을 입력해주세요."
-                                                border="2px solid blue"
-                                                width="70%"/>
+                                            <Input type="text" placeholder="회고 제목을 입력해주세요." border="2px solid blue" width="70%" value={selectedQuestions[question.id]}
+                                                // Set the value from selectedQuestions
+                                                onChange={(e) => {
+                                                    setSelectedQuestions((prevSelectedQuestions) => ({
+                                                        ...prevSelectedQuestions,
+                                                        [question.id]: e.target.value
+                                                    }));
+                                                }}/>
                                         </Div>
-
                                     </div>
                                 ))
                             }
@@ -257,6 +272,22 @@ function RetrospectCreate() {
                 backgroundColor="#A9D0F5"
                 flexDirection="column">
                 <h2>회고 생성 페이지입니다</h2>
+                <Div flexDirection="column">
+                    {/* 선택한 방법 보여주기 */}
+                    <P>선택한 방법: {SelectedWays}</P>
+
+                    {/* 작성한 질문 보여주기 */}
+                    {
+                        Object
+                            .keys(selectedQuestions)
+                            .map((questionId) => (
+                                <div key={questionId}>
+                                    <Label>질문 {questionId}
+                                        : {selectedQuestions[questionId]}</Label>
+                                </div>
+                            ))
+                    }
+                </Div>
                 <Div>
                     <a href="#section2">
                         <Button
