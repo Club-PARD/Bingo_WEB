@@ -5,12 +5,14 @@ import ReactQuill from 'react-quill'
 const Editor = () => {
   
   var modules = {
+    // 제공할 관련 기능 추가
     toolbar: [
       [{ size: ["small", false, "large", "huge"] }],
       ["bold", "italic", "underline", "strike", "blockquote"],
       [{ list: "ordered" }, { list: "bullet" }],
       ["link", "image"],
       [
+        // 정렬과 입력 시 정도 조절
         { list: "ordered" },
         { list: "bullet" },
         { indent: "-1" },
@@ -28,10 +30,12 @@ const Editor = () => {
     "link", "image", "align", "size",
   ];
 
+  // 바뀐 값을 관리하고, 콘솔 창에 띄워서 디버깅에 도움 주기
   const handleProcedureContentChange = (content) => {
     console.log("content---->", content);
   };
 
+  // 실제로 보여질 부분
   return (
     <div >
       <div style={{ display: "grid", justifyContent: "center"}}>
