@@ -8,6 +8,7 @@ import RetrospectCreate from "./Pages/Retrospect/RetrospectCreate";
 import WorkspaceList from "./Pages/Workspace/WorkspaceList";
 import RetrospectList from "./Pages/Retrospect/RetrospectList";
 import RetrospectView from "./Pages/Retrospect/RetrospectView";
+import RetrospectWrite from "./Pages/Retrospect/RetrospectWrite";
 
 const Routers = () => {
 
@@ -23,6 +24,7 @@ const Routers = () => {
                 <Route path='/RetrospectCreate' element={<RetrospectCreate />} />
                 <Route path='/RetrospectList' element={<RetrospectList />} />
                 <Route path='/RetrospectView' element={<RetrospectView/>}/>
+                <Route path='/RetrospectWrite' element={<RetrospectWrite/>}/>
             </Routes>
         </Router>
     )
