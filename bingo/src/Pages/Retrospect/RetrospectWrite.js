@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Div } from "../../Components/NormalComponents/Section";
 import { P } from "../../Components/NormalComponents/Text";
 import Editor from "./Editor";
