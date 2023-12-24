@@ -49,8 +49,8 @@ function RetrospectCreate() {
         // "Custom"이 아닌 경우에 questions를 빈 배열로 초기화
         if (value !== 'Custom') {
             setQuestions(Array(3).fill(''));
-            setQuestions([]);
             setSelectedQuestions({});
+            setQuestions([]);
         }
     };
 
