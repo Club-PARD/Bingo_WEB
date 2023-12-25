@@ -72,9 +72,7 @@ export default function Sidebar() {
   // useState를 통해서 현재 상태를 관리하기
   // bool 형식의 변수를 통해 현재 사이드바가 어느 쪽에서 활성화되어있는지 체크한다
   const [state, setState] = React.useState({
-    top: false,
     left: false,
-    bottom: false,
     right: false,
   });
 
