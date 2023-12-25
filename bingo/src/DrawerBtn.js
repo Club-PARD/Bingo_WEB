@@ -73,7 +73,7 @@ const DrawerHeader = ({ handleDrawerClose }) => (
   </div>
 );
 
-export default function DrawerLeft() {
+export default function DrawerBtn() {
   const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
@@ -86,9 +86,6 @@ export default function DrawerLeft() {
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
-      <MuiAppBar position="absolute" open={open}>
-        <Toolbar>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -98,11 +95,6 @@ export default function DrawerLeft() {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Persistent drawer
-          </Typography>
-        </Toolbar>
-      </MuiAppBar>
       <Drawer
         sx={{
           width: drawerWidth,
