@@ -19,6 +19,12 @@ import GroupsIcon from '@mui/icons-material/Groups';
 import styled from 'styled-components';
 import LogoutIcon from '@mui/icons-material/Logout';
 
+const DrawerDiv = styled.div`
+  display :flex;
+  justify-content : center;
+  align-items : center;
+  padding : 3%;
+`
 const Profile = styled.div`
   display : flex;
   justify-content : center;
@@ -122,7 +128,7 @@ export default function Sidebar() {
   );
 
   return (
-    <div>
+    <DrawerDiv>
       {['left', 'right'].map((anchor) => (
         <React.Fragment key={anchor}>
           <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
@@ -138,6 +144,6 @@ export default function Sidebar() {
           </SwipeableDrawer>
         </React.Fragment>
       ))}
-    </div>
+    </DrawerDiv>
   );
 }
