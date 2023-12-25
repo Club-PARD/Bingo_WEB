@@ -6,6 +6,7 @@ export const Div = styled.div`
     align-items: ${props => props.alignItems || ''};
     flex-direction: ${props => props.flexDirection || ''};
     flex-shrink: ${props => props.flexShirnk || ''};
+    flex-wrap: ${props => props.flexWrap || ''};
     
     width : ${props => props.width || ''};
     height : ${props => props.height || ''};
