@@ -5,14 +5,20 @@ import ReactQuill from 'react-quill'
 const Editor = () => {
   
   var modules = {
+<<<<<<< HEAD
     // 제공할 관련 기능 추가
+=======
+>>>>>>> b520813 (231224 용현 : Editor 파일 추가)
     toolbar: [
       [{ size: ["small", false, "large", "huge"] }],
       ["bold", "italic", "underline", "strike", "blockquote"],
       [{ list: "ordered" }, { list: "bullet" }],
       ["link", "image"],
       [
+<<<<<<< HEAD
         // 정렬과 입력 시 정도 조절
+=======
+>>>>>>> b520813 (231224 용현 : Editor 파일 추가)
         { list: "ordered" },
         { list: "bullet" },
         { indent: "-1" },
@@ -30,12 +36,18 @@ const Editor = () => {
     "link", "image", "align", "size",
   ];
 
+<<<<<<< HEAD
   // 바뀐 값을 관리하고, 콘솔 창에 띄워서 디버깅에 도움 주기
+=======
+>>>>>>> b520813 (231224 용현 : Editor 파일 추가)
   const handleProcedureContentChange = (content) => {
     console.log("content---->", content);
   };
 
+<<<<<<< HEAD
   // 실제로 보여질 부분
+=======
+>>>>>>> b520813 (231224 용현 : Editor 파일 추가)
   return (
     <div >
       <div style={{ display: "grid", justifyContent: "center"}}>
