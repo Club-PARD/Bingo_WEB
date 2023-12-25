@@ -4,9 +4,13 @@ import { Img } from "../../Components/NormalComponents/Etc";
 import Modal from "react-modal";
 import { useState, React } from "react";
 import { Button } from "../../Components/NormalComponents/Form";
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { Link } from "react-router-dom";
+
 
 function WorkspaceView() {
     const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [value, setValue] = useState("123456");
     const openModal = () => {
         setModalIsOpen(true);
     };
@@ -14,6 +18,7 @@ function WorkspaceView() {
     const closeModal = () => {
         setModalIsOpen(false);
     };
+    
     return (
         <Div flexDirection="row" width="100vw" height="100vh">
             {/*Left Space width=415px*/}
@@ -74,16 +79,23 @@ function WorkspaceView() {
                     <Div
                         height="100%"
                         width="62%"
-                        borderRadius="25px"
-                        justifyContent="space-between"
+                        justifyContent="space-evenly"
                         padding="2% 1% 0 5%"
                     >
-                        <Img width="15%" height="25%" src="/img/WorkspaceView/ph_plus-bold.png"/>
-                        <Button onClick={openModal} width="15%" height="25%" backgroundColor="white" padding="0">
+                        <Link to = "/RetrospectCreate">
+                            <Div width="15%" height="25%" margin="0 0 0 25%">
+                                <Img src="/img/WorkspaceView/ph_plus-bold.png"/>
+                            </Div>
+                        </Link>
+                        <Button onClick={openModal} width="15%" height="25%" backgroundColor="white">
                             <Img width="100%" height="100%" src="/img/WorkspaceView/mdi_share-outline.png"/>
                         </Button>
-                        <Img width="15%" height="25%" src="/img/WorkspaceView/notifications.png"/>
-                        <Img width="15%" height="25%" src="/img/WorkspaceView/account_circle.png"/>
+                        <Div width="15%" height="25%">
+                            <Img src="/img/WorkspaceView/notifications.png"/>
+                        </Div>
+                        <Div width="15%" height="25%">
+                            <Img src="/img/WorkspaceView/account_circle.png"/>
+                        </Div>
                     </Div>
                 </Div>
             </Div>
@@ -127,14 +139,21 @@ function WorkspaceView() {
                     }}
             >
                 {/* 이미지 추가 modal's width=1179, height=616 */}
-                <Div width="100%" height="20%" alignItems="center" flexDirection="row-reverse" padding="0 1% 0 0">
+                <Div 
+                    width="100%" 
+                    height="20%" 
+                    alignItems="center" 
+                    flexDirection="row-reverse" 
+                    padding="0 1% 0 0">
                     <Img src="/img/Home/close.png" alt="Close" onClick={closeModal} width="10%" height="80%"/>
                 </Div>
-                <Div alignItems="center" width="100%" height="50%" justifyContent="center" flexDirection="column" margin="5% 0 0 0">
-                    <Div style={{fontSize: "15%", fontWeight: "900"}}>코드</Div>
-                    <Div style={{fontSize: "15%"}}>123456</Div>
+                <Div alignItems="center" width="100%" height="50%" justifyContent="center" flexDirection="column">
+                    <Div fontSize="50px" fontWeight="900">코드</Div>
+                    <Div fontSize="30px">{value}</Div>
                 </Div>
-                <Button width="10%" height="10%" style={{marginLeft: "45%"}}>복사하기</Button>
+                <CopyToClipboard text={value} onCopy={() => alert("클립보드에 복사되었습니다.")}>
+                    <Button width="10%" height="10%" style={{marginLeft: "45%"}}>복사</Button>
+                </CopyToClipboard>
             </Modal>
         </Div>
     );
