@@ -30,7 +30,7 @@ function RetrospectInWorkspace(){
           width="70%" 
           height="100%"
           flexDirection="column"
-          margin="0 2%"
+          margin="0 1%"
         >
           {tasks.map(task => (
             <Div 
