@@ -4,7 +4,6 @@ import {useNavigate} from "react-router-dom";
 import {Section1, Section2, Section3 } from "../../Preset/WorkspacePreset/WorkspaceCreatePreset";
 
 function RetrospectCreate() {
-
     // 변수 선언
     const [retrospectTitle, setRetrospectiTitle] = useState(''); // 회고 타이틀 저장 변수
     const [questions, setQuestions] = useState([]); // 질문 내용 저장 변수
