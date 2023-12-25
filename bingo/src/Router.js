@@ -9,17 +9,19 @@ import RetrospectList from "./Pages/Retrospect/RetrospectList";
 import RetrospectView from "./Pages/Retrospect/RetrospectView";
 import RetrospectWrite from "./Pages/Retrospect/RetrospectWrite";
 import BingoPage from "./Pages/Workspace/BingoPage";
-import Sidebar from "./Sidebar";
-import Drawer from "./Drawer";
+import Sidebar from "./Components/PageMovements/Sidebar";
+import Drawer from "./Components/PageMovements/Drawer";
 import DrawerBtn from "./DrawerBtn";
 
 const Routers = () => {
 
     return (
         <Router>
-            {/* <Sidebar />
-            <Drawer /> */}
+            {/* 
+            <Sidebar />
+            <Drawer /> 
             <DrawerBtn />
+            */}
             <Routes>
                 <Route path='/' element={<LoginPage />}/>
                 <Route path='/PI' element={<PI_Test />}/>

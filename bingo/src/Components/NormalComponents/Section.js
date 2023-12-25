@@ -20,8 +20,12 @@ export const Div = styled.div`
 
     
     margin : ${props => props.margin || "0px"};
+
     padding : ${props => props.padding || "0px"};
+    padding-right : ${props => props.paddingRight || "0px"};
+    padding-left : ${props => props.paddingLeft || "0px"};
     
+
     font-family: ${props => props.fontFamily || ''};
     font-size: ${props => props.fontSize || ''};
     font-style: ${props => props.fontStyle || ''};

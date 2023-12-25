@@ -8,6 +8,7 @@ import { Img } from "../../Components/NormalComponents/Etc";
 import Modal from "react-modal";
 import WorkspaceCreate from "./WorkspaceCreate.js"
 import { Link } from "react-router-dom";
+import DrawerBtn from "../../DrawerBtn.js";
 
 // 불러온 값 저장하기
 const WorkspaceData = [
@@ -65,7 +66,8 @@ const Home =()=> {
             <Div flexDirection="row" justifyContent="space-between" padding="1%" alignItems="center">
                 {/* 빙고 로고, 현재 페이지 이름 표시 부분 */}
                 <Div flexDirection="row">
-                    <Img src="/img/Home/logo.jpg" width={"10%"}/>
+                    <DrawerBtn />
+                    {/* <Img src="/img/Home/logo.jpg" width={"10%"}/> */}
                     <P fontSize="30px" fontWeight="bolder" marginRight="10px">현재 워크스페이스</P>
                 </Div>
                 {/* 새 워크스페이스 생성 버튼 */}
