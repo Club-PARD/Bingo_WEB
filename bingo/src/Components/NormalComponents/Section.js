@@ -28,5 +28,6 @@ export const Div = styled.div`
     font-weight: ${props => props.fontWeight || ''};
     line-height: ${props => props.lineHeight || ''};
     color: ${props => props.color || '#000'};
+    -webkit-text-stroke: ${props => props.textStroke || '1px #000'};
 `;
 
