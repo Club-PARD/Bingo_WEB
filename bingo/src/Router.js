@@ -8,7 +8,7 @@ import WorkspaceList from "./Pages/Workspace/WorkspaceList";
 import RetrospectList from "./Pages/Retrospect/RetrospectList";
 import RetrospectView from "./Pages/Retrospect/RetrospectView";
 import RetrospectWrite from "./Pages/Retrospect/RetrospectWrite";
-import Bingo from "./Pages/Workspace/Bingo";
+import BingoPage from "./Pages/Workspace/BingoPage";
 
 const Routers = () => {
 
@@ -24,7 +24,7 @@ const Routers = () => {
                 <Route path='/RetrospectList' element={<RetrospectList />} />
                 <Route path='/RetrospectView' element={<RetrospectView/>}/>
                 <Route path='/RetrospectWrite' element={<RetrospectWrite/>}/>
-                <Route path='/bingo' element={<Bingo/>}/>
+                <Route path='/bingo' element={<BingoPage/>}/>
             </Routes>
         </Router>
     )

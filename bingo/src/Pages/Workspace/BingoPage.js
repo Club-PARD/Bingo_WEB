@@ -3,7 +3,7 @@ import { Div } from "../../Components/NormalComponents/Section";
 import { Link } from "react-router-dom";
 import BingoBoard from "../../Preset/WorkspacePreset/BingoBoard";
 
-function Bingo() {
+function BingoPage() {
   return(
     <>
       <Div 
@@ -60,4 +60,4 @@ function Bingo() {
   );
 }
 
-export default Bingo;
+export default BingoPage;
