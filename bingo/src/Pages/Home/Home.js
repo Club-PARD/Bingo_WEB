@@ -63,7 +63,7 @@ const Home =()=> {
     return(
         <>
             {/* 상단바 부분 */}
-            <Div flexDirection="row" justifyContent="space-between" padding="1%" alignItems="center">
+            <Div flexDirection="row" justifyContent="space-between" padding="1%" paddingLeft="3%" paddingRight="3%" alignItems="center">
                 {/* 빙고 로고, 현재 페이지 이름 표시 부분 */}
                 <Div flexDirection="row">
                     <DrawerBtn />
