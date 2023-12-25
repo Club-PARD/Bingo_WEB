@@ -41,14 +41,17 @@ function WorkspaceView() {
                     fontWeight="400"
                     lineHeight="150%"
                 >메인</Div>
-                <Div
-                    margin="0 0 2% 10%"
-                    fontFamily="Inter"
-                    fontSize="35px"
-                    fontStyle="normal"
-                    fontWeight="400"
-                    lineHeight="150%"
-                >빙고</Div>
+                <Link to="/bingo">
+                    <Div
+                        margin="0 0 2% 10%"
+                        fontFamily="Inter"
+                        fontSize="35px"
+                        fontStyle="normal"
+                        fontWeight="400"
+                        lineHeight="150%"
+                        style={{ textDecoration: 'none' }}
+                    >빙고</Div>
+                </Link>
                 <Div
                     margin="0 0 2% 10%"
                     fontFamily="Inter"
