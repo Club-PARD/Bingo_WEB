@@ -28,6 +28,8 @@ export const Input = styled.input `
     border : ${props => props.border || 'none'};
     border-radius: ${props => props.borderRadius || "10px"};
     font-Size : inherit;
+
+    margin : ${props => props.margin || ''};
 `;
 
 export const Fieldset = styled.fieldset `
