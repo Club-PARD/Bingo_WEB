@@ -5,6 +5,7 @@ export const Div = styled.div`
     justify-content: ${props => props.justifyContent || ''};
     align-items: ${props => props.alignItems || ''};
     flex-direction: ${props => props.flexDirection || ''};
+    flex-shrink: ${props => props.flexShirnk || ''};
     
     width : ${props => props.width || ''};
     height : ${props => props.height || ''};
@@ -20,5 +21,11 @@ export const Div = styled.div`
     margin : ${props => props.margin || "0px"};
     padding : ${props => props.padding || "0px"};
     
+    font-family: ${props => props.fontFamily || ''};
+    font-size: ${props => props.fontSize || ''};
+    font-style: ${props => props.fontStyle || ''};
+    font-weight: ${props => props.fontWeight || ''};
+    line-height: ${props => props.lineHeight || ''};
+    color: ${props => props.color || '#000'};
 `;
 
