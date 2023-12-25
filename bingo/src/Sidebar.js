@@ -1,5 +1,6 @@
 /* eslint-disable */
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import SwipeableDrawer from '@mui/material/SwipeableDrawer';
 import Button from '@mui/material/Button';
@@ -13,6 +14,43 @@ import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MoveToInboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import { useLocation } from 'react-router';
+import HomeIcon from '@mui/icons-material/Home';
+import GroupsIcon from '@mui/icons-material/Groups';
+import styled from 'styled-components';
+import LogoutIcon from '@mui/icons-material/Logout';
+
+const Profile = styled.div`
+  display : flex;
+  justify-content : center;
+  align-items : center;
+  flex-direction : column;
+  padding-bottom : 10%;
+`
+const ProfileImg = styled.img`
+  width : 50%;
+  height : 50%;
+`
+const Username = styled.div`
+  font-weight : bold;
+  font-size : 20px;
+  padding : 1%;
+`
+const UserTask = styled.div`
+  font-size : 15px;
+  padding : 1%;
+`
+
+// 사이드바에 적용할 아이콘을 목록화 시켜서 사용함
+// 배열의 앞쪽부터 순차적으로 사용됨
+const iconArray = [HomeIcon, GroupsIcon, MailIcon, LogoutIcon];
+
+// 메뉴에서의 경로 이동에 사용함
+const menuItems = [
+  { text: '홈', path: '/Home' },
+  { text: '워크스페이스', path: '/WorkspaceList' },
+  { text: '회고 목록', path: '/RetrospectList' },
+  { text: '로그아웃', path: '/' },
+];
 
 export default function Sidebar() {
   // 전체에서 로그인화면을 제외하기 위해서 useLocation을 사용할 예정이고, 그에 따라서 location을 통해 상태관리
@@ -52,26 +90,30 @@ export default function Sidebar() {
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      <div>test</div>
+      <Profile>
+        <ProfileImg src='/img/Profile/profileimg.jpg' alt='프로필 이미지'/>
+        <Username>사용자 이름</Username>
+        <UserTask>사용자 직책</UserTask>
+      </Profile>
       <Divider />
       <List>
-        {['Home', 'WorkSpace'].map((text, index) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
+      {menuItems.map((menuItem) => (
+        <ListItem key={menuItem.text} disablePadding>
+          <ListItemButton component={Link} to={menuItem.path}>
+            <ListItemIcon>
+              {React.createElement(iconArray[menuItems.indexOf(menuItem) % iconArray.length])}
+            </ListItemIcon>
+            <ListItemText primary={menuItem.text} />
+          </ListItemButton>
+        </ListItem>
+      ))}
+    </List>
     </Box>
   );
 
   return (
     <div>
-      {['left', 'right', 'top', 'bottom'].map((anchor) => (
+      {['left', 'right'].map((anchor) => (
         <React.Fragment key={anchor}>
           <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
 
