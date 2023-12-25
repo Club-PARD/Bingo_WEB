@@ -1,9 +1,12 @@
 import Routers from './Router';
+import { EditorProvider } from './Contexts/EditorContext';
 
 function App() {
   return (
     <>
-      <Routers />
+      <EditorProvider>
+        <Routers />
+      </EditorProvider>
     </>
   );
 }
