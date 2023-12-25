@@ -24,7 +24,7 @@ src
  ┃ ┃ ┣ GoogleLogin.js
  ┃ ┃ ┗ LoginPage.js
  ┃ ┣ Retrospect
- ┃ ┃ ┣ Editor.js
+ ┃ ┃ ┣ Editor.js (회고 작성 텍스트필드 컴포넌트)
  ┃ ┃ ┣ PI_Test.js
  ┃ ┃ ┣ RetrospectCreate.js
  ┃ ┃ ┣ RetrospectList.js
