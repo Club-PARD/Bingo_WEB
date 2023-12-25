@@ -145,7 +145,7 @@ const Section2 = (e) => {
             {
                 e.SelectedWays === 'FFF' && handleMakeThreeSection(
                     'FFF',
-                    ['Fact', 'Feeling', 'Feature Action']
+                    ['Fact', 'Feeling', 'Feature Action'], e.questions, e.setQuestions
                 )
             }
             {
