@@ -52,7 +52,16 @@ const menuItems = [
   { text: '로그아웃', path: '/' },
 ];
 
+// 불러온 사용자 데이터가 담길 공간. axios 연동을 위해 json 더미 형태로 선언
+const UserData = [
+  {
+      name : "사용자 이름",
+      task : "사용자 직책",
+  },
+];
+
 export default function Sidebar() {
+
   // 전체에서 로그인화면을 제외하기 위해서 useLocation을 사용할 예정이고, 그에 따라서 location을 통해 상태관리
   const location = useLocation();
   // 현재 위치가 root일 경우에는 사이드바를 적용하지 않음
@@ -90,10 +99,13 @@ export default function Sidebar() {
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
+      {/* 사용자 프로필 부분 */}
       <Profile>
+        {/* 프로필 이미지, 이 부분도 추후 서버에서 가져오는 값을 사용할 수 있는 형태로 만들기 */}
         <ProfileImg src='/img/Profile/profileimg.jpg' alt='프로필 이미지'/>
-        <Username>사용자 이름</Username>
-        <UserTask>사용자 직책</UserTask>
+        {/* 사용자 정보와 직책 */}
+        <Username>{UserData[0].name}</Username>
+        <UserTask>{UserData[0].task}</UserTask>
       </Profile>
       <Divider />
       <List>
