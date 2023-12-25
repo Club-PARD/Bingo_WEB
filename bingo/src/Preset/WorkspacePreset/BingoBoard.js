@@ -1,6 +1,9 @@
 import { Div } from "../../Components/NormalComponents/Section";
 import { useState } from 'react';
 
+//Bingopage에 띄울 빙고판 생성 component
+//배열에 들어있는 text는 추후 기획에게 받을 예정
+//9개의 형용사가 회고 때 체크되면 체크된 형용사의 flag가 True로 변함
 function BingoBoard() {
   const [items, setItems] = useState([
     { text: '열정적인', flag: true },

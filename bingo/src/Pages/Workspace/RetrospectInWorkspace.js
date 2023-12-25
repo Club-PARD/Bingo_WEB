@@ -1,14 +1,18 @@
 import { useState } from "react";
 import { Div } from "../../Components/NormalComponents/Section";
 
-
+//workspaceView화면 내 회고와 액션아이템 출력 컴포넌트
 function RetrospectInWorkspace(){
+
+    // map 함수로 출력하기 위한 리스트(더미데이터) 생성
+    // 나중에 추가 가능
     const [tasks, setTasks] = useState([
       { id: 1, name: '작업 1', completed: true },
       { id: 2, name: '작업 2', completed: false },
     ]);
   
     // 작업 1 완료 처리
+    // 나중에 1에 다른 값 넣어서 해당 값 boolean조정
     const completeTask1 = () => {
       setTasks(prevTasks =>
         prevTasks.map(task =>

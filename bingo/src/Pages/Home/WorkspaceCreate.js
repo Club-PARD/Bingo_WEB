@@ -1,14 +1,15 @@
 /* eslint-disable */
 
-import { Link } from "react-router-dom";
 import { Div } from "../../Components/NormalComponents/Section.js";
 import { Img } from "../../Components/NormalComponents/Etc.js"
-import { Button, Input } from "../../Components/NormalComponents/Form.js";
+import { Input } from "../../Components/NormalComponents/Form.js";
 import React, { useState, useRef } from "react";
 import { Label } from "../../Components/NormalComponents/Text.js"; 
 
-
+//워크스페이스를 만드는 모달창
 function WorkspaceCreate() {
+    //제목과 소개, 사진은 이후 서버와 연결해 주고받을 것
+    //따라서 useState로 상태관리, 지금은 더미데이터로
     const [title, setTitle] = useState('');
     const onChangeTitle = (event) => {
         setTitle(event.target.value);
@@ -18,7 +19,6 @@ function WorkspaceCreate() {
     const onChangeIntroduce = (event) => {
         setIntroduce(event.target.value);
     };
-
     const [newProfileImage, setNewProfileImage] = useState("/img/test1.png");
     const profileImageRef = useRef();
 
