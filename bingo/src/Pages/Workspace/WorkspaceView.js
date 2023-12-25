@@ -6,6 +6,7 @@ import { useState, React } from "react";
 import { Button } from "../../Components/NormalComponents/Form";
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Link } from "react-router-dom";
+import RetrospectInWorkspace from "./RetrospectInWorkspace";
 
 
 function WorkspaceView() {
@@ -100,6 +101,12 @@ function WorkspaceView() {
                             <Img src="/img/WorkspaceView/account_circle.png"/>
                         </Div>
                     </Div>
+                </Div>
+                <Div
+                    height="73%"
+                    width="100%"
+                >
+                    <RetrospectInWorkspace/>
                 </Div>
             </Div>
 
