@@ -10,12 +10,14 @@ import RetrospectView from "./Pages/Retrospect/RetrospectView";
 import RetrospectWrite from "./Pages/Retrospect/RetrospectWrite";
 import BingoPage from "./Pages/Workspace/BingoPage";
 import Sidebar from "./Sidebar";
+import Drawer from "./Drawer";
 
 const Routers = () => {
 
     return (
         <Router>
             <Sidebar />
+            <Drawer />
             <Routes>
                 <Route path='/' element={<LoginPage />}/>
                 <Route path='/PI' element={<PI_Test />}/>
