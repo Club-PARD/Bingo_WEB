@@ -1,7 +1,7 @@
 import {useState} from "react";
 import {Div} from "../../Components/NormalComponents/Section";
 import {useNavigate} from "react-router-dom";
-import {Section1, Section2, Section3 } from "../../Preset/WorkspacePreset/WorkspaceCreatePreset";
+import {Section1, Section2, Section3 } from "../../Preset/Retrospect/RetrospectCreatePreset";
 
 function RetrospectCreate() {
     // 변수 선언
