@@ -39,19 +39,23 @@ function RadioCard({value, label, selectedValue, onChange}) {
 
 function RetrospectCreate() {
 
-    const [questions, setQuestions] = useState([]);
-    const [SelectedWays, setSelectedWays] = useState('Custom');
-    const navigate = useNavigate();
-    const [selectedQuestions, setSelectedQuestions] = useState({}); // 새로운 상태 추가
+    const [retrospectTitle, setRetrospectiTitle] = useState('');
+    const [questions, setQuestions] = useState([]); // 질문 내용 저장 변수
+    const [SelectedWays, setSelectedWays] = useState('Custom'); // 회고 방법 선택 변수 (radio)
+    const navigate = useNavigate(); // 이동을 위한 navigate
 
     const handleRadioChange = (value) => {
         setSelectedWays(value);
-        // "Custom"이 아닌 경우에 questions를 빈 배열로 초기화
-        if (value !== 'Custom') {
-            setQuestions(Array(3).fill(''));
-            setSelectedQuestions({});
+        if (value === 'KPT' || value === 'FFF') {
+            setQuestions(Array(3).fill('').map((_, index) => ({
+                id: index + 1,
+                question: ''
+            })));
+        } else {
+            // Clear the questions array for other ways
             setQuestions([]);
         }
+
     };
 
     const MyConfirm = () => {
@@ -65,18 +69,48 @@ function RetrospectCreate() {
     }
     const AddQuestion = () => {
         const newQuestionId = questions.length + 1;
-
         setQuestions([
             ...questions, {
-                id: newQuestionId
+                id: newQuestionId,
+                question: ''
             }
         ]);
-
-        setSelectedQuestions((prevSelectedQuestions) => ({
-            ...prevSelectedQuestions,
-            [newQuestionId]: '', // Set the default value for the new question
-        }));
     };
+
+    const renderQuestionSection = (way, labels) => (
+        <Div flexDirection="column">
+            {
+                labels.map((label, index) => (
+                    <Div
+                        key={index}
+                        justifyContent="space-between"
+                        alignItems="center"
+                        border="1px solid black"
+                        width="500px"
+                        margin="10px 0px"
+                        padding="10px"
+                        borderRadius="10px">
+                        <Label margin="0px 10px 0px 0px" width="20%">{label}</Label>
+                        <Input
+                            type="text"
+                            placeholder="질문을 입력해주세요."
+                            border="2px solid blue"
+                            width="70%"
+                            value={questions[index]
+                                ?.question || ''}
+                            onChange={(e) => {
+                                const updatedQuestions = [...questions];
+                                updatedQuestions[index] = {
+                                    id: index + 1,
+                                    question: e.target.value
+                                };
+                                setQuestions(updatedQuestions);
+                            }}/>
+                    </Div>
+                ))
+            }
+        </Div>
+    );
     return (
         <Div flexDirection="column" height="auto">
             <Div
@@ -86,27 +120,40 @@ function RetrospectCreate() {
                 backgroundColor="#F7BE81"
                 flexDirection="column">
                 <h2>회고 생성 페이지입니다</h2>
-                <P>사용하고 싶은 방법을 선택해주세요.</P>
-                <Div>
-                    <RadioCard
-                        value='KPT'
-                        label='KPT'
-                        selectedValue={SelectedWays}
-                        onChange={handleRadioChange}/>
-                    <RadioCard
-                        value='FFF'
-                        label='FFF'
-                        selectedValue={SelectedWays}
-                        onChange={handleRadioChange}/>
-                    <RadioCard
-                        value='Custom'
-                        label='Custom'
-                        selectedValue={SelectedWays}
-                        onChange={handleRadioChange}/>
+                <Div flexDirection="column" margin="0px 0px 20px 0px">
+                    <P>[1] 회고 타이틀을 입력해주세요.</P>
+                    <Input
+                        type="text"
+                        margin="10px 0px"
+                        value={retrospectTitle}
+                        onChange={(e) => setRetrospectiTitle(e.target.value)}></Input>
                 </Div>
 
-                <Div marginTop="10px">
-                    선택된 방법: {SelectedWays}
+                <Div flexDirection="column" margin="0px 0px 20px 0px">
+                    <P>[2] 사용하고 싶은 방법을 선택해주세요.</P>
+                    <Div>
+                        <RadioCard
+                            value='KPT'
+                            label='KPT'
+                            selectedValue={SelectedWays}
+                            onChange={handleRadioChange}/>
+                        <RadioCard
+                            value='FFF'
+                            label='FFF'
+                            selectedValue={SelectedWays}
+                            onChange={handleRadioChange}/>
+                        <RadioCard
+                            value='Custom'
+                            label='Custom'
+                            selectedValue={SelectedWays}
+                            onChange={handleRadioChange}/>
+                    </Div>
+                </Div>
+
+                <Div margin="0px 0px 20px 0px">
+                    <P>선택된 방법:&nbsp;
+                        <strong>{SelectedWays}</strong>
+                    </P>
                 </Div>
 
                 <Div>
@@ -134,75 +181,20 @@ function RetrospectCreate() {
                 <h2>회고 생성 페이지입니다</h2>
                 <P>질문을 작성해주세요</P>
                 <br/> {
-                    SelectedWays === 'KPT' && <Div flexDirection="column">
-                            <Div
-                                // flexDirection="column"
-                                justifyContent="space-between" alignItems="center" border="1px solid black" width="500px" margin="10px 0px" padding="10px" borderRadius="10px">
-                                <Label margin="0px 10px 0px 0px" width="20%">Keep</Label>
-                                <Input
-                                    type="text"
-                                    placeholder="회고 제목을 입력해주세요."
-                                    border="2px solid blue"
-                                    width="70%"/>
-                            </Div>
-                            <Div
-                                // flexDirection="column"
-                                justifyContent="space-between" alignItems="center" border="1px solid black" width="500px" margin="10px 0px" padding="10px" borderRadius="10px">
-                                <Label margin="0px 10px 0px 0px" width="20%">Problem</Label>
-                                <Input
-                                    type="text"
-                                    placeholder="회고 제목을 입력해주세요."
-                                    border="2px solid blue"
-                                    width="70%"/>
-                            </Div>
-                            <Div
-                                // flexDirection="column"
-                                justifyContent="space-between" alignItems="center" border="1px solid black" width="500px" margin="10px 0px" padding="10px" borderRadius="10px">
-                                <Label margin="0px 10px 0px 0px" width="20%">Try</Label>
-                                <Input
-                                    type="text"
-                                    placeholder="회고 제목을 입력해주세요."
-                                    border="2px solid blue"
-                                    width="70%"/>
-                            </Div>
-                        </Div>
+                    SelectedWays === 'KPT' && renderQuestionSection(
+                        'KPT',
+                        ['Keep', 'Problem', 'Try']
+                    )
                 }
                 {
-                    SelectedWays === 'FFF' && <Div flexDirection="column">
-                            <Div
-                                // flexDirection="column"
-                                justifyContent="space-between" alignItems="center" border="1px solid black" width="500px" margin="10px 0px" padding="10px" borderRadius="10px">
-                                <Label margin="0px 10px 0px 0px" width="20%">Fact</Label>
-                                <Input
-                                    type="text"
-                                    placeholder="회고 제목을 입력해주세요."
-                                    border="2px solid blue"
-                                    width="70%"/>
-                            </Div>
-                            <Div
-                                // flexDirection="column"
-                                justifyContent="space-between" alignItems="center" border="1px solid black" width="500px" margin="10px 0px" padding="10px" borderRadius="10px">
-                                <Label margin="0px 10px 0px 0px" width="20%">Feeling</Label>
-                                <Input
-                                    type="text"
-                                    placeholder="회고 제목을 입력해주세요."
-                                    border="2px solid blue"
-                                    width="70%"/>
-                            </Div>
-                            <Div
-                                // flexDirection="column"
-                                justifyContent="space-between" alignItems="center" border="1px solid black" width="500px" margin="10px 0px" padding="10px" borderRadius="10px">
-                                <Label margin="0px 10px 0px 0px" width="20%">Feature Action</Label>
-                                <Input
-                                    type="text"
-                                    placeholder="회고 제목을 입력해주세요."
-                                    border="2px solid blue"
-                                    width="70%"/>
-                            </Div>
-                        </Div>
+                    SelectedWays === 'FFF' && renderQuestionSection(
+                        'FFF',
+                        ['Fact', 'Feeling', 'Feature Action']
+                    )
                 }
                 {
-                    SelectedWays === 'Custom' && <Div flexDirection="column">
+                    SelectedWays === 'Custom' && (
+                        <Div flexDirection="column">
                             <Div>
                                 <a href="#section2">
                                     <Button
@@ -215,8 +207,8 @@ function RetrospectCreate() {
                                 </a>
                             </Div>
                             {
-                                questions.map((question, index) => (
-                                    <div key={question.id}>
+                                questions.map((q, index) => (
+                                    <div key={q.id}>
                                         <Div
                                             justifyContent="space-between"
                                             alignItems="center"
@@ -225,20 +217,26 @@ function RetrospectCreate() {
                                             margin="10px 0px"
                                             padding="10px"
                                             borderRadius="10px">
-                                            <Label margin="0px 10px 0px 0px" width="20%">질문</Label>
-                                            <Input type="text" placeholder="회고 제목을 입력해주세요." border="2px solid blue" width="70%" value={selectedQuestions[question.id]}
-                                                // Set the value from selectedQuestions
+                                            <Label margin="0px 10px 0px 0px" width="20%">질문{index + 1}</Label>
+                                            <Input
+                                                type="text"
+                                                placeholder="질문을 입력해주세요."
+                                                border="2px solid blue"
+                                                width="70%"
+                                                value={q.question}
                                                 onChange={(e) => {
-                                                    setSelectedQuestions((prevSelectedQuestions) => ({
-                                                        ...prevSelectedQuestions,
-                                                        [question.id]: e.target.value
-                                                    }));
+                                                    setQuestions((prevQuestions) => {
+                                                        const updatedQuestions = [...prevQuestions];
+                                                        updatedQuestions[index].question = e.target.value;
+                                                        return updatedQuestions;
+                                                    });
                                                 }}/>
                                         </Div>
                                     </div>
                                 ))
                             }
                         </Div>
+                    )
                 }
 
                 <Div>
@@ -272,20 +270,26 @@ function RetrospectCreate() {
                 backgroundColor="#A9D0F5"
                 flexDirection="column">
                 <h2>회고 생성 페이지입니다</h2>
+                <hr
+                    style={{
+                        width: "100%",
+                        border: "2px solid gray"
+                    }}/>
                 <Div flexDirection="column">
                     {/* 선택한 방법 보여주기 */}
-                    <P>선택한 방법: {SelectedWays}</P>
-
-                    {/* 작성한 질문 보여주기 */}
+                    <P margin="5px 0px">선택한 방법: {SelectedWays}</P>
+                    <P margin="5px 0px">입력된 타이틀 : {retrospectTitle}</P>
+                    <hr
+                        style={{
+                            width: "100%",
+                            border: "2px solid gray"
+                        }}/> {/* 작성한 질문 보여주기 */}
                     {
-                        Object
-                            .keys(selectedQuestions)
-                            .map((questionId) => (
-                                <div key={questionId}>
-                                    <Label>질문 {questionId}
-                                        : {selectedQuestions[questionId]}</Label>
-                                </div>
-                            ))
+                        questions.map((q) => (
+                            <div key={q.id}>
+                                <P margin="5px 0px">질문 {q.id}: {q.question}</P>
+                            </div>
+                        ))
                     }
                 </Div>
                 <Div>
@@ -309,6 +313,5 @@ function RetrospectCreate() {
         </Div>
     );
 }
-
 
 export default RetrospectCreate;
