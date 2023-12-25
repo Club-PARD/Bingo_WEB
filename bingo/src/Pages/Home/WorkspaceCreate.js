@@ -1,10 +1,11 @@
 /* eslint-disable */
 
 import { Link } from "react-router-dom";
-import { Div } from "../../Components/NormalComponents/Section";
+import { Div } from "../../Components/NormalComponents/Section.js";
 import { Img } from "../../Components/NormalComponents/Etc.js"
-import { Button, Input } from "../../Components/NormalComponents/Form";
+import { Button, Input } from "../../Components/NormalComponents/Form.js";
 import React, { useState, useRef } from "react";
+import { Label } from "../../Components/NormalComponents/Text.js"; 
 
 
 function WorkspaceCreate() {
@@ -21,37 +22,25 @@ function WorkspaceCreate() {
     const [newProfileImage, setNewProfileImage] = useState("/img/test1.png");
     const profileImageRef = useRef();
 
-    const generateRandomValue = () => {
-        const characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        let randomValue = '';
-        const length = 6; // 6자리 난수 생성
     
-        for (let i = 0; i < length; i++) {
-            const randomIndex = Math.floor(Math.random() * characters.length);
-            randomValue += characters.charAt(randomIndex);
-        }
-    };
 
-    const onButtonClick = () => {
-        generateRandomValue();
-    };
+    
     return (
         <>
-            <Div alignItems="center" flexDirection=" column" justifyContent="space-evenly" height="100vh" width="100vw">
-                <Div>워크스페이스 생성 페이지입니다.</Div>
+            <Div alignItems="center" flexDirection=" column" justifyContent="space-evenly">
                 <Div flexDirection="column"
                 alignItems="center">
-                    <label>워크 스페이스의 이름을 적으세요:</label>
+                    <Label>워크 스페이스의 이름을 적으세요:</Label>
                     <Input type="text"
                         placeholder="Beeingo" 
+                        border="1px solid black"
                         value={title}
                         onChange={onChangeTitle}
-                        border="1px solid black"
                         />
                 </Div>
                 <Div flexDirection="column"
                 alignItems="center">
-                    <label>워크 스페이스의 소개를 적으세요:</label>
+                    <Label>워크 스페이스의 소개를 적으세요:</Label>
                     <Input type="text"
                         placeholder="워크스페이스 소개를 작성하시오"
                         value={introduce}
@@ -82,9 +71,6 @@ function WorkspaceCreate() {
                     height="100px"
                     src={newProfileImage} />
                 </Div>
-                <Link to = "/WorkspaceList">
-                    <Button onClick={onButtonClick}>생성하기</Button>
-                </Link>
             </Div>
         </>
     );
