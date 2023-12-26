@@ -36,10 +36,10 @@ function CrudUpdate() {
             [name]: value
         }));
     };
-    const handleMoveUpdatePage = () => {
-        navigate
-    }
     const navigate = useNavigate();
+    const handleMoveUpdatePage = () => {
+        navigate("/CrudUpdate?id=${data.id}");
+    }
 
     // 서버로 PATCH 요청을 보내어 데이터를 업데이트하는 함수
     const updateData = async (e) => {
@@ -83,6 +83,7 @@ function CrudUpdate() {
                     name="title"
                     value={dataList.title}
                     onChange={handleInputChange}
+                    disabled
                     margin="5px"/>
             </Div>
             <Div alignItems="center">
@@ -92,6 +93,7 @@ function CrudUpdate() {
                     name="content"
                     value={dataList.content}
                     onChange={handleInputChange}
+                    disabled
                     margin="5px"/>
             </Div>
             <Div alignItems="center">
@@ -101,9 +103,10 @@ function CrudUpdate() {
                     name="test"
                     value={dataList.test}
                     onChange={handleInputChange}
+                    disabled
                     margin="5px"/>
             </Div>
-            <Button width="100px" height="50px" backgroundColor="gray" onClick={updateData}>수정하기</Button>
+            <Button width="100px" height="50px" backgroundColor="gray" onClick={handleMoveUpdatePage}>수정하기</Button>
         </Div>
     );
 }

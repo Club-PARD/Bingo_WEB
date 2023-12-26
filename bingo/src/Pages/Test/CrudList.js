@@ -38,7 +38,7 @@ function CrudList() {
                 {/* dataList.map을 사용하여 리스트 아이템 렌더링 */}
                 {
                     dataList.map(data => (
-                        <Link key={data.id} to={`/CrudUpdate?id=${data.id}`}>
+                        <Link key={data.id} to={`/CrudView?id=${data.id}`}>
                             <Div
                                 flexDirection="column"
                                 width="250px"

@@ -16,6 +16,7 @@ import PI_Test2 from "./Pages/Test/PI_Test2";
 import CrudList from "./Pages/Test/CrudList";
 import CrudAdd from "./Pages/Test/CrudAdd";
 import CrudUpdate from "./Pages/Test/CrudUpdate";
+import CrudView from "./Pages/Test/CrudView";
 
 const Routers = () => {
 
@@ -34,8 +35,8 @@ const Routers = () => {
                     <Route path='/PI2' element={<PI_Test2/>}/>
                     <Route path='/CrudList' element={<CrudList/>}/>
                     <Route path='/CrudAdd' element={<CrudAdd/>}/>
-                    <Route path='/CrudUpdate' element={<CrudUpdate />} />
-                    
+                    <Route path='/CrudUpdate' element={<CrudUpdate />}/>
+                    <Route path='/CrudView' element={<CrudView />}/>
 
                     <Route path='/WorkspaceList' element={<WorkspaceList />}/>
                     <Route path='/WorkspaceList' element={<WorkspaceList />}/>
