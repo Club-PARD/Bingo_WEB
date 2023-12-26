@@ -28,15 +28,16 @@ function BingoBoard() {
       {items.map((item, index) => (
         <Div
           key={item.text}            
-            width="calc(100% / 3)"
-            height="calc(100% / 3)"
+            width="calc(90% / 3)"
+            height="calc(90% / 3)"
             display="flex"
             justifyContent="center"
             alignItems="center"
             border="1px solid black"
             lineHeight="1"
-            color={item.flag ? 'Black' : 'white'}
-            fontSize="100px"
+            color={item.flag ? 'black' : 'white'}
+            backgroundColor={item.flag ? '#C9C9C9' : '#C9C9C9'}
+            fontSize="20px"
             onClick={() => handleItemClick(index)}
         >
           {item.text}
