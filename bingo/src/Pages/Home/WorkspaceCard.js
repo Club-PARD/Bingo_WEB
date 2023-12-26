@@ -11,7 +11,7 @@ const WorkspaceCard = ({ name, desc, period }) => (
         border="1px solid black"
         borderRadius="15px"
         width="20%"
-        backgroundColor="#ffffcc"
+        backgroundColor="#d1d1e0"
     >
         <h1>{name}</h1>
         <h2>{desc}</h2>

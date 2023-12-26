@@ -19,7 +19,7 @@ export const Div = styled.div`
     background-color: ${props => props.backgroundColor || ''};
 
     
-    margin : ${props => props.margin || "0px"};
+    margin : ${props => props.margin || "0px 0px 0px 0px"};
 
     padding : ${props => props.padding || "0px 0px 0px 0px"};
     /* padding-right : ${props => props.paddingRight || "0px"};

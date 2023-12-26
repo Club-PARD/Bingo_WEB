@@ -13,24 +13,24 @@ import DrawerBtn from "../../DrawerBtn.js";
 // 불러온 값 저장하기
 const WorkspaceData = [
     {
-        name : "Hello",
-        desc : "3!4! Bingo!",
-        period : "231111 ~ 231111",
+        name : "개발팀 회고",
+        desc : "23-4 롱커톤 3!4!",
+        period : "231218 ~ 240106",
     },
     {
-        name : "Longcurtion",
-        desc : "힘냅시다..",
-        period : "231111 ~ 231111",
+        name : "공설입 회고",
+        desc : "공학설계입문 2분반 1조",
+        period : "230901 ~ 231216",
     },
     {
-        name : "명성",
-        desc : "맛있어",
-        period : "231111 ~ 231111",
+        name : "SLESLE 2023",
+        desc : "23-2 슬기짜기 임원단",
+        period : "231130 ~ 240128",
     },
     {
-        name : "맹륜진사갈비",
+        name : "맹맹맹",
         desc : "맹구 마지막 우승",
-        period : "130512 ~ ",
+        period : "130512 ~ 현재진행형",
     },
 ];
 
@@ -63,7 +63,7 @@ const Home =()=> {
     return(
         <>
             {/* 상단바 부분 */}
-            <Div flexDirection="row" justifyContent="space-between" padding="1%" paddingLeft="3%" paddingRight="3%" alignItems="center">
+            <Div flexDirection="row" justifyContent="space-between" padding="1% 3% 1% 3%"alignItems="center">
                 {/* 빙고 로고, 현재 페이지 이름 표시 부분 */}
                 <Div flexDirection="row">
                     <DrawerBtn />
@@ -90,6 +90,7 @@ const Home =()=> {
                 ))}
             </Div>
 
+            {/* 모달창 출력 부분 */}
             <Modal isOpen={modalIsOpen} onRequestClose={closeModal}
                 style={{
                     overlay: {
@@ -102,8 +103,8 @@ const Home =()=> {
                             backgroundSize: "cover",
                             // backgroundRepeat: "no-repeat",
                             margin: "0",
-                            width: "61%",
-                            height: "57%",
+                            width: "50%",
+                            height: "60%",
                             display: "flex",
                             border: "none",
                             //alignItems: "center",
@@ -115,7 +116,7 @@ const Home =()=> {
                     
                             //position: 'absolute', // absolute positioning
                             left: "50%", // center the modal horizontally
-                            top: "53%", // center the modal vertically
+                            top: "50%", // center the modal vertically
                             transform: "translate(-50%, -50%)", // center the modal
                             //모달 내용이 부모 요소의 높이를 초과하면 자동으로 스크롤 바를 생성하도록 설정합니다. "overflowY: 'auto'"가 그 역할을 담당합니다.
                     
@@ -129,9 +130,13 @@ const Home =()=> {
                 </Div>
                 {/* 모달 내용 */}
                 <WorkspaceCreate />
-                <Link to = "/Home">
-                    <Button onClick={onButtonClick}>생성하기</Button>
-                </Link>
+                <Div justifyContent="center">
+                    <Link to = "/Home">
+                        <Button onClick={onButtonClick}>
+                            생성하기
+                        </Button>
+                    </Link>
+                </Div>
             </Modal>
         </>
         
