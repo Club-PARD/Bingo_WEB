@@ -3,6 +3,8 @@ import { Div } from "../../Components/NormalComponents/Section";
 import { Link } from "react-router-dom";
 import BingoBoard from "../../Preset/WorkspacePreset/BingoBoard";
 
+//빙고페이지
+//BingoBoard component 호출
 function BingoPage() {
   return(
     <>

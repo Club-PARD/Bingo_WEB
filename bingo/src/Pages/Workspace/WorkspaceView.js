@@ -1,5 +1,4 @@
 import {Div} from "../../Components/NormalComponents/Section";
-import styled from "styled-components";
 import { Img } from "../../Components/NormalComponents/Etc";
 import Modal from "react-modal";
 import { useState, React } from "react";
@@ -8,7 +7,12 @@ import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Link } from "react-router-dom";
 import RetrospectInWorkspace from "./RetrospectInWorkspace";
 
-
+//workspace에 들어오면 보이는 화면
+//아직 와이어 프레임 안나와서 정확한건 미정
+//빙고페이지로 이동 가능
+//회고생성페이지로 이동 가능
+//RetrospectInWorkspace component출력
+//회고결과 출력(이것도 디자인이 완성되고 백엔드가 연결되어야 가능)
 function WorkspaceView() {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [value, setValue] = useState("123456");
