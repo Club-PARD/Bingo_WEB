@@ -1,57 +1,60 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
-import CssBaseline from '@mui/material/CssBaseline';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import List from '@mui/material/List';
-import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
+import styled from "styled-components";
 
-const drawerWidth = 200;
+const Sidediv = styled.div`
+    height : 90vh;
+    width : 10vw;
+    background-color : gainsboro;
+    border-radius : 25px;
+    margin : 1%;
+    display : flex;
+    flex-direction : column;
+    justify-content : center;
+    align-items : center;
+`
+const Profile = styled.div`
+  display : flex;
+  justify-content : center;
+  align-items : center;
+  flex-direction : column;
+  padding-bottom : 50%;
+`
+const ProfileImg = styled.img`
+  width : 80%;
+  height : 50%;
+  margin-bottom : 20%;
+`
+const Username = styled.div`
+  font-weight : bold;
+  font-size : 13px;
+  padding : 1%;
+`
+const UserTask = styled.div`
+  font-size : 10px;
+  padding : 1%;
+`
 
-export default function PermanentDrawerLeft() {
-  return (
-    <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
-      <AppBar
-        position="fixed"
-        sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
-      >
-      </AppBar>
-      <Drawer
-        sx={{
-          width: drawerWidth,
-          flexShrink: 0,
-          '& .MuiDrawer-paper': {
-            width: drawerWidth,
-            boxSizing: 'border-box',
-          },
-        }}
-        variant="permanent"
-        anchor="left"
-      >
-        <Toolbar />
-        <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-      </Drawer>
-    </Box>
-  );
-}
+const UserData = [
+    {
+        name : "사용자 이름",
+        task : "사용자 직책",
+    },
+  ];
+
+export default function Sidebar() {
+    return (
+        <>
+            <Sidediv>
+                <Profile>
+                    {/* 프로필 이미지, 이 부분도 추후 서버에서 가져오는 값을 사용할 수 있는 형태로 만들기 */}
+                    <ProfileImg src='/img/Profile/profileimg.jpg' alt='프로필 이미지'/>
+                    {/* 사용자 정보와 직책 */}
+                    <Username>{UserData[0].name}</Username>
+                    <UserTask>{UserData[0].task}</UserTask>
+                </Profile>
+                <div>프로젝트</div>
+                <div>로그아웃</div>
+            </Sidediv>
+        </>
+    );
+  }
+  
