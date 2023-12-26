@@ -1,10 +1,9 @@
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom"
 import PI_Test from "./Pages/Retrospect/PI_Test";
-import Home from "./Pages/Home/Home";
 import LoginPage from "./Pages/Login/LoginPage";
 import WorkspaceView from "./Pages/Workspace/WorkspaceView";
 import RetrospectCreate from "./Pages/Retrospect/RetrospectCreate";
-import WorkspaceList from "./Pages/Workspace/WorkspaceList";
+import WorkspaceList from "./Pages/Home/WorkspaceList";
 import RetrospectList from "./Pages/Retrospect/RetrospectList";
 import RetrospectView from "./Pages/Retrospect/RetrospectView";
 import RetrospectWrite from "./Pages/Retrospect/RetrospectWrite";
@@ -31,7 +30,7 @@ const Routers = () => {
                     <Route path='/PI' element={<PI_Test />} />
                     <Route path='/PI2' element={<PI_Test2 />} />
                     
-                    <Route path='/Home' element={<Home />}/>
+                    <Route path='/WorkspaceList' element={<WorkspaceList />}/>
                     <Route path='/WorkspaceList' element={<WorkspaceList />}/>
                     <Route path='/WorkspaceView' element={<WorkspaceView />}/>
                     <Route path='/RetrospectCreate' element={<RetrospectCreate />}/>
