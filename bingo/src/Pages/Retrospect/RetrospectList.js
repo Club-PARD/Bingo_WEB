@@ -6,7 +6,7 @@ import {Button} from "../../Components/NormalComponents/Form";
 function RetrospectList() {
     return (
         <Div flexDirection = "column">
-            <P>작성된 회로 리스트 페이지입니다.</P>
+            <P>작성된 회고 리스트 페이지입니다.</P>
             <Link to="/RetrospectCreate">
                 <Button>회고 생성하러 가기</Button>
             </Link>
