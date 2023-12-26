@@ -131,18 +131,6 @@ function WorkspaceView() {
                             margin="0 0 2% 0"
                         >
                             <Div fontSize="14px">회고 리스트</Div>
-                            <Div>
-                                <Link to="/RetrospectCreate">
-                                    <Button
-                                        width="66px"
-                                        height="25px"
-                                        flexShirnk="0"
-                                        borderRadius="35px"
-                                        backgroundColor="#D9D9D9"
-                                        color="black"
-                                    >회고 생성</Button>
-                                </Link>
-                            </Div>
                         </Div>
                         {/*retrospectlist body height=833*/}
                         <Div
