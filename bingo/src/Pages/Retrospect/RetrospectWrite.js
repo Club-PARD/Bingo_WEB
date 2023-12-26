@@ -7,7 +7,7 @@ function RetrospectWrite() {
     return (
         <>
             {/* 상단바 */}
-            <Div alignItems="center" flexDirection="row" backgroundColor="whitesmoke" height="10vh" paddingLeft="3%">
+            <Div alignItems="center" flexDirection="row" backgroundColor="whitesmoke" height="10vh" padding="3%">
                 <DrawerBtn />
                 <P fontSize="30px" fontWeight="bolder">회고 작성하기</P>
             </Div>
