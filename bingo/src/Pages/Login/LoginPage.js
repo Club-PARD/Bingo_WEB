@@ -5,6 +5,7 @@ import {ID, LoginBtn, PW} from "../../Preset/LoginPreset";
 import GoogleLoginButton from "./GoogleLogin";
 import { Img } from "../../Components/NormalComponents/Etc";
 import { P } from "../../Components/NormalComponents/Text";
+import { Button } from "@mui/material";
 
 
 // 로그인 화면 전체를 감싸는 Div
@@ -58,6 +59,7 @@ const LoginPage = () => {
                 <h1>Your Own Retrospect,</h1>
                 <P fontSize="50px" fontWeight="bolder">Bingo</P>
                 <br/>
+                <Button>로그인 하러 가기</Button>
                 <GoogleLoginButton />
             </Login>
         </LoginDiv>
