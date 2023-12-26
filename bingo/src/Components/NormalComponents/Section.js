@@ -13,12 +13,14 @@ export const Div = styled.div`
     height : ${props => props.height || ''};
 
     border : ${props => props.border || ''};
-    border-right: ${props => props.borderRight || ''};
+    /* border-right: ${props => props.borderRight || ''}; */
     border-radius: ${props => props.borderRadius || ''};
     box-sizing : ${props => props.boxSizing || 'border-box'};
 
     color: ${props => props.color || ''};
     background-color: ${props => props.backgroundColor || ''};
+
+    right : ${props => props.right || ''};
 
     
     margin : ${props => props.margin || "0px 0px 0px 0px"};

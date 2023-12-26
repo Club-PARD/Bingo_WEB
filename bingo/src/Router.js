@@ -30,6 +30,7 @@ const Routers = () => {
             <DrawerBtn />
             */
                 }
+                <Sidebar />
                 <Routes>
                     <Route path='/' element={<Intro />}/>
                     <Route path='/Login' element={<LoginPage />}/>
