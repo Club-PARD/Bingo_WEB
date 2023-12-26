@@ -131,8 +131,38 @@ function WorkspaceView() {
                         width="53%"
                         height="100%"
                         border="3px dashed red"
+                        alignItems="center"
+                        flexDirection="column"
                     >
-
+                        {/*retrospectlist top*/}
+                        <Div
+                            width="83%"
+                            height="9%"
+                            flexDirection="row"
+                            justifyContent="space-between"
+                            alignItems="center"
+                        >
+                            <Div fontSize="14px">회고 리스트</Div>
+                            <Div>
+                                <Link to="/RetrospectCreate">
+                                    <Button
+                                        width="66px"
+                                        height="25px"
+                                        flexShirnk="0"
+                                        borderRadius="35px"
+                                        backgroundColor="#D9D9D9"
+                                        color="black"
+                                    >회고 생성</Button>
+                                </Link>
+                            </Div>
+                        </Div>
+                        {/*retrospectlist body height=833*/}
+                        <Div
+                            width="83%"
+                            height="90%"
+                        >
+                            <RetrospectInWorkspace />
+                        </Div>
                     </Div>
                 </Div>
                 

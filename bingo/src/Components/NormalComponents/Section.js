@@ -8,7 +8,7 @@ export const Div = styled.div`
     flex-direction: ${props => props.flexDirection || ''};
     flex-shrink: ${props => props.flexShirnk || ''};
     flex-wrap: ${props => props.flexWrap || ''};
-    
+
     width : ${props => props.width || ''};
     height : ${props => props.height || ''};
 
@@ -37,5 +37,7 @@ export const Div = styled.div`
     line-height: ${props => props.lineHeight || ''};
     color: ${props => props.color || '#000'};
     -webkit-text-stroke: ${props => props.textStroke || '1px #000'};
+
+    overflow-y: ${props => props.overflowY || ''};
 `;
 
