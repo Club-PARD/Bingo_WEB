@@ -45,7 +45,7 @@ const Editor = () => {
           formats={formats}
           placeholder="회고 내용을 입력하세요"
           onChange={handleProcedureContentChange}
-          style={{ height: "220px" }}
+          style={{ height: "500px", width:"1000px" }}
         >
         </ReactQuill>
       </div>

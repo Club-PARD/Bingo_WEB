@@ -6,6 +6,7 @@ import { useState, React } from "react";
 import { Button } from "../../Components/NormalComponents/Form";
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Link } from "react-router-dom";
+import RetrospectInWorkspace from "./RetrospectInWorkspace";
 
 
 function WorkspaceView() {
@@ -41,14 +42,17 @@ function WorkspaceView() {
                     fontWeight="400"
                     lineHeight="150%"
                 >메인</Div>
-                <Div
-                    margin="0 0 2% 10%"
-                    fontFamily="Inter"
-                    fontSize="35px"
-                    fontStyle="normal"
-                    fontWeight="400"
-                    lineHeight="150%"
-                >빙고</Div>
+                <Link to="/bingo">
+                    <Div
+                        margin="0 0 2% 10%"
+                        fontFamily="Inter"
+                        fontSize="35px"
+                        fontStyle="normal"
+                        fontWeight="400"
+                        lineHeight="150%"
+                        style={{ textDecoration: 'none' }}
+                    >빙고</Div>
+                </Link>
                 <Div
                     margin="0 0 2% 10%"
                     fontFamily="Inter"
@@ -97,6 +101,12 @@ function WorkspaceView() {
                             <Img src="/img/WorkspaceView/account_circle.png"/>
                         </Div>
                     </Div>
+                </Div>
+                <Div
+                    height="73%"
+                    width="100%"
+                >
+                    <RetrospectInWorkspace/>
                 </Div>
             </Div>
 
