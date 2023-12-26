@@ -8,13 +8,13 @@ function BingoBoard() {
   const [items, setItems] = useState([
     { text: '열정적인', flag: true },
     { text: '친근한', flag: false },
-    { text: '멋있는', flag: true },
+    { text: '멋있는', flag: false },
     { text: '잘생긴', flag: false },
-    { text: '참신한', flag: true },
+    { text: '참신한', flag: false },
     { text: '재밌는', flag: false },
-    { text: '안정적인', flag: true },
+    { text: '안정적인', flag: false },
     { text: '섹시한', flag: false },
-    { text: '귀여운', flag: true },
+    { text: '귀여운', flag: false },
   ]);
 
   const handleItemClick = (index) => {
@@ -35,8 +35,8 @@ function BingoBoard() {
             alignItems="center"
             border="1px solid black"
             lineHeight="1"
-            color={item.flag ? 'black' : 'white'}
-            backgroundColor={item.flag ? '#C9C9C9' : '#C9C9C9'}
+            color="black"
+            backgroundColor={item.flag ? '#FFF' : '#A3A3A3'}
             fontSize="20px"
             onClick={() => handleItemClick(index)}
         >

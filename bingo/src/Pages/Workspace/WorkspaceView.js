@@ -103,7 +103,7 @@ function WorkspaceView() {
                             <Div
                                 width="90%"
                                 height="91%"
-                                backgroundColor="#D9D9D9"
+                                backgroundColor="#444"
                                 margin="9% 0 0 2%"
                                 flexWrap="wrap" 
                                 justifyContent="space-evenly" 
