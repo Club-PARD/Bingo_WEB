@@ -6,6 +6,7 @@ import { Button } from "../../Components/NormalComponents/Form";
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Link } from "react-router-dom";
 import RetrospectInWorkspace from "./RetrospectInWorkspace";
+import BingoBoard from "../../Preset/WorkspacePreset/BingoBoard";
 
 //workspace에 들어오면 보이는 화면
 //아직 와이어 프레임 안나와서 정확한건 미정
@@ -39,14 +40,13 @@ function WorkspaceView() {
                 </Div>
             </Div>
             {/*Right Space width=1706px*/}
-            <Div flexDirection="column" height="100%" width="90%" border="1px solid black">
+            <Div flexDirection="column" height="100%" width="90%">
                 {/*height=154px */}
                 <Div
                     height="20%"
                     width="100%" 
                     flexDirection="row"
                     alignItems="flex-end"
-                    border="1px solid black"
                     padding=" 0 0 4% 0"
                 >
                     {/*title area*/}
@@ -99,8 +99,41 @@ function WorkspaceView() {
                 <Div
                     height="80%"
                     width="100%"
-                    backgroundColor="skyblue"
                 >
+                    {/*Bingo layout width=800 */}
+                    <Div 
+                        width="47%"
+                        height="100%"
+                        flexDirection="column"
+                    >
+                        {/*Div for vertical Line */}
+                        <Div
+                            width="100%"
+                            height="93%"
+                            borderRight="1px solid black"
+                        >
+                            <Div
+                                width="90%"
+                                height="91%"
+                                backgroundColor="#D9D9D9"
+                                margin="9% 0 0 2%"
+                                flexWrap="wrap" 
+                                justifyContent="space-evenly" 
+                                alignContent="space-evenly"
+                                alignItems="center"
+                            >
+                                <BingoBoard />
+                            </Div>
+                        </Div>
+                    </Div>
+                    {/*retrospectlist layout width=906 */}
+                    <Div
+                        width="53%"
+                        height="100%"
+                        border="3px dashed red"
+                    >
+
+                    </Div>
                 </Div>
                 
             </Div>

@@ -4,6 +4,7 @@ export const Div = styled.div`
     display: ${props => props.display || "flex"};
     justify-content: ${props => props.justifyContent || ''};
     align-items: ${props => props.alignItems || ''};
+    align-content: ${props => props.alignContent || ''};
     flex-direction: ${props => props.flexDirection || ''};
     flex-shrink: ${props => props.flexShirnk || ''};
     flex-wrap: ${props => props.flexWrap || ''};
@@ -12,6 +13,7 @@ export const Div = styled.div`
     height : ${props => props.height || ''};
 
     border : ${props => props.border || ''};
+    border-right: ${props => props.borderRight || ''};
     border-radius: ${props => props.borderRadius || ''};
     box-sizing : ${props => props.boxSizing || 'border-box'};
 
