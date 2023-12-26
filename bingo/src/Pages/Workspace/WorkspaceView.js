@@ -12,7 +12,7 @@ import RetrospectInWorkspace from "./RetrospectInWorkspace";
 //빙고페이지로 이동 가능
 //회고생성페이지로 이동 가능
 //RetrospectInWorkspace component출력
-//회고결과 출력(이것도 디자인이 완성되고 백엔드가 연결되어야 가능)
+//회고결과 출력(이것도 디자인이 완성되고 백엔드가 연결되어야 가능하다)
 function WorkspaceView() {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [value, setValue] = useState("123456");
