@@ -1,5 +1,4 @@
 import {BrowserRouter as Router, Route, Routes} from "react-router-dom"
-import PI_Test from "./Pages/Retrospect/PI_Test";
 import LoginPage from "./Pages/Login/LoginPage";
 import WorkspaceView from "./Pages/Workspace/WorkspaceView";
 import RetrospectCreate from "./Pages/Retrospect/RetrospectCreate";
@@ -12,7 +11,11 @@ import Sidebar from "./Components/PageMovements/Sidebar";
 import Drawer from "./Components/PageMovements/Drawer";
 import DrawerBtn from "./DrawerBtn";
 import {RecoilRoot} from 'recoil';
-import PI_Test2 from "./Pages/Retrospect/PI_Test2";
+import PI_Test from "./Pages/Test/PI_Test";
+import PI_Test2 from "./Pages/Test/PI_Test2";
+import CrudList from "./Pages/Test/CrudList";
+import CrudAdd from "./Pages/Test/CrudAdd";
+import CrudUpdate from "./Pages/Test/CrudUpdate";
 
 const Routers = () => {
 
@@ -27,9 +30,13 @@ const Routers = () => {
                 }
                 <Routes>
                     <Route path='/' element={<LoginPage />}/>
-                    <Route path='/PI' element={<PI_Test />} />
-                    <Route path='/PI2' element={<PI_Test2 />} />
+                    <Route path='/PI' element={<PI_Test/>}/>
+                    <Route path='/PI2' element={<PI_Test2/>}/>
+                    <Route path='/CrudList' element={<CrudList/>}/>
+                    <Route path='/CrudAdd' element={<CrudAdd/>}/>
+                    <Route path='/CrudUpdate' element={<CrudUpdate />} />
                     
+
                     <Route path='/WorkspaceList' element={<WorkspaceList />}/>
                     <Route path='/WorkspaceList' element={<WorkspaceList />}/>
                     <Route path='/WorkspaceView' element={<WorkspaceView />}/>
