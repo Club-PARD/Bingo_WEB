@@ -2,21 +2,27 @@ import React from "react";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../Api/AuthApi";
+import { jwtDecode } from 'jwt-decode';
+
+const LoginDummy = {
+    
+}
 
 const GoogleLoginButton = () => {
-    //const clientId = '797219813265-6ttnkh7is7q3ieb6ek4p0ngn6d5pa0pf.apps.googleusercontent.com';
     const navigate = useNavigate();
 
     return (
         <>
             <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_AUTH_CLIENT_ID}>
                 <GoogleLogin
-                    onSuccess={(res) => {
-                        console.log(res);
+                    onSuccess={(credentialResponse) => {
+                        const decodedToken = jwtDecode(credentialResponse.credential);
+                        console.log(decodedToken);
+                        console.log("로그인 성공!");
                         navigate("/Home");
                     }}
-                    onFailure={(err) => {
-                        console.log(err);
+                    onError={() => {
+                        console.log("Login Failed");
                         navigate("/");
                     }}
                 />
