@@ -12,29 +12,36 @@ import BingoPage from "./Pages/Workspace/BingoPage";
 import Sidebar from "./Components/PageMovements/Sidebar";
 import Drawer from "./Components/PageMovements/Drawer";
 import DrawerBtn from "./DrawerBtn";
+import {RecoilRoot} from 'recoil';
+import PI_Test2 from "./Pages/Retrospect/PI_Test2";
 
 const Routers = () => {
 
     return (
-        <Router>
-            {/* 
+        <RecoilRoot>
+            <Router>
+                {/*
             <Sidebar />
-            <Drawer /> 
+            <Drawer />
             <DrawerBtn />
-            */}
-            <Routes>
-                <Route path='/' element={<LoginPage />}/>
-                <Route path='/PI' element={<PI_Test />}/>
-                <Route path='/Home' element={<Home />}/>
-                <Route path='/WorkspaceList' element={<WorkspaceList />}/>
-                <Route path='/WorkspaceView' element={<WorkspaceView />}/>
-                <Route path='/RetrospectCreate' element={<RetrospectCreate />} />
-                <Route path='/RetrospectList' element={<RetrospectList />} />
-                <Route path='/RetrospectView' element={<RetrospectView/>}/>
-                <Route path='/RetrospectWrite' element={<RetrospectWrite/>}/>
-                <Route path='/bingo' element={<BingoPage/>}/>
-            </Routes>
-        </Router>
+            */
+                }
+                <Routes>
+                    <Route path='/' element={<LoginPage />}/>
+                    <Route path='/PI' element={<PI_Test />} />
+                    <Route path='/PI2' element={<PI_Test2 />} />
+                    
+                    <Route path='/Home' element={<Home />}/>
+                    <Route path='/WorkspaceList' element={<WorkspaceList />}/>
+                    <Route path='/WorkspaceView' element={<WorkspaceView />}/>
+                    <Route path='/RetrospectCreate' element={<RetrospectCreate />}/>
+                    <Route path='/RetrospectList' element={<RetrospectList />}/>
+                    <Route path='/RetrospectView' element={<RetrospectView/>}/>
+                    <Route path='/RetrospectWrite' element={<RetrospectWrite/>}/>
+                    <Route path='/bingo' element={<BingoPage/>}/>
+                </Routes>
+            </Router>
+        </RecoilRoot>
     )
 };
 
