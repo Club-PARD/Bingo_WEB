@@ -45,12 +45,14 @@ const UserTask = styled.div`
 
 // 사이드바에 적용할 아이콘을 목록화 시켜서 사용함
 // 배열의 앞쪽부터 순차적으로 사용됨
-const iconArray = [HomeIcon, GroupsIcon, MailIcon, LogoutIcon];
+const iconArray = [HomeIcon,
+  //GroupsIcon, 
+  MailIcon, LogoutIcon];
 
 // 메뉴에서의 경로 이동에 사용함
 const menuItems = [
-  { text: '홈', path: '/Home' },
-  { text: '워크스페이스', path: '/WorkspaceList' },
+  { text: '홈', path: '/WorkspaceList' },
+  // { text: '워크스페이스', path: '/WorkspaceList' },
   { text: '회고 목록', path: '/RetrospectList' },
   { text: '로그아웃', path: '/' },
 ];
