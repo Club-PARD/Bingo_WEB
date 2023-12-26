@@ -23,22 +23,21 @@ function RetrospectInWorkspace(){
       {/*Div for retrospectList height=833*/}
       <Div 
         width="100%" 
-        height="80vh"
+        height="833px"
         flexDirection="column"
         margin="0 1%"
-        overflowY="auto"
       >
         {tasks.slice().reverse().map((task) => (
           <Div 
             key={task.id}
-            height="14%"
+            height="100px"
             width="100%"
             backgroundColor="#D9D9D9"
             borderRadius="15px"
             textAlign="center"
             alignItems="center"
             justifyContent="center"
-            margin="1vh 0 0 0"
+            margin="2% 0 0 0"
           >
             <Div 
               width="94%"
