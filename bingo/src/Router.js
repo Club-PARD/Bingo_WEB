@@ -8,9 +8,10 @@ import RetrospectList from "./Pages/Retrospect/RetrospectList";
 import RetrospectView from "./Pages/Retrospect/RetrospectView";
 import RetrospectWrite from "./Pages/Retrospect/RetrospectWrite";
 import BingoPage from "./Pages/Workspace/BingoPage";
-import Sidebar from "./Components/PageMovements/Sidebar";
+import Sidebar from "./Sidebar";
 import Drawer from "./Components/PageMovements/Drawer";
 import DrawerBtn from "./DrawerBtn";
+import Intro from "./Pages/Login/Intro";
 import {RecoilRoot} from 'recoil';
 import PI_Test2 from "./Pages/Retrospect/PI_Test2";
 
@@ -26,7 +27,8 @@ const Routers = () => {
             */
                 }
                 <Routes>
-                    <Route path='/' element={<LoginPage />}/>
+                    <Route path='/' element={<Intro />}/>
+                    <Route path='/Login' element={<LoginPage />}/>
                     <Route path='/PI' element={<PI_Test />} />
                     <Route path='/PI2' element={<PI_Test2 />} />
                     
