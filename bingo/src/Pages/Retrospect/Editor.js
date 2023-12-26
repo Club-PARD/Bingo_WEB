@@ -1,5 +1,5 @@
 import React from "react";
-import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.snow.css';
 import ReactQuill from 'react-quill'
 
 const Editor = () => {
