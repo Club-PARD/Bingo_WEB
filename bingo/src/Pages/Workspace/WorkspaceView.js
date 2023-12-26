@@ -23,100 +23,91 @@ function WorkspaceView() {
     const closeModal = () => {
         setModalIsOpen(false);
     };
-    
     return (
         <Div flexDirection="row" width="100vw" height="100vh">
-            {/*Left Space width=415px*/}
-            <Div flexDirection="column" height="100%" width="20%" backgroundColor="#D9D9D9">
+            {/*Left Space width=214px*/}
+            <Div height="100%" width="10%" alignItems="center" justifyContent="center">
                 <Div 
-                    width="46%" 
-                    height="8%" 
-                    margin=" 4% 0 10% 11%"
-                    fontFamily="Inter"
-                    fontSize="60px"
-                    fontStyle="normal"
-                    fontWeight="400"
-                    lineHeight="150%"
-                >BINGO</Div>
-                <Div
-                    margin="0 0 2% 10%"
-                    fontFamily="Inter"
-                    fontSize="35px"
-                    fontStyle="normal"
-                    fontWeight="400"
-                    lineHeight="150%"
-                >메인</Div>
-                <Link to="/bingo">
-                    <Div
-                        margin="0 0 2% 10%"
-                        fontFamily="Inter"
-                        fontSize="35px"
-                        fontStyle="normal"
-                        fontWeight="400"
-                        lineHeight="150%"
-                        style={{ textDecoration: 'none' }}
-                    >빙고</Div>
-                </Link>
-                <Div
-                    margin="0 0 2% 10%"
-                    fontFamily="Inter"
-                    fontSize="35px"
-                    fontStyle="normal"
-                    fontWeight="400"
-                    lineHeight="150%"
-                >회고</Div>
+                    flexDirection="column" 
+                    height="95%" 
+                    width="75%" 
+                    backgroundColor="#D9D9D9" 
+                    margin="12% 10% 13% 10%" 
+                    borderRadius="30px" 
+                    flexShirnk="0"
+                >    
+                </Div>
             </Div>
-            {/*Right Space width=1565px*/}
-            <Div flexDirection="column" height="100%" width="80%">
+            {/*Right Space width=1706px*/}
+            <Div flexDirection="column" height="100%" width="90%" border="1px solid black">
+                {/*height=154px */}
                 <Div
-                    height="27%"
+                    height="20%"
                     width="100%" 
+                    flexDirection="row"
+                    alignItems="flex-end"
+                    border="1px solid black"
+                    padding=" 0 0 4% 0"
                 >
-                    {/*retrospect result div*/}
+                    {/*title area*/}
                     <Div
-                        height="77%"
-                        width="62%"
                         flexShirnk="0"
-                        borderRadius="18px"
-                        backgroundColor="#D9D9D9"
-                        margin="2% 0 0 3%"
+                        display= "inline-block"
+                        color="black"
+                        fontSize="56px"
+                        fontWeight="100"
+                        lineHeight="150%"
+                        fontStyle="normal"
+                        margin="0 0.7%"
                     >
-
+                        강아지들 다 모여
                     </Div>
-                    {/*UI Space width=547px */}
+                    {/*project introduce*/}
                     <Div
-                        height="100%"
-                        width="62%"
-                        justifyContent="space-evenly"
-                        padding="2% 1% 0 5%"
+                        display= "inline-block"
+                        color="black"
+                        fontSize="17px"
+                        fontWeight="100"
+                        lineHeight="150%"
+                        fontStyle="normal"
+                        margin="0 2.3% .5% 0"
                     >
-                        <Link to = "/RetrospectCreate">
-                            <Div width="15%" height="25%" margin="0 0 0 25%">
-                                <Img src="/img/WorkspaceView/ph_plus-bold.png"/>
-                            </Div>
-                        </Link>
-                        <Button onClick={openModal} width="15%" height="25%" backgroundColor="white">
-                            <Img width="100%" height="100%" src="/img/WorkspaceView/mdi_share-outline.png"/>
-                        </Button>
-                        <Div width="15%" height="25%">
-                            <Img src="/img/WorkspaceView/notifications.png"/>
-                        </Div>
-                        <Div width="15%" height="25%">
-                            <Img src="/img/WorkspaceView/account_circle.png"/>
-                        </Div>
+                        여기는 강사모야 강아지들을 사랑하는 모임
                     </Div>
+                    {/*open Modal*/}
+                    <Div>
+                        <Button 
+                            onClick={openModal} 
+                            borderRadius= "50px"
+                            backgroundColor= "#D9D9D9"
+                            color= "black"
+                            alignItems="center"
+                            justifyContent="center"
+                            padding="4px 12px"
+                            margin=" 0 0 5% 0"
+
+                            fontWeight="0"
+                            fontSize="15px"
+                            fontStyle="normal"
+                        >
+                            팀원 초대하기
+                        </Button>
+                    </Div>
+                    
                 </Div>
+                {/*height=926px */}
                 <Div
-                    height="73%"
+                    height="80%"
                     width="100%"
+                    backgroundColor="skyblue"
                 >
-                    <RetrospectInWorkspace/>
                 </Div>
+                
             </Div>
 
 {/*
     Modal size: width:584px, height:372px 
-    Modal show invite code to user, user can copy the code to click "복사하기"button
+    Modal show invite code to user, user can copy the code to click "복사"button
 */}
             <Modal isOpen={modalIsOpen} onRequestClose={closeModal}
                 style={{

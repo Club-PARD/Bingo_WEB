@@ -26,7 +26,7 @@ export const Div = styled.div`
     padding-left : ${props => props.paddingLeft || "0px"}; */
     
 
-    font-family: ${props => props.fontFamily || ''};
+    font-family: ${props => props.fontFamily || 'inter'};
     font-size: ${props => props.fontSize || ''};
     font-style: ${props => props.fontStyle || ''};
     font-weight: ${props => props.fontWeight || ''};
