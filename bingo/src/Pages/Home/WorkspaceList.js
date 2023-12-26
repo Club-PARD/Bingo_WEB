@@ -1,10 +1,10 @@
 import { useState, React } from "react";
 import styled from "styled-components";
-import { Div } from "../../Components/NormalComponents/Section";
-import { P } from "../../Components/NormalComponents/Text";
-import WorkspaceCard from "./WorkspaceCard";
-import { Button } from "../../Components/NormalComponents/Form";
-import { Img } from "../../Components/NormalComponents/Etc";
+import { Div } from "../../Components/NormalComponents/Section.js";
+import { P } from "../../Components/NormalComponents/Text.js";
+import WorkspaceCard from "./WorkspaceCard.js";
+import { Button } from "../../Components/NormalComponents/Form.js";
+import { Img } from "../../Components/NormalComponents/Etc.js";
 import Modal from "react-modal";
 import WorkspaceCreate from "./WorkspaceCreate.js"
 import { Link } from "react-router-dom";
@@ -34,7 +34,7 @@ const WorkspaceData = [
     },
 ];
 
-const Home =()=> {
+const WorkspaceList =()=> {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const openModal = () => {
         setModalIsOpen(true);
@@ -143,4 +143,4 @@ const Home =()=> {
     )
 }
 
-export default Home;
+export default WorkspaceList;
