@@ -3,7 +3,7 @@ import PI_Test from "./Pages/Retrospect/PI_Test";
 import LoginPage from "./Pages/Login/LoginPage";
 import WorkspaceView from "./Pages/Workspace/WorkspaceView";
 import RetrospectCreate from "./Pages/Retrospect/RetrospectCreate";
-import WorkspaceList from "./Pages/Home/WorkspaceList";
+import WorkspaceList from "./Pages/Workspace/WorkspaceList";
 import RetrospectList from "./Pages/Retrospect/RetrospectList";
 import RetrospectView from "./Pages/Retrospect/RetrospectView";
 import RetrospectWrite from "./Pages/Retrospect/RetrospectWrite";
