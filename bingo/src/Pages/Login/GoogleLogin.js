@@ -36,7 +36,7 @@ const GoogleLoginButton = () => {
                         console.log("로그인 성공!");
                         // api로 정보 넘겨주기
                         // 페이지 이동
-                        navigate("/Home");
+                        navigate("/WorkspaceList");
                     }}
                     onError={() => {
                         console.log("Login Failed");
