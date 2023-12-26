@@ -15,22 +15,27 @@ const WorkspaceData = [
     {
         name : "개발팀 회고",
         desc : "23-4 롱커톤 3!4!",
-        period : "231218 ~ 240106",
+        picture : " ",
     },
     {
         name : "공설입 회고",
         desc : "공학설계입문 2분반 1조",
-        period : "230901 ~ 231216",
+        picture : " ",
     },
     {
         name : "SLESLE 2023",
         desc : "23-2 슬기짜기 임원단",
-        period : "231130 ~ 240128",
+        picture : " ",
     },
     {
         name : "맹맹맹",
         desc : "맹구 마지막 우승",
-        period : "130512 ~ 현재진행형",
+        picture : " ",
+    },
+    {
+        name : "멍멍멍",
+        desc : "북런던 강아지",
+        picture : " ",
     },
 ];
 
@@ -63,17 +68,16 @@ const WorkspaceList =()=> {
     return(
         <>
             {/* 상단바 부분 */}
-            <Div flexDirection="row" justifyContent="space-between" padding="1% 3% 1% 3%"alignItems="center">
+            <Div flexDirection="row" justifyContent="space-between" padding="1% 3% 1% 3%"alignItems="center" height="15vh">
                 {/* 빙고 로고, 현재 페이지 이름 표시 부분 */}
                 <Div flexDirection="row">
-                    <DrawerBtn />
                     {/* <Img src="/img/Home/logo.jpg" width={"10%"}/> */}
-                    <P fontSize="30px" fontWeight="bolder" marginRight="10px">현재 워크스페이스</P>
+                    <P fontSize="70px" margin="0 0 0 1%">Bingo</P>
                 </Div>
                 {/* 새 워크스페이스 생성 버튼 */}
-                <Button borderRadius="5px" padding="1%" fontWeight="bolder" fontSize="15px" onClick={openModal}>새 워크스페이스 생성</Button>
+                <Button borderRadius="25px" padding="1%" fontSize="15px" backgroundColor="gainsboro" color="black" onClick={openModal}>워크스페이스 생성</Button>
             </Div>
-            <hr />
+            <Div margin="0 0 0 3%">워크스페이스 리스트</Div>
             {/* 워크스페이스 카드 부분 */}
             <Div
                 flexDirection="row"
