@@ -47,6 +47,9 @@ const Login = styled.div`
 `;
 
 const LoginPage = () => {
+    const login =()=> {
+        location.href = "https://accounts.google.com/o/oauth2/auth?client_id=21090106612-s57k2u6n2ao9odt0p7r6l8mu2i3n4lia.apps.googleusercontent.com&redirect_uri=http://ec2-13-209-82-115.ap-northeast-2.compute.amazonaws.com:8080/login/oauth2/code/google&response_type=code&scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
+    }
     return (
         <LoginDiv>
             <AboutUs>
@@ -59,7 +62,7 @@ const LoginPage = () => {
                 <h1>Your Own Retrospect,</h1>
                 <P fontSize="50px" fontWeight="bolder">Bingo</P>
                 <br/>
-                <Button>로그인 하러 가기</Button>
+                <Button onClick={login}>로그인 하러 가기</Button>
                 <GoogleLoginButton />
             </Login>
         </LoginDiv>
