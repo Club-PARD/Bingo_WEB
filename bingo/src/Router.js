@@ -1,10 +1,10 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Sidebar from './Sidebar';
 import Drawer from './Components/PageMovements/Drawer';
 import DrawerBtn from './DrawerBtn';
 import Intro from './Pages/Login/Intro';
-import { RecoilRoot } from 'recoil';
+import {RecoilRoot} from 'recoil';
 import PI_Test from './Pages/Test/PI_Test';
 import PI_Test2 from './Pages/Test/PI_Test2';
 import CrudList from './Pages/Test/CrudList';
@@ -21,35 +21,37 @@ import RetrospectWrite from './Pages/Retrospect/RetrospectWrite';
 import BingoPage from './Pages/Workspace/BingoPage';
 
 const Routers = () => {
-  return (
-    <RecoilRoot>
-      <Router>
-        <div style={{ display: 'flex' }}>
-          <Sidebar />
-          <div style={{flex : 1}}>
-          <Routes>
-            <Route path='/' element={<Intro />} />
-            <Route path='/Login' element={<LoginPage />} />
-            <Route path='/PI' element={<PI_Test />} />
-            <Route path='/PI2' element={<PI_Test2 />} />
-            <Route path='/CrudList' element={<CrudList />} />
-            <Route path='/CrudAdd' element={<CrudAdd />} />
-            <Route path='/CrudUpdate' element={<CrudUpdate />} />
-            <Route path='/CrudView' element={<CrudView />} />
+    return (
+        <RecoilRoot>
+            <Router>
+                {/* <div style={{ display: 'flex' }}> */}
+                {/* <Sidebar /> */}
+                {/* <div style={{flex : 1}}> */}
+                <Routes>
+                    <Route path='/' element={<Intro />}/>
+                    <Route path="" element = {<Sidebar/>}>
+                        <Route path='/Login' element={<LoginPage />}/>
+                        <Route path='/PI' element={<PI_Test />}/>
+                        <Route path='/PI2' element={<PI_Test2 />}/>
+                        <Route path='/CrudList' element={<CrudList />}/>
+                        <Route path='/CrudAdd' element={<CrudAdd />}/>
+                        <Route path='/CrudUpdate' element={<CrudUpdate />}/>
+                        <Route path='/CrudView' element={<CrudView />}/>
 
-            <Route path='/WorkspaceList' element={<WorkspaceList />} />
-            <Route path='/WorkspaceView' element={<WorkspaceView />} />
-            <Route path='/RetrospectCreate' element={<RetrospectCreate />} />
-            <Route path='/RetrospectList' element={<RetrospectList />} />
-            <Route path='/RetrospectView' element={<RetrospectView />} />
-            <Route path='/RetrospectWrite' element={<RetrospectWrite />} />
-            <Route path='/bingo' element={<BingoPage />} />
-          </Routes>
-        </div>
-        </div>
-      </Router>
-    </RecoilRoot>
-  );
+                        <Route path='/WorkspaceList' element={<WorkspaceList />}/>
+                        <Route path='/WorkspaceView' element={<WorkspaceView />}/>
+                        <Route path='/RetrospectCreate' element={<RetrospectCreate />}/>
+                        <Route path='/RetrospectList' element={<RetrospectList />}/>
+                        <Route path='/RetrospectView' element={<RetrospectView />}/>
+                        <Route path='/RetrospectWrite' element={<RetrospectWrite />}/>
+                        <Route path='/bingo' element={<BingoPage />}/>
+                    </Route>
+                </Routes>
+                {/* </div> */}
+                {/* </div> */}
+            </Router>
+        </RecoilRoot>
+    );
 };
 
 export default Routers;

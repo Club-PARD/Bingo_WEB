@@ -13,7 +13,7 @@ function CrudList() {
         const fetchData = async () => {
             try {
                 // 서버에서 데이터를 가져오는 요청
-                const response = await axios.get("http://172.17.188.80:8080/api/v1/test");
+                const response = await axios.get("http://172.18.157.205:8080/api/v1/test");
 
                 // 응답에서 데이터 추출
                 const fetchedData = response.data;
