@@ -36,7 +36,7 @@ function RetrospectView() {
     return (
         <Whole>
             <Header>
-                {/* Breadcrumb은 현재 위치에 따라 달라진다 / 현위치 : 1 (회고 작성하기) */}
+                {/* Breadcrumb은 현재 위치에 따라 달라진다 / 현위치 : 3 (팀 회고 확인하기) */}
                 <Breadcrumb activeKey={3} />
             </Header>
             <Body>
