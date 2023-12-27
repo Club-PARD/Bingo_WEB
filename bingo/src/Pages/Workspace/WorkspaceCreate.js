@@ -1,73 +1,79 @@
 /* eslint-disable */
 
 import { Div } from "../../Components/NormalComponents/Section.js";
-import { Img } from "../../Components/NormalComponents/Etc.js"
+import styled from "styled-components";
 import { Input } from "../../Components/NormalComponents/Form.js";
 import React, { useState, useRef } from "react";
 import { Label } from "../../Components/NormalComponents/Text.js"; 
 
 //워크스페이스를 만드는 모달창
 function WorkspaceCreate() {
-    //제목과 소개, 사진은 이후 서버와 연결해 주고받을 것
-    //따라서 useState로 상태관리, 지금은 더미데이터로
     const [title, setTitle] = useState('');
     const onChangeTitle = (event) => {
-        setTitle(event.target.value);
+    setTitle(event.target.value);
     };
-
     const [introduce, setIntroduce] = useState('');
     const onChangeIntroduce = (event) => {
         setIntroduce(event.target.value);
     };
-    const [newProfileImage, setNewProfileImage] = useState("/img/test1.png");
-    const profileImageRef = useRef();
+    const [selectedFile, setSelectedFile] = useState(null);
+    const fileInputRef = useRef(null);
+
+    const handleFileSelect = (event) => {
+        const file = event.target.files[0];
+        setSelectedFile(file);
+    };
+
+    const handleButtonClick = () => {
+        fileInputRef.current && fileInputRef.current.click();
+    };
     
     return (
         <>
             {/* 모달 안의 전체 Div */}
-            <Div alignItems="center" flexDirection=" column" justifyContent="space-evenly" display="flex" padding="5%" backgroundColor="aliceblue">
-                <Div flexDirection="column" alignItems="center" padding="2%">
-                    <Label>프로젝트 이름</Label>
+            <Div alignItems="left" flexDirection=" column-reverse" justifyContent="space-between" width="100%" height="68%" >
+                <Div flexDirection="column" >
+                    <Div fontSize="42px" margin=".5% 0 0 0"
+                    >프로젝트 배너 이미지</Div>
+                    <Input
+                        type="file"
+                        style={{ display: "none" }}
+                        ref={fileInputRef}
+                        onChange={handleFileSelect}
+                    />
+                    <Div alignItems="center">
+                        <FileInputButton onClick={handleButtonClick}>+파일 업로드</FileInputButton>
+                        {selectedFile && (
+                            <SelectedFileName>{selectedFile.name}</SelectedFileName>
+                        )}
+                    </Div>
+                </Div>
+                <Div flexDirection="column">
+                    <Label fontSize="42px">프로젝트 생성</Label>
                     <Input type="text"
-                        placeholder="Beeingo" 
-                        border="1px solid black"
+                        width="100%"
+                        height="150px"
+                        backgroundColor="#D9D9D9"
+                        margin=".5% 0 0 0"
+                        fontSize="42px"
+                        value={introduce}
+                        onChange={onChangeIntroduce}
+                        />
+                </Div>
+                <Div flexDirection="column">
+                    <Label fontSize="42px">프로젝트 이름</Label>
+                    <Input type="text"
+                        width="100%"
+                        height="75px"
+                        backgroundColor="#D9D9D9"
+                        margin=".5% 0 0 0"
+                        fontSize="42px"
                         value={title}
                         onChange={onChangeTitle}
                         />
                 </Div>
-                <Div flexDirection="column" alignItems="center" padding="2%">
-                    <Label>프로젝트 생성</Label>
-                    <Input type="text"
-                        placeholder="워크스페이스 소개를 작성하시오"
-                        value={introduce}
-                        onChange={onChangeIntroduce}border="1px solid black"
-                        height="100px"
-                        />
-                </Div>
-                <Div flexDirection=" column" alignItems="center">
-                    <Div>프로젝트 배너 이미지</Div>
-                    <Div
-                    onClick={() => profileImageRef.current.click()}>
-                        +파일 업로드
-                    </Div>
-                    <Input
-                        type="file"
-                        style={{ display: "none" }}
-                        ref={profileImageRef}
-                        onChange={(e) => {
-                        if (e.target.files.length > 0) {
-                            const reader = new FileReader();
-                            reader.onloadend = () => {
-                            setNewProfileImage(reader.result);
-                            };
-                            reader.readAsDataURL(e.target.files[0]);
-                        }
-                        }}
-                    />
-                    <Img width="100px"
-                    height="100px"
-                    src={newProfileImage} />
-                </Div>
+                
+                
             </Div>
         </>
     );
@@ -75,3 +81,18 @@ function WorkspaceCreate() {
 
 export default WorkspaceCreate;
 
+const FileInputButton = styled.button`
+    height: 50px;
+    width: 13%;
+    font-size: 32px;
+    background-color: #D9D9D9;
+    align-items: center;
+    border-radius: 24px;
+    margin-top: .5%;
+    border: none;
+`
+
+const SelectedFileName = styled.span`
+    font-size: 24px;
+    margin-left: 10px;
+`;
