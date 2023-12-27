@@ -28,10 +28,10 @@ const Routers = () => {
                 {/* <Sidebar /> */}
                 {/* <div style={{flex : 1}}> */}
                 <Routes>
+                    <Route path='/PI' element={<PI_Test />}/>
                     <Route path='/' element={<Intro />}/>
-                        <Route path="" element={<Sidebar/>}>
+                    <Route path="" element={<Sidebar/>}>
                         <Route path='/Login' element={<LoginPage />}/>
-                        <Route path='/PI' element={<PI_Test />}/>
                         <Route path='/PI2' element={<PI_Test2 />}/>
 
                         <Route path='/WorkspaceList' element={<WorkspaceList />}/>

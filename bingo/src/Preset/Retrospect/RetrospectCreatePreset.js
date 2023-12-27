@@ -35,7 +35,7 @@ function RadioCard({
                 }}/>
             <Div
                 width="100%"
-                height="300px"
+                height="400px"
                 cursor="pointer"
                 borderRadius="15px"
                 flexDirection="column"
@@ -77,10 +77,10 @@ const handleMakeThreeSection = (way, labels, questions, setQuestions) => (
                     border="3px dashed gray"
                     width="100%"
                     margin="10px 0px"
-                    padding="10px"
+                    padding="10px 30px"
                     borderRadius="10px">
                     <Div alignItems="flex-end">
-                        <Label margin="0px 5px 0px 0px" fontSize="40px">{label[0]}</Label>
+                        <Label margin="0px 5px 0px 0px" fontSize="50px">{label[0]}</Label>
                         <Label margin="0px 0px 3px 0px" width="20%">{label}</Label>
                     </Div>
                     <Div flexDirection="column" height="150px" justifyContent="space-around">
@@ -179,11 +179,13 @@ const Section1 = (e) => {
                     </Div>
                 </Div>
             </Div>
-            <Div flexDirection="column" height="10%" justifyContent = "center">
+            <Div flexDirection="column" height="10%" justifyContent="center">
                 <Div justifyContent="end">
-                    <StepButton onClick={e.onClick} targetLabel="취소"/>
+                    <Div width="220px" backgroundColor="" justifyContent = "space-between">
+                        <StepButton onClick={e.onClick} targetLabel="취소"/>
 
-                    <StepButton targetPage="#section2" targetLabel="다음"/>
+                        <StepButton targetPage="#section2" targetLabel="다음"/>
+                    </Div>
                 </Div>
             </Div>
         </Div>
@@ -200,7 +202,13 @@ const Section2 = (e) => {
             flexDirection="column"
             margin="0 auto">
             <Div width="100%" height="90%">
-                <Div flexDirection="column" height="100%" width = "100%" style={{overflow : "scroll"}}>
+                <Div
+                    flexDirection="column"
+                    height="100%"
+                    width="100%"
+                    style={{
+                        overflow: "scroll"
+                    }}>
                     {
                         e.SelectedWays === 'KPT' && handleMakeThreeSection('KPT', [
                             'Keep', 'Problem', 'Try'
@@ -219,17 +227,16 @@ const Section2 = (e) => {
 
                 </Div>
             </Div>
-            <Div flexDirection="column" height="10%" justifyContent = "center">
+            <Div flexDirection="column" height="10%" justifyContent="center">
                 <Div justifyContent="end">
                     <StepButton targetPage="#section1" targetLabel="이전"/>
 
-                    <StepButton onClick= {e.onClick} targetLabel="생성"/>
+                    <StepButton onClick={e.onClick} targetLabel="생성"/>
                 </Div>
             </Div>
         </Div>
     );
 }
-
 
 // StepButton : Next / Last 버튼 분리화
 const StepButton = (e) => {

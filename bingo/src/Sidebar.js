@@ -81,7 +81,7 @@ const SidebarLayout = (e) => {
                 {/* 사용자 이미지 영역 */}
                 <Rect height="15%">
                     <RectBoxDetail>
-                        <Img src={e.userImage} width="80px" height="80px"/>
+                        <Img src={e.userImage} width="50px" height="50px"/>
                         <P>{UserData[0].name}</P>
                     </RectBoxDetail>
                 </Rect>
@@ -89,7 +89,7 @@ const SidebarLayout = (e) => {
                 {/* 프로젝트 이미지 영역 */}
                 <Rect height="15%">
                     <RectBoxDetail>
-                        <Img src={e.projectImage} width="80px" height="80px"/>
+                        <Img src={e.projectImage} width="50px" height="50px"/>
                         <P>프로젝트</P>
                     </RectBoxDetail>
                 </Rect>

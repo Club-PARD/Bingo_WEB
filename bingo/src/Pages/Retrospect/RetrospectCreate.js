@@ -13,7 +13,7 @@ function RetrospectCreate() {
     // 핸들러 선언 handleMyConfirm : 라디오 버튼 변경 시 실행되는 핸들러
     const handleRadioChange = (value) => {
         setSelectedWays(value); // 선택된 value값으로 SelectedWays 변수값 지정
-        if (value !== 'Custom') { // Custom이 아닌 경우 질문의 개수를 3개로 지정
+        if (value === 'Custom') { // Custom이 아닌 경우 질문의 개수를 3개로 지정
             setQuestions(Array(3).fill('').map((_, index) => ({
                 id: index + 1, // 질문 개수 증가
                 question: '' // 질문 내용 초기화
