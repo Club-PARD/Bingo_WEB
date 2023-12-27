@@ -73,16 +73,16 @@ const WorkspaceList =()=> {
     return(
         <>
             {/* 상단바 부분 */}
-            <Div flexDirection="row" justifyContent="space-between" alignItems="center" height="24vh" width="90vw" >
+            <Div flexDirection="row" justifyContent="space-between" alignItems="center" height="20vh" width="90vw">
                 {/* 빙고 로고, 현재 페이지 이름 표시 부분 */}
-                <Div  fontSize="160px" alignItems="center" margin="2% 0 0 0">
+                <Div  fontSize="160px" alignItems="center" backgroundColor="#D9D9D9" borderRadius="15px" margin="0 0 0 1%"> 
                     {/* <Img src="/img/Home/logo.jpg" width={"10%"}/> */}
                     Bingo
                 </Div>
             </Div>
             {/*프로젝트 카드들의 나열, 해당 공간의 이름을 감싼 Div */}
-            <Div flexDirection="column" height="76vh" width="90vw">
-                <Div height="4%" fontSize="27px">워크스페이스 리스트</Div>
+            <Div flexDirection="column" height="80vh" width="99%" margin="0 0 0 1%">
+                <Div height="4%" width="10%" fontSize="27px" backgroundColor="#D9D9D9" borderRadius="15px" alignItems="center">워크스페이스 리스트</Div>
                 {/* 워크스페이스 카드 부분 */}
                 
                 <Div
@@ -90,7 +90,7 @@ const WorkspaceList =()=> {
                     alignContent="baseline"
                     alignItems="center"
                     height="96%"
-                    width="100%"
+                    width="99%"
                     flexWrap="wrap"
                     overflow="auto"
                 >
@@ -101,12 +101,14 @@ const WorkspaceList =()=> {
                         padding="1%"
                         border="1px solid transparent"
                         borderRadius="15px"
-                        width="24%"
+                        width="23%"
                         height="37.4%"
                         backgroundColor="#EDEDED"
                         onClick={openModal}
                         alignItems="center"
                         justifyContent="center"
+                        cursor="pointer"
+
                     >
                         <Img width="20%" height="auto" src="/Img/WorkspaceView/ph_plus-bold.png"/>
                     </Div>
@@ -133,12 +135,12 @@ const WorkspaceList =()=> {
                         content: {
                             padding:0,
                             color: "black",
-                            background: `#D9D9D9`,
+                            background: `#FFF`,
                             backgroundSize: "cover",
                             // backgroundRepeat: "no-repeat",
                             margin: "0",
-                            width: "50%",
-                            height: "60%",
+                            width: "61.4%",
+                            height: "58%",
                             display: "flex",
                             border: "none",
                             //alignItems: "center",
@@ -158,18 +160,26 @@ const WorkspaceList =()=> {
                         },
                     }}
             >
-                {/* 이미지 추가 modal's width=1179, height=616 */}
-                <Div width="100%" height="8%" alignItems="center" flexDirection="row-reverse" padding="0 1% 0 0">
-                    <Img src="/img/Home/close.png" alt="Close" onClick={closeModal} width="34px" height="34px"/>
-                </Div>
                 {/* 모달 내용 */}
+                <Div width="100%" height="100%" flexDirection="column-reverse">
+                    <Div
+                        backgroundColor="orange"
+                    >
+                        <Button
+                            width="11%"
+                            height="8%"
+                        >취소</Button>
+                        <Link to = "/WorkspaceList">
+                            <Button 
+                                width="11%"
+                                height="8%"
+                                onClick={onButtonClick}>
+                                완료
+                            </Button>
+                        </Link>
+                    </Div>
+                
                 <WorkspaceCreate />
-                <Div justifyContent="center">
-                    <Link to = "/Home">
-                        <Button onClick={onButtonClick}>
-                            생성하기
-                        </Button>
-                    </Link>
                 </Div>
             </Modal>
         </>

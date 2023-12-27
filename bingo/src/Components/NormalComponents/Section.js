@@ -37,6 +37,8 @@ export const Div = styled.div `
     line-height: ${props => props.lineHeight || ''};
 
     overflow: ${props => props.overflow || ''};
+
+    cursor: ${props => props.cursor || ''};
 `;
 
 export const CenterDiv = styled(Div)`

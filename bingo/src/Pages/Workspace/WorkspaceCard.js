@@ -10,7 +10,7 @@ const WorkspaceCard = ({ name, desc, picture, link, period }) => (
         flexDirection="column"
         margin="1% 1% 1% 0"
         borderRadius="15px"
-        width="24%"
+        width="23%"
         height="37.4%"
         backgroundColor="#EDEDED"
     >
