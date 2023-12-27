@@ -61,6 +61,8 @@ const SideDiv = styled(CenterDiv)`
     height : 96%;
     flex-direction : column;
     margin: 1% 1%;
+    position : sticky;
+    top : 0;
 `
 
 // [스타일] Sidebar 내부의 회색 영역
