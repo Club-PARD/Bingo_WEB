@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Div = styled.div`
+export const Div = styled.div `
     display: ${props => props.display || "flex"};
     justify-content: ${props => props.justifyContent || ''};
     align-items: ${props => props.alignItems || ''};
@@ -35,9 +35,11 @@ export const Div = styled.div`
     font-style: ${props => props.fontStyle || ''};
     font-weight: ${props => props.fontWeight || ''};
     line-height: ${props => props.lineHeight || ''};
-    color: ${props => props.color || '#000'};
-    -webkit-text-stroke: ${props => props.textStroke || '1px #000'};
 
     overflow: ${props => props.overflow || ''};
 `;
 
+export const CenterDiv = styled(Div)`
+    justify-content: center;
+    align-items: center;
+`;

@@ -1,93 +1,120 @@
-import { Outlet } from "react-router";
+import {Outlet} from "react-router";
 import styled from "styled-components";
-import { Div } from "./Components/NormalComponents/Section";
+import {Div} from "./Components/NormalComponents/Section";
+import {Component, useEffect, useState} from "react";
+import {Img} from "./Components/NormalComponents/Etc";
+import {Button} from "./Components/NormalComponents/Form";
+import {P} from "./Components/NormalComponents/Text";
+import {CenterDiv} from "./Components/NormalComponents/Section";
 
-const Container = styled.div`
-  display: flex;
-`;
+// Sidebar
+export default function Sidebar() {
 
-const Sidediv = styled.div`
-    height : 95vh;
-    width : 10vw;
-    background-color : gainsboro;
-    border-radius : 25px;
-    margin : 1.5% 1% ;
-    display : flex;
-    flex-direction : column;
-    justify-content : space-between;
-    align-items : center;
-`
-const SideTopDiv = styled.div`
-    width: 100%;
-    height: 20%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: column;
-    margin-top: 20%;
-`
-const LinkDiv=styled.div`
-    width : 100% ;
-    height: 20%;
-    margin-left: 62%;
-    margin-top: 10%;
-`
-const LogOutDiv = styled.div`
-    margin-bottom: 20%;
-`
-const Profile = styled.div`
-  width: 100%;
-  height: 30%;
-  display : flex;
-  justify-content : center;
-  align-items : center;
-  flex-direction : column;
-  padding-bottom : 50%;
-`
-const ProfileImg = styled.img`
-  width : 30%;
-  height : 100%;
-  margin-bottom: 5%;
-  margin-top: 20%;
-`
-const HomeImg = styled.img`
-  width : 35%;
-  height : 180%;
-  margin-top: -20%;
-`
-const Username = styled.div`
-  font-weight : bold;
-  font-size : 13px;
-  padding : 1%;
-`
+    // 사용자 이미지
+    const [userImage, setUserImage] = useState();
+    // 프로젝트 이미지
+    const [projectImage, setProjectImage] = useState();
 
+    // 렌더링 시 한 번 발생
+    useEffect(() => {
+        setUserImage(`/img/Profile/account_circle.png`);
+        setProjectImage(`/img/Profile/material-symbols_home-outline.png`);
+    },);
+
+    return (
+        <Div width="100%" height="100vh">
+            {/* Sidebar 영역 */}
+            <SidebarLayout userImage={userImage} projectImage={projectImage}></SidebarLayout>
+
+            {/* Outlet 영역 */}
+            <ScreenView/>
+        </Div>
+    );
+}
+
+//
+//
+//
+
+// 사용자 정보
 const UserData = [
     {
-        name : "사용자 이름",
-    },
-  ];
+        name: "홍길동"
+    }
+];
 
-export default function Sidebar() {
+// [스타일] 사각형 한 영역
+const Rect = styled(CenterDiv)`
+    width: 100%;  
+    height : ${props => props.height || ''};
+`;
+
+// [스타일] 사각형 내의 박스 영역 (묶음을 위한 용도)
+const RectBoxDetail = styled(CenterDiv)`
+    flex-direction: column;
+
+`;
+
+// [스타일] Sidebar 레이아웃
+const SideDiv = styled(CenterDiv)`
+    width : 10%;
+    height : 100%;
+    flex-direction : column;
+    padding : 20px 0px 20px 20px;
+`
+
+// [스타일] Sidebar 내부의 회색 영역
+const SideDivInner = styled(CenterDiv)`
+    width: 100%;
+    height: 100%;
+    background-color: gainsboro;
+    border-radius : 15px;
+    flex-direction: column;
+`;
+
+// 좌측에 보여질 Sidebar 레이아웃
+const SidebarLayout = (e) => {
     return (
-      <Container>
-        <Div>
-            <Sidediv>
-              <SideTopDiv>
-                <Profile>
-                    {/* 프로필 이미지, 이 부분도 추후 서버에서 가져오는 값을 사용할 수 있는 형태로 만들기 */}
-                    <ProfileImg src='/img/Profile/account_circle.png' alt='프로필 이미지'/>
-                    {/* 사용자 정보와 직책 */}
-                    <Username>{UserData[0].name}</Username>
-                </Profile>
-                <div>프로젝트</div>
-                <div>로그아웃</div>
-              </SideTopDiv>
-          </Sidediv>
-        </Div>
-        <main style={{width : "90vw"}}>
-          <Outlet/>
-        </main>
-        </Container>
+        <SideDiv>
+            {/* 회색 배경 */}
+            <SideDivInner>
+                {/* 사용자 이미지 영역 */}
+                <Rect height="15%">
+                    <RectBoxDetail>
+                        <Img src={e.userImage} width="50px" height="50px"/>
+                        <P>{UserData[0].name}</P>
+                    </RectBoxDetail>
+                </Rect>
+
+                {/* 프로젝트 이미지 영역 */}
+                <Rect height="15%">
+                    <RectBoxDetail>
+                        <Img src={e.projectImage} width="50px" height="50px"/>
+                        <P>프로젝트</P>
+                    </RectBoxDetail>
+                </Rect>
+
+                {/* 공백 영역 */}
+                <Rect height="60%"></Rect>
+
+                {/* 로그아웃 영역 */}
+                <Rect height="10%">
+                    <Button width="80px" height="30px" borderRadius="10px">로그아웃</Button>
+                </Rect>
+
+            </SideDivInner>
+        </SideDiv>
     );
-  }
-  
+}
+
+// 우측에 보여질 Outlet 레이아웃
+const ScreenView = (e) => {
+    return (
+        <main style={{
+            width: "90%",
+            height : "100%"
+            }}>
+            <Outlet/>
+        </main>
+    );
+}

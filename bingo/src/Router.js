@@ -20,6 +20,7 @@ import WorkspaceList from './Pages/Workspace/WorkspaceList';
 import RetrospectList from './Pages/Retrospect/RetrospectList';
 import RetrospectView from './Pages/Retrospect/RetrospectView';
 import RetrospectWrite from './Pages/Retrospect/RetrospectWrite';
+import Header from './Header';
 
 const Routers = () => {
     return (
@@ -29,21 +30,25 @@ const Routers = () => {
                 {/* <Sidebar /> */}
                 {/* <div style={{flex : 1}}> */}
                 <Routes>
+                    <Route path='/PI' element={<PI_Test />}/>
                     <Route path='/' element={<Intro />}/>
+                    <Route path="" element={<Sidebar/>}>
                         <Route path='/Login' element={<LoginPage />}/>
-                        <Route path="" element = {<Sidebar/>}>
-                        <Route path='/PI' element={<PI_Test />}/>
                         <Route path='/PI2' element={<PI_Test2 />}/>
+
+                        <Route path='/WorkspaceList' element={<WorkspaceList />}/>
+                        <Route path="" element={<Header/>}>
+                            <Route path='/WorkspaceView' element={<WorkspaceView />}/>
+                            <Route path='/RetrospectCreate' element={<RetrospectCreate />}/>
+                            <Route path='/RetrospectList' element={<RetrospectList />}/>
+                            <Route path='/RetrospectView' element={<RetrospectView />}/>
+                            <Route path='/RetrospectWrite' element={<RetrospectWrite />}/>
+                        </Route>
+
                         <Route path='/CrudList' element={<CrudList />}/>
                         <Route path='/CrudAdd' element={<CrudAdd />}/>
                         <Route path='/CrudUpdate' element={<CrudUpdate />}/>
                         <Route path='/CrudView' element={<CrudView />}/>
-                        <Route path='/WorkspaceList' element={<WorkspaceList />}/>
-                        <Route path='/WorkspaceView' element={<WorkspaceView />}/>
-                        <Route path='/RetrospectCreate' element={<RetrospectCreate />}/>
-                        <Route path='/RetrospectList' element={<RetrospectList />}/>
-                        <Route path='/RetrospectView' element={<RetrospectView />}/>
-                        <Route path='/RetrospectWrite' element={<RetrospectWrite />}/>
                     </Route>
                 </Routes>
                 {/* </div> */}
