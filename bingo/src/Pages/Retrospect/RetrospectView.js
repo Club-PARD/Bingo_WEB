@@ -1,8 +1,38 @@
 import Breadcrumb from "../../Breadcrumb";
 import styled from "styled-components";
+import { useState, useEffect } from "react";
 
 
 function RetrospectView() {
+    {/*회고 종류와 각단계의 이름에 대한 리스트*/}
+    const retrospectiveCategories = {
+        'KPT': ['Keep', 'Problem', 'Try'],
+        '4L': ['Liked', 'Learned', 'Lacked', 'Longed for'],
+        '5F': ['Feel', 'Find', 'Finish', 'Future', 'Feedback'],
+    };
+    const [retrospectTitle, setRetrospectTitle] = useState('KPT');
+    const [titleArray, setTitleArray] = useState([]);
+
+    useEffect(() => {
+        // retrospectTitle이 변경될 때마다 호출되는 부분
+        const titleChars = retrospectTitle.split('');
+        setTitleArray(titleChars);
+    }, [retrospectTitle]);
+
+    const RetrospectData = [
+        {
+            name : "아이디에이션 할 때 유지할만한 점은 없었나요?",
+            desc : "",
+        },
+        {
+            name : "프로젝트를 하면서 유지할만한 점은 없었나요?",
+            desc : "",
+        },
+        {
+            name : "개발 과정에서 유지할만한 점은 없었나요?",
+            desc : "",
+        },
+    ];
     return (
         <Whole>
             <Header>
@@ -19,27 +49,31 @@ function RetrospectView() {
                     2-2 이후의 n개의 div는 또 쪼개짐 2개
                         2-2-1  
                 */}
-                <StepDiv>
-                    <StepInitial>K</StepInitial>
-                    <StepFullWord>Keep</StepFullWord>
-                </StepDiv>
-                <InnerDiv>
-                    <QuestionDiv>아이디에이션</QuestionDiv>
-                    <OuterAnswer>
-                        <AnswerDiv>
-                            <AnswerText>아이디에이션</AnswerText>
-                            <AnswerDate>23.12.28</AnswerDate>
-                        </AnswerDiv>
-                        <Eclipse />
-                    </OuterAnswer>
-                    <OuterAnswer>
-                        <AnswerDiv>
-                            <AnswerText>아이디에이션아이디에이션아이디에이션아이디에이션아이디에이션아이디에이션아이디에이션아이디에이션아이디에이션아이디에이션아이디에이션</AnswerText>
-                            <AnswerDate>23.12.28</AnswerDate>
-                        </AnswerDiv>
-                        <Eclipse />
-                    </OuterAnswer>
-                </InnerDiv>
+                {titleArray.map((char, index) => (
+                    <Mother key={index}>
+                        <StepDiv>
+                            <StepInitial>{char}</StepInitial>
+                            <StepFullWord>{retrospectiveCategories[retrospectTitle][index]}</StepFullWord>
+                        </StepDiv>
+                        <InnerDiv>
+                            <QuestionDiv>아이디에이션</QuestionDiv>
+                            <OuterAnswer>
+                                <AnswerDiv>
+                                    <AnswerText>아이디에이션</AnswerText>
+                                    <AnswerDate>23.12.28</AnswerDate>
+                                </AnswerDiv>
+                                <Eclipse />
+                            </OuterAnswer>
+                            <OuterAnswer>
+                                <AnswerDiv>
+                                    <AnswerText>아이디에이션아이디에이션아이디에이션아이디에이션아이디에이션아이디에이션아이디에이션아이디에이션아이디에이션아이디에이션아이디에이션</AnswerText>
+                                    <AnswerDate>23.12.28</AnswerDate>
+                                </AnswerDiv>
+                                <Eclipse />
+                            </OuterAnswer>
+                        </InnerDiv>
+                    </Mother>
+                ))}
             </Body>
         </Whole>
     );
@@ -82,6 +116,11 @@ const Body = styled.div`
     overflow: auto;
     padding: 0 4%;
 `
+const Mother = styled.div`
+    width: 100%;
+    height: 100%;
+
+`
 //회고내부의 단계(ex.K,P,T)를 나타내는 div
 const StepDiv = styled.div`
     height: 18%;
@@ -104,7 +143,7 @@ const StepFullWord = styled.div`
     display: flex;
     justify-content: left;
     align-items: end;
-    margin: 0.2%;
+    margin: 4% 0.2%;
     color: #737373;
     font-size: 52px;
 `
