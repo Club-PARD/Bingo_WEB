@@ -22,7 +22,7 @@ function CrudAdd() {
         try {
             // 서버의 엔드포인트와 POST 메서드 사용
             const response = await axios.post(
-                'http://172.17.188.80:8080/api/v1/test',
+                'http://172.18.157.205:8080/api/v1/test',
                 postData
             );
             alert("데이터가 추가되었습니다.");
