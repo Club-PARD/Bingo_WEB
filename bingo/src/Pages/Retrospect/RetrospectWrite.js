@@ -7,17 +7,18 @@ const Whole = styled.div`
     height : 100%;
 `
 const Header = styled.div`
-    height : 5%;
+    height : 3.5%;
 `
 const Body = styled.div`
     height : 93%;
-    background-color : whitesmoke;
+    /* background-color : whitesmoke; */
 `
 const DottedBorder = styled.div`
     border : 5px solid gray;
     border-radius : 25px;
-    margin : 1%;
+    margin : 0.5%;
     height : 100%;
+    background-color : white;
 `
 const Question = styled(Div)`
 `
