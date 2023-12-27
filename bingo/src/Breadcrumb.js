@@ -23,7 +23,7 @@ export default function Breadcrumb({ activeKey }) {
         <Link underline="hover" key="2" color="inherit" href="/" onClick={handleClick} style={{ fontSize: '30px' }}>
             팀 이벨류에이션
         </Link>,
-        <Link underline="hover" key="3" color="inherit" href="/material-ui/getting-started/installation/" onClick={handleClick} style={{ fontSize: '30px' }}>
+        <Link underline="hover" key="3" color="inherit" onClick={() => (window.location.href = "/workspaceView", handleClick)} style={{ fontSize: '30px' }}>
             회고 조회
         </Link>,
       ];
@@ -36,7 +36,7 @@ export default function Breadcrumb({ activeKey }) {
             <Typography key="2" color="text.primary" style={{ fontSize: '30px', fontWeight: 'bolder' }}>
                 팀 이벨류에이션
             </Typography>,
-            <Link underline="hover" key="3" color="inherit" href="/material-ui/getting-started/installation/" onClick={handleClick} style={{ fontSize: '30px' }}>
+            <Link underline="hover" key="3" color="inherit" onClick={() => (window.location.href = "/workspaceView", handleClick)} style={{ fontSize: '30px' }}>
                 회고 조회
             </Link>,
           ];
