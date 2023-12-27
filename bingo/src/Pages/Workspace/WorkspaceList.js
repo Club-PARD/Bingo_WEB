@@ -75,7 +75,9 @@ const WorkspaceList =()=> {
                     <P fontSize="70px" margin="0 0 0 1%">Bingo</P>
                 </Div>
                 {/* 새 워크스페이스 생성 버튼 */}
+                {/* 형 여기 원래 버튼 맞는데요 디자이너 애들이 다르게 해달래서 바꿨어요
                 <Button borderRadius="25px" padding="1%" fontSize="15px" backgroundColor="gainsboro" color="black" onClick={openModal}>워크스페이스 생성</Button>
+    */}
             </Div>
             <Div margin="0 0 0 3%">워크스페이스 리스트</Div>
             {/* 워크스페이스 카드 부분 */}
@@ -83,6 +85,21 @@ const WorkspaceList =()=> {
                 flexDirection="row"
                 justifyContent="center"
             >
+                {/*디자이너 요청으로 워크스페이스 생성버튼 옮김 */}
+                <Div 
+                    flexDirection="column"
+                    margin="1% 1% 1% 1%"
+                    padding="1%"
+                    border="1px solid transparent"
+                    borderRadius="15px"
+                    width="20%"
+                    backgroundColor="gainsboro"
+                    onClick={openModal}
+                    alignItems="center"
+                    justifyContent="center"
+                >
+                    <Img width="20%" height="60%" src="/Img/WorkspaceView/ph_plus-bold.png"/>
+                </Div>
                 {/* 현재는 더미값이지만 장기적으로는 워크스페이스 데이터 기반으로 카드 출력  */}
                 {WorkspaceData.map((workspace, index) => (
                     <WorkspaceCard
