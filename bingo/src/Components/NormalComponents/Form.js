@@ -27,9 +27,11 @@ export const Input = styled.input `
     
     border : ${props => props.border || 'none'};
     border-radius: ${props => props.borderRadius || "10px"};
+    box-sizing: border-box;
     font-Size : inherit;
 
     margin : ${props => props.margin || ''};
+
 `;
 
 export const Fieldset = styled.fieldset `
