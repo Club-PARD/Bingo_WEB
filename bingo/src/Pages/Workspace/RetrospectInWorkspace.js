@@ -66,7 +66,7 @@ function RetrospectInWorkspace(){
                     alignItems="center"
                     margin="0 0 0 4%"
                   >{task.name}</Div>
-                  <ViewButton to={task.linktoView}>작성</ViewButton>
+                  <ViewButton to={task.linktoWrite}>작성</ViewButton>
                 </LinkToRetrospectCreate2>
                 {/*Div for 3 chip, 조회버튼*/}
                 <LinkToRetrospectView>
@@ -100,7 +100,7 @@ function RetrospectInWorkspace(){
                     fontSize="24px"
                     margin="0 0 0 1%"
                   >피드백</Div>
-                  <WriteButton to={task.linktoWrite}>조회</WriteButton>
+                  <WriteButton to={task.linktoView}>조회</WriteButton>
                 </LinkToRetrospectView>
               </Div>
               
