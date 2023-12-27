@@ -82,7 +82,7 @@ const WorkspaceList =()=> {
             </Div>
             {/*프로젝트 카드들의 나열, 해당 공간의 이름을 감싼 Div */}
             <Div flexDirection="column" height="80vh" width="99%" margin="0 0 0 1%">
-                <Div height="4%" width="10%" fontSize="27px" backgroundColor="#D9D9D9" borderRadius="15px" alignItems="center">워크스페이스 리스트</Div>
+                <Div height="4%" width="11%" fontSize="27px" backgroundColor="#D9D9D9" borderRadius="15px" alignItems="center" justifyContent="center">워크스페이스 리스트</Div>
                 {/* 워크스페이스 카드 부분 */}
                 
                 <Div
@@ -161,22 +161,34 @@ const WorkspaceList =()=> {
                     }}
             >
                 {/* 모달 내용 */}
-                <Div width="100%" height="100%" flexDirection="column-reverse">
+                <Div width="100%" height="100%" flexDirection="column-reverse" justifyContent="top" alignItems="center" padding="0 3.5% 0 3.5%">
                     <Div
-                        backgroundColor="orange"
+                        height="24%"
+                        width="100%"
+                        flexDirection="row"
+                        justifyContent="right"
+                        alignItems="center"
                     >
                         <Button
                             width="11%"
-                            height="8%"
+                            height="33%"
+                            backgroundColor="#D9D9D9"
+                            margin=" 0 3.5% 0 0"
+                            color="black"
+                            borderRadius="10px"
+                            fontSize="37px"
+                            onClick={closeModal}
                         >취소</Button>
-                        <Link to = "/WorkspaceList">
-                            <Button 
-                                width="11%"
-                                height="8%"
-                                onClick={onButtonClick}>
-                                완료
-                            </Button>
-                        </Link>
+                        <Button
+                            width="11%"
+                            height="33%"
+                            backgroundColor="#D9D9D9"
+                            margin=" 0 3.5% 0 0"
+                            color="black"
+                            borderRadius="10px"
+                            fontSize="37px"
+                            onClick={onButtonClick}
+                        >완료</Button>
                     </Div>
                 
                 <WorkspaceCreate />
@@ -188,3 +200,4 @@ const WorkspaceList =()=> {
 }
 
 export default WorkspaceList;
+
