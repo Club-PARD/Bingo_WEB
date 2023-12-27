@@ -15,32 +15,20 @@ import BingoBoard from "../../Preset/WorkspacePreset/BingoBoard";
 //RetrospectInWorkspace component출력
 //회고결과 출력(이것도 디자인이 완성되고 백엔드가 연결되어야 가능하다)
 function WorkspaceView() {
-    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [modalIsOpen1, setModalIsOpen1] = useState(false);
     const [value, setValue] = useState("123456");
-    const openModal = () => {
-        setModalIsOpen(true);
+    const openModal1 = () => {
+        setModalIsOpen1(true);
     };
 
     const closeModal = () => {
-        setModalIsOpen(false);
+        setModalIsOpen1(false);
     };
     return (
-        <Div flexDirection="row" width="100vw" height="100vh">
-            {/*Left Space width=214px*/}
-            <Div height="100%" width="10%" alignItems="center" justifyContent="center">
-                <Div 
-                    flexDirection="column" 
-                    height="95%" 
-                    width="75%" 
-                    backgroundColor="#D9D9D9" 
-                    margin="12% 10% 13% 10%" 
-                    borderRadius="30px" 
-                    flexShirnk="0"
-                >    
-                </Div>
-            </Div>
+        <Div flexDirection="row" width="90vw" height="100vh">
+            
             {/*Right Space width=1706px*/}
-            <Div flexDirection="column" height="100%" width="90%">
+            <Div flexDirection="column" height="100%" width="100%">
                 {/*height=154px */}
                 <Div
                     height="20%"
@@ -77,7 +65,7 @@ function WorkspaceView() {
                     {/*open Modal*/}
                     <Div>
                         <Button 
-                            onClick={openModal} 
+                            onClick={openModal1} 
                             borderRadius= "50px"
                             backgroundColor= "#D9D9D9"
                             color= "black"
@@ -115,7 +103,7 @@ function WorkspaceView() {
                             <Div
                                 width="90%"
                                 height="91%"
-                                backgroundColor="#D9D9D9"
+                                backgroundColor="#444"
                                 margin="9% 0 0 2%"
                                 flexWrap="wrap" 
                                 justifyContent="space-evenly" 
@@ -130,7 +118,6 @@ function WorkspaceView() {
                     <Div
                         width="53%"
                         height="100%"
-                        border="3px dashed red"
                         alignItems="center"
                         flexDirection="column"
                     >
@@ -141,25 +128,16 @@ function WorkspaceView() {
                             flexDirection="row"
                             justifyContent="space-between"
                             alignItems="center"
+                            margin="0 0 2% 0"
                         >
                             <Div fontSize="14px">회고 리스트</Div>
-                            <Div>
-                                <Link to="/RetrospectCreate">
-                                    <Button
-                                        width="66px"
-                                        height="25px"
-                                        flexShirnk="0"
-                                        borderRadius="35px"
-                                        backgroundColor="#D9D9D9"
-                                        color="black"
-                                    >회고 생성</Button>
-                                </Link>
-                            </Div>
                         </Div>
                         {/*retrospectlist body height=833*/}
                         <Div
-                            width="83%"
-                            height="90%"
+                            width="550px"
+                            height="833px"
+                            overflow="auto"
+                            justifyContent="center"
                         >
                             <RetrospectInWorkspace />
                         </Div>
@@ -172,21 +150,21 @@ function WorkspaceView() {
     Modal size: width:584px, height:372px 
     Modal show invite code to user, user can copy the code to click "복사"button
 */}
-            <Modal isOpen={modalIsOpen} onRequestClose={closeModal}
+            <Modal isOpen={modalIsOpen1} onRequestClose={closeModal}
                 style={{
                     overlay: {
                         backgroundColor: "rgba(0, 0, 0,0.5)",                    
                         },
                         content: {
-                            borderRadius: "25px",
+                            borderRadius: "12px",
                             padding:0,
                             color: "black",
                             background: `#D9D9D9`,
                             backgroundSize: "cover",
                             // backgroundRepeat: "no-repeat",
                             margin: "0",
-                            width: "29%",
-                            height: "34%",
+                            width: "35%",
+                            height: "39%",
                             display: "flex",
                             border: "none",
                             //alignItems: "center",
@@ -197,9 +175,8 @@ function WorkspaceView() {
                             overflowY: "auto",
                     
                             //position: 'absolute', // absolute positioning
-                            left: "50%", // center the modal horizontally
-                            top: "53%", // center the modal vertically
-                            transform: "translate(50%, -110%)", // center the modal
+                            
+                            transform: "translate(87%, 60%)", // center the modal
                             //모달 내용이 부모 요소의 높이를 초과하면 자동으로 스크롤 바를 생성하도록 설정합니다. "overflowY: 'auto'"가 그 역할을 담당합니다.
                     
                             // 또한, 모달의 높이(height)를 조정하여 모달의 내용이 충분하지 않을 경우 모달 자체의 높이를 줄일 수 있습니다.
@@ -209,18 +186,24 @@ function WorkspaceView() {
                 {/* 이미지 추가 modal's width=1179, height=616 */}
                 <Div 
                     width="100%" 
-                    height="20%" 
+                    height="10%" 
                     alignItems="center" 
                     flexDirection="row-reverse" 
-                    padding="0 1% 0 0">
-                    <Img src="/img/Home/close.png" alt="Close" onClick={closeModal} width="10%" height="80%"/>
+                    padding="2% 2% 0 0">
+                    <Img src="/img/Home/close.png" alt="Close" onClick={closeModal} width="4%" height="90%"/>
                 </Div>
-                <Div alignItems="center" width="100%" height="50%" justifyContent="center" flexDirection="column">
-                    <Div fontSize="50px" fontWeight="900">코드</Div>
-                    <Div fontSize="30px">{value}</Div>
+                <Div alignItems="center" width="100%" height="70%" flexDirection="column">
+                    <Div fontSize="20px" fontWeight="400" margin="0 0 12% 0">팀원 초대하기 코드</Div>
+                    <Div fontSize="75px">{value}</Div>
                 </Div>
                 <CopyToClipboard text={value} onCopy={() => alert("클립보드에 복사되었습니다.")}>
-                    <Button width="10%" height="10%" style={{marginLeft: "45%"}}>복사</Button>
+                    <Button 
+                        width="99px" 
+                        height="30px" 
+                        style={{marginLeft: "40%"}} 
+                        backgroundColor="#959595"
+                        borderRadius="9px"
+                    >복사</Button>
                 </CopyToClipboard>
             </Modal>
         </Div>

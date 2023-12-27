@@ -13,7 +13,7 @@ export const Div = styled.div`
     height : ${props => props.height || ''};
 
     border : ${props => props.border || ''};
-    /* border-right: ${props => props.borderRight || ''}; */
+    border-right: ${props => props.borderRight || ''};
     border-radius: ${props => props.borderRadius || ''};
     box-sizing : ${props => props.boxSizing || 'border-box'};
 
@@ -38,6 +38,6 @@ export const Div = styled.div`
     color: ${props => props.color || '#000'};
     -webkit-text-stroke: ${props => props.textStroke || '1px #000'};
 
-    overflow-y: ${props => props.overflowY || ''};
+    overflow: ${props => props.overflow || ''};
 `;
 
