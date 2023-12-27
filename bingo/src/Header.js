@@ -83,13 +83,14 @@ const InviteMember = (e) => {
 }
 
 // 하단의 Outlet 컴포넌트
+// 사실상 작성하는 모든 컴포넌트는 이 위치에 온다
 const ScreenView = () => {
     return (
         <main
             style={{
                 height: "85%",
                 width: "100%",
-                backgroundColor: "gainsboro",
+                // backgroundColor: "gainsboro",
                 borderRadius: "15px",
                 padding: "20px",
                 boxSizing: "border-box"
@@ -100,10 +101,11 @@ const ScreenView = () => {
 }
 
 // [스타일] Header 영역
+// 워크스페이스 이름, 소개가 오는 부분
 const HeaderLayout = styled(Div)`
     width: 100%;
     height: 15%;
-    background-color: gainsboro;
+    /* background-color: gainsboro; */
     border-radius: 15px;
     align-items: center;
     margin-bottom: 20px;
