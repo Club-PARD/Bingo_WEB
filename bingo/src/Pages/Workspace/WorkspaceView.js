@@ -142,8 +142,8 @@ function WorkspaceView() {
                         </Div>
                         {/*retrospectlist body height=833*/}
                         <Div
-                            width="550px"
-                            height="833px"
+                            width="1100px"
+                            height="1666px"
                             overflow="auto"
                             justifyContent="center"
                         >

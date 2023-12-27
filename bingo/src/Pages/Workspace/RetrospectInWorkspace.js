@@ -34,19 +34,19 @@ function RetrospectInWorkspace(){
       {/*Div for retrospectList height=833*/}
       <Div 
         width="100%" 
-        height="833px"
+        height="1666px"
         flexDirection="column"
         margin="0 1%"
       >
         <Div 
-            height="82px"
+            height="155px"
             width="100%"
             backgroundColor="#EEE"
-            borderRadius="8px"
+            borderRadius="20px"
             textAlign="center"
             alignItems="center"
             justifyContent="center"
-            margin="2% 0 0 0"
+            margin="1% 0 0 0"
             onClick={openModal2}
           >
             <Img width="50px" height="50px" src="/Img/WorkspaceView/ph_plus-bold.png"/>
@@ -54,10 +54,10 @@ function RetrospectInWorkspace(){
         {tasks.slice().reverse().map((task) => (
           <Div 
             key={task.id}
-            height="82px"
+            height="155px"
             width="100%"
             backgroundColor="#D9D9D9"
-            borderRadius="8px"
+            borderRadius="20px"
             textAlign="center"
             alignItems="center"
             justifyContent="center"
