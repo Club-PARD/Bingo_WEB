@@ -33,7 +33,7 @@ function RetrospectWrite() {
                 <Breadcrumb activeKey={1} />
             </Header>
             <Body>
-                <DottedBorder>
+                <DottedBorder er>
                     <p>회고 작성하기</p>
                 </DottedBorder>
             </Body>
