@@ -16,7 +16,7 @@ function CrudUpdate() {
 
     const getData = async () => {
         try {
-            const data = await axios.get(`http://172.17.188.80:8080/api/v1/test/${id}`);
+            const data = await axios.get(`http://172.18.157.205:8080/api/v1/test/${id}`);
 
             const {title, content, test} = data.data;
             setDataList({title, content, test});
@@ -51,7 +51,7 @@ function CrudUpdate() {
                 }
                 // 서버의 엔드포인트와 PATCH 메서드 사용
                 await axios
-                    .patch(`http://172.17.188.80:8080/api/v1/test/${id}`, dataSet)
+                    .patch(`http://172.18.157.205:8080/api/v1/test/${id}`, dataSet)
                     .then(Response => {
                         console.log("patch 성공", Response.data);
                     })

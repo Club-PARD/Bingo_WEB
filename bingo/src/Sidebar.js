@@ -1,5 +1,10 @@
+import { Outlet } from "react-router";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Div } from "./Components/NormalComponents/Section";
+
+const Container = styled.div`
+  display: flex;
+`;
 
 const Sidediv = styled.div`
     height : 95vh;
@@ -64,7 +69,8 @@ const UserData = [
 
 export default function Sidebar() {
     return (
-        <>
+      <Container>
+        <Div>
             <Sidediv>
               <SideTopDiv>
                 <Profile>
@@ -73,15 +79,14 @@ export default function Sidebar() {
                     {/* 사용자 정보와 직책 */}
                     <Username>{UserData[0].name}</Username>
                 </Profile>
-                <LinkDiv>
-                  <Link to="/WorkspaceList">
-                    <HomeImg src='/img/Home/homeimg.png'/>
-                  </Link>
-                </LinkDiv>
-              </SideTopDiv>
-                <LogOutDiv>로그아웃</LogOutDiv>
-            </Sidediv>
-        </>
+                <div>프로젝트</div>
+                <div>로그아웃</div>
+          </Sidediv>
+        </Div>
+        <main style={{width : "90vw"}}>
+          <Outlet/>
+        </main>
+        </Container>
     );
   }
   
