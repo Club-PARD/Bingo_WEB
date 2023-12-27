@@ -42,7 +42,6 @@ const Login = styled.div`
     top: 0; 
     bottom: 0; 
     width: 100%; 
-    background-color : whitesmoke;
 `;
 
 const LoginPage = () => {
@@ -51,13 +50,7 @@ const LoginPage = () => {
     }
     return (
         <LoginDiv>
-            {/* <AboutUs>
-                <Img src="/img/Login/img1.png" width={"100%"}/>
-                <Img src="/img/Login/img2.png" width={"100%"}/>
-                <Img src="/img/Login/img3.png" width={"100%"}/>
-                <Img src="/img/Login/img4.png" width={"100%"}/>
-            </AboutUs> */}
-            <Div height="10vh" backgroundColor="whitesmoke" alignItems="center" padding="1%" fontSize="40px">
+            <Div height="10vh" alignItems="center" padding="1%" fontSize="40px">
                 Bingo
             </Div>
             <Login>
