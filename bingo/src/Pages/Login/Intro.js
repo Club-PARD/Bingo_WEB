@@ -49,13 +49,16 @@ const Intro = () => {
 
     const GoogleLoginButtonStyle = {
         position: "Absolute",
-        top: "85vh",
-        left: "8.5vw",
+        height : "5%",
+        width : "100%",
+        top: "10vh",
+        left: "90vw",
+        fontSize: "200px",
     };
     return (
         <Div style={divStyle}>
             <Div style={GoogleLoginButtonStyle}>
-                <GoogleLoginButton/>
+              <LoginBtn onClick={() => (window.location.href = "/Login")}>Login</LoginBtn>
             </Div>
         </Div>
     );
