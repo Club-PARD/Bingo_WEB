@@ -18,9 +18,6 @@ function RetrospectInWorkspace(){
       { id: 4, name: '4차 회고', linktoView: '/RetrospectView', linktoWrite: '/RetrospectWrite'},
       { id: 5, name: '5차 회고', linktoView: '/RetrospectView', linktoWrite: '/RetrospectWrite'},
       { id: 6, name: '6차 회고', linktoView: '/RetrospectView', linktoWrite: '/RetrospectWrite'},
-      { id: 7, name: '6차 회고', linktoView: '/RetrospectView', linktoWrite: '/RetrospectWrite'},
-      { id: 8, name: '6차 회고', linktoView: '/RetrospectView', linktoWrite: '/RetrospectWrite'},
-      { id: 9, name: '6차 회고', linktoView: '/RetrospectView', linktoWrite: '/RetrospectWrite'},
     ]);
 
     const [modalIsOpen2, setModalIsOpen2] = useState(false);
@@ -69,7 +66,7 @@ function RetrospectInWorkspace(){
                     alignItems="center"
                     margin="0 0 0 4%"
                   >{task.name}</Div>
-                  <WriteButton>작성</WriteButton>
+                  <ViewButton to={task.linktoView}>작성</ViewButton>
                 </LinkToRetrospectCreate2>
                 {/*Div for 3 chip, 조회버튼*/}
                 <LinkToRetrospectView>
@@ -103,7 +100,7 @@ function RetrospectInWorkspace(){
                     fontSize="24px"
                     margin="0 0 0 1%"
                   >피드백</Div>
-                  <ViewButton>조회</ViewButton>
+                  <WriteButton to={task.linktoWrite}>조회</WriteButton>
                 </LinkToRetrospectView>
               </Div>
               
@@ -221,7 +218,7 @@ const LinkToRetrospectView = styled.div`
   padding: 0;
   align-items: center;
 `
-const WriteButton = styled(Link)`
+const ViewButton = styled(Link)`
   height: 100%;
   width: 20%;
   border-top-right-radius: 20px;
@@ -235,7 +232,7 @@ const WriteButton = styled(Link)`
   font-size: 24px;
   color: #787878;
 `
-const ViewButton = styled(Link)`
+const WriteButton = styled(Link)`
   height: 100%;
   width: 20%;
   border-bottom-right-radius: 20px;

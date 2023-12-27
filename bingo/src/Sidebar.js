@@ -22,7 +22,7 @@ export default function Sidebar() {
     },);
 
     return (
-        <Div width="100%" height="100vh">
+        <Div width="100vw" height="100vh">
             {/* Sidebar 영역 */}
             <SidebarLayout userImage={userImage} projectImage={projectImage}></SidebarLayout>
 
@@ -57,10 +57,10 @@ const RectBoxDetail = styled(CenterDiv)`
 
 // [스타일] Sidebar 레이아웃
 const SideDiv = styled(CenterDiv)`
-    width : 10%;
-    height : 100%;
+    width : 8%;
+    height : 96%;
     flex-direction : column;
-    padding : 20px 0px 20px 20px;
+    margin: 1% 1%;
 `
 
 // [스타일] Sidebar 내부의 회색 영역
@@ -81,7 +81,7 @@ const SidebarLayout = (e) => {
                 {/* 사용자 이미지 영역 */}
                 <Rect height="15%">
                     <RectBoxDetail>
-                        <Img src={e.userImage} width="50px" height="50px"/>
+                        <Img src={e.userImage} width="100%" height="auto"/>
                         <P>{UserData[0].name}</P>
                     </RectBoxDetail>
                 </Rect>
@@ -89,7 +89,7 @@ const SidebarLayout = (e) => {
                 {/* 프로젝트 이미지 영역 */}
                 <Rect height="15%">
                     <RectBoxDetail>
-                        <Img src={e.projectImage} width="50px" height="50px"/>
+                        <Img src={e.projectImage} width="100%" height="auto "/>
                         <P>프로젝트</P>
                     </RectBoxDetail>
                 </Rect>
