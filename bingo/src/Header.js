@@ -28,7 +28,7 @@ export default function Header() {
     );
 
     return (
-        <Div flexDirection="column" width="100%" padding="20px" height="100%">
+        <Div flexDirection="column" width="99%" margin="1% 1% 1% 0" height="96%">
             <HeaderLayout>
                 {/* 타이틀 / 설명 */}
                 <Title WorkspaceInfo={WorkspaceInfo}></Title>
@@ -88,6 +88,7 @@ const ScreenView = () => {
         <main
             style={{
                 height: "85%",
+                width: "100%",
                 backgroundColor: "gainsboro",
                 borderRadius: "15px",
                 padding: "20px",
@@ -105,7 +106,6 @@ const HeaderLayout = styled(Div)`
     background-color: gainsboro;
     border-radius: 15px;
     align-items: center;
-    padding: 0px 20px;
     margin-bottom: 20px;
 `;
 
