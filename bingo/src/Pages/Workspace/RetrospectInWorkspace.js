@@ -3,7 +3,7 @@ import { Div } from "../../Components/NormalComponents/Section";
 import { Img } from "../../Components/NormalComponents/Etc";
 import Modal from "react-modal";
 import { Link } from "react-router-dom";
-import { Button } from "../../Components/NormalComponents/Form";
+import styled from "styled-components";
 
 
 //workspaceView화면 내 회고와 액션아이템 출력 컴포넌트
@@ -12,12 +12,15 @@ function RetrospectInWorkspace(){
     // map 함수로 출력하기 위한 리스트(더미데이터) 생성
     // 나중에 추가 가능
     const [tasks, setTasks] = useState([
-      { id: 1, name: '1차 회고'},
-      { id: 2, name: '2차 회고'},
-      { id: 3, name: '3차 회고'},
-      { id: 4, name: '4차 회고'},
-      { id: 5, name: '5차 회고'},
-      { id: 6, name: '6차 회고'},
+      { id: 1, name: '1차 회고', linktoView: '/RetrospectView', linktoWrite: '/RetrospectWrite'},
+      { id: 2, name: '2차 회고', linktoView: '/RetrospectView', linktoWrite: '/RetrospectWrite'},
+      { id: 3, name: '3차 회고', linktoView: '/RetrospectView', linktoWrite: '/RetrospectWrite'},
+      { id: 4, name: '4차 회고', linktoView: '/RetrospectView', linktoWrite: '/RetrospectWrite'},
+      { id: 5, name: '5차 회고', linktoView: '/RetrospectView', linktoWrite: '/RetrospectWrite'},
+      { id: 6, name: '6차 회고', linktoView: '/RetrospectView', linktoWrite: '/RetrospectWrite'},
+      { id: 7, name: '6차 회고', linktoView: '/RetrospectView', linktoWrite: '/RetrospectWrite'},
+      { id: 8, name: '6차 회고', linktoView: '/RetrospectView', linktoWrite: '/RetrospectWrite'},
+      { id: 9, name: '6차 회고', linktoView: '/RetrospectView', linktoWrite: '/RetrospectWrite'},
     ]);
 
     const [modalIsOpen2, setModalIsOpen2] = useState(false);
@@ -32,86 +35,80 @@ function RetrospectInWorkspace(){
   return(
     <>
       {/*Div for retrospectList height=833*/}
-      <Div 
-        width="100%" 
-        height="1666px"
-        flexDirection="column"
-        margin="0 1%"
-      >
+      
         <Div 
-            height="155px"
+            height="16%"
             width="100%"
             backgroundColor="#EEE"
             borderRadius="20px"
-            textAlign="center"
             alignItems="center"
             justifyContent="center"
             margin="1% 0 0 0"
+            flexDirection="column"
             onClick={openModal2}
           >
             <Img width="50px" height="50px" src="/Img/WorkspaceView/ph_plus-bold.png"/>
+            <div>회고생성</div>
           </Div>
         {tasks.slice().reverse().map((task) => (
-          <Div 
-            key={task.id}
-            height="155px"
-            width="100%"
-            backgroundColor="#D9D9D9"
-            borderRadius="20px"
-            textAlign="center"
-            alignItems="center"
-            justifyContent="center"
-            margin="2% 0 0 0"
-          >
-            <Div 
-              width="94%"
-              height="100%"
-              justifyContent="space-between"
-              alignItems="center"
-              flexDirection="row"
-              margin="0 3% 0 3%"
+            <RetrospectListDiv
+              key={task.id}
             >
-              <Div
-                fontSize="24px"
-              >{task.name}</Div>
-              {/*Div for 3 chip */}
-              <Div
-                width="42%"
+              <Div 
+                width="100%"
                 height="100%"
-                flexDirection="row"
                 justifyContent="space-between"
                 alignItems="center"
+                flexDirection="column"
               >
-                <Div
-                  width="31%"
-                  height="34%"
-                  borderRadius="50px"
-                  backgroundColor="#FC8C8C"
-                  alignItems="center"
-                  justifyContent="center"
-                >성실함</Div>
-                <Div
-                  width="31%"
-                  height="34%"
-                  borderRadius="50px"
-                  backgroundColor="#FDDD00"
-                  alignItems="center"
-                  justifyContent="center"
-                >즐거움</Div>
-                <Div
-                  width="31%"
-                  height="34%"
-                  borderRadius="50px"
-                  backgroundColor="#B0E81C"
-                  alignItems="center"
-                  justifyContent="center"
-                >피드백</Div>
+                {/*회고 list의 상단, 몇차회고 작성버튼*/}
+                <LinkToRetrospectCreate2>
+                  <Div
+                    fontSize="40px"
+                    textAlign="center"
+                    alignItems="center"
+                    margin="0 0 0 4%"
+                  >{task.name}</Div>
+                  <WriteButton>작성</WriteButton>
+                </LinkToRetrospectCreate2>
+                {/*Div for 3 chip, 조회버튼*/}
+                <LinkToRetrospectView>
+                  <Div
+                    width="12%"
+                    height="57%"
+                    borderRadius="50px"
+                    backgroundColor="#FC8C8C"
+                    alignItems="center"
+                    justifyContent="center"
+                    fontSize="24px"
+                    margin="0 0 0 1%"
+                  >성실함</Div>
+                  <Div
+                    width="12%"
+                    height="57%"
+                    borderRadius="50px"
+                    backgroundColor="#FDDD00"
+                    alignItems="center"
+                    justifyContent="center"
+                    fontSize="24px"
+                    margin="0 0 0 1%"
+                  >즐거움</Div>
+                  <Div
+                    width="12%"
+                    height="57%"
+                    borderRadius="50px"
+                    backgroundColor="#B0E81C"
+                    alignItems="center"
+                    justifyContent="center"
+                    fontSize="24px"
+                    margin="0 0 0 1%"
+                  >피드백</Div>
+                  <ViewButton>조회</ViewButton>
+                </LinkToRetrospectView>
               </Div>
-            </Div>
-            
-          </Div>
+              
+          </RetrospectListDiv>
         ))}
-      </Div>
 
       {/*
     Modal size: width:584px, height:372px 
@@ -130,7 +127,7 @@ function RetrospectInWorkspace(){
                       backgroundSize: "cover",
                       // backgroundRepeat: "no-repeat",
                       margin: "0",
-                      width: "35%",
+                      width: "36%",
                       height: "26%",
                       display: "flex",
                       border: "none",
@@ -156,17 +153,17 @@ function RetrospectInWorkspace(){
           justifyContent="space-evenly"
           alignItems="center"
         >
-          <Div fontSize="25px">회고를 생성하시겠습니까?</Div>
+          <Div fontSize="45px">회고를 생성하시겠습니까?</Div>
+          {/*버튼들*/}
           <Div 
-          width="43%" 
-          height="15%" 
-          flexDirection="row" justifyContent="space-between" alignItems="center">
-            <Link to="/WorkspaceView">
-              <Button width="90px" height="25px" backgroundColor="#959595" color="white" borderRadius="8px" onClick={closeModal2}>취소</Button>
-            </Link>
-            <Link to="/RetrospectCreate">
-              <Button width="90px" height="25px" backgroundColor="#959595" color="white" borderRadius="8px">확인</Button>
-            </Link>
+          width="100%" 
+          height="15%"
+          flexDirection="row" justifyContent="center" alignItems="center">
+            <CloseButton onClick={closeModal2}>취소</CloseButton>
+            <Div width="1%" backgroundColor="#D9D9D9"></Div>
+            <LinkToRetrospectCreate to="/RetrospectCreate">
+              <Div>확인</Div>
+            </LinkToRetrospectCreate>
           </Div>
         </Div>
       </Modal>
@@ -175,3 +172,81 @@ function RetrospectInWorkspace(){
 }
 
 export default RetrospectInWorkspace ;
+
+const LinkToRetrospectCreate = styled(Link)`
+  width: 20%;
+  height: 100%;
+  font-size: 40px;
+  background-color: #959595;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+const CloseButton = styled(Div)`
+  width: 20%;
+  height: 100%;
+  font-size: 40px;
+  background-color: #959595;
+  color: white;
+  border-radius: 8px;
+  align-items: center;
+  justify-content: center;
+`
+const RetrospectListDiv = styled.div`
+  height: 16%;
+  width: 100%;
+  background-color: #D9D9D9;
+  border-radius: 20px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2%;
+  padding: 0;
+`
+const LinkToRetrospectCreate2 = styled.div`
+  height: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+`
+const LinkToRetrospectView = styled.div`
+  height: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: right;
+  padding: 0;
+  align-items: center;
+`
+const WriteButton = styled(Link)`
+  height: 100%;
+  width: 20%;
+  border-top-right-radius: 20px;
+  border: 2px solid #D9D9D9;
+  background-color: #EEE;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  text-decoration: none;
+  font-size: 24px;
+  color: #787878;
+`
+const ViewButton = styled(Link)`
+  height: 100%;
+  width: 20%;
+  border-bottom-right-radius: 20px;
+  border: 2px solid #D9D9D9;
+  background-color: #EEE;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  text-decoration: none;
+  font-size: 24px;
+  color: #787878;
+  margin-left: 2%;
+`
