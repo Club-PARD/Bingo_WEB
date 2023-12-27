@@ -26,7 +26,10 @@ function WorkspaceView() {
             {/*Right Space width=1706px*/}
             <Div flexDirection="column" height="100%" width="100%">
                 {/*height=926px */}
-                <Div height="80%" width="100%">
+                <Div
+                    height="80%"
+                    width="100%"
+                >
                     {/*Bingo layout width=800 */}
                     <Div width="47%" height="100%" flexDirection="column">
                         {/*Div for vertical Line */}
