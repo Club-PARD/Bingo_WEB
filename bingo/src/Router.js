@@ -18,7 +18,6 @@ import WorkspaceList from './Pages/Workspace/WorkspaceList';
 import RetrospectList from './Pages/Retrospect/RetrospectList';
 import RetrospectView from './Pages/Retrospect/RetrospectView';
 import RetrospectWrite from './Pages/Retrospect/RetrospectWrite';
-import BingoPage from './Pages/Workspace/BingoPage';
 
 const Routers = () => {
     return (
@@ -37,7 +36,6 @@ const Routers = () => {
                         <Route path='/CrudAdd' element={<CrudAdd />}/>
                         <Route path='/CrudUpdate' element={<CrudUpdate />}/>
                         <Route path='/CrudView' element={<CrudView />}/>
-
                         <Route path='/WorkspaceList' element={<WorkspaceList />}/>
                         <Route path='/WorkspaceView' element={<WorkspaceView />}/>
                         <Route path='/RetrospectCreate' element={<RetrospectCreate />}/>
