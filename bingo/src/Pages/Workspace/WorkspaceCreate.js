@@ -25,9 +25,9 @@ function WorkspaceCreate() {
     return (
         <>
             {/* 모달 안의 전체 Div */}
-            <Div alignItems="center" flexDirection=" column" justifyContent="space-evenly" display="flex" padding="5%">
+            <Div alignItems="center" flexDirection=" column" justifyContent="space-evenly" display="flex" padding="5%" backgroundColor="aliceblue">
                 <Div flexDirection="column" alignItems="center" padding="2%">
-                    <Label>Name of Workspace</Label>
+                    <Label>프로젝트 이름</Label>
                     <Input type="text"
                         placeholder="Beeingo" 
                         border="1px solid black"
@@ -36,7 +36,7 @@ function WorkspaceCreate() {
                         />
                 </Div>
                 <Div flexDirection="column" alignItems="center" padding="2%">
-                    <Label>Description of Workspace</Label>
+                    <Label>프로젝트 생성</Label>
                     <Input type="text"
                         placeholder="워크스페이스 소개를 작성하시오"
                         value={introduce}
@@ -45,9 +45,10 @@ function WorkspaceCreate() {
                         />
                 </Div>
                 <Div flexDirection=" column" alignItems="center">
+                    <Div>프로젝트 배너 이미지</Div>
                     <Div
                     onClick={() => profileImageRef.current.click()}>
-                        Profile Image
+                        +파일 업로드
                     </Div>
                     <Input
                         type="file"
