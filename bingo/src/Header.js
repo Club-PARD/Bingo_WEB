@@ -1,11 +1,24 @@
-import {Outlet} from "react-router";
+import {Outlet, useLocation} from "react-router";
 import {CenterDiv, Div} from "./Components/NormalComponents/Section";
 import {Button} from "./Components/NormalComponents/Form";
-import {P} from "./Components/NormalComponents/Text";
+import {Label, P} from "./Components/NormalComponents/Text";
 import {useState} from "react";
 import styled from "styled-components";
 
+import Modal from "react-modal";
+import {CopyToClipboard} from 'react-copy-to-clipboard';
+import {Img} from "./Components/NormalComponents/Etc";
+
 export default function Header() {
+    // 모달 관련 부분
+    const [modalIsOpen1, setModalIsOpen1] = useState(false);
+    const [value, setValue] = useState("12345678");
+    const openModal1 = () => {
+        setModalIsOpen1(true);
+    };
+    const closeModal = () => {
+        setModalIsOpen1(false);
+    };
 
     // 워크스페이스 저장 변수
     const [WorkspaceInfo, setWorkspaceInfo] = useState(
@@ -18,11 +31,13 @@ export default function Header() {
                 {/* 타이틀 / 설명 */}
                 <Title WorkspaceInfo={WorkspaceInfo}></Title>
                 {/* 팀원 초대하기 버튼 */}
-                <InviteMember/>
+                <InviteMember openModal1={openModal1}/>
             </HeaderLayout>
 
             {/* Outlet 영역 */}
             <ScreenView/>
+
+            <InviteModal modalIsOpen1={modalIsOpen1} closeModal={closeModal} value={value}/>
         </Div>
     );
 }
@@ -44,9 +59,13 @@ const Title = (e) => {
 }
 
 // 팀원 초대 컴포넌트
-const InviteMember = () => {
-    // 팀원 초대 관련 기능
+const InviteMember = (e) => {
+    // 현재 URL 얻기
+    const location = useLocation();
+    const currentURL = location.pathname;
+
     const handleClickButton = () => {
+
         if (window.confirm("팀원을 초대하시겠습니까?")) {
             alert("초대합니다!");
         } else {
@@ -55,15 +74,16 @@ const InviteMember = () => {
     }
 
     return (
-        <CenterDiv margin="0px 0px 5px 0px" width="10%">
-            <Button
-                width="100px"
-                height="40px"
-                borderRadius="15px"
-                onClick={handleClickButton}>
-                <P fontSize="15px" fontWeight="bold">팀원 초대하기</P>
-            </Button>
-        </CenterDiv>
+        <>
+            {
+                currentURL === '/WorkspaceView' && <CenterDiv margin="0px 0px 5px 0px" width="10%">
+                        <Button width="100px" height="40px" borderRadius="15px" onClick={e.openModal1}>
+                            <P fontSize="15px" fontWeight="bold">팀원 초대하기</P>
+                        </Button>
+                    </CenterDiv>
+
+            }
+        </>
     );
 }
 
@@ -76,7 +96,7 @@ const ScreenView = () => {
                 backgroundColor: "gainsboro",
                 borderRadius: "15px",
                 padding: "20px",
-                boxSizing : "border-box"
+                boxSizing: "border-box"
             }}>
             <Outlet/>
         </main>
@@ -93,3 +113,84 @@ const HeaderLayout = styled(Div)`
     padding: 0px 20px;
     margin-bottom: 20px;
 `;
+
+//
+// 모달 관련 부분
+//
+
+const StyleModal = {
+    overlay: {
+        backgroundColor: "rgba(0, 0, 0,0.5)"
+    },
+    content: {
+        borderRadius: "12px",
+        padding: 0,
+        color: "black",
+        background: `#D9D9D9`,
+        backgroundSize: "cover",
+        // backgroundRepeat: "no-repeat",
+        margin: "0",
+        width: "35%",
+        height: "39%",
+        display: "flex",
+        border: "none",
+        //alignItems: "center",
+        overflowY: "hidden",
+
+        display: "flex",
+        flexDirection: "column",
+        overflowY: "auto",
+
+        //position: 'absolute',  absolute positioning
+
+        transform: "translate(87%, 60%)", // center the modal
+        // 모달 내용이 부모 요소의 높이를 초과하면 자동으로 스크롤 바를 생성하도록 설정합니다. "overflowY: 'auto'"가 그 역할을
+        // 담당합니다. 또한, 모달의 높이(height)를 조정하여 모달의 내용이 충분하지 않을 경우 모달 자체의 높이를 줄일 수 있습니다.
+    }
+}
+
+const InviteModal = (e) => {
+    return (
+        <Modal isOpen={e.modalIsOpen1} onRequestClose={e.closeModal} style={StyleModal}>
+            {/* 이미지 추가 modal's width=1179, height=616 */}
+
+            {/* close 이미지 section */}
+            <Div
+                width="100%"
+                height="10%"
+                alignItems="center"
+                flexDirection="row-reverse"
+                padding="2% 2% 0 0">
+                <Img
+                    src="/img/Home/close.png"
+                    alt="Close"
+                    onClick={e.closeModal}
+                    width="4%"
+                    height="90%"/>
+            </Div>
+
+
+            {/* 팀원 코드 section */}
+            <Div
+                justifyContent = "space-around"
+                alignItems="center"
+                width="100%"
+                height="90%"
+                flexDirection="column">
+                <Div
+                    fontSize="40px"
+                    fontWeight="400">팀원 초대하기 코드</Div>
+                <Div fontSize="90px">{e.value}</Div>
+                <CopyToClipboard text={e.value} onCopy={() => alert("클립보드에 복사되었습니다.")}>
+                    <Button
+                        width="150px"
+                        height="40px"
+                        backgroundColor="#959595"
+                        borderRadius="9px">
+                        <Label fontSize = "30px">복사</Label>
+                    </Button>
+                </CopyToClipboard>
+            </Div>
+        </Modal>
+    );
+}
