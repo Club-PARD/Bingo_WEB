@@ -12,7 +12,7 @@ import BingoBoard from "../../Preset/WorkspacePreset/BingoBoard";
 // RetrospectInWorkspace component출력 회고결과 출력(이것도 디자인이 완성되고 백엔드가 연결되어야 가능하다)
 function WorkspaceView() {
     const [modalIsOpen1, setModalIsOpen1] = useState(false);
-    const [value, setValue] = useState("123456");
+    const [value, setValue] = useState("12345678");
     const openModal1 = () => {
         setModalIsOpen1(true);
     };
@@ -25,14 +25,16 @@ function WorkspaceView() {
 
             {/*Right Space width=1706px*/}
             <Div flexDirection="column" height="100%" width="100%">
-                {/*height=154px */}
-                
                 {/*height=926px */}
                 <Div height="80%" width="100%">
                     {/*Bingo layout width=800 */}
                     <Div width="47%" height="100%" flexDirection="column">
                         {/*Div for vertical Line */}
                         <Div width="100%" height="93%" borderRight="1px solid black">
+                            <Div
+                                width="100%"
+                                margin="2% 0 0 2%"
+                            >좋은 팀을 위한 9가지 가치</Div>
                             <Div
                                 width="90%"
                                 height="91%"
