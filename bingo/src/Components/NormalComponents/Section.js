@@ -15,7 +15,7 @@ export const Div = styled.div `
     border : ${props => props.border || ''};
     border-right: ${props => props.borderRight || ''};
     border-radius: ${props => props.borderRadius || ''};
-    box-sizing : ${props => props.boxSizing || 'border-box'};
+    box-sizing : ${props => props.boxSizing || ''};
 
     color: ${props => props.color || ''};
     background-color: ${props => props.backgroundColor || ''};

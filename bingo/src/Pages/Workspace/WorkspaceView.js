@@ -84,9 +84,10 @@ const Section_Bingo_Content = styled(Div)`
 `;
 
 // [컴포넌트] 회고 리스트 Section의 콘텐츠
-const Section_Retrospect_Content = styled(Div)`
+const Section_Retrospect_Content = styled.div`
     width: 90%;
-    height : 100%;
+    height : 90%;
     overflow: auto;
-    justify-content: center;
+    justify-content: top;
+    flex-direction: column;
 `;
