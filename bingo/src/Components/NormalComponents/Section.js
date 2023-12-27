@@ -35,6 +35,7 @@ export const Div = styled.div`
     font-style: ${props => props.fontStyle || ''};
     font-weight: ${props => props.fontWeight || ''};
     line-height: ${props => props.lineHeight || ''};
+    text-decoration: ${props => props.textDecoration || ''};
     color: ${props => props.color || '#000'};
     -webkit-text-stroke: ${props => props.textStroke || '1px #000'};
 

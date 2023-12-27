@@ -15,27 +15,32 @@ const WorkspaceData = [
     {
         name : "개발팀 회고",
         desc : "23-4 롱커톤 3!4!",
-        picture : " ",
+        picture : "/img/Login/img4.png",
+        link : "/WorkspaceView",
     },
     {
         name : "공설입 회고",
         desc : "공학설계입문 2분반 1조",
         picture : " ",
+        link : "/",
     },
     {
         name : "SLESLE 2023",
         desc : "23-2 슬기짜기 임원단",
         picture : " ",
+        link : "/",
     },
     {
         name : "맹맹맹",
         desc : "맹구 마지막 우승",
         picture : " ",
+        link : "/",
     },
     {
         name : "멍멍멍",
         desc : "북런던 강아지",
         picture : " ",
+        link : "/",
     },
 ];
 
@@ -68,47 +73,55 @@ const WorkspaceList =()=> {
     return(
         <>
             {/* 상단바 부분 */}
-            <Div flexDirection="row" justifyContent="space-between" padding="1% 3% 1% 3%"alignItems="center" height="15vh">
+            <Div flexDirection="row" justifyContent="space-between" alignItems="center" height="24vh" width="90vw" >
                 {/* 빙고 로고, 현재 페이지 이름 표시 부분 */}
-                <Div flexDirection="row">
+                <Div  fontSize="160px" alignItems="center" margin="2% 0 0 0">
                     {/* <Img src="/img/Home/logo.jpg" width={"10%"}/> */}
-                    <P fontSize="70px" margin="0 0 0 1%">Bingo</P>
+                    Bingo
                 </Div>
-                {/* 새 워크스페이스 생성 버튼 */}
-                {/* 형 여기 원래 버튼 맞는데요 디자이너 애들이 다르게 해달래서 바꿨어요
-                <Button borderRadius="25px" padding="1%" fontSize="15px" backgroundColor="gainsboro" color="black" onClick={openModal}>워크스페이스 생성</Button>
-    */}
             </Div>
-            <Div margin="0 0 0 3%">워크스페이스 리스트</Div>
-            {/* 워크스페이스 카드 부분 */}
-            <Div
-                flexDirection="row"
-                justifyContent="center"
-            >
-                {/*디자이너 요청으로 워크스페이스 생성버튼 옮김 */}
-                <Div 
-                    flexDirection="column"
-                    margin="1% 1% 1% 1%"
-                    padding="1%"
-                    border="1px solid transparent"
-                    borderRadius="15px"
-                    width="20%"
-                    backgroundColor="gainsboro"
-                    onClick={openModal}
+            {/*프로젝트 카드들의 나열, 해당 공간의 이름을 감싼 Div */}
+            <Div flexDirection="column" height="76vh" width="90vw">
+                <Div height="4%" fontSize="27px">워크스페이스 리스트</Div>
+                {/* 워크스페이스 카드 부분 */}
+                
+                <Div
+                    flexDirection="row"
+                    alignContent="baseline"
                     alignItems="center"
-                    justifyContent="center"
+                    height="96%"
+                    width="100%"
+                    flexWrap="wrap"
+                    overflow="auto"
                 >
-                    <Img width="20%" height="60%" src="/Img/WorkspaceView/ph_plus-bold.png"/>
+                    {/*디자이너 요청으로 워크스페이스 생성버튼 옮김 */}
+                    <Div 
+                        flexDirection="column"
+                        margin="1% 1% 1% 0"
+                        padding="1%"
+                        border="1px solid transparent"
+                        borderRadius="15px"
+                        width="24%"
+                        height="37.4%"
+                        backgroundColor="#EDEDED"
+                        onClick={openModal}
+                        alignItems="center"
+                        justifyContent="center"
+                    >
+                        <Img width="20%" height="auto" src="/Img/WorkspaceView/ph_plus-bold.png"/>
+                    </Div>
+                    {/* 현재는 더미값이지만 장기적으로는 워크스페이스 데이터 기반으로 카드 출력  */}
+                    {WorkspaceData.map((workspace, index) => (
+                        <WorkspaceCard
+                            key={index}
+                            name={workspace.name}
+                            desc={workspace.desc}
+                            picture={workspace.picture}
+                            link={workspace.link}
+                            period={workspace.period}
+                        />
+                    ))}
                 </Div>
-                {/* 현재는 더미값이지만 장기적으로는 워크스페이스 데이터 기반으로 카드 출력  */}
-                {WorkspaceData.map((workspace, index) => (
-                    <WorkspaceCard
-                        key={index}
-                        name={workspace.name}
-                        desc={workspace.desc}
-                        period={workspace.period}
-                    />
-                ))}
             </Div>
 
             {/* 모달창 출력 부분 */}
