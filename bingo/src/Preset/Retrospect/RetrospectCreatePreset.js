@@ -1,161 +1,34 @@
+import styled from "styled-components";
 import {Button, Input} from "../../Components/NormalComponents/Form";
 import {CenterDiv, Div} from "../../Components/NormalComponents/Section";
 import {Label, P} from "../../Components/NormalComponents/Text";
 import {useNavigate} from "react-router-dom";
 
-const RetrospectDescription = ({
-    W_KPT: 'KPT는 "Keep, Problem, Try"의 약자로, 팀이 프로젝트나 업무를 평가하고 개선하기 위해 유용한 간단한 피드백 프로세스를 제공' +
-            '합니다. "Keep"은 유지할 가치 있는 것, "Problem"은 발생한 문제, "Try"는 개선을 시도할 방안을 나타냅니다.',
-    W_4LS: '4LS는 "Liked, Learned, Lacked, Longed for"의 약자로, 경험 또는 이벤트에 대한 리뷰에 활용됩니다. "Like' +
-            'd"는 긍정적인 경험, "Learned"는 얻은 교훈, "Lacked"는 부족한 부분, "Longed for"는 더 원하는 부분을 나타냅니다' +
-            '.',
-    W_5F: '5F 방법론: 5F는 "Feel, Find, Finish, Future, Feedback"의 약자로, 회고를 위한 다양한 측면을 제공합니다.' +
-            ' "Feel"은 느낀 감정, "Find"는 발견한 사실, "Finish"는 완료된 작업, "Future"는 향후 계획, "Feedback"는' +
-            ' 피드백을 나타냅니다.'
-});
-// RadioCard : 라디오 버튼 Custom
-function RadioCard({
-    value,
-    label,
-    selectedValue,
-    onChange,
-    margin,
-    description
-}) {
-    return (
-        <Div width="100%" margin={margin}>
-            <input
-                type='radio'
-                name='fruits'
-                value={value}
-                checked={value === selectedValue}
-                onChange={onChange}
-                style={{
-                    display: 'none'
-                }}/>
-            <Div
-                width="100%"
-                height="400px"
-                cursor="pointer"
-                borderRadius="15px"
-                flexDirection="column"
-                padding="20px"
-                backgroundColor={value === selectedValue
-                    ? 'yellow'
-                    : 'white'}
-                onClick={() => onChange(value)}>
-                <CenterDiv width="100%" height="40%">
-                    <P fontSize="40px" fontWeight="bold">{label}</P>
-                </CenterDiv>
-                <Div
-                    justifyContent="center"
-                    width="100%"
-                    height="60%"
-                    padding="5px"
-                    borderRadius="15px"
-                    color="white"
-                    backgroundColor="gray"
-                    style={{
-                        textAlign: "center"
-                    }}>
-                    {description}
-                </Div>
-            </Div>
-        </Div>
-    );
-}
-
-// handleMakeThreeSection : lable에 맞춰서 질문을 생성해주는 핸들러
-const handleMakeThreeSection = (way, labels, questions, setQuestions) => (
-    <Div flexDirection="column">
-
-        {
-            labels.map((label, index) => (
-                <Div
-                    key={index}
-                    flexDirection="column"
-                    border="3px dashed gray"
-                    width="100%"
-                    margin="10px 0px"
-                    padding="10px 30px"
-                    borderRadius="10px">
-                    <Div alignItems="flex-end">
-                        <Label margin="0px 5px 0px 0px" fontSize="50px">{label[0]}</Label>
-                        <Label margin="0px 0px 3px 0px" width="20%">{label}</Label>
-                    </Div>
-                    <Div flexDirection="column" height="150px" justifyContent="space-around">
-                        <Input
-                            type="text"
-                            placeholder="질문을 입력해주세요."
-                            width="100%"
-                            value={questions[index]
-                                ?.question || ''}
-                            onChange={(e) => {
-                                const updatedQuestions = [...questions];
-                                updatedQuestions[index] = {
-                                    id: index + 1,
-                                    question: e.target.value
-                                };
-                                setQuestions(updatedQuestions);
-                            }}/>
-                        <Input
-                            type="text"
-                            placeholder="질문을 입력해주세요."
-                            width="100%"
-                            value={questions[index]
-                                ?.question || ''}
-                            onChange={(e) => {
-                                const updatedQuestions = [...questions];
-                                updatedQuestions[index] = {
-                                    id: index + 1,
-                                    question: e.target.value
-                                };
-                                setQuestions(updatedQuestions);
-                            }}/>
-                        <Input
-                            type="text"
-                            placeholder="질문을 입력해주세요."
-                            width="100%"
-                            value={questions[index]
-                                ?.question || ''}
-                            onChange={(e) => {
-                                const updatedQuestions = [...questions];
-                                updatedQuestions[index] = {
-                                    id: index + 1,
-                                    question: e.target.value
-                                };
-                                setQuestions(updatedQuestions);
-                            }}/>
-                    </Div>
-
-                </Div>
-            ))
-        }
-    </Div>
-);
-
 // Section1 영역
-const Section1 = (e) => {
+export const Section1 = (e) => {
     return (
-        <Div
-            id="section1"
-            width="90%"
-            height="100%"
-            flexDirection="column"
-            margin="0 auto">
+        <Div id="section1" style={Section_Style}>
+            {/* Content Section */}
             <Div flexDirection="column" height="90%">
+
+                {/* 회고 타이틀 Section */}
                 <Div flexDirection="column" margin="0px 0px 20px 0px">
-                    <P>회고 타이틀</P>
+                    {/* Title */}
+                    <P fontSize="40px">회고 타이틀</P>
+
+                    {/* Input */}
                     <Input
-                        type="text"
-                        width="100%"
-                        margin="10px 0px"
+                        style={InputStyle}
                         value={e.retrospectTitle}
                         onChange={(k) => e.setRetrospectiTitle(k.target.value)}></Input>
                 </Div>
 
+                {/* 템플릿 선택 Section */}
                 <Div flexDirection="column" margin="0px 0px 20px 0px" width="100%">
-                    <P>템플릿 선택</P>
+                    {/* Title */}
+                    <P fontSize="40px">템플릿 선택</P>
+
+                    {/* 템플릿 선택 */}
                     <Div width="100%" margin="20px 0px">
                         <RadioCard
                             value='KPT'
@@ -179,9 +52,11 @@ const Section1 = (e) => {
                     </Div>
                 </Div>
             </Div>
+
+            {/* 버튼 Section */}
             <Div flexDirection="column" height="10%" justifyContent="center">
                 <Div justifyContent="end">
-                    <Div width="220px" backgroundColor="" justifyContent = "space-between">
+                    <Div width="320px" backgroundColor="" justifyContent="space-between">
                         <StepButton onClick={e.onClick} targetLabel="취소"/>
 
                         <StepButton targetPage="#section2" targetLabel="다음"/>
@@ -193,14 +68,10 @@ const Section1 = (e) => {
 }
 
 // Section2 영역
-const Section2 = (e) => {
+export const Section2 = (e) => {
     return (
-        <Div
-            id="section2"
-            width="90%"
-            height="100%"
-            flexDirection="column"
-            margin="0 auto">
+        <Div id="section2" style={Section_Style}>
+            {/* Content Section */}
             <Div width="100%" height="90%">
                 <Div
                     flexDirection="column"
@@ -227,11 +98,15 @@ const Section2 = (e) => {
 
                 </Div>
             </Div>
+
+            {/* 버튼 Section */}
             <Div flexDirection="column" height="10%" justifyContent="center">
                 <Div justifyContent="end">
-                    <StepButton targetPage="#section1" targetLabel="이전"/>
+                    <Div width="320px" backgroundColor="" justifyContent="space-between">
+                        <StepButton targetPage="#section1" targetLabel="이전"/>
 
-                    <StepButton onClick={e.onClick} targetLabel="생성"/>
+                        <StepButton onClick={e.onClick} targetLabel="생성"/>
+                    </Div>
                 </Div>
             </Div>
         </Div>
@@ -243,10 +118,10 @@ const StepButton = (e) => {
     return (
         <a href={e.targetPage}>
             <Button
-                width="100px"
-                height="40px"
+                width="150px"
+                height="50px"
                 borderRadius="15px"
-                fontSize="20px"
+                fontSize="35px"
                 fontWeight="bold"
                 onClick={e.onClick}
                 backgroundColor="#BDBDBD">{e.targetLabel}</Button>
@@ -254,9 +129,167 @@ const StepButton = (e) => {
     );
 }
 
-export {
-    RadioCard,
-    Section1,
-    Section2,
-    StepButton
-};
+// Input 스타일 지정
+const InputStyle = {
+    type: "text",
+    width: "100%",
+    height: "70px",
+    margin: "10px 0px",
+    borderRadius: "20px",
+    fontSize: "40px"
+}
+
+// 템플릿 설명 변수
+const RetrospectDescription = ({
+    W_KPT: 'KPT는 "Keep, Problem, Try"의 약자로, 팀이 프로젝트나 업무를 평가하고 개선하기 위해 유용한 간단한 피드백 프로세스를 제공' +
+            '합니다. "Keep"은 유지할 가치 있는 것, "Problem"은 발생한 문제, "Try"는 개선을 시도할 방안을 나타냅니다.',
+    W_4LS: '4LS는 "Liked, Learned, Lacked, Longed for"의 약자로, 경험 또는 이벤트에 대한 리뷰에 활용됩니다. "Like' +
+            'd"는 긍정적인 경험, "Learned"는 얻은 교훈, "Lacked"는 부족한 부분, "Longed for"는 더 원하는 부분을 나타냅니다' +
+            '.',
+    W_5F: '5F 방법론: 5F는 "Feel, Find, Finish, Future, Feedback"의 약자로, 회고를 위한 다양한 측면을 제공합니다.' +
+            ' "Feel"은 느낀 감정, "Find"는 발견한 사실, "Finish"는 완료된 작업, "Future"는 향후 계획, "Feedback"는' +
+            ' 피드백을 나타냅니다.'
+});
+
+// RadioCard : 라디오 버튼 Custom
+function RadioCard({
+    value,
+    label,
+    selectedValue,
+    onChange,
+    margin,
+    description
+}) {
+    return (
+        <Div width="100%" margin={margin}>
+
+            {/* hidden 처리 되는 Input::Radio 버튼 */}
+            <input
+                type='radio'
+                name='fruits'
+                value={value}
+                checked={value === selectedValue}
+                onChange={onChange}
+                style={{
+                    display: 'none'
+                }}/> {/* show 처리 되는 부분 */}
+            <Div
+                width="100%"
+                height="600px"
+                cursor="pointer"
+                borderRadius="15px"
+                flexDirection="column"
+                padding="20px"
+                backgroundColor={value === selectedValue
+                    ? 'yellow'
+                    : 'white'}
+                onClick={() => onChange(value)}>
+
+                {/* 템플릿 Title */}
+                <CenterDiv width="100%" height="40%">
+                    <P fontSize="70px" fontWeight="bold">{label}</P>
+                </CenterDiv>
+
+                {/* 템플릿 설명 */}
+                <Div
+                    justifyContent="center"
+                    width="100%"
+                    height="60%"
+                    padding="5px"
+                    borderRadius="15px"
+                    color="white"
+                    backgroundColor="gray"
+                    fontSize="30px"
+                    style={{
+                        textAlign: "center"
+                    }}>
+                    {description}
+                </Div>
+            </Div>
+        </Div>
+    );
+}
+
+// handleMakeThreeSection : lable에 맞춰서 질문을 생성해주는 핸들러
+const handleMakeThreeSection = (way, labels, questions, setQuestions) => (
+    <Div flexDirection="column">
+        {
+            // labels(템플릿의 대주제 개수 만큼)
+            labels.map((label, index) => (
+                <Div
+                    key={index}
+                    flexDirection="column"
+                    border="3px dashed gray"
+                    width="100%"
+                    height="auto"
+                    margin="10px 0px"
+                    padding="30px 30px"
+                    borderRadius="10px">
+                    {/* Title */}
+                    <Div alignItems="flex-end">
+                        <Label margin="0px 5px 0px 0px" fontSize="100px">{label[0]}</Label>
+                        <Label margin="0px 0px 5px 0px" fontSize="40px" width="20%">{label}</Label>
+                    </Div>
+
+                    {/* 질문 모음 */}
+                    <Div flexDirection="column" height="auto" justifyContent="space-around">
+                        <Input
+                            type="text"
+                            placeholder="질문을 입력해주세요."
+                            style={InputStyle}
+                            width="100%"
+                            value={questions[index]
+                                ?.question || ''}
+                            onChange={(e) => {
+                                const updatedQuestions = [...questions];
+                                updatedQuestions[index] = {
+                                    id: index + 1,
+                                    question: e.target.value
+                                };
+                                setQuestions(updatedQuestions);
+                            }}/>
+                        <Input
+                            type="text"
+                            placeholder="질문을 입력해주세요."
+                            style={InputStyle}
+                            width="100%"
+                            value={questions[index]
+                                ?.question || ''}
+                            onChange={(e) => {
+                                const updatedQuestions = [...questions];
+                                updatedQuestions[index] = {
+                                    id: index + 1,
+                                    question: e.target.value
+                                };
+                                setQuestions(updatedQuestions);
+                            }}/>
+                        <Input
+                            type="text"
+                            placeholder="질문을 입력해주세요."
+                            style={InputStyle}
+                            width="100%"
+                            value={questions[index]
+                                ?.question || ''}
+                            onChange={(e) => {
+                                const updatedQuestions = [...questions];
+                                updatedQuestions[index] = {
+                                    id: index + 1,
+                                    question: e.target.value
+                                };
+                                setQuestions(updatedQuestions);
+                            }}/>
+                    </Div>
+
+                </Div>
+            ))
+        }
+    </Div>
+);
+
+// Section 스타일
+const Section_Style = {
+    width: "90%",
+    height: "100%",
+    flexDirection: "column",
+    margin: "0 auto"
+}

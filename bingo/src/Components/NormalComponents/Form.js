@@ -28,7 +28,7 @@ export const Input = styled.input `
     border : ${props => props.border || 'none'};
     border-radius: ${props => props.borderRadius || "10px"};
     box-sizing: border-box;
-    font-Size : inherit;
+    font-Size : ${props => props.fontSize || "inherit"};
 
     margin : ${props => props.margin || ''};
 

@@ -10,9 +10,11 @@ import {CopyToClipboard} from 'react-copy-to-clipboard';
 import {Img} from "./Components/NormalComponents/Etc";
 
 export default function Header() {
-    // 모달 관련 부분
-    const [modalIsOpen1, setModalIsOpen1] = useState(false);
-    const [value, setValue] = useState("12345678");
+    // Modal 관련 변수
+    const [modalIsOpen1, setModalIsOpen1] = useState(false); // Modal 창의 open 여부를 저장하는 변수
+    const [value, setValue] = useState("12345678"); // 팀원에게 초대해주는 코드를 저장하는 변수
+
+    // Modal 관련 핸들러 (open, close)
     const openModal1 = () => {
         setModalIsOpen1(true);
     };
@@ -20,7 +22,7 @@ export default function Header() {
         setModalIsOpen1(false);
     };
 
-    // 워크스페이스 저장 변수
+    // 워크스페이스 정보 저장 변수
     const [WorkspaceInfo, setWorkspaceInfo] = useState(
         {title: '강아지들 다 모여', description: '여기는 강사모야. 강아지들을 사랑하는 모임'}
     );
@@ -37,6 +39,7 @@ export default function Header() {
             {/* Outlet 영역 */}
             <ScreenView/>
 
+            {/* hidden 되어 있는 Modal 영역 */}
             <InviteModal modalIsOpen1={modalIsOpen1} closeModal={closeModal} value={value}/>
         </Div>
     );
@@ -64,18 +67,10 @@ const InviteMember = (e) => {
     const location = useLocation();
     const currentURL = location.pathname;
 
-    const handleClickButton = () => {
-
-        if (window.confirm("팀원을 초대하시겠습니까?")) {
-            alert("초대합니다!");
-        } else {
-            alert("취소되었습니다.");
-        }
-    }
-
     return (
         <>
             {
+                // 현재 URL이 WOrkspaceView인 경우에만 show, 그렇지 않은 경우에는 hideen
                 currentURL === '/WorkspaceView' && <CenterDiv margin="0px 0px 5px 0px" width="10%">
                         <Button width="100px" height="40px" borderRadius="15px" onClick={e.openModal1}>
                             <P fontSize="15px" fontWeight="bold">팀원 초대하기</P>
@@ -149,6 +144,7 @@ const StyleModal = {
     }
 }
 
+// Modal 창 관련 컴포넌트
 const InviteModal = (e) => {
     return (
         <Modal isOpen={e.modalIsOpen1} onRequestClose={e.closeModal} style={StyleModal}>

@@ -3,7 +3,7 @@ import {Div} from "../../Components/NormalComponents/Section";
 import {useNavigate} from "react-router-dom";
 import {Section1, Section2, Section3} from "../../Preset/Retrospect/RetrospectCreatePreset";
 
-function RetrospectCreate() {
+export default function RetrospectCreate() {
     // 변수 선언
     const [retrospectTitle, setRetrospectiTitle] = useState(''); // 회고 타이틀 저장 변수
     const [questions, setQuestions] = useState([]); // 질문 내용 저장 변수
@@ -62,23 +62,22 @@ function RetrospectCreate() {
             style={{
                 overflow: "scroll"
             }}>
+            
+            {/* 타이틀 작성 및 템플릿 선택 */}
             <Section1
                 SelectedWays={SelectedWays}
                 handleRadioChange={handleRadioChange}
                 retrospectTitle={retrospectTitle}
                 setRetrospectiTitle={setRetrospectiTitle}
-                onClick={handleMyCancleConfirm}
-            />
+                onClick={handleMyCancleConfirm}/>
 
+            {/* 질문 작성 */}
             <Section2
                 SelectedWays={SelectedWays}
                 handleAddQuestion={handleAddQuestion}
                 questions={questions}
                 setQuestions={setQuestions}
-                onClick={handleMyConfirm}
-            />
+                onClick={handleMyConfirm}/>
         </Div>
     );
 }
-
-export default RetrospectCreate;
