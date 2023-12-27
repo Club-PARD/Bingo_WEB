@@ -73,14 +73,14 @@ const Body = styled.div`
     여기는 용현이형과 다른 내가 필요한 css요소들
     형한테 레이아웃 통째로 받아올 때 이부분은 확실히 고려해서 받아오자
     */
-    border: 1px dashed #E9E9E9;
-
+    border: 5px dashed #E9E9E9;
+    border-radius: 36px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: top;
     overflow: auto;
-    margin: 0 4%;
+    padding: 0 4%;
 `
 //회고내부의 단계(ex.K,P,T)를 나타내는 div
 const StepDiv = styled.div`
