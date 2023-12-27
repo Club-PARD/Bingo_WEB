@@ -86,7 +86,10 @@ function WorkspaceView() {
                     
                 </Div>
                 {/*height=926px */}
-                <Div height="80%" width="100%">
+                <Div
+                    height="80%"
+                    width="100%"
+                >
                     {/*Bingo layout width=800 */}
                     <Div 
                         width="47%"
