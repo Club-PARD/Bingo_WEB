@@ -22,9 +22,10 @@ const Body = styled.div`
 // 취소, 다음이 들어가는 부분
 const Footer = styled.div`
     display : flex;
-    height : 3.5%;
+    height : 15%;
     border : 1px solid red;
-    align-items : end;
+    align-items : center;
+    justify-content : end;
 `
 
 // Body 안에 들어가는 회고 작성칸을 감싸는 테두리
@@ -37,7 +38,7 @@ const DottedBorder = styled.div`
 `
 // Footer 안에 들어갈 버튼들의 Preset
 const Btn = styled.button`
-    height : 5%;
+    height : 100%;
 `
 
 function RetrospectWriteText() {
