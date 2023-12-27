@@ -17,8 +17,8 @@ export default function Sidebar() {
 
     // 렌더링 시 한 번 발생
     useEffect(() => {
-        setUserImage(`/img/Profile/account_circle.png`);
-        setProjectImage(`/img/Profile/material-symbols_home-outline.png`);
+        setUserImage(`/img/Sidebar/account_circle.png`);
+        setProjectImage(`/img/Sidebar/material-symbols_home-outline.png`);
     },);
 
     return (
