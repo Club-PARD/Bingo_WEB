@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import React from 'react';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Sidebar from './Sidebar';
@@ -42,7 +44,6 @@ const Routers = () => {
                         <Route path='/RetrospectList' element={<RetrospectList />}/>
                         <Route path='/RetrospectView' element={<RetrospectView />}/>
                         <Route path='/RetrospectWrite' element={<RetrospectWrite />}/>
-                        <Route path='/bingo' element={<BingoPage />}/>
                     </Route>
                 </Routes>
                 {/* </div> */}

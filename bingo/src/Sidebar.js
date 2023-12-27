@@ -81,6 +81,7 @@ export default function Sidebar() {
                 </Profile>
                 <div>프로젝트</div>
                 <div>로그아웃</div>
+              </SideTopDiv>
           </Sidediv>
         </Div>
         <main style={{width : "90vw"}}>
