@@ -16,7 +16,7 @@ import BingoBoard from "../../Preset/WorkspacePreset/BingoBoard";
 //회고결과 출력(이것도 디자인이 완성되고 백엔드가 연결되어야 가능하다)
 function WorkspaceView() {
     const [modalIsOpen1, setModalIsOpen1] = useState(false);
-    const [value, setValue] = useState("123456");
+    const [value, setValue] = useState("12345678");
     const openModal1 = () => {
         setModalIsOpen1(true);
     };
@@ -25,7 +25,7 @@ function WorkspaceView() {
         setModalIsOpen1(false);
     };
     return (
-        <Div flexDirection="row" width="90vw" height="100vh">
+        <Div flexDirection="row" width="85vw" height="100vh">
             
             {/*Right Space width=1706px*/}
             <Div flexDirection="column" height="100%" width="100%">
@@ -35,7 +35,8 @@ function WorkspaceView() {
                     width="100%" 
                     flexDirection="row"
                     alignItems="flex-end"
-                    padding=" 0 0 4% 0"
+                    padding=" 0 0 3% 0"
+                    margin="1% 0 0 0"
                 >
                     {/*title area*/}
                     <Div
@@ -43,10 +44,11 @@ function WorkspaceView() {
                         display= "inline-block"
                         color="black"
                         fontSize="56px"
-                        fontWeight="100"
+                        fontWeight="400"
                         lineHeight="150%"
                         fontStyle="normal"
                         margin="0 0.7%"
+                        
                     >
                         강아지들 다 모여
                     </Div>
@@ -99,12 +101,18 @@ function WorkspaceView() {
                             width="100%"
                             height="93%"
                             borderRight="1px solid black"
+                            flexDirection="column"
+                            justifyContent="space-between"
                         >
+                            <Div
+                                width="100%"
+                                margin="2% 0 0 2%"
+                            >좋은 팀을 위한 9가지 가치</Div>
                             <Div
                                 width="90%"
                                 height="91%"
                                 backgroundColor="#444"
-                                margin="9% 0 0 2%"
+                                margin="0 0 0 2%"
                                 flexWrap="wrap" 
                                 justifyContent="space-evenly" 
                                 alignContent="space-evenly"

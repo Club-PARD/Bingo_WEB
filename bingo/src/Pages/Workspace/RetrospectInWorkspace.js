@@ -157,8 +157,13 @@ function RetrospectInWorkspace(){
           alignItems="center"
         >
           <Div fontSize="25px">회고를 생성하시겠습니까?</Div>
-          <Div width="43%" height="15%" flexDirection="row" justifyContent="space-between" alignItems="center">
-            <Button width="90px" height="25px" backgroundColor="#959595" color="white" borderRadius="8px" onClick={closeModal2}>취소</Button>
+          <Div 
+          width="43%" 
+          height="15%" 
+          flexDirection="row" justifyContent="space-between" alignItems="center">
+            <Link to="/WorkspaceView">
+              <Button width="90px" height="25px" backgroundColor="#959595" color="white" borderRadius="8px" onClick={closeModal2}>취소</Button>
+            </Link>
             <Link to="/RetrospectCreate">
               <Button width="90px" height="25px" backgroundColor="#959595" color="white" borderRadius="8px">확인</Button>
             </Link>
