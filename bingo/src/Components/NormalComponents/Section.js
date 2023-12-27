@@ -30,7 +30,7 @@ export const Div = styled.div`
     padding-left : ${props => props.paddingLeft || "0px"}; */
     
 
-    font-family: ${props => props.fontFamily || 'inter'};
+    font-family: ${props => props.fontFamily || 'Inter'};
     font-size: ${props => props.fontSize || ''};
     font-style: ${props => props.fontStyle || ''};
     font-weight: ${props => props.fontWeight || ''};
