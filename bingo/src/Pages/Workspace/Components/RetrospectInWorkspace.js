@@ -12,12 +12,12 @@ function RetrospectInWorkspace(){
     // map 함수로 출력하기 위한 리스트(더미데이터) 생성
     // 나중에 추가 가능
     const [tasks, setTasks] = useState([
-      { id: 1, name: '1차 회고', linktoView: '/RetrospectView', linktoWrite: '/RetrospectWrite'},
-      { id: 2, name: '2차 회고', linktoView: '/RetrospectView', linktoWrite: '/RetrospectWrite'},
-      { id: 3, name: '3차 회고', linktoView: '/RetrospectView', linktoWrite: '/RetrospectWrite'},
-      { id: 4, name: '4차 회고', linktoView: '/RetrospectView', linktoWrite: '/RetrospectWrite'},
-      { id: 5, name: '5차 회고', linktoView: '/RetrospectView', linktoWrite: '/RetrospectWrite'},
-      { id: 6, name: '6차 회고', linktoView: '/RetrospectView', linktoWrite: '/RetrospectWrite'},
+      { id: 1, name: '1차 회고', linktoView: '/RetrospectView', linktoWrite: '/RetrospectWriteText'},
+      { id: 2, name: '2차 회고', linktoView: '/RetrospectView', linktoWrite: '/RetrospectWriteText'},
+      { id: 3, name: '3차 회고', linktoView: '/RetrospectView', linktoWrite: '/RetrospectWriteText'},
+      { id: 4, name: '4차 회고', linktoView: '/RetrospectView', linktoWrite: '/RetrospectWriteText'},
+      { id: 5, name: '5차 회고', linktoView: '/RetrospectView', linktoWrite: '/RetrospectWriteText'},
+      { id: 6, name: '6차 회고', linktoView: '/RetrospectView', linktoWrite: '/RetrospectWriteText'},
     ]);
 
     const [modalIsOpen2, setModalIsOpen2] = useState(false);

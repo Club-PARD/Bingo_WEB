@@ -34,6 +34,7 @@ export default function Chips() {
         listStyle: 'none',
         p: 0.5,
         m: 0,
+        boxShadow: 'none',
       }}
       component="ul"
     >

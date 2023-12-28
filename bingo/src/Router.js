@@ -20,6 +20,8 @@ import WorkspaceList from './Pages/Workspace/WorkspaceList';
 import RetrospectList from './Pages/Retrospect/RetrospectList';
 import RetrospectView from './Pages/Retrospect/RetrospectView';
 import RetrospectWrite from './Pages/Retrospect/RetrospectWrite';
+import RetrospectWriteText from './Pages/Retrospect/Components/RetrospectWriteText';
+import TeamEvaluation from './Pages/Retrospect/Components/TeamEvaluation';
 import Header from './Layout/Header';
 
 const Routers = () => {
@@ -43,6 +45,8 @@ const Routers = () => {
                             <Route path='/RetrospectList' element={<RetrospectList />}/>
                             <Route path='/RetrospectView' element={<RetrospectView />}/>
                             <Route path='/RetrospectWrite' element={<RetrospectWrite />}/>
+                            <Route path='/RetrospectWriteText' element={<RetrospectWriteText />}/>
+                            <Route path='/TeamEvaluation' element={<TeamEvaluation />}/>
                         </Route>
 
                         <Route path='/CrudList' element={<CrudList />}/>

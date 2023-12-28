@@ -1,6 +1,7 @@
 import Breadcrumb from "../../Layout/Breadcrumb";
 import styled from "styled-components";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 
 function RetrospectView() {
@@ -36,7 +37,7 @@ function RetrospectView() {
     return (
         <Whole>
             <Header>
-                {/* Breadcrumb은 현재 위치에 따라 달라진다 / 현위치 : 3 (팀 회고 확인하기) */}
+                {/* Breadcrumb은 현재 위치에 따라 달라진다 / 현위치 : 1 (회고 작성하기) */}
                 <Breadcrumb activeKey={3} />
             </Header>
             <Body>
@@ -75,6 +76,11 @@ function RetrospectView() {
                     </Mother>
                 ))}
             </Body>
+            <Footer>
+                <BtnLink to="/WorkspaceView">
+                    나가기
+                </BtnLink>
+            </Footer>
         </Whole>
     );
 }
@@ -86,9 +92,11 @@ const Whole =styled.div`
     flex-direction: column;
     width: 100%;
     height: 100%;
+    background-color: aliceblue;
 `
 const Header = styled.div`
-    height : 3.5%;
+    height : 5%;
+    background-color: antiquewhite;
 `
 const Body = styled.div`
     /*
@@ -98,7 +106,7 @@ const Body = styled.div`
     내부 패딩이라던가 요소 있는가?
     flex설정은 어떻게 되었는가?
     */
-    height : 96.5%;
+    height : 80vw;
     width: 92%;
 
     /* background-color : whitesmoke; */
@@ -115,6 +123,14 @@ const Body = styled.div`
     justify-content: top;
     overflow: auto;
     padding: 0 4%;
+`
+const Footer = styled.div`
+    display : flex;
+    height : 8%;
+    /* border : 1px solid red; */
+    align-items : center;
+    justify-content : end;
+    background-color: aquamarine;
 `
 const Mother = styled.div`
     width: 100%;
@@ -197,4 +213,18 @@ const Eclipse = styled.div`
     background-color: #EAEAEA;
     border-radius: 50%;
     margin-left: 2%;
+`
+const BtnLink = styled(Link)`
+    height : 100%;
+    width : 10%;
+    font-size : 40px;
+    border : 1px solid transparent;
+    background-color : gainsboro;
+    border-radius : 15px;
+    margin : 1%;
+    text-decoration: none;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    color: #000;
 `

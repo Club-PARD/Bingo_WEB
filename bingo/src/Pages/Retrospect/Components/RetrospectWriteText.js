@@ -1,12 +1,13 @@
 /* eslint-disable */
 import styled from "styled-components";
 import Breadcrumb from "../../../Layout/Breadcrumb";
+import { Link } from "react-router-dom";
 // import RetroWrite from "./RetroWrite";
 
 // 전체를 감싸는 div, 이 아래에 Header / Body / Footer로 나뉘어 있음
 const Whole = styled.div`
-    min-height: 100%;
     height : auto;
+    overflow: hidden;
 `
 // breadcrumb가 들어가는 부분
 const Header = styled.div`
@@ -14,7 +15,11 @@ const Header = styled.div`
 `
 // 회고 종류와 작성 창이 들어가는 부분
 const Body = styled.div`
-    min-height : 80%;
+    height : 66vh;
+    overflow: auto;
+    border : 5px solid gray;
+    border-radius : 25px;
+
     /* height : 80%; */
     /* background-color : whitesmoke; */
 `
@@ -29,10 +34,10 @@ const Footer = styled.div`
 
 // Body 안에 들어가는 회고 작성칸을 감싸는 테두리
 const Border = styled.div`
-    border : 5px solid gray;
     border-radius : 25px;
     margin : 1%;
     height : 100%;
+    overflow: auto;
     background-color : white;
 `
 const BorderInside = styled.div`
@@ -56,9 +61,7 @@ const RetroText = styled.textarea`
     font-size : 25px;
     border-radius : 15px;
 `
-
-// Footer 안에 들어갈 버튼들의 Preset
-const Btn = styled.button`
+const BtnLink = styled(Link)`
     height : 100%;
     width : 6.5%;
     font-size : 40px;
@@ -66,7 +69,14 @@ const Btn = styled.button`
     background-color : gainsboro;
     border-radius : 15px;
     margin : 1%;
+    text-decoration: none;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    color: #000;
 `
+// Footer 안에 들어갈 버튼들의 Preset
+
 
 const RetrospectData = [
     {
@@ -84,14 +94,6 @@ const RetrospectData = [
 ];
 
 function RetrospectWriteText() {
-    const handleCancelClick = () => {
-        history.push("/teamevaluation");
-    };
-
-    const handleNextClick = () => {
-        history.push("/teamevaluation");
-    };
-
     return (
         <Whole>
             {/* 상단바 */}
@@ -120,12 +122,12 @@ function RetrospectWriteText() {
             </Body>
             {/* 취소 다음 버튼 */}
             <Footer>
-                <Btn onClick={handleCancelClick}>
+                <BtnLink to="/WorkspaceView">
                     취소
-                </Btn>
-                <Btn onClick={handleNextClick}>
+                </BtnLink>
+                <BtnLink to="/TeamEvaluation">
                     다음
-                </Btn>
+                </BtnLink>
             </Footer>
         </Whole>
         
@@ -133,3 +135,4 @@ function RetrospectWriteText() {
 }
 
 export default RetrospectWriteText;
+
