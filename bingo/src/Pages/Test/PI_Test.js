@@ -1,58 +1,132 @@
 import styled from "styled-components";
 import {Div} from "../../Components/NormalComponents/Section";
-import React from 'react';
+import React, {useState} from 'react';
 
-const Div_300_300 = styled(Div)`
-    width: 300px;
-    height : 300px;
-    background-color: ${props => props.backgroundColor || ''};
-`;
-const PinkDiv = styled(Div_300_300)`
-    background-color: pink;
-`;
-
-
-const Div_Center_Center = styled(PinkDiv)`
-    justify-content: center;
-    align-items: center;
-`;
-const Div_Center_top = styled(PinkDiv)`
-    justify-content: center;
-`
-
-const Div_Center_bottom = styled(PinkDiv)`
-    justify-content: center;
-    align-items: end;
-`
-const Div_50_50 = styled(Div)`
-    width: 50px;
-    height: 50px;
-`
 function PI_Test() {
+    const [questions, setQuestions] = useState([
+        {
+            title: 'Keep',
+            content: []
+        }, {
+            title: 'Problem',
+            content: []
+        }, {
+            title: 'Try',
+            content: []
+        }
+    ]);
+
+    const handleInputChange = (e, sectionIndex, contentIndex) => {
+        const updatedQuestions = [...questions];
+        updatedQuestions[sectionIndex].content[contentIndex] = e.target.value;
+        setQuestions(updatedQuestions);
+    }
+
+    const handleAddContent = (index) => {
+        const currentContent = questions[index]
+            .content
+            .slice();
+
+        if (currentContent.length < 3) {
+            currentContent.push(`질문${currentContent.length + 1}`);
+            updateQuestions(index, currentContent);
+        }
+    }
+
+    const handleRemoveContent = (sectionIndex, contentIndex) => {
+        const currentContent = questions[sectionIndex]
+            .content
+            .slice();
+
+        if (currentContent.length > 0) {
+            currentContent.splice(contentIndex, 1);
+            updateQuestions(sectionIndex, currentContent);
+        }
+    }
+
+    const updateQuestions = (sectionIndex, updatedContent) => {
+        const updatedQuestions = [...questions];
+        updatedQuestions[sectionIndex] = {
+            ...updatedQuestions[sectionIndex],
+            content: updatedContent
+        };
+        setQuestions(updatedQuestions);
+    }
+
     return (
-        <div>
-            < Div >
-                <Div width="300px" height="300px" backgroundColor="pink">안녕하세요</Div>
-                <Div_50_50/>
-                <PinkDiv></PinkDiv>
-                <Div_50_50/>
-                <Div_300_300 backgroundColor="skyblue"/>
+        <Div flexDirection="column">
+            <h1>화이팅해보자.</h1>
+
+            <Div width="100%" height="auto">
+                {
+                    questions.map((label, sectionIndex) => (
+                        <Div
+                            key={sectionIndex}
+                            width="300px"
+                            height="auto"
+                            backgroundColor="red"
+                            margin="5px"
+                            flexDirection="column"
+                            boxSizing="border-box">
+                            <Div>
+                                <h1>{questions[sectionIndex].title}</h1>
+                            </Div>
+                            {
+                                questions[sectionIndex]
+                                    .content
+                                    .map((content, contentIndex) => (content !== null && (
+                                        <Div
+                                            key={contentIndex}
+                                            flexDirection = "column"
+                                            backgroundColor="yellow"
+                                            width="250px"
+                                            height="auto"
+                                            margin="3px"
+                                            boxSizing="border-box">
+                                            <input
+                                                type="text"
+                                                value={content}
+                                                style={{fontSize : "30px"}}
+                                                onChange={(e) => handleInputChange(e, sectionIndex, contentIndex)}/> {/* 삭제 버튼 */}
+                                            <button onClick={() => handleRemoveContent(sectionIndex, contentIndex)} style={{fontSize : "30px"}}>
+                                                삭제
+                                            </button>
+                                        </Div>
+                                    )))
+                            }
+                            {/* 추가 버튼 */}
+                            {
+                                questions[sectionIndex].content.length < 3 && (
+                                    <button onClick={() => handleAddContent(sectionIndex)}>
+                                        추가
+                                    </button>
+                                )
+                            }
+                        </Div>
+                    ))
+                }
+
+                {/* 결과 보기 영역 */}
+                <fieldset style={{width : "40%", fontSize : "20px"}}>
+                    <legend>결과</legend>
+                    {
+                        questions.map((section, sectionIndex) => (
+                            <Div key={sectionIndex} flexDirection="column" margin="10px">
+                                <h2>{section.title}</h2>
+                                <ul>
+                                    {
+                                        section
+                                            .content
+                                            .map((content, contentIndex) => (<li key={contentIndex}>{content}</li>))
+                                    }
+                                </ul>
+                            </Div>
+                        ))
+                    }
+                </fieldset>
             </Div>
-            <br/>
-            <Div>
-                <Div_Center_Center>
-                    <Div width="50px" height="50px" backgroundColor="red"/>
-                </Div_Center_Center>
-                <Div_50_50/>
-                <Div_Center_top>
-                    <Div_50_50 backgroundColor="red"/>
-                </Div_Center_top>
-                <Div_50_50/>
-                <Div_Center_bottom backgroundColor = "black">
-                    <Div_50_50 backgroundColor="red"/>
-                </Div_Center_bottom>
-            </Div>
-        </div>
+        </Div>
+
     );
 }
 

@@ -7,14 +7,18 @@ import {useNavigate} from "react-router-dom";
 // Section1 영역
 export const Section1 = (e) => {
     return (
-        <Div id="section1" style={Section_Style}>
+        <Div id="section1" style={Section_Style} backgroundColor="">
             {/* Content Section */}
-            <Div flexDirection="column" height="90%">
+            <Div flexDirection="column" height="90%" backgroundColor="">
 
                 {/* 회고 타이틀 Section */}
-                <Div flexDirection="column" margin="0px 0px 20px 0px">
+                <Div
+                    flexDirection="column"
+                    margin="0px 0px 0px 0px"
+                    height="20%"
+                    backgroundColor="">
                     {/* Title */}
-                    <P fontSize="40px">회고 타이틀</P>
+                    <P fontSize="30px">회고 타이틀</P>
 
                     {/* Input */}
                     <Input
@@ -24,12 +28,14 @@ export const Section1 = (e) => {
                 </Div>
 
                 {/* 템플릿 선택 Section */}
-                <Div flexDirection="column" margin="0px 0px 20px 0px" width="100%">
+                <Div flexDirection="column" width="100%" backgroundColor="" height="80%">
                     {/* Title */}
-                    <P fontSize="40px">템플릿 선택</P>
+                    <Div height="10%">
+                        <P fontSize="30px">템플릿 선택</P>
+                    </Div>
 
                     {/* 템플릿 선택 */}
-                    <Div width="100%" margin="20px 0px">
+                    <Div width="100%" height="90%">
                         <RadioCard
                             value='KPT'
                             label='KPT'
@@ -69,16 +75,20 @@ export const Section1 = (e) => {
 
 // Section2 영역
 export const Section2 = (e) => {
+    const handleInfoClick = () => {
+        // 전체 내용을 콘솔에 출력 (JSON 형식)
+        console.log(JSON.stringify(e, null, 2));
+    };
     return (
         <Div id="section2" style={Section_Style}>
             {/* Content Section */}
-            <Div width="100%" height="90%">
+            <Div width="100%" height="90%" backgroundColor = "">
                 <Div
                     flexDirection="column"
                     height="100%"
                     width="100%"
                     style={{
-                        overflow: "scroll"
+                        overflow: "scroll",
                     }}>
                     {
                         e.SelectedWays === 'KPT' && handleMakeThreeSection('KPT', [
@@ -102,6 +112,7 @@ export const Section2 = (e) => {
             {/* 버튼 Section */}
             <Div flexDirection="column" height="10%" justifyContent="center">
                 <Div justifyContent="end">
+                    <Button onClick={handleInfoClick}>정보 보기</Button>
                     <Div width="320px" backgroundColor="" justifyContent="space-between">
                         <StepButton targetPage="#section1" targetLabel="이전"/>
 
@@ -136,7 +147,8 @@ const InputStyle = {
     height: "70px",
     margin: "10px 0px",
     borderRadius: "20px",
-    fontSize: "40px"
+    fontSize: "30px",
+    backgroundColor: "gainsboro"
 }
 
 // 템플릿 설명 변수
@@ -161,7 +173,7 @@ function RadioCard({
     description
 }) {
     return (
-        <Div width="100%" margin={margin}>
+        <Div width="100%" margin={margin} height="100%">
 
             {/* hidden 처리 되는 Input::Radio 버튼 */}
             <input
@@ -173,37 +185,44 @@ function RadioCard({
                 style={{
                     display: 'none'
                 }}/> {/* show 처리 되는 부분 */}
-            <Div
-                width="100%"
-                height="600px"
-                cursor="pointer"
-                borderRadius="15px"
-                flexDirection="column"
-                padding="20px"
+            <Div width="100%" height="100%" cursor="pointer" borderRadius="15px" alignItems="center" flexDirection="column"
+                // padding="20px"
                 backgroundColor={value === selectedValue
-                    ? 'yellow'
-                    : 'white'}
-                onClick={() => onChange(value)}>
+                    ? 'black'
+                    : 'gainsboro'} onClick={() => onChange(value)}>
 
                 {/* 템플릿 Title */}
-                <CenterDiv width="100%" height="40%">
-                    <P fontSize="70px" fontWeight="bold">{label}</P>
+                <CenterDiv width="100%" height="40%" backgroundColor="">
+                    <P
+                        fontSize="70px"
+                        fontWeight="bold"
+                        color =
+                        {value === selectedValue ? 'white' : 'black'}
+                        style={{
+                            transition: value === selectedValue ? "background-color 2s, color 2s" : ""
+                        }}>{label}</P>
                 </CenterDiv>
 
                 {/* 템플릿 설명 */}
                 <Div
-                    justifyContent="center"
                     width="100%"
                     height="60%"
-                    padding="5px"
-                    borderRadius="15px"
-                    color="white"
-                    backgroundColor="gray"
-                    fontSize="30px"
+                    color={value === selectedValue
+                        ? 'white'
+                        : 'black'}
+                    backgroundColor=""
+                    fontSize="25px"
                     style={{
-                        textAlign: "center"
+                        textAlign: "center",
+                        transition: value === selectedValue ? "background-color 2s, color 2s" : ""
                     }}>
-                    {description}
+                    <Div
+                        width="100%"
+                        height="auto"
+                        margin="20px"
+                        borderRadius="15px"
+                        padding="20px"
+                        backgroundColor="">{description}</Div>
                 </Div>
             </Div>
         </Div>
@@ -211,85 +230,58 @@ function RadioCard({
 }
 
 // handleMakeThreeSection : lable에 맞춰서 질문을 생성해주는 핸들러
+// handleMakeThreeSection 함수 수정
 const handleMakeThreeSection = (way, labels, questions, setQuestions) => (
     <Div flexDirection="column">
-        {
-            // labels(템플릿의 대주제 개수 만큼)
-            labels.map((label, index) => (
-                <Div
-                    key={index}
-                    flexDirection="column"
-                    border="3px dashed gray"
-                    width="100%"
-                    height="auto"
-                    margin="10px 0px"
-                    padding="30px 30px"
-                    borderRadius="10px">
-                    {/* Title */}
-                    <Div alignItems="flex-end">
-                        <Label margin="0px 5px 0px 0px" fontSize="100px">{label[0]}</Label>
-                        <Label margin="0px 0px 5px 0px" fontSize="40px" width="20%">{label}</Label>
-                    </Div>
-
-                    {/* 질문 모음 */}
-                    <Div flexDirection="column" height="auto" justifyContent="space-around">
-                        <Input
-                            type="text"
-                            placeholder="질문을 입력해주세요."
-                            style={InputStyle}
-                            width="100%"
-                            value={questions[index]
-                                ?.question || ''}
-                            onChange={(e) => {
-                                const updatedQuestions = [...questions];
-                                updatedQuestions[index] = {
-                                    id: index + 1,
-                                    question: e.target.value
-                                };
-                                setQuestions(updatedQuestions);
-                            }}/>
-                        <Input
-                            type="text"
-                            placeholder="질문을 입력해주세요."
-                            style={InputStyle}
-                            width="100%"
-                            value={questions[index]
-                                ?.question || ''}
-                            onChange={(e) => {
-                                const updatedQuestions = [...questions];
-                                updatedQuestions[index] = {
-                                    id: index + 1,
-                                    question: e.target.value
-                                };
-                                setQuestions(updatedQuestions);
-                            }}/>
-                        <Input
-                            type="text"
-                            placeholder="질문을 입력해주세요."
-                            style={InputStyle}
-                            width="100%"
-                            value={questions[index]
-                                ?.question || ''}
-                            onChange={(e) => {
-                                const updatedQuestions = [...questions];
-                                updatedQuestions[index] = {
-                                    id: index + 1,
-                                    question: e.target.value
-                                };
-                                setQuestions(updatedQuestions);
-                            }}/>
-                    </Div>
-
+        {labels.map((label, index) => (
+            <Div
+                key={index}
+                flexDirection="column"
+                border="3px dashed gainsboro"
+                width="100%"
+                height="auto"
+                margin={index === 0 ? "0% 0px" : "2% 0px"}
+                padding="30px 30px"
+                boxSizing="border-box"
+                borderRadius="10px"
+            >
+                {/* Title */}
+                <Div alignItems="flex-end">
+                    <Label margin="0px 5px 0px 0px" fontSize="100px">{label[0]}</Label>
+                    <Label margin="0px 0px 5px 0px" fontSize="40px" width="20%">{label}</Label>
                 </Div>
-            ))
-        }
+
+                {/* 질문 모음 */}
+                <Div flexDirection="column" height="auto" justifyContent="space-around">
+                    {Array.from({ length: 3 }).map((_, contentIndex) => (
+                        <Input
+                            type="text"
+                            placeholder={`질문 ${contentIndex + 1}을 입력해주세요.`}
+                            style={InputStyle}
+                            width="100%"
+                            value={questions[index]?.content[contentIndex] || ''}
+                            onChange={(e) => {
+                                const updatedQuestions = [...questions];
+                                updatedQuestions[index] = {
+                                    id: index + 1,
+                                    content: [...(updatedQuestions[index]?.content || [])],
+                                };
+                                updatedQuestions[index].content[contentIndex] = e.target.value;
+                                setQuestions(updatedQuestions);
+                            }}
+                        />
+                    ))}
+                </Div>
+            </Div>
+        ))}
     </Div>
 );
+
 
 // Section 스타일
 const Section_Style = {
     width: "90%",
     height: "100%",
     flexDirection: "column",
-    margin: "0 auto"
+    margin: "0 auto",
 }

@@ -6,7 +6,19 @@ import {Section1, Section2, Section3} from "../../Preset/Retrospect/RetrospectCr
 export default function RetrospectCreate() {
     // 변수 선언
     const [retrospectTitle, setRetrospectiTitle] = useState(''); // 회고 타이틀 저장 변수
-    const [questions, setQuestions] = useState([]); // 질문 내용 저장 변수
+    // const [questions, setQuestions] = useState([[]]); // 질문 내용 저장 변수
+    const [questions, setQuestions] = useState([
+        {
+            title: 'Keep',
+            content: []
+        }, {
+            title: 'Problem',
+            content: []
+        }, {
+            title: 'Try',
+            content: []
+        }
+    ]);
     const [SelectedWays, setSelectedWays] = useState('KPT'); // 회고 방법 선택 변수 (radio)
     const navigate = useNavigate(); // 이동을 위한 navigate
 
@@ -22,6 +34,10 @@ export default function RetrospectCreate() {
             setQuestions([]); // Custom인 경우 질문, 개수를 초기화
         }
 
+    };
+
+    const handleShowData = (e) => {
+        alert(questions[0].title + ", " + questions[0].content.length);
     };
 
     // handleMyConfirm : 회고 생성 버튼 클릭 시 실행되는 핸들러
@@ -60,7 +76,7 @@ export default function RetrospectCreate() {
             width="100%"
             height="100%"
             style={{
-                overflow: "scroll"
+                overflow: "hidden"
             }}>
             
             {/* 타이틀 작성 및 템플릿 선택 */}
@@ -77,7 +93,9 @@ export default function RetrospectCreate() {
                 handleAddQuestion={handleAddQuestion}
                 questions={questions}
                 setQuestions={setQuestions}
-                onClick={handleMyConfirm}/>
+                onClick={handleMyConfirm}
+                handler = {handleShowData}
+            />
         </Div>
     );
 }
