@@ -50,7 +50,7 @@ function TeamEvaluation() {
         <Whole>
             {/* 상단바 */}
             <Header>
-                {/* Breadcrumb은 현재 위치에 따라 달라진다 / 현위치 : 1 (회고 작성하기) */}
+                {/* Breadcrumb은 현재 위치에 따라 달라진다 / 현위치 : 2 (팀 평가하기) */}
                 <Breadcrumb activeKey={2} />
             </Header>
             {/* 회고 작성 창 */}
