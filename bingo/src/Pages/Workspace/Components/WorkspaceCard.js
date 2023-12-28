@@ -38,13 +38,3 @@ const WorkspaceCard = ({ name, desc, picture, period }) => (
 );
 
 export default WorkspaceCard;
-
-const WorkspaceCardWithLink = styled(Link)`
-    flex-direction: column;
-    margin:1% 1% 1% 0;
-    border-radius: 15px;
-    width: 23%;
-    height: 37.4%;
-    background-color: #EDEDED;
-    text-decoration: none;
-`

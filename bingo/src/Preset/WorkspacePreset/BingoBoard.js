@@ -6,8 +6,8 @@ import { useState } from 'react';
 //9개의 형용사가 회고 때 체크되면 체크된 형용사의 flag가 True로 변함
 function BingoBoard() {
   const [items, setItems] = useState([
-    { text: '열정적인', flag: true },
-    { text: '친근한', flag: false },
+    { text: '존중하는', flag: true },
+    { text: '열정적인', flag: false },
     { text: '멋있는', flag: false },
     { text: '잘생긴', flag: false },
     { text: '참신한', flag: false },
