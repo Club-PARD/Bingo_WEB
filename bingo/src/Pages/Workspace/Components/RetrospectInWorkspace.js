@@ -243,5 +243,6 @@ const WriteButton = styled(Link)`
   text-decoration: none;
   font-size: 24px;
   color: #787878;
-  margin-left: 2%;
+  margin-left: 2%;  
+  border-top: 1px solid #D9D9D9;
 `

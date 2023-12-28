@@ -43,7 +43,6 @@ function BingoBoard() {
             color="black"
             backgroundColor={item.flag ? '#FFF' : '#A3A3A3'}
             fontSize="20px"
-            onClick={() => handleItemClick(index)}
         >
           {item.label}
         </Div>
