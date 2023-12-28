@@ -60,7 +60,7 @@ export default function RetrospectCreate() {
             width="100%"
             height="100%"
             style={{
-                overflow: "scroll"
+                overflow: "hidden"
             }}>
             
             {/* 타이틀 작성 및 템플릿 선택 */}

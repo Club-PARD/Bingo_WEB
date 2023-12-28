@@ -7,14 +7,18 @@ import {useNavigate} from "react-router-dom";
 // Section1 영역
 export const Section1 = (e) => {
     return (
-        <Div id="section1" style={Section_Style}>
+        <Div id="section1" style={Section_Style} backgroundColor="">
             {/* Content Section */}
-            <Div flexDirection="column" height="90%">
+            <Div flexDirection="column" height="90%" backgroundColor="">
 
                 {/* 회고 타이틀 Section */}
-                <Div flexDirection="column" margin="0px 0px 20px 0px">
+                <Div
+                    flexDirection="column"
+                    margin="0px 0px 0px 0px"
+                    height="20%"
+                    backgroundColor="">
                     {/* Title */}
-                    <P fontSize="40px">회고 타이틀</P>
+                    <P fontSize="30px">회고 타이틀</P>
 
                     {/* Input */}
                     <Input
@@ -24,12 +28,14 @@ export const Section1 = (e) => {
                 </Div>
 
                 {/* 템플릿 선택 Section */}
-                <Div flexDirection="column" margin="0px 0px 20px 0px" width="100%">
+                <Div flexDirection="column" width="100%" backgroundColor="" height="80%">
                     {/* Title */}
-                    <P fontSize="40px">템플릿 선택</P>
+                    <Div height="10%">
+                        <P fontSize="30px">템플릿 선택</P>
+                    </Div>
 
                     {/* 템플릿 선택 */}
-                    <Div width="100%" margin="20px 0px">
+                    <Div width="100%" height="90%">
                         <RadioCard
                             value='KPT'
                             label='KPT'
@@ -72,13 +78,13 @@ export const Section2 = (e) => {
     return (
         <Div id="section2" style={Section_Style}>
             {/* Content Section */}
-            <Div width="100%" height="90%">
+            <Div width="100%" height="90%" backgroundColor = "">
                 <Div
                     flexDirection="column"
                     height="100%"
                     width="100%"
                     style={{
-                        overflow: "scroll"
+                        overflow: "scroll",
                     }}>
                     {
                         e.SelectedWays === 'KPT' && handleMakeThreeSection('KPT', [
@@ -136,7 +142,8 @@ const InputStyle = {
     height: "70px",
     margin: "10px 0px",
     borderRadius: "20px",
-    fontSize: "40px"
+    fontSize: "30px",
+    backgroundColor: "gainsboro"
 }
 
 // 템플릿 설명 변수
@@ -161,7 +168,7 @@ function RadioCard({
     description
 }) {
     return (
-        <Div width="100%" margin={margin}>
+        <Div width="100%" margin={margin} height="100%">
 
             {/* hidden 처리 되는 Input::Radio 버튼 */}
             <input
@@ -173,37 +180,44 @@ function RadioCard({
                 style={{
                     display: 'none'
                 }}/> {/* show 처리 되는 부분 */}
-            <Div
-                width="100%"
-                height="600px"
-                cursor="pointer"
-                borderRadius="15px"
-                flexDirection="column"
-                padding="20px"
+            <Div width="100%" height="100%" cursor="pointer" borderRadius="15px" alignItems="center" flexDirection="column"
+                // padding="20px"
                 backgroundColor={value === selectedValue
-                    ? 'yellow'
-                    : 'white'}
-                onClick={() => onChange(value)}>
+                    ? 'black'
+                    : 'gainsboro'} onClick={() => onChange(value)}>
 
                 {/* 템플릿 Title */}
-                <CenterDiv width="100%" height="40%">
-                    <P fontSize="70px" fontWeight="bold">{label}</P>
+                <CenterDiv width="100%" height="40%" backgroundColor="">
+                    <P
+                        fontSize="70px"
+                        fontWeight="bold"
+                        color =
+                        {value === selectedValue ? 'white' : 'black'}
+                        style={{
+                            transition: value === selectedValue ? "background-color 2s, color 2s" : ""
+                        }}>{label}</P>
                 </CenterDiv>
 
                 {/* 템플릿 설명 */}
                 <Div
-                    justifyContent="center"
                     width="100%"
                     height="60%"
-                    padding="5px"
-                    borderRadius="15px"
-                    color="white"
-                    backgroundColor="gray"
-                    fontSize="30px"
+                    color={value === selectedValue
+                        ? 'white'
+                        : 'black'}
+                    backgroundColor=""
+                    fontSize="25px"
                     style={{
-                        textAlign: "center"
+                        textAlign: "center",
+                        transition: value === selectedValue ? "background-color 2s, color 2s" : ""
                     }}>
-                    {description}
+                    <Div
+                        width="100%"
+                        height="auto"
+                        margin="20px"
+                        borderRadius="15px"
+                        padding="20px"
+                        backgroundColor="">{description}</Div>
                 </Div>
             </Div>
         </Div>
@@ -219,11 +233,12 @@ const handleMakeThreeSection = (way, labels, questions, setQuestions) => (
                 <Div
                     key={index}
                     flexDirection="column"
-                    border="3px dashed gray"
+                    border="3px dashed gainsboro"
                     width="100%"
                     height="auto"
-                    margin="10px 0px"
+                    margin = {index === 0 ? "0% 0px" : "2% 0px"}
                     padding="30px 30px"
+                    boxSizing = "border-box"
                     borderRadius="10px">
                     {/* Title */}
                     <Div alignItems="flex-end">
@@ -291,5 +306,5 @@ const Section_Style = {
     width: "90%",
     height: "100%",
     flexDirection: "column",
-    margin: "0 auto"
+    margin: "0 auto",
 }
