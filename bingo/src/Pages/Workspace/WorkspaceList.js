@@ -1,14 +1,10 @@
 import { useState, React } from "react";
-import styled from "styled-components";
 import { Div } from "../../Components/NormalComponents/Section.js";
-import { P } from "../../Components/NormalComponents/Text.js";
 import WorkspaceCard from "./Components/WorkspaceCard.js";
 import { Button } from "../../Components/NormalComponents/Form.js";
 import { Img } from "../../Components/NormalComponents/Etc.js";
 import Modal from "react-modal";
 import WorkspaceCreate from "./WorkspaceCreate.js"
-import { Link } from "react-router-dom";
-import DrawerBtn from "../../ETC/DrawerBtn.js";
 
 // 불러온 값 저장하기
 const WorkspaceData = [
@@ -56,7 +52,7 @@ const WorkspaceList =()=> {
     const generateRandomValue = () => {
         const characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         let randomValue = '';
-        const length = 6; // 6자리 난수 생성
+        const length = 8; // 8자리 난수 생성
     
         for (let i = 0; i < length; i++) {
             const randomIndex = Math.floor(Math.random() * characters.length);
@@ -82,7 +78,7 @@ const WorkspaceList =()=> {
             </Div>
             {/*프로젝트 카드들의 나열, 해당 공간의 이름을 감싼 Div */}
             <Div flexDirection="column" height="80vh" width="99%" margin="0 0 0 1%">
-                <Div height="4%" fontSize="20px" backgroundColor="#D9D9D9" borderRadius="15px" alignItems="center" >워크스페이스 리스트</Div>
+                <Div height="4%" fontSize="20px" width="auto" borderRadius="15px" alignItems="center" >워크스페이스 리스트</Div>
                 {/* 워크스페이스 카드 부분 */}
                 
                 <Div
