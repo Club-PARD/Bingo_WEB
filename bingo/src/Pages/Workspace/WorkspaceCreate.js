@@ -31,9 +31,9 @@ function WorkspaceCreate() {
     return (
         <>
             {/* 모달 안의 전체 Div */}
-            <Div alignItems="left" flexDirection=" column-reverse" justifyContent="space-between" width="100%" height="68%" >
+            <Div alignItems="left" flexDirection=" column-reverse" justifyContent="space-between" width="100%" height="68%" backgroundColor="orange">
                 <Div flexDirection="column">
-                    <Div fontSize="32px" margin=".5% 0 0 0"
+                    <Div fontSize="42px" margin=".5% 0 0 0"
                     >프로젝트 배너 이미지</Div>
                     <Input
                         type="file"
