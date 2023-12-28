@@ -32,7 +32,7 @@ export const Input = styled.input `
     font-Size : ${props => props.fontSize || "inherit"};
 
     margin : ${props => props.margin || ''};
-
+    background-color: ${props => props.backgorundColor || ''};
 `;
 
 export const Fieldset = styled.fieldset `

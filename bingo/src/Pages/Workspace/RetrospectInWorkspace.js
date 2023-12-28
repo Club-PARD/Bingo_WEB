@@ -222,7 +222,6 @@ const ViewButton = styled(Link)`
   height: 100%;
   width: 20%;
   border-top-right-radius: 20px;
-  border: 2px solid #D9D9D9;
   background-color: #EEE;
   align-items: center;
   text-align: center;
@@ -236,7 +235,6 @@ const WriteButton = styled(Link)`
   height: 100%;
   width: 20%;
   border-bottom-right-radius: 20px;
-  border: 2px solid #D9D9D9;
   background-color: #EEE;
   align-items: center;
   text-align: center;

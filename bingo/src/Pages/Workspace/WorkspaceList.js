@@ -75,14 +75,14 @@ const WorkspaceList =()=> {
             {/* 상단바 부분 */}
             <Div flexDirection="row" justifyContent="space-between" alignItems="center" height="20vh" width="90vw">
                 {/* 빙고 로고, 현재 페이지 이름 표시 부분 */}
-                <Div  fontSize="160px" alignItems="center" backgroundColor="#D9D9D9" borderRadius="15px" margin="0 0 0 1%"> 
+                <Div  fontSize="120px" alignItems="center" backgroundColor="#D9D9D9" borderRadius="15px" margin="0 0 0 1%"> 
                     {/* <Img src="/img/Home/logo.jpg" width={"10%"}/> */}
                     Bingo
                 </Div>
             </Div>
             {/*프로젝트 카드들의 나열, 해당 공간의 이름을 감싼 Div */}
             <Div flexDirection="column" height="80vh" width="99%" margin="0 0 0 1%">
-                <Div height="4%" width="11%" fontSize="27px" backgroundColor="#D9D9D9" borderRadius="15px" alignItems="center" justifyContent="center">워크스페이스 리스트</Div>
+                <Div height="4%" fontSize="20px" backgroundColor="#D9D9D9" borderRadius="15px" alignItems="center" >워크스페이스 리스트</Div>
                 {/* 워크스페이스 카드 부분 */}
                 
                 <Div
@@ -98,7 +98,6 @@ const WorkspaceList =()=> {
                     <Div 
                         flexDirection="column"
                         margin="1% 1% 1% 0"
-                        padding="1%"
                         border="1px solid transparent"
                         borderRadius="15px"
                         width="23%"
@@ -161,7 +160,7 @@ const WorkspaceList =()=> {
                     }}
             >
                 {/* 모달 내용 */}
-                <Div width="100%" height="100%" flexDirection="column-reverse" justifyContent="top" alignItems="center" padding="0 3.5% 0 3.5%">
+                <Div width="93%" height="100%" flexDirection="column-reverse" justifyContent="top" alignItems="center" padding="0 3.5% 0 3.5%">
                     <Div
                         height="24%"
                         width="100%"
@@ -176,7 +175,7 @@ const WorkspaceList =()=> {
                             margin=" 0 3.5% 0 0"
                             color="black"
                             borderRadius="10px"
-                            fontSize="37px"
+                            fontSize="28px"
                             onClick={closeModal}
                         >취소</Button>
                         <Button
@@ -186,7 +185,7 @@ const WorkspaceList =()=> {
                             margin=" 0 3.5% 0 0"
                             color="black"
                             borderRadius="10px"
-                            fontSize="37px"
+                            fontSize="28px"
                             onClick={onButtonClick}
                         >완료</Button>
                     </Div>
