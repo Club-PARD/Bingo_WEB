@@ -29,7 +29,8 @@ const WorkspaceCard = ({ name, desc, picture, link, period }) => (
             height="20%"
             alignItems="center"
             fontSize="37px"
-            
+            textDecoration="none"
+            color="black"
         >{name}</Div>
         </Link>
     </Div>
