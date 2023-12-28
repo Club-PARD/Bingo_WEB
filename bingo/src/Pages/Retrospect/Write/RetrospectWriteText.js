@@ -1,6 +1,6 @@
 /* eslint-disable */
 import styled from "styled-components";
-import Breadcrumb from "../../Breadcrumb";
+import Breadcrumb from "../../../Breadcrumb";
 // import RetroWrite from "./RetroWrite";
 
 // 전체를 감싸는 div, 이 아래에 Header / Body / Footer로 나뉘어 있음
@@ -25,7 +25,6 @@ const Footer = styled.div`
     /* border : 1px solid red; */
     align-items : end;
     justify-content : end;
-    margin : 3%;
 `
 
 // Body 안에 들어가는 회고 작성칸을 감싸는 테두리

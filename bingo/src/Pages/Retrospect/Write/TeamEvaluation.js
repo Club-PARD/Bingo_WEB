@@ -1,6 +1,6 @@
 /* eslint-disable */
 import styled from "styled-components";
-import Breadcrumb from "../../Breadcrumb";
+import Breadcrumb from "../../../Breadcrumb";
 
 // 전체를 감싸는 div, 이 아래에 Header / Body / Footer로 나뉘어 있음
 const Whole = styled.div`
@@ -16,7 +16,7 @@ const Header = styled.div`
 const Body = styled.div`
     min-height : 80%;
     /* height : 80%; */
-    border : 1px solid red;
+    border : 1px solid blue;
     /* background-color : whitesmoke; */
 `
 // 취소, 다음이 들어가는 부분
@@ -27,7 +27,12 @@ const Footer = styled.div`
     align-items : end;
     justify-content : end;
 `
-
+const Title = styled.div`
+    display : flex;
+    justify-content : center;
+    align-items : center;
+    font-size : 50px;
+`
 // Footer 안에 들어갈 버튼들의 Preset
 const Btn = styled.button`
     height : 100%;
@@ -55,7 +60,7 @@ function TeamEvaluation() {
             </Header>
             {/* 회고 작성 창 */}
             <Body>
-
+                <Title>우리 팀에게 가장 알맞은 형용사를 골라주세요.</Title>
             </Body>
             {/* 취소 다음 버튼 */}
             <Footer>
