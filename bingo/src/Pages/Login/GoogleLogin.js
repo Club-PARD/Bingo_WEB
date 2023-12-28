@@ -9,8 +9,8 @@ const LoginDummy = [
         email: "",
         email_verified: "",
         name: "",
-        jti: "",
-        picture: "",
+        // jti: "",
+        // picture: "",
     },
 ];
 
@@ -34,6 +34,9 @@ const GoogleLoginButton = () => {
                         });
                         // 성공이라고 콘솔에 남기기
                         console.log("로그인 성공!");
+                        // console.log(LoginDummy);
+                        console.log("decode token : ", decodedToken);
+                        login(decodedToken);
                         // api로 정보 넘겨주기
                         // 페이지 이동
                         navigate("/WorkspaceList");

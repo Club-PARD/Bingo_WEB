@@ -1,11 +1,11 @@
 // WorkspaceModal.js
 import React from "react";
 import styled from "styled-components";
-import { Div } from "../../Components/NormalComponents/Section.js";
-import { Button } from "../../Components/NormalComponents/Form.js";
-import { Img } from "../../Components/NormalComponents/Etc.js";
+import { Div } from "../../../Components/NormalComponents/Section.js";
+import { Button } from "../../../Components/NormalComponents/Form.js";
+import { Img } from "../../../Components/NormalComponents/Etc.js";
 import Modal from "react-modal";
-import WorkspaceCreate from "./WorkspaceCreate.js";
+import WorkspaceCreate from "../WorkspaceCreate.js";
 import { Link } from "react-router-dom";
 
 const WorkspaceModal = ({ isOpen, closeModal, onButtonClick }) => {
