@@ -2,13 +2,13 @@ import { useState, React } from "react";
 import styled from "styled-components";
 import { Div } from "../../Components/NormalComponents/Section.js";
 import { P } from "../../Components/NormalComponents/Text.js";
-import WorkspaceCard from "./WorkspaceCard.js";
+import WorkspaceCard from "./Components/WorkspaceCard.js";
 import { Button } from "../../Components/NormalComponents/Form.js";
 import { Img } from "../../Components/NormalComponents/Etc.js";
 import Modal from "react-modal";
 import WorkspaceCreate from "./WorkspaceCreate.js"
 import { Link } from "react-router-dom";
-import DrawerBtn from "../../DrawerBtn.js";
+import DrawerBtn from "../../ETC/DrawerBtn.js";
 
 // 불러온 값 저장하기
 const WorkspaceData = [

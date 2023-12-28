@@ -4,7 +4,7 @@ import React from 'react';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Sidebar from './Sidebar';
 import Drawer from './Components/PageMovements/Drawer';
-import DrawerBtn from './DrawerBtn';
+import DrawerBtn from './ETC/DrawerBtn';
 import Intro from './Pages/Login/Intro';
 import {RecoilRoot} from 'recoil';
 import PI_Test from './Pages/Test/PI_Test';
@@ -20,7 +20,7 @@ import WorkspaceList from './Pages/Workspace/WorkspaceList';
 import RetrospectList from './Pages/Retrospect/RetrospectList';
 import RetrospectView from './Pages/Retrospect/RetrospectView';
 import RetrospectWrite from './Pages/Retrospect/RetrospectWrite';
-import Header from './Header';
+import Header from './Layout/Header';
 
 const Routers = () => {
     return (

@@ -1,6 +1,6 @@
 import React from "react";
-import { Div } from "../../Components/NormalComponents/Section";
-import { Img } from "../../Components/NormalComponents/Etc";
+import { Div } from "../../../Components/NormalComponents/Section";
+import { Img } from "../../../Components/NormalComponents/Etc";
 import { Link } from "react-router-dom";
 
 const WorkspaceCard = ({ name, desc, picture, link, period }) => (
