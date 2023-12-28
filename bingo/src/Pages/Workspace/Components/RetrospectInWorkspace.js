@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Div } from "../../Components/NormalComponents/Section";
-import { Img } from "../../Components/NormalComponents/Etc";
+import { Div } from "../../../Components/NormalComponents/Section";
+import { Img } from "../../../Components/NormalComponents/Etc";
 import Modal from "react-modal";
 import { Link } from "react-router-dom";
 import styled from "styled-components";

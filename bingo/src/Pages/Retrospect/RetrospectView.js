@@ -1,4 +1,4 @@
-import Breadcrumb from "../../Breadcrumb";
+import Breadcrumb from "../../Layout/Breadcrumb";
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 

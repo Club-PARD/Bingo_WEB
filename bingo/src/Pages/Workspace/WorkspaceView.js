@@ -1,6 +1,6 @@
 import {Div} from "../../Components/NormalComponents/Section";
 import {React} from "react";
-import RetrospectInWorkspace from "./RetrospectInWorkspace";
+import RetrospectInWorkspace from "./Components/RetrospectInWorkspace";
 import BingoBoard from "../../Preset/WorkspacePreset/BingoBoard";
 import styled from "styled-components";
 import {P} from "../../Components/NormalComponents/Text";

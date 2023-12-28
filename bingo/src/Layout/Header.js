@@ -1,13 +1,13 @@
 import {Outlet, useLocation} from "react-router";
-import {CenterDiv, Div} from "./Components/NormalComponents/Section";
-import {Button} from "./Components/NormalComponents/Form";
-import {Label, P} from "./Components/NormalComponents/Text";
+import {CenterDiv, Div} from "../Components/NormalComponents/Section";
+import {Button} from "../Components/NormalComponents/Form";
+import {Label, P} from "../Components/NormalComponents/Text";
 import {useState} from "react";
 import styled from "styled-components";
 
 import Modal from "react-modal";
 import {CopyToClipboard} from 'react-copy-to-clipboard';
-import {Img} from "./Components/NormalComponents/Etc";
+import {Img} from "../Components/NormalComponents/Etc";
 
 export default function Header() {
     // Modal 관련 변수
