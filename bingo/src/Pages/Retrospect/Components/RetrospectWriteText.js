@@ -1,6 +1,6 @@
 /* eslint-disable */
 import styled from "styled-components";
-import Breadcrumb from "../../../Breadcrumb";
+import Breadcrumb from "../../../Layout/Breadcrumb";
 // import RetroWrite from "./RetroWrite";
 
 // 전체를 감싸는 div, 이 아래에 Header / Body / Footer로 나뉘어 있음

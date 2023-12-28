@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import RetrospectWriteText from "./RetrospectWriteText";
-import TeamEvaluation from "./TeamEvaluation";
+import RetrospectWriteText from "./Components/RetrospectWriteText";
+import TeamEvaluation from "./Components/TeamEvaluation";
 import { DialerSip } from "@mui/icons-material";
-import { Div } from "../../../Components/NormalComponents/Section";
+import { Div } from "../../Components/NormalComponents/Section";
 
 const Container = styled.div`
     height: 100vh;

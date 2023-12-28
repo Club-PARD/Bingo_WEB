@@ -2,19 +2,23 @@ import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Chip from '@mui/material/Chip';
 import Paper from '@mui/material/Paper';
-import TagFacesIcon from '@mui/icons-material/TagFaces';
 
 const ListItem = styled('li')(({ theme }) => ({
   margin: theme.spacing(0.5),
 }));
 
-export default function ChipsArray() {
+// 실제 칩에 들어갈 내용
+export default function Chips() {
   const [chipData, setChipData] = React.useState([
-    { key: 0, label: 'Angular' },
-    { key: 1, label: 'jQuery' },
-    { key: 2, label: 'Polymer' },
-    { key: 3, label: 'React' },
-    { key: 4, label: 'Vue.js' },
+    { key: 0, label: '존중하는' },
+    { key: 1, label: '열정적인' },
+    { key: 2, label: '도전적인' },
+    { key: 3, label: '의사소통이 잘 되는' },
+    { key: 4, label: '성실한' },
+    { key: 5, label: '인내심있는' },
+    { key: 6, label: '화목한' },
+    { key: 7, label: '분위기 좋은' },
+    { key: 8, label: '칭찬하는' },
   ]);
 
   const handleDelete = (chipToDelete) => () => {
@@ -34,18 +38,12 @@ export default function ChipsArray() {
       component="ul"
     >
       {chipData.map((data) => {
-        let icon;
-
-        if (data.label === 'React') {
-          icon = <TagFacesIcon />;
-        }
-
         return (
           <ListItem key={data.key}>
             <Chip
-              icon={icon}
               label={data.label}
-              onDelete={data.label === 'React' ? undefined : handleDelete(data)}
+              color="primary"
+              sx={{ fontSize: '50px', margin: '0.5rem', height: '100%', borderRadius: '30px'}}
             />
           </ListItem>
         );
