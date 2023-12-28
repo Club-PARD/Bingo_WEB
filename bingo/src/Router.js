@@ -19,7 +19,7 @@ import RetrospectCreate from './Pages/Retrospect/RetrospectCreate';
 import WorkspaceList from './Pages/Workspace/WorkspaceList';
 import RetrospectList from './Pages/Retrospect/RetrospectList';
 import RetrospectView from './Pages/Retrospect/RetrospectView';
-import RetrospectWrite from './Pages/Retrospect/RetrospectWrite';
+import RetrospectWrite from './Pages/Retrospect/Write/RetrospectWrite';
 import Header from './Header';
 
 const Routers = () => {
