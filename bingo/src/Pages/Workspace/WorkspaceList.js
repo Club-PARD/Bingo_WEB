@@ -1,10 +1,16 @@
-import { useState, React } from "react";
+import { useState, React, useRef } from "react";
+import styled from "styled-components";
 import { Div } from "../../Components/NormalComponents/Section.js";
 import WorkspaceCard from "./Components/WorkspaceCard.js";
 import { Button } from "../../Components/NormalComponents/Form.js";
 import { Img } from "../../Components/NormalComponents/Etc.js";
 import Modal from "react-modal";
+import { Input } from "../../Components/NormalComponents/Form.js";
+import { Label } from "../../Components/NormalComponents/Text.js";
 import WorkspaceCreate from "./WorkspaceCreate.js"
+import {useRecoilState} from "recoil";
+import { ProjectTitleState, ProjectDescState, ProjectSelectedFileState } from "../../Contexts/Atom.js";
+
 
 // 불러온 값 저장하기
 const WorkspaceData = [
@@ -12,31 +18,26 @@ const WorkspaceData = [
         name : "개발팀 회고",
         desc : "23-4 롱커톤 3!4!",
         picture : "/img/Login/img4.png",
-        link : "/WorkspaceView",
     },
     {
         name : "공설입 회고",
         desc : "공학설계입문 2분반 1조",
         picture : " ",
-        link : "/",
     },
     {
         name : "SLESLE 2023",
         desc : "23-2 슬기짜기 임원단",
         picture : " ",
-        link : "/",
     },
     {
         name : "맹맹맹",
         desc : "맹구 마지막 우승",
         picture : " ",
-        link : "/",
     },
     {
         name : "멍멍멍",
         desc : "북런던 강아지",
         picture : " ",
-        link : "/",
     },
 ];
 
@@ -65,6 +66,26 @@ const WorkspaceList =()=> {
     const onButtonClick = () => {
         generateRandomValue();
         setModalIsOpen(false);
+    };
+
+    const [title, setTitle] = useState('');
+    const onChangeTitle = (event) => {
+    setTitle(event.target.value);
+    };
+    const [desc, setDesc] = useState('');
+    const onChangeIntroduce = (event) => {
+        setDesc(event.target.value);
+    };
+    const [selectedFile, setSelectedFile] = useState(null);
+    const fileInputRef = useRef(null);
+
+    const handleFileSelect = (event) => {
+        const file = event.target.files[0];
+        setSelectedFile(file);
+    };
+
+    const handleButtonClick = () => {
+        fileInputRef.current && fileInputRef.current.click();
     };
     return(
         <>
@@ -114,7 +135,6 @@ const WorkspaceList =()=> {
                             name={workspace.name}
                             desc={workspace.desc}
                             picture={workspace.picture}
-                            link={workspace.link}
                             period={workspace.period}
                         />
                     ))}
@@ -186,7 +206,40 @@ const WorkspaceList =()=> {
                         >완료</Button>
                     </Div>
                 
-                <WorkspaceCreate />
+                    <Div alignItems="left" flexDirection=" column-reverse" justifyContent="space-between" width="100%" height="68%">
+                        <Div flexDirection="column">
+                            <Div fontSize="32px" margin=".5% 0 0 0"
+                            >프로젝트 배너 이미지</Div>
+                            <Input
+                                type="file"
+                                style={{ display: "none" }}
+                                ref={fileInputRef}
+                                onChange={handleFileSelect}
+                            />
+                            <Div alignItems="center">
+                                <FileInputButton onClick={handleButtonClick}>+파일 업로드</FileInputButton>
+                                {selectedFile && (
+                                    <SelectedFileName>{selectedFile.name}</SelectedFileName>
+                                )}
+                            </Div>
+                        </Div>
+                        <Div flexDirection="column">
+                            <Label fontSize="32px">프로젝트 설명</Label>
+                            <CustomInput type="text"
+                                height="10vh"
+                                value={desc}
+                                onChange={onChangeIntroduce}
+                                />
+                        </Div>
+                        <Div flexDirection="column">
+                            <Label fontSize="32px">프로젝트 이름</Label>
+                            <CustomInput type="text"
+                                height="5vh"
+                                value={title}
+                                onChange={onChangeTitle}
+                                />
+                        </Div>
+                    </Div>
                 </Div>
             </Modal>
         </>
@@ -196,3 +249,25 @@ const WorkspaceList =()=> {
 
 export default WorkspaceList;
 
+const FileInputButton = styled.button`
+    height: 3vh;
+    width: auto;
+    font-size: 24px;
+    background-color: #D9D9D9;
+    align-items: center;
+    border-radius: 24px;
+    margin-top: .5%;
+    border: none;
+`
+
+const SelectedFileName = styled.span`
+    font-size: 24px;
+    margin-left: 10px;
+`;
+
+const CustomInput = styled(Input)`
+    width: 100%;
+    background-color: #D9D9D9; 
+    margin: .5% 0 0 0;
+    font-size: 32px;
+`;

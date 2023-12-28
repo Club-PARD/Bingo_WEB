@@ -1,22 +1,25 @@
-/* eslint-disable */
+/* 이 화면 이제 안쓸듯 */
 
 import { Div } from "../../Components/NormalComponents/Section.js";
 import styled from "styled-components";
 import { Input } from "../../Components/NormalComponents/Form.js";
 import React, { useState, useRef } from "react";
 import { Label } from "../../Components/NormalComponents/Text.js"; 
+import {useRecoilState} from "recoil";
+import { ProjectTitleState, ProjectDescState, ProjectSelectedFileState } from "../../Contexts/Atom.js";
+
 
 //워크스페이스를 만드는 모달창
 function WorkspaceCreate() {
-    const [title, setTitle] = useState('');
+    const [title, setTitle] = useRecoilState('');
     const onChangeTitle = (event) => {
     setTitle(event.target.value);
     };
-    const [introduce, setIntroduce] = useState('');
+    const [desc, setDesc] = useRecoilState('');
     const onChangeIntroduce = (event) => {
-        setIntroduce(event.target.value);
+        setDesc(event.target.value);
     };
-    const [selectedFile, setSelectedFile] = useState(null);
+    const [selectedFile, setSelectedFile] = useRecoilState(null);
     const fileInputRef = useRef(null);
 
     const handleFileSelect = (event) => {
@@ -52,7 +55,7 @@ function WorkspaceCreate() {
                     <Label fontSize="32px">프로젝트 설명</Label>
                     <CustomInput type="text"
                         height="10vh"
-                        value={introduce}
+                        value={desc}
                         onChange={onChangeIntroduce}
                         />
                 </Div>
