@@ -112,9 +112,7 @@ function RetrospectWriteText() {
                         {RetrospectData.map((retro, index) => (
                             <div>
                                 <h2>{retro.name}</h2>
-                                <RetroText placeholder="답변을 입력하세요...">
-
-                                </RetroText>
+                                <RetroText placeholder="답변을 입력하세요..." />
                             </div>
                         ))}
                     </BorderInside> 
