@@ -2,23 +2,32 @@ import {useState} from "react";
 import {Div} from "../../Components/NormalComponents/Section";
 import {useNavigate} from "react-router-dom";
 import {Section1, Section2, Section3} from "../../Preset/Retrospect/RetrospectCreatePreset";
+import { retrospectiveState } from "../../Contexts/Atom";
+import { useRecoilState } from "recoil";
 
 export default function RetrospectCreate() {
+
+    // Recoil 상태 사용
+    const [retrospective, setRetrospective] = useRecoilState(retrospectiveState);
+    const { retrospectTitle2, selectedWays, questions2 } = retrospective;
+
+    const [retrospectTitle, setRetrospectiTitle] = useState(retrospectTitle2);
+    const [questions, setQuestions] = useState(questions2 || []);
     // 변수 선언
-    const [retrospectTitle, setRetrospectiTitle] = useState(''); // 회고 타이틀 저장 변수
-    // const [questions, setQuestions] = useState([[]]); // 질문 내용 저장 변수
-    const [questions, setQuestions] = useState([
-        {
-            title: 'Keep',
-            content: []
-        }, {
-            title: 'Problem',
-            content: []
-        }, {
-            title: 'Try',
-            content: []
-        }
-    ]);
+    // const [retrospectTitle, setRetrospectiTitle] = useState(''); // 회고 타이틀 저장 변수
+    // // const [questions, setQuestions] = useState([[]]); // 질문 내용 저장 변수
+    // const [questions, setQuestions] = useState([
+    //     {
+    //         title: 'Keep',
+    //         content: []
+    //     }, {
+    //         title: 'Problem',
+    //         content: []
+    //     }, {
+    //         title: 'Try',
+    //         content: []
+    //     }
+    // ]);
     const [SelectedWays, setSelectedWays] = useState('KPT'); // 회고 방법 선택 변수 (radio)
     const navigate = useNavigate(); // 이동을 위한 navigate
 

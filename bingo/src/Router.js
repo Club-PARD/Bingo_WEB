@@ -21,6 +21,7 @@ import RetrospectList from './Pages/Retrospect/RetrospectList';
 import RetrospectView from './Pages/Retrospect/RetrospectView';
 import RetrospectWrite from './Pages/Retrospect/RetrospectWrite';
 import Header from './Layout/Header';
+import RetrospectViewerPage from './Pages/Retrospect/RetrospectViewerPage';
 
 const Routers = () => {
     return (
@@ -42,7 +43,8 @@ const Routers = () => {
                             <Route path='/RetrospectCreate' element={<RetrospectCreate />}/>
                             <Route path='/RetrospectList' element={<RetrospectList />}/>
                             <Route path='/RetrospectView' element={<RetrospectView />}/>
-                            <Route path='/RetrospectWrite' element={<RetrospectWrite />}/>
+                            <Route path='/RetrospectWrite' element={<RetrospectWrite />} />
+                            <Route path='/RetrospectViewerPage' element={<RetrospectViewerPage/>}/>
                         </Route>
 
                         <Route path='/CrudList' element={<CrudList />}/>
