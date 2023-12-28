@@ -75,6 +75,10 @@ export const Section1 = (e) => {
 
 // Section2 영역
 export const Section2 = (e) => {
+    const handleInfoClick = () => {
+        // 전체 내용을 콘솔에 출력 (JSON 형식)
+        console.log(JSON.stringify(e, null, 2));
+    };
     return (
         <Div id="section2" style={Section_Style}>
             {/* Content Section */}
@@ -108,6 +112,7 @@ export const Section2 = (e) => {
             {/* 버튼 Section */}
             <Div flexDirection="column" height="10%" justifyContent="center">
                 <Div justifyContent="end">
+                    <Button onClick={handleInfoClick}>정보 보기</Button>
                     <Div width="320px" backgroundColor="" justifyContent="space-between">
                         <StepButton targetPage="#section1" targetLabel="이전"/>
 
@@ -225,81 +230,53 @@ function RadioCard({
 }
 
 // handleMakeThreeSection : lable에 맞춰서 질문을 생성해주는 핸들러
+// handleMakeThreeSection 함수 수정
 const handleMakeThreeSection = (way, labels, questions, setQuestions) => (
     <Div flexDirection="column">
-        {
-            // labels(템플릿의 대주제 개수 만큼)
-            labels.map((label, index) => (
-                <Div
-                    key={index}
-                    flexDirection="column"
-                    border="3px dashed gainsboro"
-                    width="100%"
-                    height="auto"
-                    margin = {index === 0 ? "0% 0px" : "2% 0px"}
-                    padding="30px 30px"
-                    boxSizing = "border-box"
-                    borderRadius="10px">
-                    {/* Title */}
-                    <Div alignItems="flex-end">
-                        <Label margin="0px 5px 0px 0px" fontSize="100px">{label[0]}</Label>
-                        <Label margin="0px 0px 5px 0px" fontSize="40px" width="20%">{label}</Label>
-                    </Div>
-
-                    {/* 질문 모음 */}
-                    <Div flexDirection="column" height="auto" justifyContent="space-around">
-                        <Input
-                            type="text"
-                            placeholder="질문을 입력해주세요."
-                            style={InputStyle}
-                            width="100%"
-                            value={questions[index]
-                                ?.question || ''}
-                            onChange={(e) => {
-                                const updatedQuestions = [...questions];
-                                updatedQuestions[index] = {
-                                    id: index + 1,
-                                    question: e.target.value
-                                };
-                                setQuestions(updatedQuestions);
-                            }}/>
-                        <Input
-                            type="text"
-                            placeholder="질문을 입력해주세요."
-                            style={InputStyle}
-                            width="100%"
-                            value={questions[index]
-                                ?.question || ''}
-                            onChange={(e) => {
-                                const updatedQuestions = [...questions];
-                                updatedQuestions[index] = {
-                                    id: index + 1,
-                                    question: e.target.value
-                                };
-                                setQuestions(updatedQuestions);
-                            }}/>
-                        <Input
-                            type="text"
-                            placeholder="질문을 입력해주세요."
-                            style={InputStyle}
-                            width="100%"
-                            value={questions[index]
-                                ?.question || ''}
-                            onChange={(e) => {
-                                const updatedQuestions = [...questions];
-                                updatedQuestions[index] = {
-                                    id: index + 1,
-                                    question: e.target.value
-                                };
-                                setQuestions(updatedQuestions);
-                            }}/>
-                    </Div>
-
+        {labels.map((label, index) => (
+            <Div
+                key={index}
+                flexDirection="column"
+                border="3px dashed gainsboro"
+                width="100%"
+                height="auto"
+                margin={index === 0 ? "0% 0px" : "2% 0px"}
+                padding="30px 30px"
+                boxSizing="border-box"
+                borderRadius="10px"
+            >
+                {/* Title */}
+                <Div alignItems="flex-end">
+                    <Label margin="0px 5px 0px 0px" fontSize="100px">{label[0]}</Label>
+                    <Label margin="0px 0px 5px 0px" fontSize="40px" width="20%">{label}</Label>
                 </Div>
-            ))
-        }
+
+                {/* 질문 모음 */}
+                <Div flexDirection="column" height="auto" justifyContent="space-around">
+                    {Array.from({ length: 3 }).map((_, contentIndex) => (
+                        <Input
+                            type="text"
+                            placeholder={`질문 ${contentIndex + 1}을 입력해주세요.`}
+                            style={InputStyle}
+                            width="100%"
+                            value={questions[index]?.content[contentIndex] || ''}
+                            onChange={(e) => {
+                                const updatedQuestions = [...questions];
+                                updatedQuestions[index] = {
+                                    id: index + 1,
+                                    content: [...(updatedQuestions[index]?.content || [])],
+                                };
+                                updatedQuestions[index].content[contentIndex] = e.target.value;
+                                setQuestions(updatedQuestions);
+                            }}
+                        />
+                    ))}
+                </Div>
+            </Div>
+        ))}
     </Div>
 );
+
 
 // Section 스타일
 const Section_Style = {
