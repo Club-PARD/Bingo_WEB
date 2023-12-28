@@ -9,17 +9,20 @@ export const contentState = atom({key: "content", default: ''});
 export const retrospectiveState = atom({
     key: 'retrospective',
     default: {
-        retrospectTitle: '', // 회고 타이틀
-        selectedWays: '', // 선택된 템플릿 방식 (KPT, 4LS, 5F)
+        // 회고 타이틀
+        retrospectTitle: '', 
+        // 선택된 템플릿 방식 (KPT, 4LS, 5F)
+        selectedWays: '', 
+        // 질문 모음
         questions: [
             {
-                title: 'Keep',
+                title: '',
                 content: []
             }, {
-                title: 'Problem',
+                title: '',
                 content: []
             }, {
-                title: 'Try',
+                title: '',
                 content: []
             }
         ] // 각 섹션의 질문 내용

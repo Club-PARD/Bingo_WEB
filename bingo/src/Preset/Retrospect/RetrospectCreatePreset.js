@@ -14,7 +14,7 @@ export const Section1 = (e) => {
                 {/* 회고 타이틀 Section */}
                 <Div
                     flexDirection="column"
-                    margin="0px 0px 0px 0px"
+                    width = "100%"
                     height="20%"
                     backgroundColor="">
                     {/* Title */}
@@ -28,7 +28,7 @@ export const Section1 = (e) => {
                 </Div>
 
                 {/* 템플릿 선택 Section */}
-                <Div flexDirection="column" width="100%" backgroundColor="" height="80%">
+                <Div flexDirection="column" width="100%" height="80%" backgroundColor="" >
                     {/* Title */}
                     <Div height="10%">
                         <P fontSize="30px">템플릿 선택</P>
@@ -75,10 +75,6 @@ export const Section1 = (e) => {
 
 // Section2 영역
 export const Section2 = (e) => {
-    const handleInfoClick = () => {
-        // 전체 내용을 콘솔에 출력 (JSON 형식)
-        console.log(JSON.stringify(e, null, 2));
-    };
     return (
         <Div id="section2" style={Section_Style}>
             {/* Content Section */}
@@ -112,7 +108,6 @@ export const Section2 = (e) => {
             {/* 버튼 Section */}
             <Div flexDirection="column" height="10%" justifyContent="center">
                 <Div justifyContent="end">
-                    <Button onClick={handleInfoClick}>정보 보기</Button>
                     <Div width="320px" backgroundColor="" justifyContent="space-between">
                         <StepButton targetPage="#section1" targetLabel="이전"/>
 
@@ -124,72 +119,26 @@ export const Section2 = (e) => {
     );
 }
 
-// StepButton : Next / Last 버튼 분리화
-const StepButton = (e) => {
-    return (
-        <a href={e.targetPage}>
-            <Button
-                width="150px"
-                height="50px"
-                borderRadius="15px"
-                fontSize="35px"
-                fontWeight="bold"
-                onClick={e.onClick}
-                backgroundColor="#BDBDBD">{e.targetLabel}</Button>
-        </a>
-    );
-}
-
-// Input 스타일 지정
-const InputStyle = {
-    type: "text",
-    width: "100%",
-    height: "70px",
-    margin: "10px 0px",
-    borderRadius: "20px",
-    fontSize: "30px",
-    backgroundColor: "gainsboro"
-}
-
-// 템플릿 설명 변수
-const RetrospectDescription = ({
-    W_KPT: 'KPT는 "Keep, Problem, Try"의 약자로, 팀이 프로젝트나 업무를 평가하고 개선하기 위해 유용한 간단한 피드백 프로세스를 제공' +
-            '합니다. "Keep"은 유지할 가치 있는 것, "Problem"은 발생한 문제, "Try"는 개선을 시도할 방안을 나타냅니다.',
-    W_4LS: '4LS는 "Liked, Learned, Lacked, Longed for"의 약자로, 경험 또는 이벤트에 대한 리뷰에 활용됩니다. "Like' +
-            'd"는 긍정적인 경험, "Learned"는 얻은 교훈, "Lacked"는 부족한 부분, "Longed for"는 더 원하는 부분을 나타냅니다' +
-            '.',
-    W_5F: '5F 방법론: 5F는 "Feel, Find, Finish, Future, Feedback"의 약자로, 회고를 위한 다양한 측면을 제공합니다.' +
-            ' "Feel"은 느낀 감정, "Find"는 발견한 사실, "Finish"는 완료된 작업, "Future"는 향후 계획, "Feedback"는' +
-            ' 피드백을 나타냅니다.'
-});
-
 // RadioCard : 라디오 버튼 Custom
-function RadioCard({
-    value,
-    label,
-    selectedValue,
-    onChange,
-    margin,
-    description
-}) {
+const RadioCard = (e) => {
     return (
-        <Div width="100%" margin={margin} height="100%">
+        <Div width="100%" margin={e.margin} height="100%">
 
             {/* hidden 처리 되는 Input::Radio 버튼 */}
             <input
                 type='radio'
                 name='fruits'
-                value={value}
-                checked={value === selectedValue}
-                onChange={onChange}
+                value={e.value}
+                checked={e.value === e.selectedValue}
+                onChange={e.onChange}
                 style={{
                     display: 'none'
                 }}/> {/* show 처리 되는 부분 */}
             <Div width="100%" height="100%" cursor="pointer" borderRadius="15px" alignItems="center" flexDirection="column"
                 // padding="20px"
-                backgroundColor={value === selectedValue
+                backgroundColor={e.value === e.selectedValue
                     ? 'black'
-                    : 'gainsboro'} onClick={() => onChange(value)}>
+                    : 'gainsboro'} onClick={() => e.onChange(e.value)}>
 
                 {/* 템플릿 Title */}
                 <CenterDiv width="100%" height="40%" backgroundColor="">
@@ -197,24 +146,24 @@ function RadioCard({
                         fontSize="70px"
                         fontWeight="bold"
                         color =
-                        {value === selectedValue ? 'white' : 'black'}
+                        {e.value === e.selectedValue ? 'white' : 'black'}
                         style={{
-                            transition: value === selectedValue ? "background-color 2s, color 2s" : ""
-                        }}>{label}</P>
+                            transition: e.value === e.selectedValue ? "background-color 2s, color 2s" : ""
+                        }}>{e.label}</P>
                 </CenterDiv>
 
                 {/* 템플릿 설명 */}
                 <Div
                     width="100%"
                     height="60%"
-                    color={value === selectedValue
+                    color={e.value === e.selectedValue
                         ? 'white'
                         : 'black'}
                     backgroundColor=""
                     fontSize="25px"
                     style={{
                         textAlign: "center",
-                        transition: value === selectedValue ? "background-color 2s, color 2s" : ""
+                        transition: e.value === e.selectedValue ? "background-color 2s, color 2s" : ""
                     }}>
                     <Div
                         width="100%"
@@ -222,7 +171,7 @@ function RadioCard({
                         margin="20px"
                         borderRadius="15px"
                         padding="20px"
-                        backgroundColor="">{description}</Div>
+                        backgroundColor="">{e.description}</Div>
                 </Div>
             </Div>
         </Div>
@@ -266,6 +215,7 @@ const handleMakeThreeSection = (way, labels, questions, setQuestions) => (
                                     id: index + 1,
                                     content: [...(updatedQuestions[index]?.content || [])],
                                 };
+                                updatedQuestions[index].title = label;
                                 updatedQuestions[index].content[contentIndex] = e.target.value;
                                 setQuestions(updatedQuestions);
                             }}
@@ -278,6 +228,35 @@ const handleMakeThreeSection = (way, labels, questions, setQuestions) => (
 );
 
 
+
+
+// StepButton : Next / Last 버튼 분리화
+const StepButton = (e) => {
+    return (
+        <a href={e.targetPage}>
+            <Button
+                width="150px"
+                height="50px"
+                borderRadius="15px"
+                fontSize="35px"
+                fontWeight="bold"
+                onClick={e.onClick}
+                backgroundColor="#BDBDBD">{e.targetLabel}</Button>
+        </a>
+    );
+}
+
+// Input 스타일 지정
+const InputStyle = {
+    type: "text",
+    width: "100%",
+    height: "70px",
+    margin: "10px 0px",
+    borderRadius: "20px",
+    fontSize: "30px",
+    backgroundColor: "gainsboro"
+}
+
 // Section 스타일
 const Section_Style = {
     width: "90%",
@@ -285,3 +264,15 @@ const Section_Style = {
     flexDirection: "column",
     margin: "0 auto",
 }
+
+// 템플릿 설명 변수
+const RetrospectDescription = ({
+    W_KPT: 'KPT는 "Keep, Problem, Try"의 약자로, 팀이 프로젝트나 업무를 평가하고 개선하기 위해 유용한 간단한 피드백 프로세스를 제공' +
+            '합니다. "Keep"은 유지할 가치 있는 것, "Problem"은 발생한 문제, "Try"는 개선을 시도할 방안을 나타냅니다.',
+    W_4LS: '4LS는 "Liked, Learned, Lacked, Longed for"의 약자로, 경험 또는 이벤트에 대한 리뷰에 활용됩니다. "Like' +
+            'd"는 긍정적인 경험, "Learned"는 얻은 교훈, "Lacked"는 부족한 부분, "Longed for"는 더 원하는 부분을 나타냅니다' +
+            '.',
+    W_5F: '5F 방법론: 5F는 "Feel, Find, Finish, Future, Feedback"의 약자로, 회고를 위한 다양한 측면을 제공합니다.' +
+            ' "Feel"은 느낀 감정, "Find"는 발견한 사실, "Finish"는 완료된 작업, "Future"는 향후 계획, "Feedback"는' +
+            ' 피드백을 나타냅니다.'
+});
