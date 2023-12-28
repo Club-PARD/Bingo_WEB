@@ -6,17 +6,19 @@ import { Link } from "react-router-dom";
 
 // 전체를 감싸는 div, 이 아래에 Header / Body / Footer로 나뉘어 있음
 const Whole = styled.div`
-    height : auto;
-    overflow: hidden;
+    margin-bottom: 0;
+    height : 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 `
 // breadcrumb가 들어가는 부분
 const Header = styled.div`
-    height : 3.5%;
+    height : 5%;
 `
 // 회고 종류와 작성 창이 들어가는 부분
 const Body = styled.div`
-    height : 66vh;
-    overflow: auto;
+    height : 86%;
     border : 5px solid gray;
     border-radius : 25px;
 
@@ -26,22 +28,20 @@ const Body = styled.div`
 // 취소, 다음이 들어가는 부분
 const Footer = styled.div`
     display : flex;
-    height : 15%;
+    height : 6%;
     /* border : 1px solid red; */
-    align-items : end;
+    align-items : center;
     justify-content : end;
 `
 
 // Body 안에 들어가는 회고 작성칸을 감싸는 테두리
 const Border = styled.div`
     border-radius : 25px;
-    margin : 1%;
     height : 100%;
     overflow: auto;
-    background-color : white;
 `
 const BorderInside = styled.div`
-    padding : 1%;
+    padding : 2%;
 `
 const RetroType = styled.div`
     display : flex;
@@ -56,18 +56,18 @@ const RetroABC = styled.div`
 const RetroText = styled.textarea`
     border : 1px solid transparent;
     background-color : gainsboro;
-    width : 90%;
+    width : 92%;
     height : 20vh;
     font-size : 25px;
     border-radius : 15px;
 `
 const BtnLink = styled(Link)`
     height : 100%;
-    width : 6.5%;
-    font-size : 40px;
+    width : 8%;
+    font-size : 34px;
     border : 1px solid transparent;
     background-color : gainsboro;
-    border-radius : 15px;
+    border-radius : 10px;
     margin : 1%;
     text-decoration: none;
     align-items: center;

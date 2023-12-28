@@ -6,16 +6,21 @@ import { Link } from "react-router-dom";
 
 // 전체를 감싸는 div, 이 아래에 Header / Body / Footer로 나뉘어 있음
 const Whole = styled.div`
-    height : auto;
-    overflow: hidden;`
+    height : 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+`
 // breadcrumb가 들어가는 부분
 const Header = styled.div`
-    height : 3.5%;
+    height : 5%;
 `
 // 회고 종류와 작성 창이 들어가는 부분
 const Body = styled.div`
-    height : 66vh;
+    height : 86%;
     overflow: auto;
+    border : 5px solid gray;
     border-radius : 25px;
     display: flex;
     flex-direction: column;
@@ -24,8 +29,9 @@ const Body = styled.div`
 // 취소, 다음이 들어가는 부분
 const Footer = styled.div`
     display : flex;
-    height : 15%;
-    align-items : end;
+    height : 6%;
+    /* border : 1px solid red; */
+    align-items : center;
     justify-content : end;
 `
 const Title = styled.div`
@@ -39,11 +45,11 @@ const ChipDiv = styled.div`
 // Footer 안에 들어갈 버튼들의 Preset
 const BtnLink = styled(Link)`
     height : 100%;
-    width : 6.5%;
-    font-size : 40px;
+    width : 8%;
+    font-size : 34px;
     border : 1px solid transparent;
     background-color : gainsboro;
-    border-radius : 15px;
+    border-radius : 10px;
     margin : 1%;
     text-decoration: none;
     align-items: center;

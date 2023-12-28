@@ -54,8 +54,8 @@ export default function Chips() {
       component="ul"
     >
       {chipData.map((data, index) => {
-        const chipBackgroundColor = data.flag === 'true' ? '#E7E7E7' : '#323232';
-        const chipTextColor = data.flag === 'true' ? '#000000' : '#FFFFFF';
+        const chipBackgroundColor = data.flag === 'true' ? '#323232' : '#E7E7E7';
+        const chipTextColor = data.flag === 'true' ? '#FFFFFF' : '#AAAAAA';
 
         return (
           <ListItem key={data.key}>

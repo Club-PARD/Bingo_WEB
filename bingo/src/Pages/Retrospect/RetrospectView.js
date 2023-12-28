@@ -90,13 +90,12 @@ export default RetrospectView;
 const Whole =styled.div`
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     width: 100%;
     height: 100%;
-    background-color: aliceblue;
 `
 const Header = styled.div`
     height : 5%;
-    background-color: antiquewhite;
 `
 const Body = styled.div`
     /*
@@ -106,8 +105,8 @@ const Body = styled.div`
     내부 패딩이라던가 요소 있는가?
     flex설정은 어떻게 되었는가?
     */
-    height : 80vw;
-    width: 92%;
+    height : 86%;
+    border-radius : 25px;
 
     /* background-color : whitesmoke; */
 
@@ -126,11 +125,10 @@ const Body = styled.div`
 `
 const Footer = styled.div`
     display : flex;
-    height : 8%;
+    height : 6%;
     /* border : 1px solid red; */
     align-items : center;
     justify-content : end;
-    background-color: aquamarine;
 `
 const Mother = styled.div`
     width: 100%;
@@ -187,14 +185,14 @@ const OuterAnswer = styled.div`
     margin-top: 1%;
 `
 const AnswerDiv = styled.div`
-    width: 86%;
+    width: 92%;
     height: auto;
     background-color: #EAEAEA;
     display: flex;
     flex-direction: row;
 `
 const AnswerText = styled.div`
-    width: 65%;
+    width: 70%;
     height: auto;
     font-size: 36px;
     display: flex;
@@ -208,7 +206,7 @@ const AnswerDate = styled.div`
     margin-left: 1%;
 `
 const Eclipse = styled.div`
-    width: 5%;
+    width: 6%;
     height: 66px;
     background-color: #EAEAEA;
     border-radius: 50%;
@@ -220,7 +218,7 @@ const BtnLink = styled(Link)`
     font-size : 40px;
     border : 1px solid transparent;
     background-color : gainsboro;
-    border-radius : 15px;
+    border-radius : 10px;
     margin : 1%;
     text-decoration: none;
     align-items: center;
