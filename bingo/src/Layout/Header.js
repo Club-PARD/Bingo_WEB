@@ -48,7 +48,7 @@ export default function Header() {
 // 타이틀 컴포넌트
 const Title = (e) => {
     return (
-        <Div alignItems="end" width="auto">
+        <Div alignItems="end" width="auto" padding="0 0 0 2%">
             {/* 타이틀 */}
             <Div width="auto">
                 <P fontSize="80px" fontWeight="400">{e.WorkspaceInfo.title}</P>

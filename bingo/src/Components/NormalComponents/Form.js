@@ -10,7 +10,7 @@ export const Button = styled.button `
     color : ${props => props.color || 'white'};
     background-color: ${props => props.backgroundColor || 'black'};
 
-    margin : ${props => props.margin || "0px"};
+    margin : ${props => props.margin || ""};
     padding : ${props => props.padding || "0px"};
 
     font-size: ${props => props.fontSize || ''};

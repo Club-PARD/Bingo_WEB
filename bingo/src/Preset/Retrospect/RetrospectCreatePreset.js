@@ -24,7 +24,7 @@ export const Section1 = (e) => {
         }
     };
     return (
-        <Div id="section1" style={Section_Style} backgroundColor="">
+        <Div id="section1" style={Section_Style}>
             {/* Content Section */}
             <Div flexDirection="column" height="90%" backgroundColor="">
 
@@ -78,15 +78,16 @@ export const Section1 = (e) => {
 
             {/* 버튼 Section */}
             <Div flexDirection="column" height="10%" justifyContent="center">
-                <Div justifyContent="end">
-                    <Div width="320px" backgroundColor="" justifyContent="space-between">
-                        <StepButton onClick={e.onClick} targetLabel="취소"/>
-
-                        <StepButton
-                            targetPage={e.retrospectTitle ? "#section2" : ""}
-                            targetLabel="다음"
-                            onClick={handleNextButtonClick}
-                        />
+                <Div justifyContent="end" height="100%">
+                    <Div width="100%" height="100%" display="flex" alignItems="center" justifyContent="right" backgroundColor="rgba(0, 0.8)" backdropFilter="blur(8px)" zIndex="1" margin="3px 0 0 0">
+                        <BtnDivSection1>
+                            <StepButton onClick={e.onClick} targetLabel="취소"/>
+                            <StepButton
+                                targetPage={e.retrospectTitle ? "#section2" : ""}
+                                targetLabel="다음"
+                                onClick={handleNextButtonClick}
+                            />
+                        </BtnDivSection1>
                     </Div>
                 </Div>
             </Div>
@@ -99,7 +100,7 @@ export const Section2 = (e) => {
     return (
         <Div id="section2" style={Section_Style}>
             {/* Content Section */}
-            <Div width="100%" height="90%" backgroundColor = "">
+            <Div width="100%" height="100%" margin="0 0 -5% 0" position="relative" backgroundColor = "">
                 <Div
                     flexDirection="column"
                     height="100%"
@@ -125,14 +126,15 @@ export const Section2 = (e) => {
 
                 </Div>
             </Div>
-
             {/* 버튼 Section */}
             <Div flexDirection="column" height="10%" justifyContent="center">
-                <Div justifyContent="end">
-                    <Div width="320px" backgroundColor="" justifyContent="space-between">
-                        <StepButton targetPage="#section1" targetLabel="이전"/>
-
-                        <StepButton onClick={e.onClick} targetLabel="생성"/>
+                <Div justifyContent="end" height="100%">
+                    <Div width="100%" height="100%" alignItems="center" justifyContent="right" backgroundColor="rgba(0, 0.8)" backdropFilter="blur(8px)" zIndex="1">
+                        <BtnDivSection2>
+                            <StepButtonSkip onClick={e.onClick} targetLabel="건너뛰기"/>
+                            <StepButton targetPage="#section1" targetLabel="이전"/>
+                            <StepButton onClick={e.onClick} targetLabel="생성"/>
+                        </BtnDivSection2>
                     </Div>
                 </Div>
             </Div>
@@ -266,6 +268,22 @@ const StepButton = (e) => {
         </a>
     );
 }
+const StepButtonSkip = (e) => {
+    return (
+        <a href={e.targetPage}>
+            <Button
+                width="150px"
+                height="50px"
+                color="#BDBDBD"
+                borderRadius="15px"
+                fontSize="35px"
+                fontWeight="bold"
+                onClick={e.onClick}
+                backgroundColor="rgba(255,255,255,0.3)"
+                >{e.targetLabel}</Button>
+        </a>
+    );
+}
 
 // Input 스타일 지정
 const InputStyle = {
@@ -285,7 +303,22 @@ const Section_Style = {
     flexDirection: "column",
     margin: "0 auto",
 }
-
+const BtnDivSection1=styled.div`
+    width: 19%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+`
+const BtnDivSection2=styled.div`
+    width: 29.3%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+`
 // 템플릿 설명 변수
 const RetrospectDescription = ({
     W_KPT: 'KPT는 "Keep, Problem, Try"의 약자로, 팀이 프로젝트나 업무를 평가하고 개선하기 위해 유용한 간단한 피드백 프로세스를 제공' +
