@@ -3,9 +3,29 @@ import {Button, Input} from "../../Components/NormalComponents/Form";
 import {CenterDiv, Div} from "../../Components/NormalComponents/Section";
 import {Label, P} from "../../Components/NormalComponents/Text";
 import {useNavigate} from "react-router-dom";
+import { useState } from "react";
 
 // Section1 영역
 export const Section1 = (e) => {
+    const navigate = useNavigate();
+
+    const [isEmpty, setIsEmpty] = useState(false);
+    const [inputValue, setInputValue] = useState('');
+
+    const handleNextButtonClick = () => {
+        if (inputValue === '') {
+            alert("회고 타이틀을 입력하시오");
+            setIsEmpty(true);
+        } else {
+            setIsEmpty(false);
+            navigate("/RetrospectCreate#section2");
+        }
+    };
+
+    const handleInputChange = (event) => {
+        setInputValue(event.target.value);
+        setIsEmpty(false);
+    };
     return (
         <Div id="section1" style={Section_Style} backgroundColor="">
             {/* Content Section */}
@@ -24,7 +44,7 @@ export const Section1 = (e) => {
                     <Input
                         style={InputStyle}
                         value={e.retrospectTitle}
-                        onChange={(k) => e.setRetrospectiTitle(k.target.value)}></Input>
+                        onChange={handleInputChange}></Input>
                 </Div>
 
                 {/* 템플릿 선택 Section */}
@@ -65,7 +85,7 @@ export const Section1 = (e) => {
                     <Div width="320px" backgroundColor="" justifyContent="space-between">
                         <StepButton onClick={e.onClick} targetLabel="취소"/>
 
-                        <StepButton targetPage="#section2" targetLabel="다음"/>
+                        <StepButton onClick={handleNextButtonClick} targetLabel="다음"/>
                     </Div>
                 </Div>
             </Div>
