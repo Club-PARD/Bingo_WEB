@@ -3,8 +3,6 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Sidebar from './Sidebar';
-import Drawer from './Components/PageMovements/Drawer';
-import DrawerBtn from './ETC/DrawerBtn';
 import Intro from './Pages/Login/Intro';
 import {RecoilRoot} from 'recoil';
 import PI_Test from './Pages/Test/PI_Test';
@@ -20,6 +18,8 @@ import WorkspaceList from './Pages/Workspace/WorkspaceList';
 import RetrospectList from './Pages/Retrospect/RetrospectList';
 import RetrospectView from './Pages/Retrospect/RetrospectView';
 import RetrospectWrite from './Pages/Retrospect/RetrospectWrite';
+import RetrospectWriteText from './Pages/Retrospect/Components/RetrospectWriteText';
+import TeamEvaluation from './Pages/Retrospect/Components/TeamEvaluation';
 import Header from './Layout/Header';
 import RetrospectViewerPage from './Pages/Retrospect/RetrospectViewerPage';
 
@@ -43,7 +43,9 @@ const Routers = () => {
                             <Route path='/RetrospectCreate' element={<RetrospectCreate />}/>
                             <Route path='/RetrospectList' element={<RetrospectList />}/>
                             <Route path='/RetrospectView' element={<RetrospectView />}/>
-                            <Route path='/RetrospectWrite' element={<RetrospectWrite />} />
+                            <Route path='/RetrospectWrite' element={<RetrospectWrite />}/>
+                            <Route path='/RetrospectWriteText' element={<RetrospectWriteText />}/>
+                            <Route path='/TeamEvaluation' element={<TeamEvaluation />}/>
                             <Route path='/RetrospectViewerPage' element={<RetrospectViewerPage/>}/>
                         </Route>
 
