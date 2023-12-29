@@ -20,7 +20,6 @@ const Header = styled.div`
 const Body = styled.div`
     height : 86%;
     overflow: auto;
-    border : 5px solid gray;
     border-radius : 25px;
     display: flex;
     flex-direction: column;

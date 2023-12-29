@@ -6,11 +6,13 @@ import { Link } from "react-router-dom";
 
 // 전체를 감싸는 div, 이 아래에 Header / Body / Footer로 나뉘어 있음
 const Whole = styled.div`
-    margin-bottom: 0;
+    margin: 0;
     height : 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    
+
 `
 // breadcrumb가 들어가는 부분
 const Header = styled.div`
@@ -18,20 +20,24 @@ const Header = styled.div`
 `
 // 회고 종류와 작성 창이 들어가는 부분
 const Body = styled.div`
-    height : 86%;
+    height : 95%;
     border : 5px solid gray;
-    border-radius : 25px;
-
+    border-bottom: none;
+    border-top-right-radius : 25px;
+    border-top-left-radius : 25px;
+    margin-bottom: -6%;
     /* height : 80%; */
     /* background-color : whitesmoke; */
 `
 // 취소, 다음이 들어가는 부분
 const Footer = styled.div`
     display : flex;
-    height : 6%;
+    height : 12%;
     /* border : 1px solid red; */
     align-items : center;
     justify-content : end;
+    background:rgba(white,0.8); 
+    backdrop-filter: blur(8px);
 `
 
 // Body 안에 들어가는 회고 작성칸을 감싸는 테두리
@@ -62,7 +68,7 @@ const RetroText = styled.textarea`
     border-radius : 15px;
 `
 const BtnLink = styled(Link)`
-    height : 100%;
+    height : 50%;
     width : 8%;
     font-size : 34px;
     border : 1px solid transparent;
@@ -135,4 +141,3 @@ function RetrospectWriteText() {
 }
 
 export default RetrospectWriteText;
-

@@ -98,37 +98,27 @@ const Header = styled.div`
     height : 5%;
 `
 const Body = styled.div`
-    /*
-    이부분 넘겨받을 때주의할 점
-    height값은 화면을 벗어나지 않는가?
-    header부분과의 마진은 몇퍼센트인가?
-    내부 패딩이라던가 요소 있는가?
-    flex설정은 어떻게 되었는가?
-    */
-    height : 86%;
-    border-radius : 25px;
-
-    /* background-color : whitesmoke; */
-
-    /*
-    여기는 용현이형과 다른 내가 필요한 css요소들
-    형한테 레이아웃 통째로 받아올 때 이부분은 확실히 고려해서 받아오자
-    */
     border: 5px dashed #E9E9E9;
-    border-radius: 36px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: top;
     overflow: auto;
     padding: 0 4%;
+    height : 95%;
+    border-bottom: none;
+    border-top-right-radius : 25px;
+    border-top-left-radius : 25px;
+    margin-bottom: -6%;
 `
 const Footer = styled.div`
     display : flex;
-    height : 6%;
+    height : 12%;
     /* border : 1px solid red; */
     align-items : center;
     justify-content : end;
+    background:rgba(255,255,255,0.8); 
+    backdrop-filter: blur(8px);
 `
 const Mother = styled.div`
     width: 100%;
@@ -213,9 +203,9 @@ const Eclipse = styled.div`
     margin-left: 2%;
 `
 const BtnLink = styled(Link)`
-    height : 100%;
-    width : 10%;
-    font-size : 40px;
+    height : 50%;
+    width : 8%;
+    font-size : 34px;
     border : 1px solid transparent;
     background-color : gainsboro;
     border-radius : 10px;
