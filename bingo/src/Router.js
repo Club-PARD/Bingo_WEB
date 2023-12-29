@@ -43,7 +43,9 @@ const Routers = () => {
                             <Route path='/RetrospectCreate' element={<RetrospectCreate />}/>
                             <Route path='/RetrospectList' element={<RetrospectList />}/>
                             <Route path='/RetrospectView' element={<RetrospectView />}/>
-                            <Route path='/RetrospectWrite' element={<RetrospectWrite />} />
+                            <Route path='/RetrospectWrite' element={<RetrospectWrite />}/>
+                            <Route path='/RetrospectWriteText' element={<RetrospectWriteText />}/>
+                            <Route path='/TeamEvaluation' element={<TeamEvaluation />}/>
                             <Route path='/RetrospectViewerPage' element={<RetrospectViewerPage/>}/>
                         </Route>
 
