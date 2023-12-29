@@ -88,15 +88,21 @@ function RetrospectView() {
 export default RetrospectView;
 
 const Whole =styled.div`
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
     width: 100%;
-    height: 100%;
+    height: 85vh;
+    overflow: hidden;
 `
 const Header = styled.div`
+    box-sizing: border-box;
+    height : 3.5%;
+    width: 90%;
     margin-left: 5%;
-    height : 5%;
+    margin-top: 1%;
 `
 const Body = styled.div`
     border: 5px dashed #E9E9E9;
@@ -115,14 +121,17 @@ const Body = styled.div`
 `
 const Footer = styled.div`
     display : flex;
-    height : 12%;
+    height : 10%;
     /* border : 1px solid red; */
-    width: 90%;
+    width: 96%;
     margin-left: 4%;
     align-items : center;
     justify-content : end;
     background:rgba(150,0.8); 
     backdrop-filter: blur(8px);
+    padding-right: 6%;
+    box-sizing: border-box;
+    background-color: aliceblue;
 `
 const Mother = styled.div`
     width: 100%;
