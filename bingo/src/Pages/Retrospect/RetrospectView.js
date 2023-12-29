@@ -95,6 +95,7 @@ const Whole =styled.div`
     height: 100%;
 `
 const Header = styled.div`
+    margin-left: 5%;
     height : 5%;
 `
 const Body = styled.div`
@@ -106,18 +107,21 @@ const Body = styled.div`
     overflow: auto;
     padding: 0 4%;
     height : 95%;
+    width: 75%;
     border-bottom: none;
     border-top-right-radius : 25px;
     border-top-left-radius : 25px;
-    margin-bottom: -6%;
+    margin: 0 10% -6% 5%;
 `
 const Footer = styled.div`
     display : flex;
     height : 12%;
     /* border : 1px solid red; */
+    width: 90%;
+    margin-left: 4%;
     align-items : center;
     justify-content : end;
-    background:rgba(255,255,255,0.8); 
+    background:rgba(150,0.8); 
     backdrop-filter: blur(8px);
 `
 const Mother = styled.div`
@@ -135,7 +139,7 @@ const StepDiv = styled.div`
 const StepInitial = styled.div`
     height: 100%;
     width: 5%;
-    font-size: 147px;
+    font-size: 110px;
     display: flex;
     justify-content: center;
     margin-top: 2%;
@@ -143,11 +147,11 @@ const StepInitial = styled.div`
 const StepFullWord = styled.div`
     height: 100%;
     width: 30%;
-    font-size: 147px;
+    font-size: 40px;
     display: flex;
     justify-content: left;
     align-items: end;
-    margin: 4% 0.2%;
+    margin:3% 1%;
     color: #737373;
     font-size: 52px;
 `
@@ -155,7 +159,7 @@ const StepFullWord = styled.div`
 const InnerDiv = styled.div`
     width: 100%;
     height: auto;
-    margin-top: 4%;
+    margin-top: 8%;
     display: flex;
     flex-direction: column;
 `
@@ -167,7 +171,7 @@ const QuestionDiv = styled.div`
     font-weight: 700;
 `
 const OuterAnswer = styled.div`
-    width: 100%;
+    width: 101%;
     height: 130%;
     display: flex;
     flex-direction: row;
@@ -197,19 +201,20 @@ const AnswerDate = styled.div`
 `
 const Eclipse = styled.div`
     width: 6%;
-    height: 66px;
+    height: 55px;
     background-color: #EAEAEA;
     border-radius: 50%;
     margin-left: 2%;
 `
 const BtnLink = styled(Link)`
-    height : 50%;
-    width : 8%;
+    height : 60%;
+    width : 11%;
     font-size : 34px;
+    font-weight: 400;
     border : 1px solid transparent;
     background-color : gainsboro;
     border-radius : 10px;
-    margin : 1%;
+    margin-right: 6%;
     text-decoration: none;
     align-items: center;
     display: flex;

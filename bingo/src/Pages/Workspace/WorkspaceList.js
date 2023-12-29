@@ -7,10 +7,6 @@ import { Img } from "../../Components/NormalComponents/Etc.js";
 import Modal from "react-modal";
 import { Input } from "../../Components/NormalComponents/Form.js";
 import { Label } from "../../Components/NormalComponents/Text.js";
-import WorkspaceCreate from "./WorkspaceCreate.js"
-import {useRecoilState} from "recoil";
-import { ProjectTitleState, ProjectDescState, ProjectSelectedFileState } from "../../Contexts/Atom.js";
-
 
 // 불러온 값 저장하기
 const WorkspaceData = [
@@ -42,6 +38,8 @@ const WorkspaceData = [
 ];
 
 const WorkspaceList =()=> {
+    const [titleEmpty, setTitleEmpty] = useState(false);
+    const [descEmpty, setDescEmpty] = useState(false);
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const openModal = () => {
         setModalIsOpen(true);
@@ -66,8 +64,9 @@ const WorkspaceList =()=> {
     const onButtonClick = () => {
         generateRandomValue();
         setModalIsOpen(false);
+        setTitleEmpty(false);
+        setDescEmpty(false);
     };
-
     const [title, setTitle] = useState('');
     const onChangeTitle = (event) => {
     setTitle(event.target.value);
@@ -202,7 +201,22 @@ const WorkspaceList =()=> {
                             color="black"
                             borderRadius="10px"
                             fontSize="28px"
-                            onClick={onButtonClick}
+                            onClick={() => {
+                                if (!title.trim() && !desc.trim()) {
+                                    alert('프로젝트 이름과 설명을 작성하세요');
+                                    setTitleEmpty(true);
+                                    setDescEmpty(true);
+                                } else if (!title.trim()) {
+                                    alert('프로젝트 이름을 작성하세요');
+                                    setTitleEmpty(true);
+                                } else if (!desc.trim()) {
+                                    alert('프로젝트 설명을 작성하세요');
+                                    setDescEmpty(true);
+                                } else {
+                                    onButtonClick();
+                                }
+                            }}
+                        
                         >완료</Button>
                     </Div>
                 
@@ -212,6 +226,7 @@ const WorkspaceList =()=> {
                             >프로젝트 배너 이미지</Div>
                             <Input
                                 type="file"
+                                
                                 style={{ display: "none" }}
                                 ref={fileInputRef}
                                 onChange={handleFileSelect}
@@ -229,6 +244,7 @@ const WorkspaceList =()=> {
                                 height="10vh"
                                 value={desc}
                                 onChange={onChangeIntroduce}
+                                style={descEmpty ? {border: '1px solid red'} : {}}
                                 />
                         </Div>
                         <Div flexDirection="column">
@@ -237,6 +253,7 @@ const WorkspaceList =()=> {
                                 height="5vh"
                                 value={title}
                                 onChange={onChangeTitle}
+                                style={titleEmpty ? {border: '1px solid red'} : {}}
                                 />
                         </Div>
                     </Div>
