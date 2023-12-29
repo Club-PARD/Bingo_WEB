@@ -4,6 +4,7 @@ import RetrospectInWorkspace from "./Components/RetrospectInWorkspace";
 import BingoBoard from "../../Preset/WorkspacePreset/BingoBoard";
 import styled from "styled-components";
 import {P} from "../../Components/NormalComponents/Text";
+import { Link } from "react-router-dom";
 
 // workspace에 들어오면 보이는 화면 아직 와이어 프레임 안나와서 정확한건 미정 빙고페이지로 이동 가능 회고생성페이지로 이동 가능
 // RetrospectInWorkspace component출력 회고결과 출력(이것도 디자인이 완성되고 백엔드가 연결되어야 가능하다)
@@ -32,7 +33,7 @@ function WorkspaceView() {
                 {/* Section2 : 회고 리스트 */}
                 <Section_Retrospect>
                     {/* Title : 회고 리스트 타이틀 */}
-                    <Section_Title>회고 리스트</Section_Title>
+                    <Section_Title>회고 리스트<Link to = "/RetrospectViewerPage">보러가기</Link></Section_Title>
                     {/* Content : 회고 리스트 */}
                     <Section_Retrospect_Content>
                         <RetrospectInWorkspace/>
