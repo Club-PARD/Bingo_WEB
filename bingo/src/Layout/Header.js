@@ -28,7 +28,7 @@ export default function Header() {
     );
 
     return (
-        <Div flexDirection="column" width="99%" margin="1% 1% 1% 0" height="96%">
+        <Div flexDirection="column" width="100%" height="95%">
             <HeaderLayout>
                 {/* 타이틀 / 설명 */}
                 <Title WorkspaceInfo={WorkspaceInfo}></Title>
@@ -104,11 +104,11 @@ const ScreenView = () => {
 // 워크스페이스 이름, 소개가 오는 부분
 const HeaderLayout = styled(Div)`
     width: 100%;
-    height: 15%;
+    height: 10%;
+    background-color: azure;
     /* background-color: gainsboro; */
     border-radius: 15px;
     align-items: center;
-    margin-bottom: 20px;
 `;
 
 //

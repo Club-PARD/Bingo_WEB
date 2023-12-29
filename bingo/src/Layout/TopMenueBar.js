@@ -6,8 +6,11 @@ function TopMenuBar(){
         <>
             <header>
                 <Header>
-                    <Menubar>
-                    </Menubar>
+                    <LeftSide>
+                        <LogoImg src="/img/TopMenuBar/Logo.png" width="100%" height="auto "/>
+                        <ProjectDiv>프로젝트</ProjectDiv>
+                    </LeftSide>
+                    <RightSide>로그아웃</RightSide>
                 </Header>
             </header>
             <main>
@@ -20,31 +23,47 @@ function TopMenuBar(){
 export default TopMenuBar;
 
 const Header = styled.div`
-    background-color: #FAFAFA;
     width: 100vw;
-    height: 0;
-    border-bottom: 1px solid;
-    border-color: #DBDBDB;
+    height: 5vh;
+    border-bottom: 1px solid #DBDBDB;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    background-color: antiquewhite;
-`;
-const Menubar = styled.div`
-    margin: 0 25vw;
-    width: 50vw;
-    height: 40%;
-    align-items: center;
+`
+//Topmenu의 왼쪽규격
+//로고와 프로젝트
+const LeftSide=styled.div`
+    box-sizing: border-box;
+    width: 10%;
+    height: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding-right: 0;
-
-    @media (min-width: 451px) and (max-width: 750px) {
-        margin: 0 30vw;
-        width: 40vw;
-    }
-    @media (max-width: 450px) {
-        margin: 0 20vw;
-        width: 60vw;
-    }
-`;
+    align-items: center;
+    margin-left: 3%;
+`
+//로고
+const LogoImg=styled.img`
+    width: 45%;
+    height: auto;
+`
+//프로젝트
+const ProjectDiv=styled.div`
+    color: #BBB;
+    text-align: center;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+`
+//Topmenu 오른쪽
+//로그아웃
+const RightSide=styled.div`
+    color: #000;
+    text-align: center;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-right: 5%;
+`
