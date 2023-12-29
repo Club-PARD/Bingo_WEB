@@ -69,19 +69,6 @@ const Btn = styled.button `
     margin : 1%;
 `
 
-const RetrospectData = [
-    {
-        name: "아이디에이션 할 때 유지할만한 점은 없었나요?",
-        desc: ""
-    }, {
-        name: "프로젝트를 하면서 유지할만한 점은 없었나요?",
-        desc: ""
-    }, {
-        name: "개발 과정에서 유지할만한 점은 없었나요?",
-        desc: ""
-    }
-];
-
 function RetrospectWriteText() {
 
     // Recoil 상태 사용
@@ -94,11 +81,6 @@ function RetrospectWriteText() {
 
     const handleNextClick = () => {
         history.push("/teamevaluation");
-    };
-
-    // questions 업데이트
-    const setAnswers = (e) => {
-        
     };
 
     return (
@@ -115,6 +97,7 @@ function RetrospectWriteText() {
                     retrospective
                         .questions
                         .map((data, index) => (
+                            data.title &&
                             <Border>
                                 <BorderInside>
                                     {/* 회고 종류와 풀네임 */}
@@ -126,16 +109,33 @@ function RetrospectWriteText() {
                                     {
                                         data
                                         .content
-                                        .map((retro, index) => (
+                                        .map((retro, index2) => (
                                         retro.dataQ && 
                                             <div>
                                                 <h2>{retro.dataQ}</h2>
-                                                <RetroText placeholder="답변을 입력하세요..." value ={retro.dataA} onChange={setAnswers}/>
+                                                <RetroText placeholder="답변을 입력하세요..." value={retro.dataA} onChange={
+                                                    (e) => {
+                                                        const updatedAnswers = {...retrospective};
+                                                        updatedAnswers.questions = [...updatedAnswers.questions]; // 깊은 복사
+                                                        updatedAnswers.questions[index] = {
+                                                            id: index + 1,
+                                                            content: [...(updatedAnswers.questions[index]?.content) || []],
+                                                        };
+                                                        updatedAnswers.questions[index].title = data.title;
+                                                        updatedAnswers.questions[index].content[index2] = {
+                                                            ...(updatedAnswers.questions[index]?.content[index2] || {}),
+                                                            dataA: e.target.value,
+                                                        }   
+                                                        setRetrospective(updatedAnswers);
+                                                        console.log(retrospective);
+                                                    }
+                                                } />
                                             </div>
                                         ))
                                     }
                                 </BorderInside>
-                            </Border>
+                                </Border>
+                            
                         ))
                 }
             </Body>
