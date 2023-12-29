@@ -1,6 +1,8 @@
 /* eslint-disable */
 import styled from "styled-components";
 import Breadcrumb from "../../../Layout/Breadcrumb";
+import { retrospectiveState } from "../../../Contexts/Atom";
+import { useRecoilState } from "recoil";
 // import RetroWrite from "./RetroWrite";
 
 // 전체를 감싸는 div, 이 아래에 Header / Body / Footer로 나뉘어 있음
@@ -84,6 +86,11 @@ const RetrospectData = [
 ];
 
 function RetrospectWriteText() {
+
+     // Recoil 상태 사용
+    const [retrospective, setRetrospective] = useRecoilState(retrospectiveState);
+    // alert(retrospective.questions.length);
+
     const handleCancelClick = () => {
         history.push("/teamevaluation");
     };
@@ -101,22 +108,26 @@ function RetrospectWriteText() {
             </Header>
             {/* 회고 작성 창 */}
             <Body>
-                <Border>
-                    <BorderInside>
-                        {/* 회고 종류와 풀네임 */}
-                        <RetroType>
-                            <RetroABC>K</RetroABC>
-                            <h1>Keep</h1>
-                        </RetroType>
-                        {/* RetrospectData의 각 항목에 대해 RetroWrite 컴포넌트를 렌더링 */}
-                        {RetrospectData.map((retro, index) => (
-                            <div>
-                                <h2>{retro.name}</h2>
-                                <RetroText placeholder="답변을 입력하세요..." />
-                            </div>
-                        ))}
-                    </BorderInside> 
-                </Border>
+                {
+                    retrospective.questions.map((data, index) => (
+                        <Border>
+                            <BorderInside>
+                                {/* 회고 종류와 풀네임 */}
+                                <RetroType>
+                                    <RetroABC>{retrospective.selectedWays[index]}</RetroABC>
+                                    <h1>{data.title}</h1>
+                                </RetroType>
+                                {/* RetrospectData의 각 항목에 대해 RetroWrite 컴포넌트를 렌더링 */}
+                                {retrospective.questions.map((retro, index) => (
+                                    <div>
+                                        <h2>{retro.content[0]}</h2>
+                                        <RetroText placeholder="답변을 입력하세요..." />
+                                    </div>
+                                ))}
+                            </BorderInside>
+                        </Border>
+                    ))
+                }
             </Body>
             {/* 취소 다음 버튼 */}
             <Footer>
