@@ -3,28 +3,25 @@ import {Button, Input} from "../../Components/NormalComponents/Form";
 import {CenterDiv, Div} from "../../Components/NormalComponents/Section";
 import {Label, P} from "../../Components/NormalComponents/Text";
 import {useNavigate} from "react-router-dom";
-import { useState } from "react";
 
 // Section1 영역
 export const Section1 = (e) => {
     const navigate = useNavigate();
 
-    const [isEmpty, setIsEmpty] = useState(false);
-    const [inputValue, setInputValue] = useState('');
+    // ... (이전 코드 생략)
 
     const handleNextButtonClick = () => {
-        if (inputValue === '') {
+        if (e.retrospectTitle === '') {
             alert("회고 타이틀을 입력하시오");
-            setIsEmpty(true);
         } else {
-            setIsEmpty(false);
-            navigate("/RetrospectCreate#section2");
+            // 필요한 데이터와 함께 Section2로 이동
+            navigate("/RetrospectCreate#section2", {
+                state: {
+                    retrospectTitle: e.retrospectTitle,
+                    SelectedWays: e.SelectedWays || '',
+                },
+            });
         }
-    };
-
-    const handleInputChange = (event) => {
-        setInputValue(event.target.value);
-        setIsEmpty(false);
     };
     return (
         <Div id="section1" style={Section_Style} backgroundColor="">
@@ -44,7 +41,7 @@ export const Section1 = (e) => {
                     <Input
                         style={InputStyle}
                         value={e.retrospectTitle}
-                        onChange={handleInputChange}></Input>
+                        onChange={(k) => e.setRetrospectiTitle(k.target.value)}></Input>
                 </Div>
 
                 {/* 템플릿 선택 Section */}
@@ -85,7 +82,11 @@ export const Section1 = (e) => {
                     <Div width="320px" backgroundColor="" justifyContent="space-between">
                         <StepButton onClick={e.onClick} targetLabel="취소"/>
 
-                        <StepButton onClick={handleNextButtonClick} targetLabel="다음"/>
+                        <StepButton
+                            targetPage={e.retrospectTitle ? "#section2" : ""}
+                            targetLabel="다음"
+                            onClick={handleNextButtonClick}
+                        />
                     </Div>
                 </Div>
             </Div>
