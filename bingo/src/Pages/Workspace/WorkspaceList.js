@@ -89,16 +89,16 @@ const WorkspaceList =()=> {
     return(
         <>
             {/* 상단바 부분 */}
-            <Div flexDirection="row" justifyContent="space-between" alignItems="center" height="20vh" width="90vw">
+            <Div flexDirection="row" justifyContent="space-between" alignItems="center" height="15vh" width="100vw">
                 {/* 빙고 로고, 현재 페이지 이름 표시 부분 */}
-                <Div  fontSize="120px" alignItems="center" backgroundColor="#D9D9D9" borderRadius="15px" margin="0 0 0 1%"> 
+                <Div  fontSize="120px" alignItems="center" borderRadius="15px" margin="0 0 0 1%"> 
                     {/* <Img src="/img/Home/logo.jpg" width={"10%"}/> */}
                     Bingo
                 </Div>
             </Div>
             {/*프로젝트 카드들의 나열, 해당 공간의 이름을 감싼 Div */}
-            <Div flexDirection="column" height="80vh" width="99%" margin="0 0 0 1%">
-                <Div height="4%" fontSize="20px" width="auto" borderRadius="15px" alignItems="center" >워크스페이스 리스트</Div>
+            <Div flexDirection="column" height="80vh" width="100%">
+                <Div margin="0 0 0 5%" height="4%" fontSize="20px" width="auto" borderRadius="15px" alignItems="center" >워크스페이스 리스트</Div>
                 {/* 워크스페이스 카드 부분 */}
                 
                 <Div
@@ -109,14 +109,16 @@ const WorkspaceList =()=> {
                     width="99%"
                     flexWrap="wrap"
                     overflow="auto"
+                    boxSizing="border-box"
+                    padding=" 0 0 0 3%"
                 >
                     {/*디자이너 요청으로 워크스페이스 생성버튼 옮김 */}
                     <Div 
                         flexDirection="column"
-                        margin="1% 1% 1% 0"
+                        margin="2% 0 0 2%"
                         border="1px solid transparent"
                         borderRadius="15px"
-                        width="23%"
+                        width="22%"
                         height="37.4%"
                         backgroundColor="#EDEDED"
                         onClick={openModal}
