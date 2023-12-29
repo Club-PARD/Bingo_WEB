@@ -97,19 +97,8 @@ function RetrospectWriteText() {
     };
 
     // questions 업데이트
-    const setAnswers = (newQuestions) => {
-        setRetrospective((prevRetrospective) => ({
-            ...prevRetrospective,
-            questions: newQuestions.map((question, index) => ({
-                ...question,
-                content: {
-                    ...question.content,
-                    dataA: newQuestions[index]
-                        ?.content
-                            ?.dataA || ''
-                }
-            }))
-        }));
+    const setAnswers = (e) => {
+        
     };
 
     return (
@@ -130,19 +119,20 @@ function RetrospectWriteText() {
                                 <BorderInside>
                                     {/* 회고 종류와 풀네임 */}
                                     <RetroType>
-                                        <RetroABC>{retrospective.selectedWays[index]}</RetroABC>
+                                        <RetroABC>{data.title[0]}</RetroABC>
                                         <h1>{data.title}</h1>
                                     </RetroType>
                                     {/* RetrospectData의 각 항목에 대해 RetroWrite 컴포넌트를 렌더링 */}
                                     {
                                         data
-                                            .content
-                                            .map((retro, index) => (
-                                                <div>
-                                                    <h2>{retro.dataQ}</h2>
-                                                    <RetroText placeholder="답변을 입력하세요..." value ={retro.dataA} onChange={setAnswers}/>
-                                                </div>
-                                            ))
+                                        .content
+                                        .map((retro, index) => (
+                                        retro.dataQ && 
+                                            <div>
+                                                <h2>{retro.dataQ}</h2>
+                                                <RetroText placeholder="답변을 입력하세요..." value ={retro.dataA} onChange={setAnswers}/>
+                                            </div>
+                                        ))
                                     }
                                 </BorderInside>
                             </Border>
