@@ -2,20 +2,19 @@ import { Outlet } from "react-router";
 import styled from "styled-components";
 
 function TopMenuBar(){
-  return(
-      <>
-          <header>
-              <Header>
-                  <Menubar>
-                  </Menubar>
-              </Header>
-          </header>
-          <main>
-              <Outlet />
-          </main>
-      </>
-      
-  )
+    return(
+        <>
+            <header>
+                <Header>
+                    <Menubar>
+                    </Menubar>
+                </Header>
+            </header>
+            <main>
+                <Outlet />
+            </main>
+        </>
+    );
 }
 
 export default TopMenuBar;
@@ -23,7 +22,7 @@ export default TopMenuBar;
 const Header = styled.div`
     background-color: #FAFAFA;
     width: 100vw;
-    height: 5vh;
+    height: 0;
     border-bottom: 1px solid;
     border-color: #DBDBDB;
     display: flex;

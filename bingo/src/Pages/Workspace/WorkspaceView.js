@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 // RetrospectInWorkspace component출력 회고결과 출력(이것도 디자인이 완성되고 백엔드가 연결되어야 가능하다)
 function WorkspaceView() {
     return (
-        <Div width="100%" height="100%">
+        <Div width="100%" height="100%" backgroundColor="red">
 
             {/* 보여지는 화면 구조 */}
             {/*Right Space width=1706px*/}
@@ -57,7 +57,8 @@ const Div_50per_100per = styled(Div)`
 // [컴포넌트] 빙고판 Section
 const Section_Bingo = styled(Div_50per_100per)`
     /* background-color: orange; */
-    padding-right: 100px;
+    width: 100%;
+    height: 100%;
     border-right: 1px solid black;
 `;
 
