@@ -3,6 +3,7 @@ import {Button, Input} from "../../Components/NormalComponents/Form";
 import {CenterDiv, Div} from "../../Components/NormalComponents/Section";
 import {Label, P} from "../../Components/NormalComponents/Text";
 import {useNavigate} from "react-router-dom";
+import { useState } from "react";
 
 // Section1 영역
 export const Section1 = (e) => {
@@ -203,21 +204,15 @@ const handleMakeThreeSection = (way, labels, questions, setQuestions) => (
                 {/* 질문 모음 */}
                 <Div flexDirection="column" height="auto" justifyContent="space-around">
                     {Array.from({ length: 3 }).map((_, contentIndex) => (
+                        console.log(questions[index].content.length),
                         <Input
                             type="text"
                             placeholder={`질문 ${contentIndex + 1}을 입력해주세요.`}
                             style={InputStyle}
                             width="100%"
-                            value={questions[index]?.content[contentIndex] || ''}
+                            value={questions[index]?.content[contentIndex]?.dataQ || ''}
                             onChange={(e) => {
-                                const updatedQuestions = [...questions];
-                                updatedQuestions[index] = {
-                                    id: index + 1,
-                                    content: [...(updatedQuestions[index]?.content || [])],
-                                };
-                                updatedQuestions[index].title = label;
-                                updatedQuestions[index].content[contentIndex] = e.target.value;
-                                setQuestions(updatedQuestions);
+                                
                             }}
                         />
                     ))}

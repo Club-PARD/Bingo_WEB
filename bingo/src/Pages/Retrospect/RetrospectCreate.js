@@ -30,7 +30,15 @@ export default function RetrospectCreate() {
     const setQuestions = (newQuestions) => {
         setRetrospective((prevRetrospective) => ({
             ...prevRetrospective,
-            questions: newQuestions
+            questions: newQuestions.map((question, index) => ({
+                ...question,
+                content: {
+                    ...question.content,
+                    dataQ: newQuestions[index]
+                        ?.content
+                            ?.dataQ || ''
+                }
+            }))
         }));
     };
 
