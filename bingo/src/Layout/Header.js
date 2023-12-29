@@ -90,7 +90,7 @@ const ScreenView = () => {
             style={{
                 height: "85%",
                 width: "100%",
-                // backgroundColor: "gainsboro",
+                //backgroundColor: "gainsboro",
                 boxSizing: "border-box"
             }}>
             <Outlet/>

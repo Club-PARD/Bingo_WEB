@@ -10,24 +10,29 @@ import { useState } from "react";
 
 // 전체를 감싸는 div, 이 아래에 Header / Body / Footer로 나뉘어 있음
 const Whole = styled.div`
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    height: 100%;`
+    height: 85vh;
+    overflow: hidden;
+`
 // breadcrumb가 들어가는 부분
 const Header = styled.div`
+    box-sizing: border-box;
     height : 3.5%;
-    width: 100%;
-    margin-left: 10%;
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 1%;
 `
 // 회고 종류와 작성 창이 들어가는 부분
 const Body = styled.div`
+    box-sizing: border-box;
     width: 100%;
     height : 96.5%;
     margin-bottom: -7%;
-    
     /* height : 80%; */
     /* background-color : whitesmoke; */
 `
@@ -36,7 +41,7 @@ const Footer = styled.div`
     display : flex;
     height : 10%;
     /* border : 1px solid red; */
-    width: 100%;
+    width: 96%;
     margin-left: 4%;
     align-items : center;
     justify-content : end;
@@ -44,10 +49,13 @@ const Footer = styled.div`
     backdrop-filter: blur(8px);
     padding-right: 10%;
     box-sizing: border-box;
+    background-color: aliceblue;
+
 `
 
 // Body 안에 들어가는 회고 작성칸을 감싸는 테두리
 const Border = styled.div`
+    box-sizing: border-box;
     border : 5px solid gray;
     height : 100%;
     background-color : white;
@@ -58,14 +66,17 @@ const Border = styled.div`
     overflow: auto;
 `
 const BorderInside = styled.div`
+    box-sizing: border-box;
     padding : 1%;
 `
 const RetroType = styled.div`
+    box-sizing: border-box;
     display : flex;
     flex-direction : row;
     align-items : end;
 `
 const RetroABC = styled.div`
+    box-sizing: border-box;
     /* font-weight : bold; */
     font-size : 100px;
     padding-right : 1%;
