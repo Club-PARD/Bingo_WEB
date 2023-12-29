@@ -1,5 +1,6 @@
 import { Outlet } from "react-router";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 function TopMenuBar(){
     return(
@@ -8,9 +9,9 @@ function TopMenuBar(){
                 <Header>
                     <LeftSide>
                         <LogoImg src="/img/TopMenuBar/Logo.png" width="100%" height="auto "/>
-                        <ProjectDiv>프로젝트</ProjectDiv>
+                        <ProjectDLink to="/WorkspaceList">프로젝트</ProjectDLink>
                     </LeftSide>
-                    <RightSide>로그아웃</RightSide>
+                    <LogoutLink to="/">로그아웃</LogoutLink>
                 </Header>
             </header>
             <main>
@@ -48,17 +49,17 @@ const LogoImg=styled.img`
     height: auto;
 `
 //프로젝트
-const ProjectDiv=styled.div`
+const ProjectDLink=styled(Link)`
     color: #BBB;
     text-align: center;
     font-size: 16px;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+    text-decoration: none;
 `
-//Topmenu 오른쪽
 //로그아웃
-const RightSide=styled.div`
+const LogoutLink=styled(Link)`
     color: #000;
     text-align: center;
     font-size: 16px;
@@ -66,4 +67,5 @@ const RightSide=styled.div`
     font-weight: 700;
     line-height: normal;
     margin-right: 5%;
+    text-decoration: none;
 `

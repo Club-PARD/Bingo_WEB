@@ -24,7 +24,7 @@ export default function Header() {
 
     // 워크스페이스 정보 저장 변수
     const [WorkspaceInfo, setWorkspaceInfo] = useState(
-        {title: '강아지들 다 모여', description: '여기는 강사모야. 강아지들을 사랑하는 모임'}
+        {title: '강아지들 다 모여라', description: '여기는 강사모야. 강아지들을 사랑하는 모임'}
     );
 
     return (
@@ -48,14 +48,14 @@ export default function Header() {
 // 타이틀 컴포넌트
 const Title = (e) => {
     return (
-        <Div width="90%" alignItems="end">
+        <Div alignItems="end" width="auto">
             {/* 타이틀 */}
-            <Div margin="0px 20px 0px 20px">
-                <P fontSize="80px" fontWeight="bold">{e.WorkspaceInfo.title}</P>
+            <Div width="auto">
+                <P fontSize="80px" fontWeight="400">{e.WorkspaceInfo.title}</P>
             </Div>
             {/* 설명 */}
-            <Div margin="0px 20px 5px 0px">
-                <P fontSize="24px">{e.WorkspaceInfo.description}</P>
+            <Div width="auto">
+                <P fontSize="24px" margin="0 0 1% 0">{e.WorkspaceInfo.description}</P>
             </Div>
         </Div>
     );
@@ -71,8 +71,8 @@ const InviteMember = (e) => {
         <>
             {
                 // 현재 URL이 WOrkspaceView인 경우에만 show, 그렇지 않은 경우에는 hideen
-                currentURL === '/WorkspaceView' && <CenterDiv margin="0px 0px 5px 0px" width="10%">
-                        <Button width="100px" height="40px" borderRadius="15px" onClick={e.openModal1}>
+                currentURL === '/WorkspaceView' && <CenterDiv width="9%" margin="3% 0 0 0">
+                        <Button width="100px" height="30px" borderRadius="15px" onClick={e.openModal1}>
                             <P fontSize="15px" fontWeight="bold">팀원 초대하기</P>
                         </Button>
                     </CenterDiv>
@@ -91,8 +91,6 @@ const ScreenView = () => {
                 height: "85%",
                 width: "100%",
                 // backgroundColor: "gainsboro",
-                borderRadius: "15px",
-                padding: "20px",
                 boxSizing: "border-box"
             }}>
             <Outlet/>
@@ -102,10 +100,12 @@ const ScreenView = () => {
 
 // [스타일] Header 영역
 // 워크스페이스 이름, 소개가 오는 부분
-const HeaderLayout = styled(Div)`
+const HeaderLayout = styled.div`
     width: 100%;
     height: 10%;
-    background-color: azure;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
     /* background-color: gainsboro; */
     border-radius: 15px;
     align-items: center;
