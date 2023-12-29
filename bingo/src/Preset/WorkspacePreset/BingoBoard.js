@@ -33,8 +33,8 @@ function BingoBoard() {
       {chipData.map((item, index) => (
         <Div
           key={item.label}            
-            width="30%"
-            height="30%"
+            width="calc(90%/3)"
+            height="calc(90%/3)"
             display="flex"
             justifyContent="center"
             alignItems="center"
