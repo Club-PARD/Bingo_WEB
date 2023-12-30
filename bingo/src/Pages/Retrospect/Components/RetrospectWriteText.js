@@ -9,11 +9,18 @@ import { useState } from "react";
 // import RetroWrite from "./RetroWrite"; 전체를 감싸는 div, 이 아래에 Header / Body /
 // Footer로 나뉘어 있음
 const Whole = styled.div `
-    min-height: 100%;
-    height : auto;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 85vh;
+    overflow: hidden;
 `
 // breadcrumb가 들어가는 부분
 const Header = styled.div `
+    box-sizing: border-box;
     height : 3.5%;
     width: 90%;
     margin-left: 5%;
@@ -21,7 +28,11 @@ const Header = styled.div `
 `
 // 회고 종류와 작성 창이 들어가는 부분
 const Body = styled.div `
-    min-height : 80%;
+    box-sizing: border-box;
+    width: 100%;
+    height : 96.5%;
+    margin-bottom: -7%;
+    overflow: auto;
     /* height : 80%; */
     /* background-color : whitesmoke; */
 `
@@ -42,24 +53,25 @@ const Footer = styled.div `
 
 // Body 안에 들어가는 회고 작성칸을 감싸는 테두리
 const Border = styled.div `
+    box-sizing: border-box;
     border : 5px solid gray;
-    height : 100%;
+    height : auto;
     background-color : white;
-    border-bottom: none;
-    border-top-right-radius : 25px;
-    border-top-left-radius : 25px;
-    margin: 0 10% 0 5%;
-    overflow: auto;
+    border-radius : 25px;
+    margin: 0 10% 3% 5%;
 `
 const BorderInside = styled.div `
+    box-sizing: border-box;
     padding : 1%;
 `
 const RetroType = styled.div `
+    box-sizing: border-box;
     display : flex;
     flex-direction : row;
     align-items : end;
 `
 const RetroABC = styled.div `
+    box-sizing: border-box;
     /* font-weight : bold; */
     font-size : 100px;
     padding-right : 1%;
@@ -75,9 +87,10 @@ const RetroText = styled.textarea `
 
 // Footer 안에 들어갈 버튼들의 Preset
 const Btn = styled.button `
-    height : 100%;
-    width : 6.5%;
-    font-size : 40px;
+    height : 60%;
+    width : 10%;
+    font-size : 34px;
+    font-weight: 400;
     border : 1px solid transparent;
     background-color : gainsboro;
     border-radius : 10px;
@@ -86,6 +99,7 @@ const Btn = styled.button `
     display: flex;
     justify-content: center;
     color: #000;
+    text-decoration: none;
 `
 
 function RetrospectWriteText() {
