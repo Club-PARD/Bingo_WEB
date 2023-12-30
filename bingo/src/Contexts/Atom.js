@@ -94,6 +94,12 @@ export const retrospectiveState = atom({
             }, {
                 title: '',
                 content: []
+            }, {
+                title: '',
+                content: []
+            }, {
+                title: '',
+                content: []
             }
         ] // 각 섹션의 질문 내용
     }
