@@ -7,46 +7,50 @@ import { Img } from "../../Components/NormalComponents/Etc.js";
 import Modal from "react-modal";
 import { Input } from "../../Components/NormalComponents/Form.js";
 import { Label } from "../../Components/NormalComponents/Text.js";
+import { WorkspaceData } from "../../Contexts/Atom.js";
+import { useRecoilState } from "recoil";
 
 // 불러온 값 저장하기
+/*
 const WorkspaceData = [
     {
         name : "개발팀 회고",
         desc : "23-4 롱커톤 3!4!",
         picture: "/img/Login/img4.png",
-        code : "a1a2a3a"
+        code : ""
     },
     {
         name : "공설입 회고",
         desc : "공학설계입문 2분반 1조",
         picture: " ",
-        code : "b1b2b3b"
+        code : ""
     },
     {
         name : "SLESLE 2023",
         desc : "23-2 슬기짜기 임원단",
         picture: " ",
-        code : "c1c2c3c"
+        code : ""
     },
     {
         name : "맹맹맹",
         desc : "맹구 마지막 우승",
         picture: " ",
-        code : "d1d2d3d"
+        code : ""
     },
     {
         name : "멍멍멍",
         desc : "북런던 강아지",
         picture: " ",
-        code : "e1e2e3e"
+        code : ""
     },
 ];
+*/
 
 const WorkspaceList =()=> {
     const [titleEmpty, setTitleEmpty] = useState(false);
     const [descEmpty, setDescEmpty] = useState(false);
     const [modalIsOpen, setModalIsOpen] = useState(false);
-    const [workspaceData, setWorkspaceData] = useState(WorkspaceData);
+    const [workspaceData, setWorkspaceData] = useRecoilState(WorkspaceData);
     const openModal = () => {
         setModalIsOpen(true);
         // Modal이 열릴 때 상태 초기화
@@ -66,12 +70,14 @@ const WorkspaceList =()=> {
             const randomIndex = Math.floor(Math.random() * characters.length);
             randomValue += characters.charAt(randomIndex);
         }
-        
         console.log(randomValue);
         
+        return randomValue;
     };
+
     const onButtonClick = () => {
-        generateRandomValue();
+        const randomCode = generateRandomValue();
+        console.log(randomCode);
         setModalIsOpen(false);
         setTitleEmpty(false);
         setDescEmpty(false);
@@ -80,7 +86,8 @@ const WorkspaceList =()=> {
         const newWorkspace = {
             name: title,
             desc: desc,
-            picture: selectedFile ? selectedFile.name : "", // 이미지 파일명 저장 (선택된 파일이 없으면 빈 문자열)
+            picture: selectedFile ? selectedFile.name : "", // 이미지 파일명 저장 (선택된 파일이 없으면 빈 문자열),
+            code: randomCode
         };
 
         // 기존 WorkspaceData 배열에 새로운 워크스페이스 데이터 추가
@@ -108,7 +115,7 @@ const WorkspaceList =()=> {
     return(
         <Div display="flex" flexDirection="column" height="85vh" width="100vw" overflow="hidden">
             {/* 상단바 부분 */}
-            <Div flexDirection="row" justifyContent="space-between" alignItems="center" height="15%" width="100vw" backgroundColor="red">
+            <Div flexDirection="row" justifyContent="space-between" alignItems="center" height="15%" width="100vw">
                 {/* 빙고 로고, 현재 페이지 이름 표시 부분 */}
                 <Div  fontSize="120px" alignItems="center" borderRadius="15px" margin="0 0 0 1%"> 
                     {/* <Img src="/img/Home/logo.jpg" width={"10%"}/> */}
@@ -149,12 +156,13 @@ const WorkspaceList =()=> {
                         <Img width="20%" height="auto" src="/Img/WorkspaceView/ph_plus-bold.png"/>
                     </Div>
                     {/* 현재는 더미값이지만 장기적으로는 워크스페이스 데이터 기반으로 카드 출력  */}
-                    {workspaceData.slice().reverse().map((workspace, index) => (
+                    {workspaceData.length > 0 &&workspaceData.slice().reverse().map((workspace, index) => (
                         <WorkspaceCard
                             key={index}
                             name={workspace.name}
                             desc={workspace.desc}
                             picture={workspace.picture}
+                            code={workspace.code}
                             period={workspace.period}
                         />
                     ))}
