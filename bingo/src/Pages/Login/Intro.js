@@ -13,23 +13,26 @@ const Introwhole = styled.div`
   height : 100vh;
   background-image: url("/img/IntroBackground.jpeg");
   background-size: cover;
+  padding-top: 7%;
   box-sizing: border-box;
 `;
 
-const LoginDiv = styled.div `
-  position : absolute;
-  height: 5%;
+const LoginDiv = styled.div ` 
+  height: 7%;
   width: 100%;
-  top : 0vh;
-  left : 90vw;
-  font-size : 200px;
+  display: flex;
+  justify-content: end;
+  background-color: aliceblue;
 `;
 
 const LoginBtn = styled.button `
-  border-radius: 25px;
+  width: 6%;
+  height: 100%;
+  font-size: 24px;
+  border-radius: 30px;
   border: 1px solid transparent;
   background-color: gainsboro;
-  padding: 1%;
+  margin-right: 3%;
 `;
 
 const MainDiv = styled.div `
@@ -42,7 +45,7 @@ const Intro = () => {
     return (
       <Introwhole>
         <LoginDiv>
-          <LoginBtn onClick={() => (window.location.href = "/Login")}>Login</LoginBtn>
+          <LoginBtn onClick={() => (window.location.href = "/Login")}>로그인</LoginBtn>
         </LoginDiv>
       </Introwhole>
     );
