@@ -3,7 +3,7 @@ import styled from "styled-components";
 import {useState, useEffect} from "react";
 import {useRecoilState} from "recoil";
 import {retrospectiveState} from "../../Contexts/Atom";
-import { Link } from "@mui/material";
+import { Link } from "react-router-dom";
 
 function RetrospectView() {
 
@@ -100,8 +100,10 @@ const Whole = styled.div `
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
     width: 100%;
-    height: 100%;
+    height: 85vh;
+    overflow: hidden;
 `
 const Header = styled.div `
     height : 3.5%;
@@ -139,14 +141,16 @@ const Body = styled.div `
 `
 const Footer = styled.div`
     display : flex;
-    height : 12%;
+    height : 10%;
     /* border : 1px solid red; */
-    width: 90%;
+    width: 96%;
     margin-left: 4%;
     align-items : center;
     justify-content : end;
     background:rgba(150,0.8); 
     backdrop-filter: blur(8px);
+    padding-right: 6%;
+    box-sizing: border-box;
 `
 const Mother = styled.div `
     width: 100%;

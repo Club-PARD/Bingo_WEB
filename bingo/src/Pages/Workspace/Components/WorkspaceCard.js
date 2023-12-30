@@ -7,9 +7,9 @@ import styled from "styled-components";
 const WorkspaceCard = ({ name, desc, picture, period }) => (
     <Div 
         flexDirection= "column"
-        margin="1% 1% 1% 0"
+        margin="2% 0 0 2%"
         borderRadius= "15px"
-        width= "23%"
+        width= "22%"
         height= "37.4%"
         backgroundColor= "#EDEDED"
     >
