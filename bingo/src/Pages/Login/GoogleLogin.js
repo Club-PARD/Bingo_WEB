@@ -1,7 +1,7 @@
 import React from "react";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
-import { login } from "../../Api/AuthApi";
+import { getUserData, login } from "../../Api/AuthApi";
 import { jwtDecode } from 'jwt-decode';
 
 const LoginDummy = [
@@ -34,11 +34,13 @@ const GoogleLoginButton = () => {
                         });
                         // 성공이라고 콘솔에 남기기
                         console.log("로그인 성공!");
-                        // console.log(LoginDummy);
                         console.log("decode token : ", decodedToken);
+                        // 받아온 토큰 값을 기반으로 로그인 API 호출
                         login(decodedToken);
-                        // api로 정보 넘겨주기
-                        // 페이지 이동
+
+                        // 유저 데이터 받아오는 API - 테스트 중
+                        // getUserData();
+
                         navigate("/WorkspaceList");
                     }}
                     onError={() => {

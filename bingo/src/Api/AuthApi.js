@@ -11,7 +11,7 @@ export const login = async (decodedToken) => {
   // console.log('받아온 값 ', data);
   try {
     const response = await axios.post(
-      `http://172.30.1.34:8080/api/v1/auth/signIn`, data
+      `http://172.17.188.80:8080/api/v1/auth/signIn`, data
     );
     console.log("로그인 성공!");
     console.log(response.data);
@@ -24,3 +24,22 @@ export const login = async (decodedToken) => {
   }
 };
 
+// 로그아웃 API
+
+// 사용자 정보를 가져오는 API
+export const getUserData = async () => {
+  try {
+    const response = await axios.get(
+      `http://172.30.1.34:8080/api/v1/appuser/7`,
+    );
+    
+    console.log(response.data);
+    return response.data;
+  } 
+  catch (error) {
+    window.location.href = '/login';
+    alert("로그인이 필요합니다.");
+    // console.error("Error in getInquiries:", error);
+    throw error;
+  }
+}
