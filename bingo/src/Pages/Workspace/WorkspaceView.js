@@ -70,7 +70,6 @@ const Section_Bingo_Content = styled(Div)`
     width: 90%;
     height : 90%;
     margin: 0 5%;
-    background-color: #444;
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-content: space-evenly;

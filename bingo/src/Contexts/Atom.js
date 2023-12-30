@@ -20,7 +20,7 @@ export const ChipData = atom({
         {
             key: 0,
             label: '존중하는',
-            flag: false
+            flag: true
         }, {
             key: 1,
             label: '열정적인',
@@ -28,7 +28,7 @@ export const ChipData = atom({
         }, {
             key: 2,
             label: '도전적인',
-            flag: false
+            flag: true
         }, {
             key: 3,
             label: '의사소통이 잘 되는',
@@ -36,7 +36,7 @@ export const ChipData = atom({
         }, {
             key: 4,
             label: '성실한',
-            flag: false
+            flag: true
         }, {
             key: 5,
             label: '인내심있는',
@@ -44,7 +44,7 @@ export const ChipData = atom({
         }, {
             key: 6,
             label: '화목한',
-            flag: false
+            flag: true
         }, {
             key: 7,
             label: '분위기 좋은',
@@ -52,7 +52,7 @@ export const ChipData = atom({
         }, {
             key: 8,
             label: '칭찬하는',
-            flag: false
+            flag: true
         }
     ]
 });
