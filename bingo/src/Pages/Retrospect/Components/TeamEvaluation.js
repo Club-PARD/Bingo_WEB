@@ -2,59 +2,78 @@
 import styled from "styled-components";
 import Breadcrumb from "../../../Layout/Breadcrumb";
 import Chips from "./Chips";
+import { Link } from "react-router-dom";
 
 // 전체를 감싸는 div, 이 아래에 Header / Body / Footer로 나뉘어 있음
 const Whole = styled.div`
-    min-height: 100%;
-    height : auto;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 85vh;
+    overflow: hidden;
 `
 // breadcrumb가 들어가는 부분
 const Header = styled.div`
+    box-sizing: border-box;
     height : 3.5%;
-    border : 1px solid red;
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 1%;
 `
 // 회고 종류와 작성 창이 들어가는 부분
 const Body = styled.div`
-    min-height : 80%;
-    /* height : 80%; */
-    border : 1px solid blue;
-    /* background-color : whitesmoke; */
+    height : 86%;
+    overflow: auto;
+    border-radius : 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
 `
 // 취소, 다음이 들어가는 부분
 const Footer = styled.div`
     display : flex;
-    height : 15%;
+    height : 10%;
     /* border : 1px solid red; */
-    align-items : end;
+    width: 96%;
+    margin-left: 4%;
+    align-items : center;
     justify-content : end;
+    background:rgba(150,0.8); 
+    backdrop-filter: blur(8px);
+    padding-right: 10%;
+    box-sizing: border-box;
+
 `
 const Title = styled.div`
+    box-sizing: border-box;
     display : flex;
     justify-content : center;
     align-items : center;
     font-size : 50px;
 `
 const ChipDiv = styled.div`
-
 `
 // Footer 안에 들어갈 버튼들의 Preset
-const Btn = styled.button`
-    height : 100%;
-    width : 6.5%;
-    font-size : 40px;
+const BtnLink = styled(Link)`
+    height : 60%;
+    width : 10%;
+    font-size : 34px;
+    font-weight: 400;
     border : 1px solid transparent;
     background-color : gainsboro;
-    border-radius : 15px;
-    margin : 1%;
+    border-radius : 10px;
+    margin-right: 2%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    color: #000;
+    text-decoration: none;
 `
 
-function TeamEvaluation() {
-    const handlePrevClick = () => {
-        history.push("/teamevaluation");
-    };
-    const handleCompleteClick = () => {
-        history.push("/teamevaluation");
-    };
+function TeamEvaluation() {    
     return(
         <Whole>
             {/* 상단바 */}
@@ -71,12 +90,12 @@ function TeamEvaluation() {
             </Body>
             {/* 취소 다음 버튼 */}
             <Footer>
-                <Btn onClick={handlePrevClick}>
+                <BtnLink to="/RetrospectWriteText">
                     이전
-                </Btn>
-                <Btn onClick={handleCompleteClick}>
+                </BtnLink>
+                <BtnLink to="/WorkspaceView">
                     완료
-                </Btn>
+                </BtnLink>
             </Footer>
         </Whole>
     );

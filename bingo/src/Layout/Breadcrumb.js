@@ -17,26 +17,26 @@ export default function Breadcrumb({ activeKey }) {
     // 1인 경우 (회고 작성 페이지)
     if (activeKey === 1) {
       breadcrumbs = [
-        <Typography key="1" color="text.primary" style={{ fontSize: '30px', fontWeight: 'bolder' }}>
+        <Typography key="1" color="text.primary" style={{ fontSize: '24px', fontWeight: 'bolder' }}>
             회고 작성
         </Typography>,
-        <Link underline="hover" key="2" color="inherit" href="/" onClick={handleClick} style={{ fontSize: '30px' }}>
+        <Link underline="hover" key="2" color="inherit" href="/" onClick={handleClick} style={{ fontSize: '24px' }}>
             팀 이벨류에이션
         </Link>,
-        <Link underline="hover" key="3" color="inherit" onClick={() => (window.location.href = "/workspaceView", handleClick)} style={{ fontSize: '30px' }}>
+        <Link underline="hover" key="3" color="inherit" onClick={() => (window.location.href = "/workspaceView", handleClick)} style={{ fontSize: '24px' }}>
             회고 조회
         </Link>,
       ];
       // 2인 경우 (회고 팀 이벨류에이션 페이지)
     } else if (activeKey === 2) {
         breadcrumbs = [
-            <Link underline="hover" key="1" color="inherit" href="/" onClick={handleClick} style={{ fontSize: '30px' }}>
+            <Link underline="hover" key="1" color="inherit" href="/" onClick={handleClick} style={{ fontSize: '24px' }}>
                 회고 조회
             </Link>,
-            <Typography key="2" color="text.primary" style={{ fontSize: '30px', fontWeight: 'bolder' }}>
+            <Typography key="2" color="text.primary" style={{ fontSize: '24px', fontWeight: 'bolder' }}>
                 팀 이벨류에이션
             </Typography>,
-            <Link underline="hover" key="3" color="inherit" onClick={() => (window.location.href = "/workspaceView", handleClick)} style={{ fontSize: '30px' }}>
+            <Link underline="hover" key="3" color="inherit" onClick={() => (window.location.href = "/workspaceView", handleClick)} style={{ fontSize: '24px' }}>
                 회고 조회
             </Link>,
           ];
@@ -44,13 +44,13 @@ export default function Breadcrumb({ activeKey }) {
           // 1인 경우 (회고 조회 페이지)
     } else if (activeKey === 3) {
         breadcrumbs = [
-            <Link underline="hover" key="1" color="inherit" href="/" onClick={handleClick} style={{ fontSize: '30px' }}>
+            <Link underline="hover" key="1" color="inherit" href="/" onClick={handleClick} style={{ fontSize: '24px' }}>
                 회고 작성
             </Link>,
-            <Link underline="hover" key="2" color="inherit" href="/material-ui/getting-started/installation/" onClick={handleClick} style={{ fontSize: '30px' }}>
+            <Link underline="hover" key="2" color="inherit" href="/material-ui/getting-started/installation/" onClick={handleClick} style={{ fontSize: '24px' }}>
                 팀 이벨류에이션
             </Link>,
-            <Typography key="3" color="text.primary" style={{ fontSize: '30px', fontWeight: 'bolder' }}>
+            <Typography key="3" color="text.primary" style={{ fontSize: '24px', fontWeight: 'bolder' }}>
                 회고 조회
             </Typography>,
           ];

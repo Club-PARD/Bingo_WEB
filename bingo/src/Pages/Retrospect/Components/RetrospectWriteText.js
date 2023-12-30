@@ -1,54 +1,82 @@
 /* eslint-disable */
 import styled from "styled-components";
 import Breadcrumb from "../../../Layout/Breadcrumb";
-// import RetroWrite from "./RetroWrite";
+import {retrospectiveState} from "../../../Contexts/Atom";
+import { useRecoilState } from "recoil";
+import {useNavigate} from 'react-router'
+import { useState } from "react";
 
-// 전체를 감싸는 div, 이 아래에 Header / Body / Footer로 나뉘어 있음
-const Whole = styled.div`
-    min-height: 100%;
-    height : auto;
+// import RetroWrite from "./RetroWrite"; 전체를 감싸는 div, 이 아래에 Header / Body /
+// Footer로 나뉘어 있음
+const Whole = styled.div `
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 85vh;
+    overflow: hidden;
 `
 // breadcrumb가 들어가는 부분
-const Header = styled.div`
+const Header = styled.div `
+    box-sizing: border-box;
     height : 3.5%;
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 1%;
 `
 // 회고 종류와 작성 창이 들어가는 부분
-const Body = styled.div`
-    min-height : 80%;
+const Body = styled.div `
+    box-sizing: border-box;
+    width: 100%;
+    height : 96.5%;
+    margin-bottom: -7%;
+    overflow: auto;
     /* height : 80%; */
     /* background-color : whitesmoke; */
 `
 // 취소, 다음이 들어가는 부분
-const Footer = styled.div`
+const Footer = styled.div `
     display : flex;
-    height : 15%;
+    height : 10%;
     /* border : 1px solid red; */
-    align-items : end;
+    width: 96%;
+    margin-left: 4%;
+    align-items : center;
     justify-content : end;
+    background:rgba(150,0.8); 
+    backdrop-filter: blur(8px);
+    padding-right: 10%;
+    box-sizing: border-box;
 `
 
 // Body 안에 들어가는 회고 작성칸을 감싸는 테두리
-const Border = styled.div`
+const Border = styled.div `
+    box-sizing: border-box;
     border : 5px solid gray;
-    border-radius : 25px;
-    margin : 1%;
-    height : 100%;
+    height : auto;
     background-color : white;
+    border-radius : 25px;
+    margin: 0 10% 3% 5%;
 `
-const BorderInside = styled.div`
+const BorderInside = styled.div `
+    box-sizing: border-box;
     padding : 1%;
 `
-const RetroType = styled.div`
+const RetroType = styled.div `
+    box-sizing: border-box;
     display : flex;
     flex-direction : row;
     align-items : end;
 `
-const RetroABC = styled.div`
+const RetroABC = styled.div `
+    box-sizing: border-box;
     /* font-weight : bold; */
     font-size : 100px;
     padding-right : 1%;
 `
-const RetroText = styled.textarea`
+const RetroText = styled.textarea `
     border : 1px solid transparent;
     background-color : gainsboro;
     width : 90%;
@@ -57,39 +85,59 @@ const RetroText = styled.textarea`
     border-radius : 15px;
 `
 
-// Footer 안에 들어갈 버튼들의 Preset
-const Btn = styled.button`
-    height : 100%;
-    width : 6.5%;
-    font-size : 40px;
+// Footer 안에 들어갈 버튼들의 Preset이다
+const Btn = styled.button `
+    height : 60%;
+    width : 10%;
+    font-size : 34px;
+    font-weight: 400;
     border : 1px solid transparent;
     background-color : gainsboro;
-    border-radius : 15px;
-    margin : 1%;
+    border-radius : 10px;
+    margin-right: 2%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    color: #000;
+    text-decoration: none;
 `
 
-const RetrospectData = [
-    {
-        name : "아이디에이션 할 때 유지할만한 점은 없었나요?",
-        desc : "",
-    },
-    {
-        name : "프로젝트를 하면서 유지할만한 점은 없었나요?",
-        desc : "",
-    },
-    {
-        name : "개발 과정에서 유지할만한 점은 없었나요?",
-        desc : "",
-    },
-];
-
 function RetrospectWriteText() {
+
+    // Recoil 상태 사용
+    const [retrospective, setRetrospective] = useRecoilState(retrospectiveState);
+    const navigate = useNavigate();
+    const [isEmpty, setIsEmpty] = useState(false);
+
     const handleCancelClick = () => {
-        history.push("/teamevaluation");
+        navigate("/WorkspaceView");
     };
+    
+    /*
+    const handleNextClick = () => {
+        navigate("/teamevaluation");
+    };
+    */
 
     const handleNextClick = () => {
-        history.push("/teamevaluation");
+        const textAreas = document.querySelectorAll('textarea');
+        let emptyTextAreaIndex = -1;
+    
+        textAreas.forEach((textarea, index) => {
+        if (textarea.value === '') {
+            emptyTextAreaIndex = index;
+            return;
+        }
+        });
+    
+        if (emptyTextAreaIndex !== -1) {
+        setIsEmpty(true);
+        alert('textarea에 텍스트를 입력해주세요.');
+        return;
+        }
+
+        setIsEmpty(false);
+        navigate("/teamevaluation");
     };
 
     return (
@@ -97,26 +145,56 @@ function RetrospectWriteText() {
             {/* 상단바 */}
             <Header>
                 {/* Breadcrumb은 현재 위치에 따라 달라진다 / 현위치 : 1 (회고 작성하기) */}
-                <Breadcrumb activeKey={1} />
+                <Breadcrumb activeKey={1}/>
             </Header>
             {/* 회고 작성 창 */}
             <Body>
-                <Border>
-                    <BorderInside>
-                        {/* 회고 종류와 풀네임 */}
-                        <RetroType>
-                            <RetroABC>K</RetroABC>
-                            <h1>Keep</h1>
-                        </RetroType>
-                        {/* RetrospectData의 각 항목에 대해 RetroWrite 컴포넌트를 렌더링 */}
-                        {RetrospectData.map((retro, index) => (
-                            <div>
-                                <h2>{retro.name}</h2>
-                                <RetroText placeholder="답변을 입력하세요..." />
-                            </div>
-                        ))}
-                    </BorderInside> 
-                </Border>
+                
+                {
+                    retrospective
+                        .questions
+                        .map((data, index) => (
+                            data.title &&
+                            <Border>
+                                <BorderInside>
+                                    {/* 회고 종류와 풀네임 */}
+                                    <RetroType>
+                                        <RetroABC>{data.title[0]}</RetroABC>
+                                        <h1>{data.title}</h1>
+                                    </RetroType>
+                                    {/* RetrospectData의 각 항목에 대해 RetroWrite 컴포넌트를 렌더링 */}
+                                    {
+                                        data
+                                        .content
+                                        .map((retro, index2) => (
+                                        retro.dataQ && 
+                                            <div>
+                                                <h2>{retro.dataQ}</h2>
+                                                <RetroText placeholder="답변을 입력하세요..." value={retro.dataA} onChange={
+                                                    (e) => {
+                                                        const updatedAnswers = {...retrospective};
+                                                        updatedAnswers.questions = [...updatedAnswers.questions]; // 깊은 복사
+                                                        updatedAnswers.questions[index] = {
+                                                            id: index + 1,
+                                                            content: [...(updatedAnswers.questions[index]?.content) || []],
+                                                        };
+                                                        updatedAnswers.questions[index].title = data.title;
+                                                        updatedAnswers.questions[index].content[index2] = {
+                                                            ...(updatedAnswers.questions[index]?.content[index2] || {}),
+                                                            dataA: e.target.value,
+                                                        }   
+                                                        setRetrospective(updatedAnswers);
+                                                        console.log(retrospective);
+                                                    }
+                                                } />
+                                            </div>
+                                        ))
+                                    }
+                                </BorderInside>
+                                </Border>
+                            
+                        ))
+                }
             </Body>
             {/* 취소 다음 버튼 */}
             <Footer>
@@ -128,7 +206,7 @@ function RetrospectWriteText() {
                 </Btn>
             </Footer>
         </Whole>
-        
+
     );
 }
 

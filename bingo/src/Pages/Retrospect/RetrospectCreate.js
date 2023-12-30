@@ -1,27 +1,52 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {Div} from "../../Components/NormalComponents/Section";
 import {useNavigate} from "react-router-dom";
 import {Section1, Section2, Section3} from "../../Preset/Retrospect/RetrospectCreatePreset";
+import {retrospectiveState} from "../../Contexts/Atom";
+import {useRecoilState} from "recoil";
 
 export default function RetrospectCreate() {
-    // 변수 선언
-    const [retrospectTitle, setRetrospectiTitle] = useState(''); // 회고 타이틀 저장 변수
-    const [questions, setQuestions] = useState([]); // 질문 내용 저장 변수
-    const [SelectedWays, setSelectedWays] = useState('KPT'); // 회고 방법 선택 변수 (radio)
-    const navigate = useNavigate(); // 이동을 위한 navigate
+
+    // Recoil 상태 사용
+    const [retrospective, setRetrospective] = useRecoilState(retrospectiveState);
+
+    // retrospectTitle 업데이트
+    const setRetrospectTitle = (newTitle) => {
+        setRetrospective((prevRetrospective) => ({
+            ...prevRetrospective,
+            retrospectTitle: newTitle
+        }));
+    };
+
+    // selectedWays 업데이트
+    const setSelectedWays = (newWays) => {
+        setRetrospective((prevRetrospective) => ({
+            ...prevRetrospective,
+            selectedWays: newWays
+        }));
+    };
+
+    // questions 업데이트
+    const setQuestions = (newQuestions) => {
+        setRetrospective((prevRetrospective) => ({
+            ...prevRetrospective,
+            questions: newQuestions
+        }));
+    };
+
+    // 이동을 위한 navigate
+    const navigate = useNavigate();
 
     // 핸들러 선언 handleMyConfirm : 라디오 버튼 변경 시 실행되는 핸들러
     const handleRadioChange = (value) => {
         setSelectedWays(value); // 선택된 value값으로 SelectedWays 변수값 지정
-        if (value === 'Custom') { // Custom이 아닌 경우 질문의 개수를 3개로 지정
-            setQuestions(Array(3).fill('').map((_, index) => ({
-                id: index + 1, // 질문 개수 증가
-                question: '' // 질문 내용 초기화
-            })));
-        } else {
-            setQuestions([]); // Custom인 경우 질문, 개수를 초기화
-        }
+    };
 
+    // 전체 정보 보여주는 핸들러
+    const handleShowData = (e) => {
+        alert(
+            retrospective.questions[0].title + ", " + retrospective.questions[0].content.length
+        );
     };
 
     // handleMyConfirm : 회고 생성 버튼 클릭 시 실행되는 핸들러
@@ -42,42 +67,50 @@ export default function RetrospectCreate() {
         }
     }
 
-    // handleAddQuestion : 질문 추가 버튼 클릭 시 실행되는 핸들러
-    const handleAddQuestion = () => {
-        const newQuestionId = questions.length + 1; // 새로 생성되는 값의 id 지정 (1 증가)
-        setQuestions([
-            ...questions, {
-                id: newQuestionId,
-                question: ''
-            }
-        ]);
-    };
-
     return (
         <Div
             display="block"
             flexDirection="column"
             width="100%"
-            height="100%"
+            height="85vh"
             style={{
-                overflow: "scroll"
+                overflow: "hidden",
             }}>
-            
+
             {/* 타이틀 작성 및 템플릿 선택 */}
             <Section1
-                SelectedWays={SelectedWays}
+                // 선택한 템플릿 종류
+                SelectedWays={retrospective.selectedWays}
+                // 입력한 타이틀 이름
+                retrospectTitle={retrospective.retrospectTitle}
+                // 타이틀 이름 변경 핸들러
+                setRetrospectiTitle={setRetrospectTitle}
+                // 템플릿 변경 이벤트
                 handleRadioChange={handleRadioChange}
-                retrospectTitle={retrospectTitle}
-                setRetrospectiTitle={setRetrospectiTitle}
-                onClick={handleMyCancleConfirm}/>
+                // 입력한 질문 목록
+                questions={retrospective.questions}
+                // 질문 목록 변경 핸들러
+                setQuestions={setQuestions}
+                // 취소 이벤트
+                onCancleClick={handleMyCancleConfirm}
+                onSubmitClick={handleMyConfirm}/>
+            
+                {/*  */}
 
             {/* 질문 작성 */}
             <Section2
-                SelectedWays={SelectedWays}
-                handleAddQuestion={handleAddQuestion}
-                questions={questions}
+                // 선택한 템플릿 종류
+                SelectedWays={retrospective.selectedWays}
+                // 입력한 타이틀 이름
+                retrospectTitle={retrospective.retrospectTitle}
+                // 타이틀 이름 변경 핸들러
+                setRetrospectTitle={setRetrospectTitle}
+                // 입력한 질문 목록
+                questions={retrospective.questions}
+                // 질문 목록 변경 핸들러
                 setQuestions={setQuestions}
-                onClick={handleMyConfirm}/>
+                // 제출 이벤트
+                onSubmitClick={handleMyConfirm}/>
         </Div>
     );
 }

@@ -1,22 +1,25 @@
-/* eslint-disable */
+/* 이 화면 이제 안쓸듯 */
 
 import { Div } from "../../Components/NormalComponents/Section.js";
 import styled from "styled-components";
 import { Input } from "../../Components/NormalComponents/Form.js";
 import React, { useState, useRef } from "react";
 import { Label } from "../../Components/NormalComponents/Text.js"; 
+import {useRecoilState} from "recoil";
+import { ProjectTitleState, ProjectDescState, ProjectSelectedFileState } from "../../Contexts/Atom.js";
+
 
 //워크스페이스를 만드는 모달창
 function WorkspaceCreate() {
-    const [title, setTitle] = useState('');
+    const [title, setTitle] = useRecoilState('');
     const onChangeTitle = (event) => {
     setTitle(event.target.value);
     };
-    const [introduce, setIntroduce] = useState('');
+    const [desc, setDesc] = useRecoilState('');
     const onChangeIntroduce = (event) => {
-        setIntroduce(event.target.value);
+        setDesc(event.target.value);
     };
-    const [selectedFile, setSelectedFile] = useState(null);
+    const [selectedFile, setSelectedFile] = useRecoilState(null);
     const fileInputRef = useRef(null);
 
     const handleFileSelect = (event) => {
@@ -31,9 +34,9 @@ function WorkspaceCreate() {
     return (
         <>
             {/* 모달 안의 전체 Div */}
-            <Div alignItems="left" flexDirection=" column-reverse" justifyContent="space-between" width="100%" height="68%" >
-                <Div flexDirection="column" >
-                    <Div fontSize="42px" margin=".5% 0 0 0"
+            <Div alignItems="left" flexDirection=" column-reverse" justifyContent="space-between" width="100%" height="68%">
+                <Div flexDirection="column">
+                    <Div fontSize="32px" margin=".5% 0 0 0"
                     >프로젝트 배너 이미지</Div>
                     <Input
                         type="file"
@@ -49,25 +52,17 @@ function WorkspaceCreate() {
                     </Div>
                 </Div>
                 <Div flexDirection="column">
-                    <Label fontSize="42px">프로젝트 생성</Label>
-                    <Input type="text"
-                        width="100%"
-                        height="150px"
-                        backgroundColor="#D9D9D9"
-                        margin=".5% 0 0 0"
-                        fontSize="42px"
-                        value={introduce}
+                    <Label fontSize="32px">프로젝트 설명</Label>
+                    <CustomInput type="text"
+                        height="10vh"
+                        value={desc}
                         onChange={onChangeIntroduce}
                         />
                 </Div>
                 <Div flexDirection="column">
-                    <Label fontSize="42px">프로젝트 이름</Label>
-                    <Input type="text"
-                        width="100%"
-                        height="75px"
-                        backgroundColor="#D9D9D9"
-                        margin=".5% 0 0 0"
-                        fontSize="42px"
+                    <Label fontSize="32px">프로젝트 이름</Label>
+                    <CustomInput type="text"
+                        height="5vh"
                         value={title}
                         onChange={onChangeTitle}
                         />
@@ -82,9 +77,9 @@ function WorkspaceCreate() {
 export default WorkspaceCreate;
 
 const FileInputButton = styled.button`
-    height: 50px;
-    width: 13%;
-    font-size: 32px;
+    height: 3vh;
+    width: auto;
+    font-size: 24px;
     background-color: #D9D9D9;
     align-items: center;
     border-radius: 24px;
@@ -95,4 +90,11 @@ const FileInputButton = styled.button`
 const SelectedFileName = styled.span`
     font-size: 24px;
     margin-left: 10px;
+`;
+
+const CustomInput = styled(Input)`
+    width: 100%;
+    background-color: #D9D9D9; 
+    margin: .5% 0 0 0;
+    font-size: 32px;
 `;
