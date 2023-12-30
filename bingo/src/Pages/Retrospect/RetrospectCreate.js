@@ -87,8 +87,15 @@ export default function RetrospectCreate() {
                 setRetrospectiTitle={setRetrospectTitle}
                 // 템플릿 변경 이벤트
                 handleRadioChange={handleRadioChange}
+                // 입력한 질문 목록
+                questions={retrospective.questions}
+                // 질문 목록 변경 핸들러
+                setQuestions={setQuestions}
                 // 취소 이벤트
-                onClick={handleMyCancleConfirm}/> {/*  */}
+                onCancleClick={handleMyCancleConfirm}
+                onSubmitClick={handleMyConfirm}/>
+            
+                {/*  */}
 
             {/* 질문 작성 */}
             <Section2
@@ -103,7 +110,7 @@ export default function RetrospectCreate() {
                 // 질문 목록 변경 핸들러
                 setQuestions={setQuestions}
                 // 제출 이벤트
-                onClick={handleMyConfirm}/>
+                onSubmitClick={handleMyConfirm}/>
         </Div>
     );
 }

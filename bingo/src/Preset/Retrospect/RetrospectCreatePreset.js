@@ -3,12 +3,33 @@ import {Button, Input} from "../../Components/NormalComponents/Form";
 import {CenterDiv, Div} from "../../Components/NormalComponents/Section";
 import {Label, P} from "../../Components/NormalComponents/Text";
 import {useNavigate} from "react-router-dom";
+import { useState } from "react";
 
 // Section1 영역
 export const Section1 = (e) => {
+    const NoQuestionSubmit = (q) => {
+        let NoQuestions;
+
+        if (e.SelectedWays === 'KPT') {
+            const kptTitles = ['Keep', 'Problem', 'Try'];
+            NoQuestions = kptTitles.map((title) => ({ title, content: [{ dataQ: '자유롭게 남겨주세요.', dataA: '' }] }));
+        } else if (e.SelectedWays === '4LS') {
+            const lsTitles = ['Liked', 'Learned', 'Lacked', 'Longed for'];
+            NoQuestions = lsTitles.map((title) => ({ title, content: [{ dataQ: '자유롭게 남겨주세요.', dataA: '' }] }));
+        } else if (e.SelectedWays === '5F') {
+            const fTitles = ['Feel', 'Find', 'Finish', 'Future', 'Feedback'];
+            NoQuestions = fTitles.map((title) => ({ title, content: [{ dataQ: '자유롭게 남겨주세요.', dataA: '' }] }));
+        } else {
+            console.log("no selected");
+        }
+
+        e.setQuestions(NoQuestions);
+        console.log(e.questions);
+        e.onSubmitClick();
+    }
+    
     const navigate = useNavigate();
 
-    // ... (이전 코드 생략)
 
     const handleNextButtonClick = () => {
         if (e.retrospectTitle === '') {
@@ -81,7 +102,8 @@ export const Section1 = (e) => {
                 <Div justifyContent="end" height="100%">
                     <Div width="100%" height="100%" display="flex" alignItems="center" justifyContent="right" backgroundColor="rgba(0, 0.8)" backdropFilter="blur(8px)" zIndex="1" margin="3px 0 0 0">
                         <BtnDivSection1>
-                            <StepButton onClick={e.onClick} targetLabel="취소"/>
+                            <StepButton onClick={NoQuestionSubmit} targetLabel="기본값으로 생성" width = "300px" opcaity = "30%"/>
+                            <StepButton onClick={e.onCancleClick} targetLabel="취소"  width = "150px"/>
                             <StepButton
                                 targetPage={e.retrospectTitle ? "#section2" : ""}
                                 targetLabel="다음"
@@ -131,9 +153,9 @@ export const Section2 = (e) => {
                 <Div justifyContent="end" height="100%">
                     <Div width="100%" height="100%" alignItems="center" justifyContent="right" backgroundColor="rgba(0, 0.8)" backdropFilter="blur(8px)" zIndex="1">
                         <BtnDivSection2>
-                            <StepButtonSkip onClick={e.onClick} targetLabel="건너뛰기"/>
-                            <StepButton targetPage="#section1" targetLabel="이전"/>
-                            <StepButton onClick={e.onClick} targetLabel="생성"/>
+//                             <StepButtonSkip onClick={e.onClick} targetLabel="건너뛰기"/>
+                               <StepButton targetPage="#section1" targetLabel="이전" width = "150px"/>
+                               <StepButton onClick={e.onSubmitClick} targetLabel="생성" width = "150px"/>
                         </BtnDivSection2>
                     </Div>
                 </Div>
@@ -222,7 +244,9 @@ const handleMakeThreeSection = (way, labels, questions, setQuestions) => (
                     <Label margin="0px 5px 0px 0px" fontSize="100px">{label[0]}</Label>
                     <Label margin="0px 0px 5px 0px" fontSize="40px" width="20%">{label}</Label>
                 </Div>
-                {console.log(questions[index].content)}
+                {
+                    // console.log(questions[index].content)
+                }
                 {/* 질문 모음 */}
                 <Div flexDirection="column" height="auto" justifyContent="space-around">
                     {Array.from({ length: 3 }).map((_, contentIndex) => (
@@ -262,13 +286,15 @@ const StepButton = (e) => {
     return (
         <a href={e.targetPage}>
             <Button
-                width="150px"
+                width={e.width}
                 height="50px"
                 borderRadius="15px"
                 fontSize="35px"
                 fontWeight="bold"
                 onClick={e.onClick}
-                backgroundColor="#BDBDBD">{e.targetLabel}</Button>
+                backgroundColor="#BDBDBD"
+                style={{opacity : e.opcaity}}
+            >{e.targetLabel}</Button>
         </a>
     );
 }

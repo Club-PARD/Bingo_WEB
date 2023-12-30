@@ -42,3 +42,4 @@
 ## ETC
 
 - [우리들만의 규칙](https://github.com/Club-PARD/Bingo_WEB/blob/main/Rule.md)
+<!--  -->
