@@ -113,7 +113,7 @@ export const WorkspaceData = atom({
             name : "",
             desc : "",
             picture: "",
-            code : ""
+            code : "",
         },
     ]
 });

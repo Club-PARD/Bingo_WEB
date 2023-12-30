@@ -156,7 +156,7 @@ const WorkspaceList =()=> {
                         <Img width="20%" height="auto" src="/Img/WorkspaceView/ph_plus-bold.png"/>
                     </Div>
                     {/* 현재는 더미값이지만 장기적으로는 워크스페이스 데이터 기반으로 카드 출력  */}
-                    {workspaceData.length > 0 &&workspaceData.slice().reverse().map((workspace, index) => (
+                    {workspaceData.length > 1 &&workspaceData.slice(1).reverse().map((workspace, index) => (
                         <WorkspaceCard
                             key={index}
                             name={workspace.name}
