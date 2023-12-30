@@ -106,25 +106,13 @@ const Whole = styled.div `
     overflow: hidden;
 `
 const Header = styled.div `
+    box-sizing: border-box;
     height : 3.5%;
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 1%;
 `
 const Body = styled.div `
-    /*
-    이부분 넘겨받을 때주의할 점
-    height값은 화면을 벗어나지 않는가?
-    header부분과의 마진은 몇퍼센트인가?
-    내부 패딩이라던가 요소 있는가?
-    flex설정은 어떻게 되었는가?
-    */
-    height : 96.5%;
-    width: 92%;
-
-    /* background-color : whitesmoke; */
-
-    /*
-    여기는 용현이형과 다른 내가 필요한 css요소들
-    형한테 레이아웃 통째로 받아올 때 이부분은 확실히 고려해서 받아오자
-    */
     border: 5px dashed #E9E9E9;
     display: flex;
     flex-direction: column;
@@ -134,10 +122,8 @@ const Body = styled.div `
     padding: 0 4%;
     height : 95%;
     width: 75%;
-    border-bottom: none;
-    border-top-right-radius : 25px;
-    border-top-left-radius : 25px;
-    margin: 0 10% -6% 5%;
+    border-radius : 25px;
+    margin: 0 10% -4% 5%;
 `
 const Footer = styled.div`
     display : flex;
@@ -147,7 +133,7 @@ const Footer = styled.div`
     margin-left: 4%;
     align-items : center;
     justify-content : end;
-    background:rgba(150,0.8); 
+    background:rgba(150,0); 
     backdrop-filter: blur(8px);
     padding-right: 6%;
     box-sizing: border-box;
