@@ -2,7 +2,10 @@
 import styled from "styled-components";
 import Breadcrumb from "../../../Layout/Breadcrumb";
 import {retrospectiveState} from "../../../Contexts/Atom";
-import {useRecoilState} from "recoil";
+import { useRecoilState } from "recoil";
+import {useNavigate} from 'react-router'
+import { useState } from "react";
+
 // import RetroWrite from "./RetroWrite"; 전체를 감싸는 div, 이 아래에 Header / Body /
 // Footer로 나뉘어 있음
 const Whole = styled.div `
