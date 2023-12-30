@@ -8,6 +8,8 @@ export const Div = styled.div `
     flex-direction: ${props => props.flexDirection || ''};
     flex-shrink: ${props => props.flexShirnk || ''};
     flex-wrap: ${props => props.flexWrap || ''};
+    position: ${props => props.position || ''};
+    z-index: ${props => props.zIndex || ''};
 
     width : ${props => props.width || ''};
     height : ${props => props.height || ''};
@@ -19,6 +21,7 @@ export const Div = styled.div `
 
     color: ${props => props.color || ''};
     background-color: ${props => props.backgroundColor || ''};
+    backdrop-filter: ${props => props.backdropFilter || ''};
 
     right : ${props => props.right || ''};
 
