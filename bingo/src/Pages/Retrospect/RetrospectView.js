@@ -84,6 +84,11 @@ function RetrospectView() {
                         ))
                 }
             </Body>
+            <Footer>
+                <BtnLink to="/WorkspaceView">
+                    나가기
+                </BtnLink>
+            </Footer>
         </Whole>
     );
 }
@@ -93,6 +98,7 @@ export default RetrospectView;
 const Whole = styled.div `
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     width: 100%;
     height: 100%;
 `
@@ -117,13 +123,29 @@ const Body = styled.div `
     형한테 레이아웃 통째로 받아올 때 이부분은 확실히 고려해서 받아오자
     */
     border: 5px dashed #E9E9E9;
-    border-radius: 36px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: top;
     overflow: auto;
     padding: 0 4%;
+    height : 95%;
+    width: 75%;
+    border-bottom: none;
+    border-top-right-radius : 25px;
+    border-top-left-radius : 25px;
+    margin: 0 10% -6% 5%;
+`
+const Footer = styled.div`
+    display : flex;
+    height : 12%;
+    /* border : 1px solid red; */
+    width: 90%;
+    margin-left: 4%;
+    align-items : center;
+    justify-content : end;
+    background:rgba(150,0.8); 
+    backdrop-filter: blur(8px);
 `
 const Mother = styled.div `
     width: 100%;
@@ -207,4 +229,19 @@ const Eclipse = styled.div `
     background-color: #EAEAEA;
     border-radius: 50%;
     margin-left: 2%;
+`
+const BtnLink = styled(Link)`
+    height : 60%;
+    width : 11%;
+    font-size : 34px;
+    font-weight: 400;
+    border : 1px solid transparent;
+    background-color : gainsboro;
+    border-radius : 10px;
+    margin-right: 6%;
+    text-decoration: none;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    color: #000;
 `

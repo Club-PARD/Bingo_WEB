@@ -50,12 +50,12 @@ const Title = (e) => {
     return (
         <Div width="90%" alignItems="end">
             {/* 타이틀 */}
-            <Div margin="0px 20px 0px 0px">
-                <P fontSize="50px" fontWeight="bold">{e.WorkspaceInfo.title}</P>
+            <Div margin="0px 20px 0px 20px">
+                <P fontSize="80px" fontWeight="bold">{e.WorkspaceInfo.title}</P>
             </Div>
             {/* 설명 */}
             <Div margin="0px 20px 5px 0px">
-                <P fontSize="20px">{e.WorkspaceInfo.description}</P>
+                <P fontSize="24px">{e.WorkspaceInfo.description}</P>
             </Div>
         </Div>
     );
