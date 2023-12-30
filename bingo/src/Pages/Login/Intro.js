@@ -22,7 +22,6 @@ const LoginDiv = styled.div `
   width: 100%;
   display: flex;
   justify-content: end;
-  background-color: aliceblue;
 `;
 
 const LoginBtn = styled.button `

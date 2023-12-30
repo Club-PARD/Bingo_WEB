@@ -87,9 +87,9 @@ const WorkspaceList =()=> {
         fileInputRef.current && fileInputRef.current.click();
     };
     return(
-        <>
+        <Div display="flex" flexDirection="column" height="85vh" width="100vw" overflow="hidden">
             {/* 상단바 부분 */}
-            <Div flexDirection="row" justifyContent="space-between" alignItems="center" height="15vh" width="100vw">
+            <Div flexDirection="row" justifyContent="space-between" alignItems="center" height="15%" width="100vw" backgroundColor="red">
                 {/* 빙고 로고, 현재 페이지 이름 표시 부분 */}
                 <Div  fontSize="120px" alignItems="center" borderRadius="15px" margin="0 0 0 1%"> 
                     {/* <Img src="/img/Home/logo.jpg" width={"10%"}/> */}
@@ -261,7 +261,7 @@ const WorkspaceList =()=> {
                     </Div>
                 </Div>
             </Modal>
-        </>
+        </Div>
         
     )
 }
