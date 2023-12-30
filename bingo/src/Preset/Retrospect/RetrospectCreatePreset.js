@@ -107,6 +107,7 @@ export const Section1 = (e) => {
                             <StepButton
                                 targetPage={e.retrospectTitle ? "#section2" : ""}
                                 targetLabel="다음"
+                                width = "150px"
                                 onClick={handleNextButtonClick}
                             />
                         </BtnDivSection1>
@@ -153,9 +154,9 @@ export const Section2 = (e) => {
                 <Div justifyContent="end" height="100%">
                     <Div width="100%" height="100%" alignItems="center" justifyContent="right" backgroundColor="rgba(0, 0.8)" backdropFilter="blur(8px)" zIndex="1">
                         <BtnDivSection2>
-//                             <StepButtonSkip onClick={e.onClick} targetLabel="건너뛰기"/>
-                               <StepButton targetPage="#section1" targetLabel="이전" width = "150px"/>
-                               <StepButton onClick={e.onSubmitClick} targetLabel="생성" width = "150px"/>
+                            {/* <StepButtonSkip onClick={e.onClick} targetLabel="건너뛰기"/> */}
+                            <StepButton targetPage="#section1" targetLabel="이전" width = "150px"/>
+                            <StepButton onClick={e.onSubmitClick} targetLabel="생성" width = "150px"/>
                         </BtnDivSection2>
                     </Div>
                 </Div>
@@ -334,7 +335,7 @@ const Section_Style = {
     margin: "0 auto",
 }
 const BtnDivSection1=styled.div`
-    width: 19%;
+    width: 35%;
     height: 100%;
     display: flex;
     flex-direction: row;
@@ -342,7 +343,7 @@ const BtnDivSection1=styled.div`
     justify-content: space-between;
 `
 const BtnDivSection2=styled.div`
-    width: 29.3%;
+    width: 17.5%;
     height: 100%;
     display: flex;
     flex-direction: row;
