@@ -104,3 +104,16 @@ export const retrospectiveState = atom({
         ] // 각 섹션의 질문 내용
     }
 });
+
+//workspace 생성할 때 사용되는 list
+export const WorkspaceData = atom({
+    key: 'workspaceData',
+    default: [
+        {
+            name : "",
+            desc : "",
+            picture: "",
+            code : ""
+        },
+    ]
+});

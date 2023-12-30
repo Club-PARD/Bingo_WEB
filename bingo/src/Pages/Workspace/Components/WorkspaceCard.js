@@ -4,7 +4,7 @@ import { Img } from "../../../Components/NormalComponents/Etc";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const WorkspaceCard = ({ name, desc, picture, period }) => (
+const WorkspaceCard = ({ name, desc, picture, code, period }) => (
     <Div 
         flexDirection= "column"
         margin="2% 0 0 2%"
@@ -24,7 +24,7 @@ const WorkspaceCard = ({ name, desc, picture, period }) => (
             borderRadius="15px" 
             backgroundColor="#D9D9D9" 
         >
-            <Img wisth="100%" height="100%" borderRadius="15px" src={picture}/>
+            <Img wisth="100%" height="100%" borderRadius="15px" src={picture} alt={code}/>
         </Div>
         <Div
             height="20%"
