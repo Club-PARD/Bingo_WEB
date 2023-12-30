@@ -13,27 +13,32 @@ const WorkspaceData = [
     {
         name : "개발팀 회고",
         desc : "23-4 롱커톤 3!4!",
-        picture : "/img/Login/img4.png",
+        picture: "/img/Login/img4.png",
+        code : "a1a2a3a"
     },
     {
         name : "공설입 회고",
         desc : "공학설계입문 2분반 1조",
-        picture : " ",
+        picture: " ",
+        code : "b1b2b3b"
     },
     {
         name : "SLESLE 2023",
         desc : "23-2 슬기짜기 임원단",
-        picture : " ",
+        picture: " ",
+        code : "c1c2c3c"
     },
     {
         name : "맹맹맹",
         desc : "맹구 마지막 우승",
-        picture : " ",
+        picture: " ",
+        code : "d1d2d3d"
     },
     {
         name : "멍멍멍",
         desc : "북런던 강아지",
-        picture : " ",
+        picture: " ",
+        code : "e1e2e3e"
     },
 ];
 
@@ -41,10 +46,14 @@ const WorkspaceList =()=> {
     const [titleEmpty, setTitleEmpty] = useState(false);
     const [descEmpty, setDescEmpty] = useState(false);
     const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [workspaceData, setWorkspaceData] = useState(WorkspaceData);
     const openModal = () => {
         setModalIsOpen(true);
+        // Modal이 열릴 때 상태 초기화
+        setTitle('');
+        setDesc('');
+        setSelectedFile(null);
     };
-
     const closeModal = () => {
         setModalIsOpen(false);
     };  
@@ -66,6 +75,16 @@ const WorkspaceList =()=> {
         setModalIsOpen(false);
         setTitleEmpty(false);
         setDescEmpty(false);
+
+        // 새로운 워크스페이스 데이터 생성
+        const newWorkspace = {
+            name: title,
+            desc: desc,
+            picture: selectedFile ? selectedFile.name : "", // 이미지 파일명 저장 (선택된 파일이 없으면 빈 문자열)
+        };
+
+        // 기존 WorkspaceData 배열에 새로운 워크스페이스 데이터 추가
+        setWorkspaceData((prevData) => [...prevData, newWorkspace]);
     };
     const [title, setTitle] = useState('');
     const onChangeTitle = (event) => {
@@ -130,7 +149,7 @@ const WorkspaceList =()=> {
                         <Img width="20%" height="auto" src="/Img/WorkspaceView/ph_plus-bold.png"/>
                     </Div>
                     {/* 현재는 더미값이지만 장기적으로는 워크스페이스 데이터 기반으로 카드 출력  */}
-                    {WorkspaceData.slice().reverse().map((workspace, index) => (
+                    {workspaceData.slice().reverse().map((workspace, index) => (
                         <WorkspaceCard
                             key={index}
                             name={workspace.name}
