@@ -131,7 +131,6 @@ const Footer = styled.div`
     backdrop-filter: blur(8px);
     padding-right: 6%;
     box-sizing: border-box;
-    background-color: aliceblue;
 `
 const Mother = styled.div`
     width: 100%;

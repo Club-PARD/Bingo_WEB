@@ -8,7 +8,9 @@ function TopMenuBar(){
             <header>
                 <Header>
                     <LeftSide>
-                        <LogoImg src="/img/TopMenuBar/Logo.png" width="100%" height="auto "/>
+                        <LogoLink>
+                            <LogoImg src="/img/TopMenuBar/Logo.png" width="100%" height="auto "/>
+                        </LogoLink>
                         <ProjectDLink to="/WorkspaceList">프로젝트</ProjectDLink>
                     </LeftSide>
                     <LogoutLink to="/">로그아웃</LogoutLink>
@@ -44,8 +46,15 @@ const LeftSide=styled.div`
     margin-left: 3%;
 `
 //로고
+const LogoLink=styled(Link)`
+    box-sizing: border-box;
+    width: 50%;
+    height: 100%;
+    align-items: center;
+    padding-top: 3%;
+`
 const LogoImg=styled.img`
-    width: 45%;
+    width: 90%;
     height: auto;
 `
 //프로젝트

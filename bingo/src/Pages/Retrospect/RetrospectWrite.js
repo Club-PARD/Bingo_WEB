@@ -18,7 +18,6 @@ function RetrospectWrite() {
             flexDirection="column"
             width="100%"
             height="85vh"
-            backgroundColor="red"
             back
             style={{
                 overflow: "scroll"

@@ -22,7 +22,6 @@ const Header = styled.div`
     width: 90%;
     margin-left: 5%;
     margin-top: 1%;
-    background-color: aliceblue;
 `
 // 회고 종류와 작성 창이 들어가는 부분
 const Body = styled.div`
@@ -46,7 +45,6 @@ const Footer = styled.div`
     backdrop-filter: blur(8px);
     padding-right: 10%;
     box-sizing: border-box;
-    background-color: aliceblue;
 
 `
 const Title = styled.div`

@@ -49,7 +49,6 @@ const Footer = styled.div`
     backdrop-filter: blur(8px);
     padding-right: 10%;
     box-sizing: border-box;
-    background-color: aliceblue;
 `
 
 // Body 안에 들어가는 회고 작성칸을 감싸는 테두리
