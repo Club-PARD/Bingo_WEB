@@ -28,7 +28,7 @@ const RetrospectViewer = () => {
                                     .content
                                     .map((content, contentIndex) => (
                                         <P key={contentIndex}>
-                                            {contentIndex + 1}번째 질문 : {content}
+                                            {contentIndex + 1}번째 질문 : {content.dataQ}
                                         </P>
                                     ))
                             }
