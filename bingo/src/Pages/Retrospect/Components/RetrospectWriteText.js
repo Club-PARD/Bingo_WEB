@@ -85,7 +85,7 @@ const RetroText = styled.textarea `
     border-radius : 15px;
 `
 
-// Footer 안에 들어갈 버튼들의 Preset
+// Footer 안에 들어갈 버튼들의 Preset이다
 const Btn = styled.button `
     height : 60%;
     width : 10%;
