@@ -3,9 +3,31 @@ import {Button, Input} from "../../Components/NormalComponents/Form";
 import {CenterDiv, Div} from "../../Components/NormalComponents/Section";
 import {Label, P} from "../../Components/NormalComponents/Text";
 import {useNavigate} from "react-router-dom";
+import { useState } from "react";
 
 // Section1 영역
 export const Section1 = (e) => {
+
+    const NoQuestionSubmit = (q) => {
+        let NoQuestions;
+
+        if (e.SelectedWays === 'KPT') {
+            const kptTitles = ['Keep', 'Problem', 'Try'];
+            NoQuestions = kptTitles.map((title) => ({ title, content: [{ dataQ: '자유롭게 남겨주세요.', dataA: '' }] }));
+        } else if (e.SelectedWays === '4LS') {
+            const lsTitles = ['Liked', 'Learned', 'Lacked', 'Longed for'];
+            NoQuestions = lsTitles.map((title) => ({ title, content: [{ dataQ: '자유롭게 남겨주세요.', dataA: '' }] }));
+        } else if (e.SelectedWays === '5F') {
+            const fTitles = ['Feel', 'Find', 'Finish', 'Future', 'Feedback'];
+            NoQuestions = fTitles.map((title) => ({ title, content: [{ dataQ: '자유롭게 남겨주세요.', dataA: '' }] }));
+        } else {
+            console.log("no selected");
+        }
+
+        e.setQuestions(NoQuestions);
+        console.log(e.questions);
+        e.onSubmitClick();
+    };
     return (
         <Div id="section1" style={Section_Style} backgroundColor="">
             {/* Content Section */}
@@ -62,10 +84,11 @@ export const Section1 = (e) => {
             {/* 버튼 Section */}
             <Div flexDirection="column" height="10%" justifyContent="center">
                 <Div justifyContent="end">
-                    <Div width="320px" backgroundColor="" justifyContent="space-between">
-                        <StepButton onClick={e.onClick} targetLabel="취소"/>
+                    <Div width="650px" backgroundColor="" justifyContent="space-between">
+                        <StepButton onClick={NoQuestionSubmit} targetLabel="기본값으로 생성" width = "300px" opcaity = "30%"/>
+                        <StepButton onClick={e.onCancleClick} targetLabel="취소"  width = "150px"/>
 
-                        <StepButton targetPage="#section2" targetLabel="다음"/>
+                        <StepButton targetPage="#section2" targetLabel="다음"  width = "150px"/>
                     </Div>
                 </Div>
             </Div>
@@ -109,9 +132,9 @@ export const Section2 = (e) => {
             <Div flexDirection="column" height="10%" justifyContent="center">
                 <Div justifyContent="end">
                     <Div width="320px" backgroundColor="" justifyContent="space-between">
-                        <StepButton targetPage="#section1" targetLabel="이전"/>
+                        <StepButton targetPage="#section1" targetLabel="이전" width = "150px"/>
 
-                        <StepButton onClick={e.onClick} targetLabel="생성"/>
+                        <StepButton onClick={e.onSubmitClick} targetLabel="생성" width = "150px"/>
                     </Div>
                 </Div>
             </Div>
@@ -199,7 +222,9 @@ const handleMakeThreeSection = (way, labels, questions, setQuestions) => (
                     <Label margin="0px 5px 0px 0px" fontSize="100px">{label[0]}</Label>
                     <Label margin="0px 0px 5px 0px" fontSize="40px" width="20%">{label}</Label>
                 </Div>
-                {console.log(questions[index].content)}
+                {
+                    // console.log(questions[index].content)
+                }
                 {/* 질문 모음 */}
                 <Div flexDirection="column" height="auto" justifyContent="space-around">
                     {Array.from({ length: 3 }).map((_, contentIndex) => (
@@ -239,13 +264,15 @@ const StepButton = (e) => {
     return (
         <a href={e.targetPage}>
             <Button
-                width="150px"
+                width={e.width}
                 height="50px"
                 borderRadius="15px"
                 fontSize="35px"
                 fontWeight="bold"
                 onClick={e.onClick}
-                backgroundColor="#BDBDBD">{e.targetLabel}</Button>
+                backgroundColor="#BDBDBD"
+                style={{opacity : e.opcaity}}
+            >{e.targetLabel}</Button>
         </a>
     );
 }
