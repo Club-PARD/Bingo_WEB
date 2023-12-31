@@ -4,14 +4,14 @@ import styled from "styled-components";
 import {Button} from "@mui/material";
 import {Link} from "react-router-dom";
 import {Login} from "@mui/icons-material";
-import {Div} from "../../Components/NormalComponents/Section";
-import {Img} from "../../Components/NormalComponents/Etc";
-import GoogleLoginButton from "./GoogleLogin";
+import {Div} from "../../../Components/NormalComponents/Section";
+import {Img} from "../../../Components/NormalComponents/Etc";
+import GoogleLoginButton from "../GoogleLogin";
 
 const Introwhole = styled.div`
   width: 100vw;
   height : 100vh;
-  background-image: url("/img/IntroBackground.jpeg");
+  background-image: url("/img/Login/Intro.png");
   background-size: cover;
   padding-top: 7%;
   box-sizing: border-box;
