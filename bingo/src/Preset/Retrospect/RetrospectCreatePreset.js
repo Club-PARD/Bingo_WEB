@@ -46,8 +46,27 @@ export const Section1 = (e) => {
     };
     return (
         <Div id="section1" style={Section_Style}>
+            <Header>
+                <LeftHead>
+                    <SpanCreate>회고 생성</SpanCreate>
+                    <SpanTitle>3!4!(쓰리포)</SpanTitle>
+                    <SpanDesc>한동대학교 PARD 롱커톤 3!4! 파이팅!</SpanDesc>
+                </LeftHead>
+                <RightHead>
+                    <EclipseDiv style={{marginRight: '0.8vw'}}/>
+                    <EclipseDiv style={{marginRight: '1.8vw'}}/>
+                    <StepButton onClick={e.onCancleClick} targetLabel="취소" 
+                        backgroundColor="#F9F9F9" color="#EA4336"/>
+                    <StepButton targetPage={e.retrospectTitle ? "#section2" : ""}
+                        targetLabel="다음"
+                        onClick={handleNextButtonClick}
+                        backgroundColor="#EA4336" color="#F9F9F9" 
+                    />
+                </RightHead>
+            </Header>
+
             {/* Content Section */}
-            <Div flexDirection="column" height="90%" backgroundColor="">
+            <Div flexDirection="column" margin="0 auto" width="66%" height="65%" backgroundColor="aliceblue">
 
                 {/* 회고 타이틀 Section */}
                 <Div
@@ -56,10 +75,17 @@ export const Section1 = (e) => {
                     height="20%"
                     backgroundColor="">
                     {/* Title */}
-                    <P fontSize="30px">회고 타이틀</P>
+                    <P styled={{color: 'rgba(34, 34, 34, 0.60)',
+                                //fontFamily: 'WefontGothic(OTF)',
+                                fontSize: '16px',
+                                fontStyle: 'normal',
+                                fontWeight: '400',
+                                lineHeight: '150%' /* 24px */}}
+                    >회고 타이틀</P>
 
                     {/* Input */}
                     <Input
+                        placeholder= '1차 회고'
                         style={InputStyle}
                         value={e.retrospectTitle}
                         onChange={(k) => e.setRetrospectiTitle(k.target.value)}></Input>
@@ -69,7 +95,13 @@ export const Section1 = (e) => {
                 <Div flexDirection="column" width="100%" height="80%" backgroundColor="" >
                     {/* Title */}
                     <Div height="10%">
-                        <P fontSize="30px">템플릿 선택</P>
+                        <P styled={{color: 'rgba(34, 34, 34, 0.60)',
+                                //fontFamily: 'WefontGothic(OTF)',
+                                fontSize: '16px',
+                                fontStyle: 'normal',
+                                fontWeight: '400',
+                                lineHeight: '150%' /* 24px */}}
+                        >템플릿 선택</P>
                     </Div>
 
                     {/* 템플릿 선택 */}
@@ -96,24 +128,6 @@ export const Section1 = (e) => {
                     </Div>
                 </Div>
             </Div>
-
-            {/* 버튼 Section */}
-            <Div flexDirection="column" height="10%" justifyContent="center">
-                <Div justifyContent="end" height="100%">
-                    <Div width="100%" height="100%" display="flex" alignItems="center" justifyContent="right" backgroundColor="rgba(0, 0.8)" backdropFilter="blur(8px)" zIndex="1" margin="3px 0 0 0">
-                        <BtnDivSection1>
-                            <StepButton onClick={NoQuestionSubmit} targetLabel="기본값으로 생성" width = "300px" opcaity = "30%"/>
-                            <StepButton onClick={e.onCancleClick} targetLabel="취소"  width = "150px"/>
-                            <StepButton
-                                targetPage={e.retrospectTitle ? "#section2" : ""}
-                                targetLabel="다음"
-                                width = "150px"
-                                onClick={handleNextButtonClick}
-                            />
-                        </BtnDivSection1>
-                    </Div>
-                </Div>
-            </Div>
         </Div>
     );
 }
@@ -123,7 +137,23 @@ export const Section2 = (e) => {
     return (
         <Div id="section2" style={Section_Style}>
             {/* Content Section */}
-            <Div width="100%" height="100%" margin="0 0 -5% 0" position="relative" backgroundColor = "">
+            <Header>
+                <LeftHead>
+                    <SpanCreate>회고 생성</SpanCreate>
+                    <SpanTitle>3!4!(쓰리포)</SpanTitle>
+                    <SpanDesc>한동대학교 PARD 롱커톤 3!4! 파이팅!</SpanDesc>
+                </LeftHead>
+                <RightHead>
+                    <EclipseDiv style={{marginRight: '0.8vw'}}/>
+                    <EclipseDiv style={{marginRight: '1.8vw'}}/>
+                    <StepButton targetPage="#section1" targetLabel="이전" 
+                        backgroundColor="#F9F9F9" color="#EA4336"/>
+                    <StepButton onClick={e.onSubmitClick} targetLabel="생성"
+                        backgroundColor="#EA4336" color="#F9F9F9" 
+                    />
+                </RightHead>
+            </Header>
+            <Div width="100%" height="50%" margin="0 0 -5% 0" position="relative" backgroundColor = "">
                 <Div
                     flexDirection="column"
                     height="100%"
@@ -147,18 +177,6 @@ export const Section2 = (e) => {
                         ], e.questions, e.setQuestions)
                     }
 
-                </Div>
-            </Div>
-            {/* 버튼 Section */}
-            <Div flexDirection="column" height="10%" justifyContent="center">
-                <Div justifyContent="end" height="100%">
-                    <Div width="100%" height="100%" alignItems="center" justifyContent="right" backgroundColor="rgba(0, 0.8)" backdropFilter="blur(8px)" zIndex="1">
-                        <BtnDivSection2>
-                            {/* <StepButtonSkip onClick={e.onClick} targetLabel="건너뛰기"/> */}
-                            <StepButton targetPage="#section1" targetLabel="이전" width = "150px"/>
-                            <StepButton onClick={e.onSubmitClick} targetLabel="생성" width = "150px"/>
-                        </BtnDivSection2>
-                    </Div>
                 </Div>
             </Div>
         </Div>
@@ -283,18 +301,84 @@ const handleMakeThreeSection = (way, labels, questions, setQuestions) => (
 
 
 // StepButton : Next / Last 버튼 분리화
+const Header = styled.div`
+    width: 66%;
+    height: 24%;
+    margin: 0 auto;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+`
+const LeftHead=styled.div`
+    margin-bottom: 5.4vh;
+    width: auto;
+    height: 46%;//114px
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+`
+const RightHead=styled.div`
+    margin-bottom: 5.4vh;
+    width: 30%;//330px
+    height: 24%;//59px
+    display: flex;
+    flex-direction: row;
+    justify-content: Right;
+    align-items: end;
+`
+const SpanCreate=styled.span`
+    color: #838383;
+    //font-family: WefontGothic(OTF);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 24px */
+    letter-spacing: -0.16px;
+`
+const SpanTitle=styled.span`
+    color: var(--sec_grey, #222);
+    //font-family: WefontGothic(OTF);
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 42px */
+`
+const SpanDesc=styled.span`
+    color: rgba(34, 34, 34, 0.80);
+    //font-family: WefontGothic(OTF);
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 22.5px */
+`
+const EclipseDiv =styled.div`
+    width: 0.6vw;
+    height: 12px;
+    border: none;
+    box-sizing: border-box;
+    background-color: #E1E1E1;
+    border-radius: 50%;
+`
+// StepButton : Next / Last 버튼 분리화
 const StepButton = (e) => {
     return (
         <a href={e.targetPage}>
             <Button
-                width={e.width}
-                height="50px"
-                borderRadius="15px"
-                fontSize="35px"
-                fontWeight="bold"
+                width="5.5vw"
+                height="5vh"
+                borderRadius="40px"
+                fontSize="18px"
+                fontWeight="400"
                 onClick={e.onClick}
-                backgroundColor="#BDBDBD"
-                style={{opacity : e.opcaity}}
+                justifyContent= "center"
+                alignItems= "center"
+                margin=" 0 0 0 .8vw"
+                border="2px solid var(--main_red, #EA4336)"
+                backgroundColor={e.backgroundColor}
+                color={e.color}
+                style={{opacity : e.opcaity,}}
             >{e.targetLabel}</Button>
         </a>
     );
@@ -320,11 +404,17 @@ const StepButtonSkip = (e) => {
 const InputStyle = {
     type: "text",
     width: "100%",
-    height: "70px",
-    margin: "10px 0px",
-    borderRadius: "20px",
-    fontSize: "30px",
-    backgroundColor: "gainsboro"
+    height: "6.5vh",
+    padding: "1.4vw",
+    borderRadius: "24px",
+    backgroundColor: "#F0F0F0",
+    color: "#222",
+    fontFamily: "WefontGothic(OTF)",
+    fontSize: "20px",
+    fontStyle: "normal",
+    fontSeight: "400",
+    lineHeight: "160%", /* 32px */
+    letterSpacing: "-0.2px",
 }
 
 // Section 스타일
@@ -334,30 +424,9 @@ const Section_Style = {
     flexDirection: "column",
     margin: "0 auto",
 }
-const BtnDivSection1=styled.div`
-    width: 35%;
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-`
-const BtnDivSection2=styled.div`
-    width: 17.5%;
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-`
 // 템플릿 설명 변수
 const RetrospectDescription = ({
-    W_KPT: 'KPT는 "Keep, Problem, Try"의 약자로, 팀이 프로젝트나 업무를 평가하고 개선하기 위해 유용한 간단한 피드백 프로세스를 제공' +
-            '합니다. "Keep"은 유지할 가치 있는 것, "Problem"은 발생한 문제, "Try"는 개선을 시도할 방안을 나타냅니다.',
-    W_4LS: '4LS는 "Liked, Learned, Lacked, Longed for"의 약자로, 경험 또는 이벤트에 대한 리뷰에 활용됩니다. "Like' +
-            'd"는 긍정적인 경험, "Learned"는 얻은 교훈, "Lacked"는 부족한 부분, "Longed for"는 더 원하는 부분을 나타냅니다' +
-            '.',
-    W_5F: '5F 방법론: 5F는 "Feel, Find, Finish, Future, Feedback"의 약자로, 회고를 위한 다양한 측면을 제공합니다.' +
-            ' "Feel"은 느낀 감정, "Find"는 발견한 사실, "Finish"는 완료된 작업, "Future"는 향후 계획, "Feedback"는' +
-            ' 피드백을 나타냅니다.'
+    W_KPT: '팀의 상황을 빠르게 돌아보고 명확한 개선 방법을 찾길 원한다면?',
+    W_4LS: '팀의 과정을 돌아보고 목표를 세우길 원한다면?',
+    W_5F: '팀의 중요한 사건들을 꼼꼼히 돌아보길 원한다면?'
 });
