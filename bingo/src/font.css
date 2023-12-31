@@ -1,0 +1,28 @@
+/* 폰트 용도 파일 */
+
+@charset "utf-8";
+
+@font-face {
+    font-family: "100";
+    src: url("/_____(OTF) 100.otf.otf");
+}
+@font-face {
+    font-family: "110";
+    src: url("/_____(OTF) 110.otf.otf");
+}
+@font-face {
+    font-family: "120";
+    src: url("/_____(OTF) 120.otf.otf");
+}
+@font-face {
+    font-family: "140";
+    src: url("/_____(OTF) 140.otf.otf");
+}
+@font-face {
+    font-family: "160";
+    src: url("/_____(OTF) 160.otf.otf");
+}
+@font-face {
+    font-family: "180";
+    src: url("/_____(OTF) 180.otf.otf");
+}
