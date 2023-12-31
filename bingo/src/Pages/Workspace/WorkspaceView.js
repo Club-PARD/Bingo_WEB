@@ -3,7 +3,6 @@ import {React} from "react";
 import RetrospectInWorkspace from "./Components/RetrospectInWorkspace";
 import BingoBoard from "../../Preset/WorkspacePreset/BingoBoard";
 import styled from "styled-components";
-import {P} from "../../Components/NormalComponents/Text";
 import { Link } from "react-router-dom";
 
 // workspace에 들어오면 보이는 화면 아직 와이어 프레임 안나와서 정확한건 미정 빙고페이지로 이동 가능 회고생성페이지로 이동 가능
@@ -71,7 +70,6 @@ const Section_Bingo_Content = styled(Div)`
     width: 90%;
     height : 90%;
     margin: 0 5%;
-    background-color: #444;
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-content: space-evenly;
