@@ -1,19 +1,21 @@
 // atom.js
 import {atom} from 'recoil';
 
-//test
+// test
 export const countState = atom({key: 'counter', default: 0});
 export const titleState = atom({key: 'title', default: ''});
-export const contentState = atom({key: "content", default: ''});
+export const contentState = atom({key: 'content', default: ''});
 
-//projectList(현재 이름 WorkspaceList)
-export const ProjectTitleState = atom({key: "projectTitle", default: ''});
-export const ProjectDescState = atom({key: "projectDesc", default: ''});
+// projectList(현재 이름 WorkspaceList)
+export const ProjectTitleState = atom({key: 'projectTitle', default: ''});
+export const ProjectDescState = atom({key: 'projectDesc', default: ''});
 export const ProjectSelectedFileState = atom(
-    {key: "projectSelectedFile", default: ''}
+    {key: 'projectSelectedFile', default: ''}
 );
 
-//team evaluation in BingoBoard
+export const loginUserState = atom({key: 'uniqueLoginUserKey', default: null});
+
+// team evaluation in BingoBoard
 export const ChipData = atom({
     key: 'chipData',
     default: [
@@ -56,6 +58,7 @@ export const ChipData = atom({
         }
     ]
 });
+
 export const UserList = atom({
     key: 'userList',
     default: [
@@ -79,11 +82,8 @@ export const UserList = atom({
 export const retrospectiveState = atom({
     key: 'retrospective',
     default: {
-        // 회고 타이틀
-        retrospectTitle: '',
-        // 선택된 템플릿 방식 (KPT, 4LS, 5F)
-        selectedWays: 'KPT',
-        // 질문 모음
+        retrospectTitle: '', // 회고 타이틀
+        selectedWays: 'KPT', // 선택된 템플릿 방식 (KPT, 4LS, 5F)
         questions: [
             {
                 title: '',
@@ -105,7 +105,7 @@ export const retrospectiveState = atom({
     }
 });
 
-//workspace 생성할 때 사용되는 list
+// workspace 생성할 때 사용되는 list
 export const WorkspaceData = atom({
     key: 'workspaceData',
     default: [
