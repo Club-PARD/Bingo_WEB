@@ -76,7 +76,7 @@ export const Section1 = (e) => {
                     backgroundColor="">
                     {/* Title */}
                     <P styled={{color: 'rgba(34, 34, 34, 0.60)',
-                                //fontFamily: 'WefontGothic(OTF)',
+                                fontFamily: 'WefontGothic(OTF)',
                                 fontSize: '16px',
                                 fontStyle: 'normal',
                                 fontWeight: '400',
@@ -96,7 +96,7 @@ export const Section1 = (e) => {
                     {/* Title */}
                     <Div height="10%">
                         <P styled={{color: 'rgba(34, 34, 34, 0.60)',
-                                //fontFamily: 'WefontGothic(OTF)',
+                                fontFamily: 'WefontGothic(OTF)',
                                 fontSize: '16px',
                                 fontStyle: 'normal',
                                 fontWeight: '400',
@@ -105,20 +105,21 @@ export const Section1 = (e) => {
                     </Div>
 
                     {/* 템플릿 선택 */}
-                    <Div width="100%" height="90%">
+                    <Div width="100%" height="27.4vh" backgroundColor="orange" display="flex" justifyContent="space-between">
                         <RadioCard
                             value='KPT'
                             label='KPT'
                             description={RetrospectDescription.W_KPT}
                             selectedValue={e.SelectedWays}
-                            onChange={e.handleRadioChange}/>
+                            onChange={e.handleRadioChange}    
+                        />
                         <RadioCard
                             value='4LS'
                             label='4LS'
                             selectedValue={e.SelectedWays}
                             description={RetrospectDescription.W_4LS}
                             onChange={e.handleRadioChange}
-                            margin="0px 20px"/>
+                        />
                         <RadioCard
                             value='5F'
                             label='5F'
@@ -186,7 +187,7 @@ export const Section2 = (e) => {
 // RadioCard : 라디오 버튼 Custom
 const RadioCard = (e) => {
     return (
-        <Div width="100%" margin={e.margin} height="100%">
+        <Div width="31%" height="100%">
 
             {/* hidden 처리 되는 Input::Radio 버튼 */}
             <input
@@ -197,45 +198,37 @@ const RadioCard = (e) => {
                 onChange={e.onChange}
                 style={{
                     display: 'none'
-                }}/> {/* show 처리 되는 부분 */}
-            <Div width="100%" height="100%" cursor="pointer" borderRadius="15px" alignItems="center" flexDirection="column"
-                // padding="20px"
-                backgroundColor={e.value === e.selectedValue
-                    ? 'black'
-                    : 'gainsboro'} onClick={() => e.onChange(e.value)}>
-
+                }}/> 
+            {/* show 처리 되는 부분 */}
+            <Div width="100%" height="100%" cursor="pointer" borderRadius="16px" 
+                alignItems="center" 
+                flexDirection="column"
+                border={e.value === e.selectedValue
+                    ? '2px solid #222'
+                    : 'none'}
+                backgroundColor="#FFFFFF"
+                onClick={() => e.onChange(e.value)}
+                padding="3.7vh 2.6vw"
+                boxSizing="border-box"
+                >
                 {/* 템플릿 Title */}
-                <CenterDiv width="100%" height="40%" backgroundColor="">
-                    <P
-                        fontSize="70px"
-                        fontWeight="bold"
-                        color =
-                        {e.value === e.selectedValue ? 'white' : 'black'}
-                        style={{
-                            transition: e.value === e.selectedValue ? "background-color 2s, color 2s" : ""
-                        }}>{e.label}</P>
+                <CenterDiv>
+                    {e.label}
                 </CenterDiv>
-
+                <DotDiv>
+                    <EclipseDiv style={{width: '6px', height: '6px'}}/>
+                    <EclipseDiv style={{width: '6px', height: '6px'}}/>
+                    <EclipseDiv style={{width: '6px', height: '6px'}}/>
+                </DotDiv>
                 {/* 템플릿 설명 */}
                 <Div
                     width="100%"
-                    height="60%"
-                    color={e.value === e.selectedValue
-                        ? 'white'
-                        : 'black'}
-                    backgroundColor=""
-                    fontSize="25px"
-                    style={{
-                        textAlign: "center",
-                        transition: e.value === e.selectedValue ? "background-color 2s, color 2s" : ""
-                    }}>
-                    <Div
-                        width="100%"
-                        height="auto"
-                        margin="20px"
-                        borderRadius="15px"
-                        padding="20px"
-                        backgroundColor="">{e.description}</Div>
+                    height="5vh"
+                    color="black"
+                    backgroundColor="orange"
+                    fontSize="13px"
+                    >
+                    {e.description}
                 </Div>
             </Div>
         </Div>
@@ -360,6 +353,15 @@ const EclipseDiv =styled.div`
     box-sizing: border-box;
     background-color: #E1E1E1;
     border-radius: 50%;
+`
+const DotDiv=styled.div`
+    height: 4vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 3vh;
+    background-color: beige;
 `
 // StepButton : Next / Last 버튼 분리화
 const StepButton = (e) => {

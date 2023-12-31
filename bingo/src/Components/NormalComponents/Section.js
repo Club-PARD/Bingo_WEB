@@ -45,6 +45,12 @@ export const Div = styled.div `
 `;
 
 export const CenterDiv = styled(Div)`
-    justify-content: center;
-    align-items: center;
+    width: 100%;
+    height: 40%;
+    font-family: WefontGothic(OTF);
+    font-size: 40px;
+    font-weight: 400;
+    font-style: normal;
+    color: #222;
+    line-height: 150%;
 `;
