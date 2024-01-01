@@ -3,6 +3,7 @@ import {Button, Input} from "../../Components/NormalComponents/Form";
 import {CenterDiv, Div} from "../../Components/NormalComponents/Section";
 import {Label, P} from "../../Components/NormalComponents/Text";
 import {useNavigate} from "react-router-dom";
+import { useSpring, animated } from 'react-spring';
 import { useState } from "react";
 
 // Section1 영역
@@ -44,6 +45,27 @@ export const Section1 = (e) => {
             });
         }
     };
+    const [heightKPT, setHeightKPT] = useState("29vh");
+    const [height4LS, setHeight4LS] = useState("29vh");
+    const [height5F, setHeight5F] = useState("29vh");
+
+    const propsKPT = useSpring({height: heightKPT});
+    const props4LS = useSpring({height: height4LS});
+    const props5F = useSpring({height: height5F});
+    
+
+    const stylesKPT = useSpring({
+        height: heightKPT,
+        config: { tension: 210, friction: 20 }
+    });
+    const styles4LS = useSpring({
+        height: height4LS,
+        config: { tension: 210, friction: 20 }
+    });
+    const styles5F = useSpring({
+        height: height5F,
+        config: { tension: 210, friction: 20 }
+    });
     return (
         <Div id="section1" style={Section_Style}>
             <Header>
@@ -66,21 +88,21 @@ export const Section1 = (e) => {
             </Header>
 
             {/* Content Section */}
-            <Div flexDirection="column" margin="0 auto" width="66%" height="65%" backgroundColor="aliceblue">
+            <Div flexDirection="column" margin="0 auto" width="66vw" height="65%">
 
                 {/* 회고 타이틀 Section */}
                 <Div
                     flexDirection="column"
                     width = "100%"
-                    height="20%"
-                    backgroundColor="">
+                    height="20%">
                     {/* Title */}
                     <P styled={{color: 'rgba(34, 34, 34, 0.60)',
                                 fontFamily: 'WefontGothic(OTF)',
                                 fontSize: '16px',
                                 fontStyle: 'normal',
                                 fontWeight: '400',
-                                lineHeight: '150%' /* 24px */}}
+                                lineHeight: '150%', /* 24px */
+                                }}
                     >회고 타이틀</P>
 
                     {/* Input */}
@@ -94,7 +116,7 @@ export const Section1 = (e) => {
                 {/* 템플릿 선택 Section */}
                 <Div flexDirection="column" width="100%" height="80%" backgroundColor="" >
                     {/* Title */}
-                    <Div height="10%">
+                    <Div height="6.5%">
                         <P styled={{color: 'rgba(34, 34, 34, 0.60)',
                                 fontFamily: 'WefontGothic(OTF)',
                                 fontSize: '16px',
@@ -105,34 +127,118 @@ export const Section1 = (e) => {
                     </Div>
 
                     {/* 템플릿 선택 */}
-                    <Div width="100%" height="27.4vh" backgroundColor="orange" display="flex" justifyContent="space-between">
-                        <RadioCard
-                            value='KPT'
-                            label='KPT'
-                            description={RetrospectDescription.W_KPT}
-                            selectedValue={e.SelectedWays}
-                            onChange={e.handleRadioChange}    
-                        />
-                        <RadioCard
-                            value='4LS'
-                            label='4LS'
-                            selectedValue={e.SelectedWays}
-                            description={RetrospectDescription.W_4LS}
-                            onChange={e.handleRadioChange}
-                        />
-                        <RadioCard
-                            value='5F'
-                            label='5F'
-                            selectedValue={e.SelectedWays}
-                            description={RetrospectDescription.W_5F}
-                            onChange={e.handleRadioChange}/>
+                    <Div width="100%" height="27.4vh" display="flex" justifyContent="space-between">
+                        <animated.div 
+                            style={{
+                                ...propsKPT,
+                                ...menuStyle, 
+                                ...stylesKPT, 
+                                backgroundColor: e.SelectedWays === 'KPT' || heightKPT === '43vh' ? "#222" : "#EFEFEF",
+                            }}
+                            onMouseEnter={() => setHeightKPT("43vh")}
+                            onMouseLeave={() => setHeightKPT("29vh")}
+                        >
+                            <RadioCard
+                                value='KPT'
+                                label='KPT'
+                                description={RetrospectDescription.W_KPT}
+                                selectedValue={e.SelectedWays}
+                                onChange={e.handleRadioChange}    
+                            />
+                            {heightKPT === "43vh" && <DivKPTText>Keep(유지할 점) / Problem(개선할 점) / Try(시도할 점)<br/><br/> 단기 프로젝트의 회고를 진행하는 사람들에게 추천해요!</DivKPTText>}
+                        </animated.div>
+                        <animated.div 
+                            style={{
+                                ...props4LS,
+                                ...menuStyle, 
+                                ...styles4LS, 
+                                backgroundColor: e.SelectedWays === '4LS' || height4LS === '45vh' ? "#222" : "#EFEFEF",
+                            }}
+                            onMouseEnter={() => setHeight4LS("45vh")}
+                            onMouseLeave={() => setHeight4LS("29vh")}
+                        >
+                            <RadioCard
+                                value='4LS'
+                                label='4LS'
+                                description={RetrospectDescription.W_4LS}
+                                selectedValue={e.SelectedWays}
+                                onChange={e.handleRadioChange}    
+                            />
+                            {height4LS === "45vh" && <Div4LSText>Liked(좋았던 점) / Lacked(아쉬운 점) / Learned(배운 점) / Longed for (바라는 점)<br/><br/>프로젝트의 중간 회고를 진행하는 사람들에게 추천해요!</Div4LSText>}
+                        </animated.div>
+                        <animated.div 
+                            style={{
+                                ...props5F,
+                                ...menuStyle, 
+                                ...styles5F, 
+                                backgroundColor: e.SelectedWays === '5F' || height5F === '45vh' ? "#222" : "#EFEFEF",
+                            }}
+                            onMouseEnter={() => setHeight5F("45vh")}
+                            onMouseLeave={() => setHeight5F("29vh")}
+                        >
+                            <RadioCard
+                                value='5F'
+                                label='5F'
+                                description={RetrospectDescription.W_5F}
+                                selectedValue={e.SelectedWays}
+                                onChange={e.handleRadioChange}    
+                            />
+                            {height5F === "45vh" && <Div5FText>Fact(사실) / Feeling(느낌) / Finding(교훈) / Future action(향후 행동) / Feedback(피드백)<br/><br/>장기 프로젝트의 회고를 진행하는 사람들에게 추천해요!</Div5FText>}
+                        </animated.div>
+
                     </Div>
                 </Div>
             </Div>
         </Div>
     );
 }
-
+//animation card CSS
+const menuStyle = {
+    overflow: 'visible',
+    border: '2px solid #ddd',
+    width: "20.8vw",
+    borderTopLeftRadius: "30px",
+    borderTopRightRadius: "30px",
+    borderBottomLeftRadius: "16px",
+    borderBottomRightRadius: "16px",
+    border: "1px solid #EFEFEF",
+    color: "var(--main_white, #F9F9F9)",
+    fontFamily: "WefontGothic(OTF)",
+    fontSize: "16px",
+    fontStyle: "normal",
+    fontWeight: "400",
+    lineHeight: "150%", /* 24px */
+};
+const DivKPTText =styled.div`
+    color: var(--main_white, #F9F9F9);
+    font-family: WefontGothic(OTF);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 24px */
+    width: 15.4vw;
+    margin: 2.6vh auto;
+`
+const Div4LSText =styled.div`
+    color: var(--main_white, #F9F9F9);
+    font-family: WefontGothic(OTF);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 24px */
+    width: 15.4vw;
+    margin: 2.6vh auto;
+`
+const Div5FText =styled.div`
+    color: var(--main_white, #F9F9F9);
+    font-family: WefontGothic(OTF);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 24px */
+    width: 15.4vw;
+    margin: 2.6vh auto;
+`
 // Section2 영역
 export const Section2 = (e) => {
     return (
@@ -187,7 +293,7 @@ export const Section2 = (e) => {
 // RadioCard : 라디오 버튼 Custom
 const RadioCard = (e) => {
     return (
-        <Div width="31%" height="100%">
+        <Div width="100%" height="27.5vh" borderRadius="16px">
 
             {/* hidden 처리 되는 Input::Radio 버튼 */}
             <input
@@ -203,30 +309,30 @@ const RadioCard = (e) => {
             <Div width="100%" height="100%" cursor="pointer" borderRadius="16px" 
                 alignItems="center" 
                 flexDirection="column"
-                border={e.value === e.selectedValue
-                    ? '2px solid #222'
-                    : 'none'}
                 backgroundColor="#FFFFFF"
                 onClick={() => e.onChange(e.value)}
                 padding="3.7vh 2.6vw"
                 boxSizing="border-box"
+                style={{
+                    border: e.selectedValue === e.value ? '2px solid #222' : 'none'
+                }}
                 >
                 {/* 템플릿 Title */}
                 <CenterDiv>
                     {e.label}
                 </CenterDiv>
                 <DotDiv>
-                    <EclipseDiv style={{width: '6px', height: '6px'}}/>
-                    <EclipseDiv style={{width: '6px', height: '6px'}}/>
-                    <EclipseDiv style={{width: '6px', height: '6px'}}/>
+                    <EclipseDiv style={{width: '.45vw', height: '.45vw'}}/>
+                    <EclipseDiv style={{width: '.45vw', height: '.45vw'}}/>
+                    <EclipseDiv style={{width: '.45vw', height: '.45vw'}}/>
                 </DotDiv>
                 {/* 템플릿 설명 */}
                 <Div
                     width="100%"
                     height="5vh"
                     color="black"
-                    backgroundColor="orange"
-                    fontSize="13px"
+                    fontSize="16px"
+                    textAlign="justify"
                     >
                     {e.description}
                 </Div>
@@ -295,7 +401,7 @@ const handleMakeThreeSection = (way, labels, questions, setQuestions) => (
 
 // StepButton : Next / Last 버튼 분리화
 const Header = styled.div`
-    width: 66%;
+    width: 66vw;
     height: 24%;
     margin: 0 auto;
     box-sizing: border-box;
@@ -348,7 +454,7 @@ const SpanDesc=styled.span`
 `
 const EclipseDiv =styled.div`
     width: 0.6vw;
-    height: 12px;
+    height: .6vw;
     border: none;
     box-sizing: border-box;
     background-color: #E1E1E1;
@@ -361,7 +467,6 @@ const DotDiv=styled.div`
     flex-direction: column;
     justify-content: space-between;
     margin-bottom: 3vh;
-    background-color: beige;
 `
 // StepButton : Next / Last 버튼 분리화
 const StepButton = (e) => {
@@ -417,6 +522,7 @@ const InputStyle = {
     fontSeight: "400",
     lineHeight: "160%", /* 32px */
     letterSpacing: "-0.2px",
+    margin: "1.2vh 0 0 0"
 }
 
 // Section 스타일
