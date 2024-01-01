@@ -283,14 +283,13 @@ export const Section2 = (e) => {
                     />
                 </RightHead>
             </Header>
-            <Div width="100%" height="50%" margin="0 0 -5% 0" position="relative" backgroundColor = "">
+            <Div width="100%" height="73vh" overflow="auto">
                 <Div
                     flexDirection="column"
                     height="100%"
-                    width="100%"
-                    style={{
-                        overflow: "scroll",
-                    }}>
+                    width="70.5%"
+                    margin="0 auto"
+                >
                     {
                         e.SelectedWays === 'KPT' && handleMakeThreeSection('KPT', [
                             'Keep', 'Problem', 'Try'
@@ -372,30 +371,46 @@ const handleMakeThreeSection = (way, labels, questions, setQuestions) => (
             <Div
                 key={index}
                 flexDirection="column"
-                border="3px dashed gainsboro"
+                border="none"
+                backgroundColor="#F3F3F3"
                 width="100%"
-                height="auto"
+                height="47vh"
                 margin={index === 0 ? "0% 0px" : "2% 0px"}
-                padding="30px 30px"
                 boxSizing="border-box"
-                borderRadius="10px"
+                borderRadius="40px"
+                display="flex"
+                justifyContent="space-between"
+                alignItems="center"
+                padding="1.2vw"
             >
+                <Div 
+                width="66.3vw" 
+                height="4vh" 
+                display="flex" 
+                justifyContent="center" 
+                alignItems="center" 
+                backgroundColor="#F9F9F9"
+                color= "rgba(22, 22, 22, 0.3)"
+                fontFamily="WefontGothic(OTF)"
+                fontSize="18px"
+                fontStyle="normal"
+                fontWeight="400"
+                >{way}</Div>
                 {/* Title */}
-                <Div alignItems="flex-end">
-                    <Label margin="0px 5px 0px 0px" fontSize="100px">{label[0]}</Label>
-                    <Label margin="0px 0px 5px 0px" fontSize="40px" width="20%">{label}</Label>
+                <Div width="66.3vw" height="8.3vh" alignItems="end">
+                    <Label fontSize="60px" color="rgb(234, 67, 52)">{label[0]}</Label>
+                    <Label fontSize="20px" color="rgba(234, 67, 52, 0.4)" width="20%" margin="0 0 0.4vh 0.2vw">{label}</Label>
                 </Div>
                 {
                     // console.log(questions[index].content)
                 }
                 {/* 질문 모음 */}
-                <Div flexDirection="column" height="auto" justifyContent="space-around">
+                <Div flexDirection="column" width="66.3vw" height="22.4vh" justifyContent="end">
                     {Array.from({ length: 3 }).map((_, contentIndex) => (
                         <Input
                             type="text"
-                            placeholder={`질문 ${contentIndex + 1}을 입력해주세요.`}
+                            placeholder={`세부 질문을 입력하세요.`}
                             style={InputStyle}
-                            width="100%"
                             value={questions[index]?.content[contentIndex]?.dataQ || ''}
                             onChange={(e) => {
                                 const updatedQuestions = [...questions];
@@ -533,12 +548,12 @@ const StepButtonSkip = (e) => {
 
 // Input 스타일 지정
 const InputStyle = {
+    padding: "1.7vh 1.4vw 1.7vh 1.4vw",
     type: "text",
     width: "100%",
     height: "6.5vh",
-    padding: "1.4vw",
     borderRadius: "24px",
-    backgroundColor: "#F0F0F0",
+    backgroundColor: "#EBEBEB",
     color: "#222",
     fontFamily: "WefontGothic(OTF)",
     fontSize: "20px",
@@ -546,12 +561,12 @@ const InputStyle = {
     fontSeight: "400",
     lineHeight: "160%", /* 32px */
     letterSpacing: "-0.2px",
-    margin: "1.2vh 0 0 0"
+    marginBottom: "1.5vh",
 }
 
 // Section 스타일
 const Section_Style = {
-    width: "90%",
+    width: "100%",
     height: "100%",
     flexDirection: "column",
     margin: "0 auto",
