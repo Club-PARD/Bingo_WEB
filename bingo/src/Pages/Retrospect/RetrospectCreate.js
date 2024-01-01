@@ -72,7 +72,7 @@ export default function RetrospectCreate() {
             display="block"
             flexDirection="column"
             width="100%"
-            height="94.9vh"
+            height="93.9vh"
             backgroundColor="#F9F9F9"
             overflow="hidden"
         >

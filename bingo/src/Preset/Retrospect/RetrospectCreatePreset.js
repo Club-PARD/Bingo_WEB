@@ -36,17 +36,14 @@ export const Section1 = (e) => {
 
 
     const handleNextButtonClick = () => {
-        if (e.retrospectTitle === '') {
-            openModalInvalid();
-        } else {
-            // 필요한 데이터와 함께 Section2로 이동
-            navigate("/RetrospectCreate#section2", {
-                state: {
-                    retrospectTitle: e.retrospectTitle,
-                    SelectedWays: e.SelectedWays || '',
-                },
-            });
-        }
+        // 필요한 데이터와 함께 Section2로 이동
+        navigate("/RetrospectCreate#section2", {
+            state: {
+                retrospectTitle: e.retrospectTitle,
+                SelectedWays: e.SelectedWays || '',
+            },
+        });
+        
     };
     const [heightKPT, setHeightKPT] = useState("29vh");
     const [height4LS, setHeight4LS] = useState("29vh");
@@ -99,12 +96,13 @@ export const Section1 = (e) => {
                     <StepButton onClick={openModalCancle} targetLabel="취소" 
                         backgroundColor="#F9F9F9" color="#EA4336"/>
                     <StepButton
-                                targetPage={e.retrospectTitle ? "#section2" : ""}
-                                targetLabel="다음"
-                                width = "150px"
-                                onClick={handleNextButtonClick}
-                                backgroundColor="#EA4336" color="#F9F9F9"
-                            />
+                        targetPage={e.retrospectTitle ? "#section2" : null}
+                        targetLabel="다음"
+                        width = "150px"
+                        onClick={handleNextButtonClick}
+                        backgroundColor={e.retrospectTitle ? "#EA4336" : "rgba(234, 67, 54, 0.4)"}
+                        color="#F9F9F9"
+                    />
                 </RightHead>
             </Header>
 
@@ -283,7 +281,7 @@ export const Section2 = (e) => {
                     />
                 </RightHead>
             </Header>
-            <Div width="100%" height="73vh" overflow="auto">
+            <Div width="100%" height="71.3vh" overflow="auto">
                 <Div
                     flexDirection="column"
                     height="100%"
@@ -567,9 +565,10 @@ const InputStyle = {
 // Section 스타일
 const Section_Style = {
     width: "100%",
-    height: "100%",
+    height: "93.9vh",
     flexDirection: "column",
     margin: "0 auto",
+    overflow: "hidden"
 }
 // 템플릿 설명 변수
 const RetrospectDescription = ({
