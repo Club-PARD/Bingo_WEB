@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import {ID, LoginBtn, PW} from "../../Preset/LoginPreset";
 import GoogleLoginButton from "./GoogleLogin";
@@ -8,6 +8,8 @@ import { P } from "../../Components/NormalComponents/Text";
 import { Button } from "@mui/material";
 import { Div } from "../../Components/NormalComponents/Section";
 import { Link } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { loginUserState } from "../../Contexts/Atom";
 
 
 // 로그인 화면 전체를 감싸는 Div
@@ -64,6 +66,11 @@ const LoginPage = () => {
     const login =()=> {
         location.href = "https://accounts.google.com/o/oauth2/auth?client_id=21090106612-s57k2u6n2ao9odt0p7r6l8mu2i3n4lia.apps.googleusercontent.com&redirect_uri=http://ec2-13-209-82-115.ap-northeast-2.compute.amazonaws.com:8080/login/oauth2/code/google&response_type=code&scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile"
     }
+
+    const [userInfo, setUserInfo] = useRecoilState(loginUserState);
+    useEffect(() => {
+        console.log("Updated UserInfo:", userInfo);
+    }, [userInfo]);
     return (
         <LoginDiv>
             <Logo>

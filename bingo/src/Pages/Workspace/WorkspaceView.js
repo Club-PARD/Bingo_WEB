@@ -3,16 +3,31 @@ import {React} from "react";
 import RetrospectInWorkspace from "./Components/RetrospectInWorkspace";
 import BingoBoard from "../../Preset/WorkspacePreset/BingoBoard";
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { useParams } from 'react-router-dom';
+import {useRecoilState} from "recoil";
+import {WorkspaceData} from "../../Contexts/Atom.js";
 
 // workspace에 들어오면 보이는 화면 아직 와이어 프레임 안나와서 정확한건 미정 빙고페이지로 이동 가능 회고생성페이지로 이동 가능
 // RetrospectInWorkspace component출력 회고결과 출력(이것도 디자인이 완성되고 백엔드가 연결되어야 가능하다)
+
 function WorkspaceView() {
+    const location = useLocation();
+    const searchParams = new URLSearchParams(location.search);
+    const workspaceId = searchParams.get('workspaceId');
+    const [workspaceData, setWorkspaceData] = useRecoilState(WorkspaceData);
+
+    const filteredWorkspaces = workspaceData.filter(workspace => workspace.id == workspaceId);
+    console.log(filteredWorkspaces.name);
+    
     return (
         <Div width="100%" height="80vh" display="flex" justifyContent="end" flexDirection="column">
                 {/* Section1 : 빙고판 */}
             <Div width="100%" height="95%" >
                 <Section_Bingo>
+                    
+                    <h1>{filteredWorkspaces[0].name}</h1>
+                    <h3>{filteredWorkspaces[0].description}</h3>
                     {/* Title : 빙고판 타이틀 */}
                     <Section_Title style={{marginLeft:'5%'}}>좋은 팀을 위한 9가지 가치</Section_Title>
 
