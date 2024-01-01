@@ -4,7 +4,7 @@ import { Img } from "../../../Components/NormalComponents/Etc";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-const WorkspaceCard = ({ name, desc, picture, code, period }) => (
+const WorkspaceCard = ({ workspaceId, name, desc, picture, code, period }) => (
     <Div 
         flexDirection= "column"
         margin="2% 0 0 2%"
@@ -15,8 +15,8 @@ const WorkspaceCard = ({ name, desc, picture, code, period }) => (
     >
         {/*project Card에서 이미지를 넣을 공간*/}
         <Link
-            style={{textDecoration: 'none', height: '100%'}}
-            to="/WorkspaceView"> 
+            style={{ textDecoration: 'none', height: '100%' }}
+            to={`/WorkspaceView?workspaceId=${workspaceId}`}>
         <Div
             width="100%"
             height="80%"

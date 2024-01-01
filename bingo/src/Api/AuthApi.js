@@ -32,7 +32,7 @@ export const login = async (decodedToken) => {
 export const getUserData = async () => {
   try {
     const response = await axios.get(
-      `http://172.30.1.34:8080/api/v1/appuser/7`,
+      `http://13.209.82.115:8080/api/v1/appUser/2`,
     );
     
     console.log(response.data);
