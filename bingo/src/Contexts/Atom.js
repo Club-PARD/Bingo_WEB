@@ -13,7 +13,20 @@ export const ProjectSelectedFileState = atom(
     {key: 'projectSelectedFile', default: ''}
 );
 
-export const loginUserState = atom({key: 'uniqueLoginUserKey', default: null});
+export const loginUserState = atom({
+    key: 'uniqueLoginUserKey',
+    default: {
+        exprTime: 10000,
+        appUser: {
+            email: "",
+            name: "",
+            token: "",
+            answerList: [],
+            enrollmentList: [],
+            subQuestionList: []
+        }
+    }
+});
 
 // team evaluation in BingoBoard
 export const ChipData = atom({
@@ -110,10 +123,10 @@ export const WorkspaceData = atom({
     key: 'workspaceData',
     default: [
         {
-            name : "",
-            desc : "",
-            picture: "",
-            code : "",
-        },
+            id: null,
+            name:"",
+            desc:"",
+            role:""
+        }
     ]
 });

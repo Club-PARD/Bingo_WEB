@@ -42,7 +42,7 @@ const Routers = () => {
                         <Route path='/PI2' element={<PI_Test2 />}/>
                         <Route path='/UserApprove' element={<UserApprove />}/>
                         <Route path='/WorkspaceList' element={<WorkspaceList />}/>
-                        <Route path="" element={<Header/>}>
+                        {/*<Route path="" element={<Header/>}>*/}
                             <Route path='/WorkspaceView' element={<WorkspaceView />}/>
                             <Route path='/RetrospectCreate' element={<RetrospectCreate />}/>
                             <Route path='/RetrospectList' element={<RetrospectList />}/>
@@ -51,7 +51,7 @@ const Routers = () => {
                             <Route path='/RetrospectWriteText' element={<RetrospectWriteText />}/>
                             <Route path='/TeamEvaluation' element={<TeamEvaluation />}/>
                             <Route path='/RetrospectViewerPage' element={<RetrospectViewerPage/>}/>
-                        </Route>
+                        {/*</Route>*/}
 
                         <Route path='/CrudList' element={<CrudList />}/>
                         <Route path='/CrudAdd' element={<CrudAdd />}/>
