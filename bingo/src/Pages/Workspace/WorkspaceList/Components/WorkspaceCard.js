@@ -23,15 +23,16 @@ const CardBorder = styled.div`
 const ImgBox = styled.div`
     width : 45%;
     height : 100%;
-    border : 1px solid red;
     display : flex;
     justify-content : center;
     align-items : center;
+    /* border : 1px solid red; */
+    /* box-sizing: border-box; */
 `
 const TextBox = styled.div`
     width : 45%;
     height : 100%;
-    border : 1px solid blue;
+    /* border : 1px solid blue; */
     display : flex;
     flex-direction : column;
     justify-content : center;
@@ -39,13 +40,26 @@ const TextBox = styled.div`
 `
 const TextSet = styled.div`
     width : 90%;
-    height : 50%;
-    border : 1px solid green;
+    height : 40%;
+    /* border : 1px solid green; */
     display : flex;
     flex-direction : column;
     justify-content : center;
-    align-items : center;
+    align-items : start;
 `
+const Content = styled.div`
+    color : #EA4336;
+    font-size : 15px;
+`
+const Title = styled.div`
+    color : #222;
+    font-size : 25px;
+`
+const Desc = styled.div`
+    color : #222;
+    font-size : 17px;
+`
+
 
 const CardImg = styled.div`
     height : 50%;
@@ -65,11 +79,11 @@ const WorkspaceCard = ({ workspaceId, name, desc, picture, code, period }) => (
                 </ImgBox>
                 <TextBox>
                     <TextSet>
-                        <div>프로젝트 타이틀</div>
-                        <div>{name}</div>
+                        <Content>프로젝트 타이틀</Content>
+                        <Title>{name}</Title>
                     </TextSet>
                     <TextSet>
-                        <div>프로젝트 설명</div>
+                        <Content>프로젝트 설명</Content>
                         <div>{desc}</div>
                     </TextSet>
                     
