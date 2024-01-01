@@ -4,37 +4,40 @@ import { Img } from "../../../../Components/NormalComponents/Etc";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+const CardBorder = styled.div`
+    flex-direction : row;
+    margin : 2% 0 0 2%;
+    border-radius : 32px;
+    width : 22%;
+    height : 38%;
+    background-color : #F8F0EF;
+    border : 1px solid transparent;
+`
+
+const Card = styled.div`
+    height : 100%;
+    width : 100%;
+    flex-direction : column;
+    border-radius : 32px;
+    background-color : #F8F0EF;
+    border : 1px solid transparent;
+`
+
 const WorkspaceCard = ({ workspaceId, name, desc, picture, code, period }) => (
-    <Div 
-        flexDirection= "column"
-        margin="2% 0 0 2%"
-        borderRadius= "15px"
-        width= "22%"
-        height= "37.4%"
-        backgroundColor= "#EDEDED"
-    >
-        {/*project Card에서 이미지를 넣을 공간*/}
-        <Link
-            style={{ textDecoration: 'none', height: '100%' }}
-            to={`/WorkspaceView?workspaceId=${workspaceId}`}>
-        <Div
-            width="100%"
-            height="80%"
-            flexDirection="column" 
-            borderRadius="15px" 
-            backgroundColor="#D9D9D9" 
-        >
-            <Img wisth="100%" height="100%" borderRadius="15px" src={picture} alt={code}/>
-        </Div>
-        <Div
+    // 
+    <CardBorder >
+        {/* 링크 담당 */}
+        <Link style={{ textDecoration: 'none', height: '100%' }} to={`/WorkspaceView?workspaceId=${workspaceId}`}>
+            <Img width="100%" height="100%" borderRadius="15px" src={picture} alt={code}/>
+            <Div
             height="20%"
             alignItems="center"
             fontSize="37px"
             textDecoration="none"
             color="black"
-        >{name}</Div>
+            >{name}</Div>
         </Link>
-    </Div>
+    </CardBorder>
 );
 
 export default WorkspaceCard;
