@@ -3,7 +3,11 @@ import {Button, Input} from "../../Components/NormalComponents/Form";
 import {CenterDiv, Div} from "../../Components/NormalComponents/Section";
 import {Label, P} from "../../Components/NormalComponents/Text";
 import {useNavigate} from "react-router-dom";
+import { useSpring, animated } from 'react-spring';
 import { useState } from "react";
+import Modal from "react-modal";
+import { Link } from "react-router-dom";
+
 
 // Section1 영역
 export const Section1 = (e) => {
@@ -33,7 +37,7 @@ export const Section1 = (e) => {
 
     const handleNextButtonClick = () => {
         if (e.retrospectTitle === '') {
-            alert("회고 타이틀을 입력하시오");
+            openModalInvalid();
         } else {
             // 필요한 데이터와 함께 Section2로 이동
             navigate("/RetrospectCreate#section2", {
@@ -44,22 +48,87 @@ export const Section1 = (e) => {
             });
         }
     };
+    const [heightKPT, setHeightKPT] = useState("29vh");
+    const [height4LS, setHeight4LS] = useState("29vh");
+    const [height5F, setHeight5F] = useState("29vh");
+
+    const propsKPT = useSpring({height: heightKPT});
+    const props4LS = useSpring({height: height4LS});
+    const props5F = useSpring({height: height5F});
+    
+
+    const stylesKPT = useSpring({
+        height: heightKPT,
+        config: { tension: 210, friction: 20 }
+    });
+    const styles4LS = useSpring({
+        height: height4LS,
+        config: { tension: 210, friction: 20 }
+    });
+    const styles5F = useSpring({
+        height: height5F,
+        config: { tension: 210, friction: 20 }
+    });
+    //CancleModal관련
+    const [modalCancleIsOpen, setModalCancleIsOpen] = useState(false); // Modal 창의 open 여부를 저장하는 변수
+    const openModalCancle = () => {
+        setModalCancleIsOpen(true);
+    };
+    const closeModalCancle = () => {
+        setModalCancleIsOpen(false);
+    };
+    //InvalidModal관련
+    const [modalInvalidIsOpen, setModalInvalidIsOpen] = useState(false); // Modal 창의 open 여부를 저장하는 변수
+    const openModalInvalid = () => {
+        setModalInvalidIsOpen(true);
+    };
+    const closeModalInvalid = () => {
+        setModalInvalidIsOpen(false);
+    };
     return (
         <Div id="section1" style={Section_Style}>
+            <Header>
+                <LeftHead>
+                    <SpanCreate>회고 생성</SpanCreate>
+                    <SpanTitle>3!4!(쓰리포)</SpanTitle>
+                    <SpanDesc>한동대학교 PARD 롱커톤 3!4! 파이팅!</SpanDesc>
+                </LeftHead>
+                <RightHead>
+                    <EclipseDiv style={{marginRight: '0.8vw'}}/>
+                    <EclipseDiv style={{marginRight: '1.8vw'}}/>
+                    <StepButton onClick={openModalCancle} targetLabel="취소" 
+                        backgroundColor="#F9F9F9" color="#EA4336"/>
+                    <StepButton
+                                targetPage={e.retrospectTitle ? "#section2" : ""}
+                                targetLabel="다음"
+                                width = "150px"
+                                onClick={handleNextButtonClick}
+                                backgroundColor="#EA4336" color="#F9F9F9"
+                            />
+                </RightHead>
+            </Header>
+
             {/* Content Section */}
-            <Div flexDirection="column" height="90%" backgroundColor="">
+            <Div flexDirection="column" margin="0 auto" width="66vw" height="65%">
 
                 {/* 회고 타이틀 Section */}
                 <Div
                     flexDirection="column"
                     width = "100%"
-                    height="20%"
-                    backgroundColor="">
+                    height="20%">
                     {/* Title */}
-                    <P fontSize="30px">회고 타이틀</P>
+                    <P styled={{color: 'rgba(34, 34, 34, 0.60)',
+                                fontFamily: 'WefontGothic(OTF)',
+                                fontSize: '16px',
+                                fontStyle: 'normal',
+                                fontWeight: '400',
+                                lineHeight: '150%', /* 24px */
+                                }}
+                    >회고 타이틀</P>
 
                     {/* Input */}
                     <Input
+                        placeholder= '1차 회고'
                         style={InputStyle}
                         value={e.retrospectTitle}
                         onChange={(k) => e.setRetrospectiTitle(k.target.value)}></Input>
@@ -68,62 +137,153 @@ export const Section1 = (e) => {
                 {/* 템플릿 선택 Section */}
                 <Div flexDirection="column" width="100%" height="80%" backgroundColor="" >
                     {/* Title */}
-                    <Div height="10%">
-                        <P fontSize="30px">템플릿 선택</P>
+                    <Div height="6.5%">
+                        <P styled={{color: 'rgba(34, 34, 34, 0.60)',
+                                fontFamily: 'WefontGothic(OTF)',
+                                fontSize: '16px',
+                                fontStyle: 'normal',
+                                fontWeight: '400',
+                                lineHeight: '150%' /* 24px */}}
+                        >템플릿 선택</P>
                     </Div>
 
                     {/* 템플릿 선택 */}
-                    <Div width="100%" height="90%">
-                        <RadioCard
-                            value='KPT'
-                            label='KPT'
-                            description={RetrospectDescription.W_KPT}
-                            selectedValue={e.SelectedWays}
-                            onChange={e.handleRadioChange}/>
-                        <RadioCard
-                            value='4LS'
-                            label='4LS'
-                            selectedValue={e.SelectedWays}
-                            description={RetrospectDescription.W_4LS}
-                            onChange={e.handleRadioChange}
-                            margin="0px 20px"/>
-                        <RadioCard
-                            value='5F'
-                            label='5F'
-                            selectedValue={e.SelectedWays}
-                            description={RetrospectDescription.W_5F}
-                            onChange={e.handleRadioChange}/>
-                    </Div>
-                </Div>
-            </Div>
-
-            {/* 버튼 Section */}
-            <Div flexDirection="column" height="10%" justifyContent="center">
-                <Div justifyContent="end" height="100%">
-                    <Div width="100%" height="100%" display="flex" alignItems="center" justifyContent="right" backgroundColor="rgba(0, 0.8)" backdropFilter="blur(8px)" zIndex="1" margin="3px 0 0 0">
-                        <BtnDivSection1>
-                            <StepButton onClick={NoQuestionSubmit} targetLabel="기본값으로 생성" width = "300px" opcaity = "30%"/>
-                            <StepButton onClick={e.onCancleClick} targetLabel="취소"  width = "150px"/>
-                            <StepButton
-                                targetPage={e.retrospectTitle ? "#section2" : ""}
-                                targetLabel="다음"
-                                width = "150px"
-                                onClick={handleNextButtonClick}
+                    <Div width="100%" height="27.4vh" display="flex" justifyContent="space-between">
+                        <animated.div 
+                            style={{
+                                ...propsKPT,
+                                ...menuStyle, 
+                                ...stylesKPT, 
+                                backgroundColor: e.SelectedWays === 'KPT' || heightKPT === '43vh' ? "#222" : "#EFEFEF",
+                            }}
+                            onMouseEnter={() => setHeightKPT("43vh")}
+                            onMouseLeave={() => setHeightKPT("29vh")}
+                        >
+                            <RadioCard
+                                value='KPT'
+                                label='KPT'
+                                description={RetrospectDescription.W_KPT}
+                                selectedValue={e.SelectedWays}
+                                onChange={e.handleRadioChange}    
                             />
-                        </BtnDivSection1>
+                            {heightKPT === "43vh" && <DivKPTText>Keep(유지할 점) / Problem(개선할 점) / Try(시도할 점)<br/><br/> 단기 프로젝트의 회고를 진행하는 사람들에게 추천해요!</DivKPTText>}
+                        </animated.div>
+                        <animated.div 
+                            style={{
+                                ...props4LS,
+                                ...menuStyle, 
+                                ...styles4LS, 
+                                backgroundColor: e.SelectedWays === '4LS' || height4LS === '45vh' ? "#222" : "#EFEFEF",
+                            }}
+                            onMouseEnter={() => setHeight4LS("45vh")}
+                            onMouseLeave={() => setHeight4LS("29vh")}
+                        >
+                            <RadioCard
+                                value='4LS'
+                                label='4LS'
+                                description={RetrospectDescription.W_4LS}
+                                selectedValue={e.SelectedWays}
+                                onChange={e.handleRadioChange}    
+                            />
+                            {height4LS === "45vh" && <Div4LSText>Liked(좋았던 점) / Lacked(아쉬운 점) / Learned(배운 점) / Longed for (바라는 점)<br/><br/>프로젝트의 중간 회고를 진행하는 사람들에게 추천해요!</Div4LSText>}
+                        </animated.div>
+                        <animated.div 
+                            style={{
+                                ...props5F,
+                                ...menuStyle, 
+                                ...styles5F, 
+                                backgroundColor: e.SelectedWays === '5F' || height5F === '45vh' ? "#222" : "#EFEFEF",
+                            }}
+                            onMouseEnter={() => setHeight5F("45vh")}
+                            onMouseLeave={() => setHeight5F("29vh")}
+                        >
+                            <RadioCard
+                                value='5F'
+                                label='5F'
+                                description={RetrospectDescription.W_5F}
+                                selectedValue={e.SelectedWays}
+                                onChange={e.handleRadioChange}    
+                            />
+                            {height5F === "45vh" && <Div5FText>Fact(사실) / Feeling(느낌) / Finding(교훈) / Future action(향후 행동) / Feedback(피드백)<br/><br/>장기 프로젝트의 회고를 진행하는 사람들에게 추천해요!</Div5FText>}
+                        </animated.div>
+
                     </Div>
                 </Div>
             </Div>
+            <CancleModal modalCancleIsOpen={modalCancleIsOpen} closeModalCancle={closeModalCancle} />
+            <InvalidModal modalInvalidIsOpen={modalInvalidIsOpen} closeModalInvalid={closeModalInvalid} />
         </Div>
     );
 }
-
+//animation card CSS
+const menuStyle = {
+    overflow: 'visible',
+    border: '2px solid #ddd',
+    width: "20.8vw",
+    borderTopLeftRadius: "30px",
+    borderTopRightRadius: "30px",
+    borderBottomLeftRadius: "16px",
+    borderBottomRightRadius: "16px",
+    border: "1px solid #EFEFEF",
+    color: "var(--main_white, #F9F9F9)",
+    fontFamily: "WefontGothic(OTF)",
+    fontSize: "16px",
+    fontStyle: "normal",
+    fontWeight: "400",
+    lineHeight: "150%", /* 24px */
+};
+const DivKPTText =styled.div`
+    color: var(--main_white, #F9F9F9);
+    font-family: WefontGothic(OTF);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 24px */
+    width: 15.4vw;
+    margin: 2.6vh auto;
+`
+const Div4LSText =styled.div`
+    color: var(--main_white, #F9F9F9);
+    font-family: WefontGothic(OTF);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 24px */
+    width: 15.4vw;
+    margin: 2.6vh auto;
+`
+const Div5FText =styled.div`
+    color: var(--main_white, #F9F9F9);
+    font-family: WefontGothic(OTF);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 24px */
+    width: 15.4vw;
+    margin: 2.6vh auto;
+`
 // Section2 영역
 export const Section2 = (e) => {
     return (
         <Div id="section2" style={Section_Style}>
             {/* Content Section */}
-            <Div width="100%" height="100%" margin="0 0 -5% 0" position="relative" backgroundColor = "">
+            <Header>
+                <LeftHead>
+                    <SpanCreate>회고 생성</SpanCreate>
+                    <SpanTitle>3!4!(쓰리포)</SpanTitle>
+                    <SpanDesc>한동대학교 PARD 롱커톤 3!4! 파이팅!</SpanDesc>
+                </LeftHead>
+                <RightHead>
+                    <EclipseDiv style={{marginRight: '0.8vw'}}/>
+                    <EclipseDiv style={{marginRight: '1.8vw'}}/>
+                    <StepButton targetPage="#section1" targetLabel="이전" 
+                        backgroundColor="#F9F9F9" color="#EA4336"/>
+                    <StepButton onClick={e.onSubmitClick} targetLabel="생성"
+                        backgroundColor="#EA4336" color="#F9F9F9" 
+                    />
+                </RightHead>
+            </Header>
+            <Div width="100%" height="50%" margin="0 0 -5% 0" position="relative" backgroundColor = "">
                 <Div
                     flexDirection="column"
                     height="100%"
@@ -149,18 +309,6 @@ export const Section2 = (e) => {
 
                 </Div>
             </Div>
-            {/* 버튼 Section */}
-            <Div flexDirection="column" height="10%" justifyContent="center">
-                <Div justifyContent="end" height="100%">
-                    <Div width="100%" height="100%" alignItems="center" justifyContent="right" backgroundColor="rgba(0, 0.8)" backdropFilter="blur(8px)" zIndex="1">
-                        <BtnDivSection2>
-                            {/* <StepButtonSkip onClick={e.onClick} targetLabel="건너뛰기"/> */}
-                            <StepButton targetPage="#section1" targetLabel="이전" width = "150px"/>
-                            <StepButton onClick={e.onSubmitClick} targetLabel="생성" width = "150px"/>
-                        </BtnDivSection2>
-                    </Div>
-                </Div>
-            </Div>
         </Div>
     );
 }
@@ -168,7 +316,7 @@ export const Section2 = (e) => {
 // RadioCard : 라디오 버튼 Custom
 const RadioCard = (e) => {
     return (
-        <Div width="100%" margin={e.margin} height="100%">
+        <Div width="100%" height="27.5vh" borderRadius="16px">
 
             {/* hidden 처리 되는 Input::Radio 버튼 */}
             <input
@@ -179,45 +327,37 @@ const RadioCard = (e) => {
                 onChange={e.onChange}
                 style={{
                     display: 'none'
-                }}/> {/* show 처리 되는 부분 */}
-            <Div width="100%" height="100%" cursor="pointer" borderRadius="15px" alignItems="center" flexDirection="column"
-                // padding="20px"
-                backgroundColor={e.value === e.selectedValue
-                    ? 'black'
-                    : 'gainsboro'} onClick={() => e.onChange(e.value)}>
-
+                }}/> 
+            {/* show 처리 되는 부분 */}
+            <Div width="100%" height="100%" cursor="pointer" borderRadius="16px" 
+                alignItems="center" 
+                flexDirection="column"
+                backgroundColor="#FFFFFF"
+                onClick={() => e.onChange(e.value)}
+                padding="3.7vh 2.6vw"
+                boxSizing="border-box"
+                style={{
+                    border: e.selectedValue === e.value ? '2px solid #222' : 'none'
+                }}
+                >
                 {/* 템플릿 Title */}
-                <CenterDiv width="100%" height="40%" backgroundColor="">
-                    <P
-                        fontSize="70px"
-                        fontWeight="bold"
-                        color =
-                        {e.value === e.selectedValue ? 'white' : 'black'}
-                        style={{
-                            transition: e.value === e.selectedValue ? "background-color 2s, color 2s" : ""
-                        }}>{e.label}</P>
+                <CenterDiv>
+                    {e.label}
                 </CenterDiv>
-
+                <DotDiv>
+                    <EclipseDiv style={{width: '.45vw', height: '.45vw'}}/>
+                    <EclipseDiv style={{width: '.45vw', height: '.45vw'}}/>
+                    <EclipseDiv style={{width: '.45vw', height: '.45vw'}}/>
+                </DotDiv>
                 {/* 템플릿 설명 */}
                 <Div
                     width="100%"
-                    height="60%"
-                    color={e.value === e.selectedValue
-                        ? 'white'
-                        : 'black'}
-                    backgroundColor=""
-                    fontSize="25px"
-                    style={{
-                        textAlign: "center",
-                        transition: e.value === e.selectedValue ? "background-color 2s, color 2s" : ""
-                    }}>
-                    <Div
-                        width="100%"
-                        height="auto"
-                        margin="20px"
-                        borderRadius="15px"
-                        padding="20px"
-                        backgroundColor="">{e.description}</Div>
+                    height="5vh"
+                    color="black"
+                    fontSize="16px"
+                    textAlign="justify"
+                    >
+                    {e.description}
                 </Div>
             </Div>
         </Div>
@@ -283,22 +423,97 @@ const handleMakeThreeSection = (way, labels, questions, setQuestions) => (
 
 
 // StepButton : Next / Last 버튼 분리화
+const Header = styled.div`
+    width: 66vw;
+    height: 24%;
+    margin: 0 auto;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+`
+const LeftHead=styled.div`
+    margin-bottom: 5.4vh;
+    width: auto;
+    height: 46%;//114px
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+`
+const RightHead=styled.div`
+    margin-bottom: 5.4vh;
+    width: 30%;//330px
+    height: 24%;//59px
+    display: flex;
+    flex-direction: row;
+    justify-content: Right;
+    align-items: end;
+`
+const SpanCreate=styled.span`
+    color: #838383;
+    //font-family: WefontGothic(OTF);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 24px */
+    letter-spacing: -0.16px;
+`
+const SpanTitle=styled.span`
+    color: var(--sec_grey, #222);
+    //font-family: WefontGothic(OTF);
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 42px */
+`
+const SpanDesc=styled.span`
+    color: rgba(34, 34, 34, 0.80);
+    //font-family: WefontGothic(OTF);
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 22.5px */
+`
+const EclipseDiv =styled.div`
+    width: 0.6vw;
+    height: .6vw;
+    border: none;
+    box-sizing: border-box;
+    background-color: #E1E1E1;
+    border-radius: 50%;
+`
+const DotDiv=styled.div`
+    height: 4vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 3vh;
+`
+// StepButton : Next / Last 버튼 분리화
 const StepButton = (e) => {
     return (
         <a href={e.targetPage}>
             <Button
-                width={e.width}
-                height="50px"
-                borderRadius="15px"
-                fontSize="35px"
-                fontWeight="bold"
+                width="5.5vw"
+                height="5vh"
+                borderRadius="40px"
+                fontSize="18px"
+                fontWeight="400"
                 onClick={e.onClick}
-                backgroundColor="#BDBDBD"
-                style={{opacity : e.opcaity}}
+                justifyContent= "center"
+                alignItems= "center"
+                margin=" 0 0 0 .8vw"
+                border="2px solid var(--main_red, #EA4336)"
+                backgroundColor={e.backgroundColor}
+                color={e.color}
             >{e.targetLabel}</Button>
         </a>
     );
 }
+
+
 const StepButtonSkip = (e) => {
     return (
         <a href={e.targetPage}>
@@ -320,11 +535,18 @@ const StepButtonSkip = (e) => {
 const InputStyle = {
     type: "text",
     width: "100%",
-    height: "70px",
-    margin: "10px 0px",
-    borderRadius: "20px",
-    fontSize: "30px",
-    backgroundColor: "gainsboro"
+    height: "6.5vh",
+    padding: "1.4vw",
+    borderRadius: "24px",
+    backgroundColor: "#F0F0F0",
+    color: "#222",
+    fontFamily: "WefontGothic(OTF)",
+    fontSize: "20px",
+    fontStyle: "normal",
+    fontSeight: "400",
+    lineHeight: "160%", /* 32px */
+    letterSpacing: "-0.2px",
+    margin: "1.2vh 0 0 0"
 }
 
 // Section 스타일
@@ -334,30 +556,116 @@ const Section_Style = {
     flexDirection: "column",
     margin: "0 auto",
 }
-const BtnDivSection1=styled.div`
-    width: 35%;
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-`
-const BtnDivSection2=styled.div`
-    width: 17.5%;
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-`
 // 템플릿 설명 변수
 const RetrospectDescription = ({
-    W_KPT: 'KPT는 "Keep, Problem, Try"의 약자로, 팀이 프로젝트나 업무를 평가하고 개선하기 위해 유용한 간단한 피드백 프로세스를 제공' +
-            '합니다. "Keep"은 유지할 가치 있는 것, "Problem"은 발생한 문제, "Try"는 개선을 시도할 방안을 나타냅니다.',
-    W_4LS: '4LS는 "Liked, Learned, Lacked, Longed for"의 약자로, 경험 또는 이벤트에 대한 리뷰에 활용됩니다. "Like' +
-            'd"는 긍정적인 경험, "Learned"는 얻은 교훈, "Lacked"는 부족한 부분, "Longed for"는 더 원하는 부분을 나타냅니다' +
-            '.',
-    W_5F: '5F 방법론: 5F는 "Feel, Find, Finish, Future, Feedback"의 약자로, 회고를 위한 다양한 측면을 제공합니다.' +
-            ' "Feel"은 느낀 감정, "Find"는 발견한 사실, "Finish"는 완료된 작업, "Future"는 향후 계획, "Feedback"는' +
-            ' 피드백을 나타냅니다.'
+    W_KPT: '팀의 상황을 빠르게 돌아보고 명확한 개선 방법을 찾길 원한다면?',
+    W_4LS: '팀의 과정을 돌아보고 목표를 세우길 원한다면?',
+    W_5F: '팀의 중요한 사건들을 꼼꼼히 돌아보길 원한다면?'
 });
+//Modal
+const StyleModal = {
+    overlay: {
+        backgroundColor: "rgba(0, 0, 0,0.2)"
+    },
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+        borderRadius: "40px",
+        padding: 0,
+        color: "black",
+        background: `#F9F9F9`,
+        margin: "0",
+        width: "23.6vw",
+        height: "25.5vh",
+        display: "flex",
+        border: "none",
+        flexDirection: "column",
+        justifyContent: "end",
+    }
+}
+const CancleModal = (e) => {
+    return (
+        <Modal isOpen={e.modalCancleIsOpen} onRequestClose={e.closeModalCancle} style={StyleModal}>
+            <ModalLargest>
+                <ModalTextDiv>정말 나가시겠어요?</ModalTextDiv>
+                <ModalButtonDiv>
+                    <ModalCloseButton onClick={e.closeModalCancle}>취소</ModalCloseButton>
+                    <ModalExitButton to="/WorkspaceView">나가기</ModalExitButton>
+                </ModalButtonDiv>
+            </ModalLargest>
+        </Modal>
+    );
+}
+const InvalidModal = (e) => {
+    return (
+        <Modal isOpen={e.modalInvalidIsOpen} onRequestClose={e.closeModalInvalid} style={StyleModal}>
+        </Modal>
+    );
+}
+
+const ModalLargest=styled.div`
+    width: 100%;
+    height: 91%;
+    margin-top: 7%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+`
+const ModalTextDiv=styled.div`
+    width: auto;
+    height: 30px;
+    color: var(--sec_grey, #222);
+    font-family: WefontGothic(OTF);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    text-align: center;
+`
+//width:213px; height:51px;
+const ModalButtonDiv=styled.div`
+    width: 47%;
+    height: 18.5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+`
+const ModalCloseButton=styled.button`
+    width: 42%;
+    height: 100%;
+    background-color: #EA4336;
+    align-items: center;
+    justify-content: center;
+    color: var(--main_white, #F9F9F9);
+    font-family: WefontGothic(OTF);
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 27px */
+    border-radius: 40px;
+    border: 2px solid var(--main_red, #EA4336);
+    cursor: pointer;
+`
+const ModalExitButton=styled(Link)`
+    width: 50%;
+    height: 90%;
+    background-color: var(--main_white, #F9F9F9);
+    display: flex;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    color: var(--main_red, #EA4336);
+    font-family: WefontGothic(OTF);
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 27px */
+    border-radius: 40px;
+    border: 2px solid var(--main_red, #EA4336);
+    text-decoration: none;
+    cursor: pointer;
+`

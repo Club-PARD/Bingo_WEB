@@ -72,10 +72,10 @@ export default function RetrospectCreate() {
             display="block"
             flexDirection="column"
             width="100%"
-            height="85vh"
-            style={{
-                overflow: "hidden",
-            }}>
+            height="94.9vh"
+            backgroundColor="#F9F9F9"
+            overflow="hidden"
+        >
 
             {/* 타이틀 작성 및 템플릿 선택 */}
             <Section1
