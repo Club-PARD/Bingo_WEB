@@ -6,6 +6,10 @@ import { useRecoilState } from "recoil";
 import { useNavigate } from 'react-router'
 import { useState, useRef, useEffect } from "react";
 import { Div } from "../../../Components/NormalComponents/Section";
+import { Link } from "react-router-dom";
+import Modal from "react-modal";
+import { Button } from "../../../Components/NormalComponents/Form";
+
 // 전체를 감싸는 div, 이 아래에 Header / Body / Footer로 나뉘어 있음
 const Whole = styled.div `
     box-sizing: border-box;
@@ -156,37 +160,41 @@ function RetrospectWriteText() {
     // Recoil 상태 사용
     const [retrospective, setRetrospective] = useRecoilState(retrospectiveState);
     const navigate = useNavigate();
-    const [isEmpty, setIsEmpty] = useState(false);
-    
-    const handleCancelClick = () => {
-        navigate("/WorkspaceView");
-    };
-
-    const handleNextClick = () => {
-        const textAreas = document.querySelectorAll('textarea');
-        let emptyTextAreaIndex = -1;
-
-        textAreas.forEach((textarea, index) => {
-            if (textarea.value === '') {
-                emptyTextAreaIndex = index;
-                return;
+    const [isFilled, setIsFilled] = useState(false);
+    const checkIfAllFilled = (retrospective) => {
+        for (let question of retrospective.questions) {
+            for (let content of question.content) {
+                if (content.dataA === '') {
+                    setIsFilled(false);
+                    return;
+                }
             }
-        });
-
-        if (emptyTextAreaIndex !== -1) {
-            setIsEmpty(true);
-            alert('textarea에 텍스트를 입력해주세요.');
-            return;
         }
-
-        setIsEmpty(false);
-        navigate("/teamevaluation");
+        setIsFilled(true);
+    };
+    const handleNextButtonClick = (e) => {
+        if (isFilled) { // isFilled가 true일 경우에만 다음 페이지로 이동
+            navigate("/TeamEvaluation", {
+                state: {
+                    retrospectTitle: e.retrospectTitle,
+                    SelectedWays: e.SelectedWays || '',
+                },
+            });
+        }
     };
 
     const resizeTextarea = (event) => {
         event.target.style.height = '15.6vh'; // 초기 높이로 재설정
         event.target.style.height = `${event.target.scrollHeight}px`;
     }
+    //CancleModal관련
+    const [modalCancleIsOpen, setModalCancleIsOpen] = useState(false); // Modal 창의 open 여부를 저장하는 변수
+    const openModalCancle = () => {
+        setModalCancleIsOpen(true);
+    };
+    const closeModalCancle = () => {
+        setModalCancleIsOpen(false);
+    };
     return (
         <Whole>
             {/* 상단바 */}
@@ -197,8 +205,14 @@ function RetrospectWriteText() {
                     <Breadcrumb activeKey={1}/>
                 </LeftHead>
                 <RightHead>
-                    <Btn style={{backgroundColor: "#F9F9F9", color:"#EA4336"}} onClick={handleCancelClick}>이전</Btn>
-                    <Btn style={{backgroundColor: "#EA4336", color: "#F9F9F9"}} onClick={handleNextClick}>완료</Btn>
+                <StepButton onClick={openModalCancle} targetLabel="취소" 
+                        backgroundColor="#F9F9F9" color="#EA4336"/>
+                    <StepButton
+                        targetLabel="다음"
+                        onClick={handleNextButtonClick}
+                        backgroundColor={isFilled ? "#EA4336" : "rgba(234, 67, 54, 0.4)"}
+                        color="#F9F9F9"
+                    />
                 </RightHead>
             </Header>
             {/* 회고 작성 창 */}
@@ -253,6 +267,7 @@ function RetrospectWriteText() {
                                             dataA: e.target.value,
                                             }
                                             setRetrospective(updatedAnswers);
+                                            checkIfAllFilled(updatedAnswers);
                                             console.log(retrospective);
                                         }}
                                         />
@@ -275,8 +290,133 @@ function RetrospectWriteText() {
                 </footer>
             */}
             </BodyMom>
+
+            <CancleModal modalCancleIsOpen={modalCancleIsOpen} closeModalCancle={closeModalCancle} />
         </Whole>
     );
 }
 
 export default RetrospectWriteText;
+
+//Modal
+const StyleModal = {
+    overlay: {
+        backgroundColor: "rgba(0, 0, 0,0.2)"
+    },
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+        borderRadius: "40px",
+        padding: 0,
+        color: "black",
+        background: `#F9F9F9`,
+        margin: "0",
+        width: "23.6vw",
+        height: "25.5vh",
+        display: "flex",
+        border: "none",
+        flexDirection: "column",
+        justifyContent: "end",
+    }
+}
+const CancleModal = (e) => {
+    return (
+        <Modal isOpen={e.modalCancleIsOpen} onRequestClose={e.closeModalCancle} style={StyleModal}>
+            <ModalLargest>
+                <ModalTextDiv>정말 나가시겠어요?</ModalTextDiv>
+                <ModalButtonDiv>
+                    <ModalCloseButton onClick={e.closeModalCancle}>취소</ModalCloseButton>
+                    <ModalExitButton to="/WorkspaceView">나가기</ModalExitButton>
+                </ModalButtonDiv>
+            </ModalLargest>
+        </Modal>
+    );
+}
+
+const ModalLargest=styled.div`
+    width: 100%;
+    height: 91%;
+    margin-top: 7%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+`
+const ModalTextDiv=styled.div`
+    width: auto;
+    height: 30px;
+    color: var(--sec_grey, #222);
+    font-family: WefontGothic(OTF);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    text-align: center;
+`
+//width:213px; height:51px;
+const ModalButtonDiv=styled.div`
+    width: 47%;
+    height: 18.5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+`
+const ModalCloseButton=styled.button`
+    width: 42%;
+    height: 100%;
+    background-color: #EA4336;
+    align-items: center;
+    justify-content: center;
+    color: var(--main_white, #F9F9F9);
+    font-family: WefontGothic(OTF);
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 27px */
+    border-radius: 40px;
+    border: 2px solid var(--main_red, #EA4336);
+    cursor: pointer;
+`
+const ModalExitButton=styled(Link)`
+    width: 50%;
+    height: 90%;
+    background-color: var(--main_white, #F9F9F9);
+    display: flex;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    color: var(--main_red, #EA4336);
+    font-family: WefontGothic(OTF);
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 27px */
+    border-radius: 40px;
+    border: 2px solid var(--main_red, #EA4336);
+    text-decoration: none;
+    cursor: pointer;
+`
+
+const StepButton = (e) => {
+    return (
+        <a href={e.targetPage}>
+            <Button
+                width="5.5vw"
+                height="5vh"
+                borderRadius="40px"
+                fontSize="18px"
+                fontWeight="400"
+                onClick={e.onClick}
+                justifyContent= "center"
+                alignItems= "center"
+                margin=" 0 0 0 .8vw"
+                border="2px solid var(--main_red, #EA4336)"
+                backgroundColor={e.backgroundColor}
+                color={e.color}
+            >{e.targetLabel}</Button>
+        </a>
+    );
+}
