@@ -5,6 +5,9 @@ import {Label, P} from "../../Components/NormalComponents/Text";
 import {useNavigate} from "react-router-dom";
 import { useSpring, animated } from 'react-spring';
 import { useState } from "react";
+import Modal from "react-modal";
+import { Link } from "react-router-dom";
+
 
 // Section1 영역
 export const Section1 = (e) => {
@@ -34,7 +37,7 @@ export const Section1 = (e) => {
 
     const handleNextButtonClick = () => {
         if (e.retrospectTitle === '') {
-            alert("회고 타이틀을 입력하시오");
+            openModalInvalid();
         } else {
             // 필요한 데이터와 함께 Section2로 이동
             navigate("/RetrospectCreate#section2", {
@@ -66,6 +69,22 @@ export const Section1 = (e) => {
         height: height5F,
         config: { tension: 210, friction: 20 }
     });
+    //CancleModal관련
+    const [modalCancleIsOpen, setModalCancleIsOpen] = useState(false); // Modal 창의 open 여부를 저장하는 변수
+    const openModalCancle = () => {
+        setModalCancleIsOpen(true);
+    };
+    const closeModalCancle = () => {
+        setModalCancleIsOpen(false);
+    };
+    //InvalidModal관련
+    const [modalInvalidIsOpen, setModalInvalidIsOpen] = useState(false); // Modal 창의 open 여부를 저장하는 변수
+    const openModalInvalid = () => {
+        setModalInvalidIsOpen(true);
+    };
+    const closeModalInvalid = () => {
+        setModalInvalidIsOpen(false);
+    };
     return (
         <Div id="section1" style={Section_Style}>
             <Header>
@@ -77,13 +96,15 @@ export const Section1 = (e) => {
                 <RightHead>
                     <EclipseDiv style={{marginRight: '0.8vw'}}/>
                     <EclipseDiv style={{marginRight: '1.8vw'}}/>
-                    <StepButton onClick={e.onCancleClick} targetLabel="취소" 
+                    <StepButton onClick={openModalCancle} targetLabel="취소" 
                         backgroundColor="#F9F9F9" color="#EA4336"/>
-                    <StepButton targetPage={e.retrospectTitle ? "#section2" : ""}
-                        targetLabel="다음"
-                        onClick={handleNextButtonClick}
-                        backgroundColor="#EA4336" color="#F9F9F9" 
-                    />
+                    <StepButton
+                                targetPage={e.retrospectTitle ? "#section2" : ""}
+                                targetLabel="다음"
+                                width = "150px"
+                                onClick={handleNextButtonClick}
+                                backgroundColor="#EA4336" color="#F9F9F9"
+                            />
                 </RightHead>
             </Header>
 
@@ -189,6 +210,8 @@ export const Section1 = (e) => {
                     </Div>
                 </Div>
             </Div>
+            <CancleModal modalCancleIsOpen={modalCancleIsOpen} closeModalCancle={closeModalCancle} />
+            <InvalidModal modalInvalidIsOpen={modalInvalidIsOpen} closeModalInvalid={closeModalInvalid} />
         </Div>
     );
 }
@@ -485,11 +508,12 @@ const StepButton = (e) => {
                 border="2px solid var(--main_red, #EA4336)"
                 backgroundColor={e.backgroundColor}
                 color={e.color}
-                style={{opacity : e.opcaity,}}
             >{e.targetLabel}</Button>
         </a>
     );
 }
+
+
 const StepButtonSkip = (e) => {
     return (
         <a href={e.targetPage}>
@@ -538,3 +562,110 @@ const RetrospectDescription = ({
     W_4LS: '팀의 과정을 돌아보고 목표를 세우길 원한다면?',
     W_5F: '팀의 중요한 사건들을 꼼꼼히 돌아보길 원한다면?'
 });
+//Modal
+const StyleModal = {
+    overlay: {
+        backgroundColor: "rgba(0, 0, 0,0.2)"
+    },
+    content: {
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        marginRight: '-50%',
+        transform: 'translate(-50%, -50%)',
+        borderRadius: "40px",
+        padding: 0,
+        color: "black",
+        background: `#F9F9F9`,
+        margin: "0",
+        width: "23.6vw",
+        height: "25.5vh",
+        display: "flex",
+        border: "none",
+        flexDirection: "column",
+        justifyContent: "end",
+    }
+}
+const CancleModal = (e) => {
+    return (
+        <Modal isOpen={e.modalCancleIsOpen} onRequestClose={e.closeModalCancle} style={StyleModal}>
+            <ModalLargest>
+                <ModalTextDiv>정말 나가시겠어요?</ModalTextDiv>
+                <ModalButtonDiv>
+                    <ModalCloseButton onClick={e.closeModalCancle}>취소</ModalCloseButton>
+                    <ModalExitButton to="/WorkspaceView">나가기</ModalExitButton>
+                </ModalButtonDiv>
+            </ModalLargest>
+        </Modal>
+    );
+}
+const InvalidModal = (e) => {
+    return (
+        <Modal isOpen={e.modalInvalidIsOpen} onRequestClose={e.closeModalInvalid} style={StyleModal}>
+        </Modal>
+    );
+}
+
+const ModalLargest=styled.div`
+    width: 100%;
+    height: 91%;
+    margin-top: 7%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+`
+const ModalTextDiv=styled.div`
+    width: auto;
+    height: 30px;
+    color: var(--sec_grey, #222);
+    font-family: WefontGothic(OTF);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    text-align: center;
+`
+//width:213px; height:51px;
+const ModalButtonDiv=styled.div`
+    width: 47%;
+    height: 18.5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+`
+const ModalCloseButton=styled.button`
+    width: 42%;
+    height: 100%;
+    background-color: #EA4336;
+    align-items: center;
+    justify-content: center;
+    color: var(--main_white, #F9F9F9);
+    font-family: WefontGothic(OTF);
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 27px */
+    border-radius: 40px;
+    border: 2px solid var(--main_red, #EA4336);
+    cursor: pointer;
+`
+const ModalExitButton=styled(Link)`
+    width: 50%;
+    height: 90%;
+    background-color: var(--main_white, #F9F9F9);
+    display: flex;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    color: var(--main_red, #EA4336);
+    font-family: WefontGothic(OTF);
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 27px */
+    border-radius: 40px;
+    border: 2px solid var(--main_red, #EA4336);
+    text-decoration: none;
+    cursor: pointer;
+`
