@@ -58,6 +58,7 @@ const RightHead=styled.div`
     flex-direction: row;
     justify-content: Right;
     align-items: end;
+    margin-bottom: 1.5vh;
 `
 // 회고 종류와 작성 창이 들어가는 부분
 const BodyMom=styled.div`
@@ -174,12 +175,7 @@ function RetrospectWriteText() {
     };
     const handleNextButtonClick = (e) => {
         if (isFilled) { // isFilled가 true일 경우에만 다음 페이지로 이동
-            navigate("/TeamEvaluation", {
-                state: {
-                    retrospectTitle: e.retrospectTitle,
-                    SelectedWays: e.SelectedWays || '',
-                },
-            });
+            navigate("/TeamEvaluation");
         }
     };
 

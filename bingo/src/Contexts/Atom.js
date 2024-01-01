@@ -34,40 +34,40 @@ export const ChipData = atom({
     default: [
         {
             key: 0,
-            label: '존중하는',
-            flag: true
+            label: '서로에 대한 존중과 신뢰가 있는',
+            flag: false
         }, {
             key: 1,
-            label: '열정적인',
+            label: '소통이 활발한',
             flag: false
         }, {
             key: 2,
-            label: '도전적인',
-            flag: true
+            label: '개선과 혁신을 추구하는',
+            flag: false
         }, {
             key: 3,
-            label: '의사소통이 잘 되는',
+            label: '배우고자 하는',
             flag: false
         }, {
             key: 4,
-            label: '성실한',
-            flag: true
+            label: '열정 있는',
+            flag: false
         }, {
             key: 5,
-            label: '인내심있는',
+            label: '개인의 역할이 뚜렷한',
             flag: false
         }, {
             key: 6,
-            label: '화목한',
-            flag: true
+            label: '목표와 성과가 명확한',
+            flag: false
         }, {
             key: 7,
-            label: '분위기 좋은',
+            label: '모두가 협업하는',
             flag: false
         }, {
             key: 8,
-            label: '칭찬하는',
-            flag: true
+            label: '일과 삶의 균형이 있는',
+            flag: false
         }
     ]
 });
