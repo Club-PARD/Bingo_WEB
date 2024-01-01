@@ -83,7 +83,7 @@ const WorkspaceList =()=> {
         <Div display="flex" flexDirection="column" height="100%" width="100vw" overflow="hidden" justifyContent="center" alignContent="center">
             <BannerImg src="/img/WorkspaceList/Workspace_Banner.png"/>
             {/*프로젝트 카드들의 나열, 해당 공간의 이름을 감싼 Div */}
-            <Div flexDirection="column" height="54vh" width="100%" backgroundColor="#F9F9F9" alignContent="center">
+            <Div flexDirection="column" height="54vh" width="100%" backgroundColor="#F9F9F9" alignContent="center" justifyContent="center">
                 <Div margin="0 0 0 5%" height="4%" fontSize="20px" width="auto" borderRadius="15px" alignItems="center">프로젝트 리스트</Div>
                 {/* 워크스페이스 카드 부분 */}
                 
