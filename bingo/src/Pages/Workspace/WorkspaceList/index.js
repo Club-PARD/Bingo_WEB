@@ -9,6 +9,7 @@ import {Label} from "../../../Components/NormalComponents/Text.js";
 import {WorkspaceData, loginUserState} from "../../../Contexts/Atom.js";
 import {useRecoilState} from "recoil";
 import { getAllProjects } from "../../../Api/Workspace.js";
+import { useNavigate } from "react-router";
 
 const WorkspaceList = () => {
     const [userInfo, setUserInfo] = useRecoilState(loginUserState);
@@ -87,10 +88,12 @@ const WorkspaceList = () => {
             .current
             .click();
     };
+
+    const navigate = useNavigate();
     useEffect(() => {
         const fetchData = async () => {
         try {
-            const projects = await getAllProjects({ userid: userInfo.appUser.id });
+            const projects = await getAllProjects({ userid: userInfo.appUser.id }, navigate);
             console.log(projects);
             setWorkspaceData(projects);
         } catch (error) {
