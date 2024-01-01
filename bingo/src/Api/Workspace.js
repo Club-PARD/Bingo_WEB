@@ -33,12 +33,10 @@ export const createWorkspace = async (data) => {
 // 나의 모든 워크스페이스 정보를 가져오는 API
 // 입력변수는 사용자 id
 // 리턴 된 값이 list 형태이므로 이걸로 map을 받는 컴포넌트들 만들기
-export const getAllProjects = async () => {
+export const getAllProjects = async (e) => {
   try {
     const response = await axios.get(
-      //   `http://172.17.188.80:8080/api/v1/project/${id}`
-      // 이 코드의 경우에는 1번으로 그냥 하드코딩함. 원래는 위에거 써야 한다.
-      `http://172.17.188.80:8080/api/v1/project/7`
+      `http://13.209.82.115:8080/api/v1/project/` + e.userid
     );
 
     return response.data;
