@@ -98,7 +98,6 @@ export const Section1 = (e) => {
                     <StepButton
                         targetPage={e.retrospectTitle ? "#section2" : null}
                         targetLabel="다음"
-                        width = "150px"
                         onClick={handleNextButtonClick}
                         backgroundColor={e.retrospectTitle ? "#EA4336" : "rgba(234, 67, 54, 0.4)"}
                         color="#F9F9F9"
@@ -209,7 +208,6 @@ export const Section1 = (e) => {
                 </Div>
             </Div>
             <CancleModal modalCancleIsOpen={modalCancleIsOpen} closeModalCancle={closeModalCancle} />
-            <InvalidModal modalInvalidIsOpen={modalInvalidIsOpen} closeModalInvalid={closeModalInvalid} />
         </Div>
     );
 }
@@ -611,12 +609,6 @@ const CancleModal = (e) => {
                     <ModalExitButton to="/WorkspaceView">나가기</ModalExitButton>
                 </ModalButtonDiv>
             </ModalLargest>
-        </Modal>
-    );
-}
-const InvalidModal = (e) => {
-    return (
-        <Modal isOpen={e.modalInvalidIsOpen} onRequestClose={e.closeModalInvalid} style={StyleModal}>
         </Modal>
     );
 }
