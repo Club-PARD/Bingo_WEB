@@ -35,11 +35,10 @@ const Routers = () => {
                 {/* <div style={{flex : 1}}> */}
                 <Routes>
                     <Route path='/PI' element={<PI_Test />}/>
-                    <Route path='/' element={<Intro />}/>
-                    <Route path='/Login' element={<LoginPage />}/>
-                    
                     {/*<Route path="" element={<Sidebar/>}>*/}
                     <Route path="" element={<TopMenuBar/>}>
+                        <Route path='/' element={<Intro />}/>
+                        <Route path='/Login' element={<LoginPage />}/>
                         <Route path='/PI2' element={<PI_Test2 />}/>
                         <Route path='/UserApprove' element={<UserApprove />}/>
                         <Route path='/WorkspaceList' element={<WorkspaceList />}/>

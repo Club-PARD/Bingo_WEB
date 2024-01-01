@@ -1,52 +1,17 @@
 import { useState, React, useRef } from "react";
 import styled from "styled-components";
-import { Div } from "../../Components/NormalComponents/Section.js";
+import { Div } from "../../../Components/NormalComponents/Section.js";
 import WorkspaceCard from "./Components/WorkspaceCard.js";
-import { Button } from "../../Components/NormalComponents/Form.js";
-import { Img } from "../../Components/NormalComponents/Etc.js";
+import { Button } from "../../../Components/NormalComponents/Form.js";
+import { Img } from "../../../Components/NormalComponents/Etc.js";
 import Modal from "react-modal";
-import { Input } from "../../Components/NormalComponents/Form.js";
-import { Label } from "../../Components/NormalComponents/Text.js";
-import { WorkspaceData } from "../../Contexts/Atom.js";
+import { Input } from "../../../Components/NormalComponents/Form.js";
+import { Label } from "../../../Components/NormalComponents/Text.js";
+import { WorkspaceData } from "../../../Contexts/Atom.js";
 import { useRecoilState } from "recoil";
 
-// 불러온 값 저장하기
-/*
-const WorkspaceData = [
-    {
-        name : "개발팀 회고",
-        desc : "23-4 롱커톤 3!4!",
-        picture: "/img/Login/img4.png",
-        code : ""
-    },
-    {
-        name : "공설입 회고",
-        desc : "공학설계입문 2분반 1조",
-        picture: " ",
-        code : ""
-    },
-    {
-        name : "SLESLE 2023",
-        desc : "23-2 슬기짜기 임원단",
-        picture: " ",
-        code : ""
-    },
-    {
-        name : "맹맹맹",
-        desc : "맹구 마지막 우승",
-        picture: " ",
-        code : ""
-    },
-    {
-        name : "멍멍멍",
-        desc : "북런던 강아지",
-        picture: " ",
-        code : ""
-    },
-];
-*/
-
 const WorkspaceList =()=> {
+    // 상태관리를 위한 useState
     const [titleEmpty, setTitleEmpty] = useState(false);
     const [descEmpty, setDescEmpty] = useState(false);
     const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -75,6 +40,7 @@ const WorkspaceList =()=> {
         return randomValue;
     };
 
+    // 난수생성 버튼 클릭 시 동작
     const onButtonClick = () => {
         const randomCode = generateRandomValue();
         console.log(randomCode);
@@ -112,19 +78,13 @@ const WorkspaceList =()=> {
     const handleButtonClick = () => {
         fileInputRef.current && fileInputRef.current.click();
     };
+    // 실제 화면에 출력되는 부분
     return(
-        <Div display="flex" flexDirection="column" height="85vh" width="100vw" overflow="hidden">
-            {/* 상단바 부분 */}
-            <Div flexDirection="row" justifyContent="space-between" alignItems="center" height="15%" width="100vw">
-                {/* 빙고 로고, 현재 페이지 이름 표시 부분 */}
-                <Div  fontSize="120px" alignItems="center" borderRadius="15px" margin="0 0 0 1%"> 
-                    {/* <Img src="/img/Home/logo.jpg" width={"10%"}/> */}
-                    Bingo
-                </Div>
-            </Div>
+        <Div display="flex" flexDirection="column" height="100%" width="100vw" overflow="hidden" justifyContent="center" alignContent="center">
+            <BannerImg src="/img/WorkspaceList/Workspace_Banner.png"/>
             {/*프로젝트 카드들의 나열, 해당 공간의 이름을 감싼 Div */}
-            <Div flexDirection="column" height="80vh" width="100%">
-                <Div margin="0 0 0 5%" height="4%" fontSize="20px" width="auto" borderRadius="15px" alignItems="center" >워크스페이스 리스트</Div>
+            <Div flexDirection="column" height="54vh" width="100%" backgroundColor="#F9F9F9" alignContent="center">
+                <Div margin="0 0 0 5%" height="4%" fontSize="20px" width="auto" borderRadius="15px" alignItems="center">프로젝트 리스트</Div>
                 {/* 워크스페이스 카드 부분 */}
                 
                 <Div
@@ -132,7 +92,7 @@ const WorkspaceList =()=> {
                     alignContent="baseline"
                     alignItems="center"
                     height="96%"
-                    width="99%"
+                    width="80%"
                     flexWrap="wrap"
                     overflow="auto"
                     boxSizing="border-box"
@@ -294,6 +254,11 @@ const WorkspaceList =()=> {
 }
 
 export default WorkspaceList;
+
+const BannerImg = styled.img`
+    height : 38vh;
+    width : auto;
+`
 
 const FileInputButton = styled.button`
     height: 3vh;
