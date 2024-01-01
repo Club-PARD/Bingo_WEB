@@ -1,15 +1,14 @@
 import {useState, React, useRef, useEffect} from "react";
 import styled from "styled-components";
-import {Div} from "../../Components/NormalComponents/Section.js";
+import {Div} from "../../../Components/NormalComponents/Section.js";
 import WorkspaceCard from "./Components/WorkspaceCard.js";
-import {Button} from "../../Components/NormalComponents/Form.js";
-import {Img} from "../../Components/NormalComponents/Etc.js";
+import {Button, Input} from "../../../Components/NormalComponents/Form.js";
+import {Img} from "../../../Components/NormalComponents/Etc.js";
 import Modal from "react-modal";
-import {Input} from "../../Components/NormalComponents/Form.js";
-import {Label} from "../../Components/NormalComponents/Text.js";
-import {WorkspaceData, loginUserState} from "../../Contexts/Atom.js";
+import {Label} from "../../../Components/NormalComponents/Text.js";
+import {WorkspaceData, loginUserState} from "../../../Contexts/Atom.js";
 import {useRecoilState} from "recoil";
-import { getAllProjects } from "../../Api/Workspace.js";
+import { getAllProjects } from "../../../Api/Workspace.js";
 
 const WorkspaceList = () => {
     const [userInfo, setUserInfo] = useRecoilState(loginUserState);
