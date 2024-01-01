@@ -4,10 +4,16 @@ import {useState, useEffect} from "react";
 import {useRecoilState} from "recoil";
 import {retrospectiveState} from "../../Contexts/Atom";
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router';
+import { Button } from "../../Components/NormalComponents/Form";
+
+
 
 function RetrospectView() {
 
     const [retrospective, setRetrospective] = useRecoilState(retrospectiveState);
+    const navigate = useNavigate();
+
     {/*회고 종류와 각단계의 이름에 대한 리스트*/
     }
     const retrospectiveCategories = {
@@ -27,12 +33,22 @@ function RetrospectView() {
         const titleChars = retrospectTitle.split('');
         setTitleArray(titleChars);
     }, [retrospectTitle]);
-
+    const handleExitClick = () => {
+        navigate("/WorkspaceView");
+    };
     return (
         <Whole>
+            {/* 상단바 */}
             <Header>
-                {/* Breadcrumb은 현재 위치에 따라 달라진다 / 현위치 : 3 (팀 회고 확인하기) */}
-                <Breadcrumb activeKey={3}/>
+                <LeftHead>
+                    <TitleDiv>{retrospective.retrospectTitle}</TitleDiv>
+                    {/* Breadcrumb은 현재 위치에 따라 달라진다 / 현위치 : 1 (회고 작성하기) */}
+                    <Breadcrumb activeKey={2}/>
+                </LeftHead>
+                <RightHead>
+                    <StepButton onClick={handleExitClick} targetLabel="나가기" 
+                        backgroundColor="#F9F9F9" color="#EA4336"/>
+                </RightHead>
             </Header>
             <Body>
                 {/*
@@ -85,11 +101,6 @@ function RetrospectView() {
                         ))
                 }
             </Body>
-            <Footer>
-                <BtnLink to="/WorkspaceView">
-                    나가기
-                </BtnLink>
-            </Footer>
         </Whole>
     );
 }
@@ -97,20 +108,53 @@ function RetrospectView() {
 export default RetrospectView;
 
 const Whole = styled.div `
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    height: 85vh;
+    height: 93.9vh;
     overflow: hidden;
 `
+
+// breadcrumb가 들어가는 부분
 const Header = styled.div `
     box-sizing: border-box;
-    height : 3.5%;
-    width: 90%;
-    margin-left: 5%;
-    margin-top: 1%;
+    height : 18.4vh;
+    width: 66.4vw;
+    margin-left: 0 auto;
+    display: flex;
+    flex-direction: row;
+    align-items: end;
+    justify-content: space-between;
+`
+const LeftHead=styled.div`
+    padding-bottom: 1.5vh;
+    box-sizing: border-box;
+    width: auto;
+    height: 100%;//114px
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+`
+const TitleDiv=styled.div`
+    width: auto;
+    height: 4vh;
+    color: var(--sec_grey, #222);
+    font-family: WefontGothic(OTF);
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 400;
+`
+const RightHead=styled.div`
+    width: 30%;//330px
+    height: 24%;//59px
+    display: flex;
+    flex-direction: row;
+    justify-content: Right;
+    align-items: end;
+    margin-bottom: 1.5vh;
 `
 const Body = styled.div `
     border: 5px dashed #E9E9E9;
@@ -236,3 +280,23 @@ const BtnLink = styled(Link)`
     justify-content: center;
     color: #000;
 `
+const StepButton = (e) => {
+    return (
+        <a href={e.targetPage}>
+            <Button
+                width="5.5vw"
+                height="5vh"
+                borderRadius="40px"
+                fontSize="18px"
+                fontWeight="400"
+                onClick={e.onClick}
+                justifyContent= "center"
+                alignItems= "center"
+                margin=" 0 0 0 .8vw"
+                border="2px solid var(--main_red, #EA4336)"
+                backgroundColor={e.backgroundColor}
+                color={e.color}
+            >{e.targetLabel}</Button>
+        </a>
+    );
+}

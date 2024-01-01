@@ -106,10 +106,10 @@ const WorkspaceList = () => {
     }, []); // 빈 배열을 전달하여 컴포넌트가 마운트될 때만 실행
 
     return(
-        <Div display="flex" flexDirection="column" height="100%" width="100vw" overflow="hidden" justifyContent="center" alignContent="center">
+        <Div display="flex" flexDirection="column" height="100%" width="100%" overflow="hidden" justifyContent="center" alignContent="center">
             <BannerImg src="/img/WorkspaceList/Workspace_Banner.png"/>
             {/*프로젝트 카드들의 나열, 해당 공간의 이름을 감싼 Div */}
-            <Div flexDirection="column" height="54vh" width="100%" backgroundColor="#F9F9F9" alignContent="center">
+            <Div flexDirection="column" height="54vh" width="100%" backgroundColor="#F9F9F9" display="flex" alignContent="center" justifyContent="center">
                 <Div margin="0 0 0 5%" height="4%" fontSize="20px" width="auto" borderRadius="15px" alignItems="center">프로젝트 리스트</Div>
                 {/* 워크스페이스 카드 부분 */}
 
@@ -118,7 +118,7 @@ const WorkspaceList = () => {
                     alignContent="baseline"
                     alignItems="center"
                     height="96%"
-                    width="80%"
+                    width="100%"
                     flexWrap="wrap"
                     overflow="auto"
                     boxSizing="border-box"
@@ -129,14 +129,15 @@ const WorkspaceList = () => {
                         margin="2% 0 0 2%"
                         border="1px solid transparent"
                         borderRadius="15px"
-                        width="22%"
-                        height="37.4%"
+                        width="30%"
+                        height="50%"
                         backgroundColor="#EDEDED"
                         onClick={openModal}
                         alignItems="center"
                         justifyContent="center"
                         cursor="pointer">
-                        <Img width="20%" height="auto" src="/Img/WorkspaceView/ph_plus-bold.png"/>
+                        <Img width="15%" height="auto" src="/Img/WorkspaceView/ph_plus-bold.png"/>
+                        <div>프로젝트 생성</div>
                     </Div>
                     {/* 현재는 더미값이지만 장기적으로는 워크스페이스 데이터 기반으로 카드 출력  */}
                     {
