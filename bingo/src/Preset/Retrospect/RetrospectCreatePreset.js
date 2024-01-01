@@ -43,7 +43,6 @@ export const Section1 = (e) => {
                 SelectedWays: e.SelectedWays || '',
             },
         });
-        
     };
     const [heightKPT, setHeightKPT] = useState("29vh");
     const [height4LS, setHeight4LS] = useState("29vh");
