@@ -27,7 +27,7 @@ export default TopMenuBar;
 
 const Header = styled.div`
     width: 100vw;
-    height: 5vh;
+    height: 6vh;
     border-bottom: 1px solid #DBDBDB;
     display: flex;
     justify-content: space-between;
