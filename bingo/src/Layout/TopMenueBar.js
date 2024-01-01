@@ -11,7 +11,7 @@ function TopMenuBar(){
                         <LogoLink>
                             <LogoImg src="/img/TopMenuBar/Logo.png" width="100%" height="auto "/>
                         </LogoLink>
-                        <ProjectDLink to="/WorkspaceList">프로젝트</ProjectDLink>
+                        {/* <ProjectDLink to="/WorkspaceList">프로젝트</ProjectDLink> */}
                     </LeftSide>
                     <LogoutLink to="/">로그아웃</LogoutLink>
                 </Header>
@@ -41,7 +41,7 @@ const LeftSide=styled.div`
     height: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     margin-left: 3%;
 `
@@ -56,6 +56,7 @@ const LogoLink=styled(Link)`
 const LogoImg=styled.img`
     width: 90%;
     height: auto;
+    margin : 10% 0% 0% 0%;
 `
 //프로젝트
 const ProjectDLink=styled(Link)`
