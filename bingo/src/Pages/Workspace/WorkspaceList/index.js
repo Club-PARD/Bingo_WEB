@@ -164,7 +164,7 @@ const WorkspaceList = () => {
                     {/* {console.log("워크스페이스 정보 : ", workspaceData)} */}
                     {
                         workspaceData.length > 1 && workspaceData
-                            .slice()
+                            .slice(1)
                             .reverse()
                             .map((workspace, index) => (
                                 <WorkspaceCard
