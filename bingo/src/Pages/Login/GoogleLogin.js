@@ -2,7 +2,7 @@ import React from "react";
 import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
 import { getUserData, login } from "../../Api/AuthApi";
-import { jwtDecode } from 'jwt-decode';
+import { jwtDecode } from "jwt-decode";
 import { loginUserState } from "../../Contexts/Atom";
 import { useRecoilState, useSetRecoilState } from "recoil";
 
@@ -16,17 +16,20 @@ const LoginDummy = [
     },
 ];
 
-
 const GoogleLoginButton = () => {
     const navigate = useNavigate();
     const [userInfo, setUserInfo] = useRecoilState(loginUserState);
 
     return (
         <>
-            <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_AUTH_CLIENT_ID}>
+            <GoogleOAuthProvider
+                clientId={process.env.REACT_APP_GOOGLE_AUTH_CLIENT_ID}
+            >
                 <GoogleLogin
                     onSuccess={async (credentialResponse) => {
-                        const decodedToken = jwtDecode(credentialResponse.credential);
+                        const decodedToken = jwtDecode(
+                            credentialResponse.credential
+                        );
 
                         // const updatedData = LoginDummy.map(dummy => {
                         //     return Object.keys(dummy).reduce((acc, key) => {
@@ -41,13 +44,13 @@ const GoogleLoginButton = () => {
 
                             // 업데이트된 데이터 확인은 여기에서 이루어져야 합니다.
                             console.log("로그인 성공?!", data);
-                            
+
                             // 상태 업데이트
                             setUserInfo(data);
 
                             // console.log(userInfo);
 
-                            navigate("/WorkspaceList"); 
+                            navigate("/WorkspaceList");
                         } catch (error) {
                             console.error("로그인 에러", error);
                         }
