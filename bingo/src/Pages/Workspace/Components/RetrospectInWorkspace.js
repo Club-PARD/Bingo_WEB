@@ -2,23 +2,21 @@ import { useState } from "react";
 import { Div } from "../../../Components/NormalComponents/Section";
 import { Img } from "../../../Components/NormalComponents/Etc";
 import Modal from "react-modal";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
+import { useRecoilState } from "recoil";
+import { RetrospectData, loginUserState} from "../../../Contexts/Atom";
 
 
 //workspaceView화면 내 회고와 액션아이템 출력 컴포넌트
 function RetrospectInWorkspace(){
 
-    // map 함수로 출력하기 위한 리스트(더미데이터) 생성
-    // 나중에 추가 가능
-    const [tasks, setTasks] = useState([
-      { id: 1, name: '1차 회고', linktoView: '/RetrospectView', linktoWrite: '/RetrospectWriteText'},
-      { id: 2, name: '2차 회고', linktoView: '/RetrospectView', linktoWrite: '/RetrospectWriteText'},
-      { id: 3, name: '3차 회고', linktoView: '/RetrospectView', linktoWrite: '/RetrospectWriteText'},
-      { id: 4, name: '4차 회고', linktoView: '/RetrospectView', linktoWrite: '/RetrospectWriteText'},
-      { id: 5, name: '5차 회고', linktoView: '/RetrospectView', linktoWrite: '/RetrospectWriteText'},
-      { id: 6, name: '6차 회고', linktoView: '/RetrospectView', linktoWrite: '/RetrospectWriteText'},
-    ]);
+    const [userInfo, setUserInfo] = useRecoilState(loginUserState);
+    const [tasks, setTasks] = useRecoilState(RetrospectData);
+  
+    const location = useLocation();
+    const searchParams = new URLSearchParams(location.search);
+    const workspaceId = searchParams.get('workspaceId');
 
     const [modalIsOpen2, setModalIsOpen2] = useState(false);
     const openModal2 = () => {
@@ -65,7 +63,11 @@ function RetrospectInWorkspace(){
                     textAlign="center"
                     alignItems="center"
                     margin="0 0 0 4%"
-                  >{task.name}</Div>
+                >{task.name}</Div>
+                {
+                  console.log("\n" + "사용자 : " + userInfo.appUser.id + "\n" + "워크스페이스 : " + workspaceId +"\n" + "회고 : " + task.id )
+                  // console.log("워크스페이스 " + )
+                }
                   <ViewButton to={task.linktoWrite}>작성</ViewButton>
                 </LinkToRetrospectCreate2>
                 {/*Div for 3 chip, 조회버튼*/}
