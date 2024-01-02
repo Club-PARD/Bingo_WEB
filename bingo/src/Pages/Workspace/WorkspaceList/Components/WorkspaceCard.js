@@ -13,7 +13,7 @@ const CardLink = styled(Link)`
 const CardBorder = styled.div`
     justify-content : center;
     align-items : center;
-    margin : 1% 0 0 1%;
+    margin : 2% 0 0 2%;
     border-radius : 32px;
     width : 30%;
     height : 50%;

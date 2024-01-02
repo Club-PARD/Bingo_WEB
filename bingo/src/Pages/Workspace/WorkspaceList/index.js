@@ -120,12 +120,12 @@ const WorkspaceList = () => {
                     overflow="auto"
                     boxSizing="border-box"
                     padding=" 0 0 0 3%">
-                    {/*디자이너 요청으로 워크스페이스 생성버튼 옮김 */}
+                    {/* 워크스페이스 생성버튼 */}
                     <Div
                         flexDirection="column"
                         margin="2% 0 0 2%"
                         border="1px solid transparent"
-                        borderRadius="15px"
+                        borderRadius="32px"
                         width="30%"
                         height="50%"
                         backgroundColor="#EDEDED"
