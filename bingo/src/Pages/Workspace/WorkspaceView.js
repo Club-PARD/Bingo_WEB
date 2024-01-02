@@ -24,7 +24,7 @@ function WorkspaceView() {
     const filteredWorkspaces = workspaceData.filter(workspace => workspace.id == workspaceId);
 
     const navigate = useNavigate();
-    // console.log(filteredWorkspaces[0].name);
+
     useEffect(() => {
         const fetchData = async () => {
             try {
