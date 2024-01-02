@@ -1,3 +1,4 @@
+/* eslint-disable */
 import {useState, React, useRef, useEffect} from "react";
 import styled from "styled-components";
 import {Div} from "../../../Components/NormalComponents/Section.js";
@@ -5,7 +6,6 @@ import WorkspaceCard from "./Components/WorkspaceCard.js";
 import {Button, Input} from "../../../Components/NormalComponents/Form.js";
 import {Img} from "../../../Components/NormalComponents/Etc.js";
 import Modal from "react-modal";
-import {Label} from "../../../Components/NormalComponents/Text.js";
 import {WorkspaceData, loginUserState} from "../../../Contexts/Atom.js";
 import {useRecoilState} from "recoil";
 import {getAllProjects} from "../../../Api/Workspace.js";
@@ -17,6 +17,7 @@ const WorkspaceList = () => {
     const [descEmpty, setDescEmpty] = useState(false);
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [workspaceData, setWorkspaceData] = useRecoilState(WorkspaceData);
+    const [inviteOpen, setInviteOpen] = useState(false);
     const openModal = () => {
         setModalIsOpen(true);
         // Modal이 열릴 때 상태 초기화
@@ -26,6 +27,12 @@ const WorkspaceList = () => {
     };
     const closeModal = () => {
         setModalIsOpen(false);
+    };
+    const openInvite = () => {
+        setInviteOpen(true);
+    };
+    const closeInvite = () => {
+        setInviteOpen(false);
     };
     const generateRandomValue = () => {
         const characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -137,7 +144,7 @@ const WorkspaceList = () => {
                         </Div>
                     </div>
                     
-                    <CodeBtn>초대 코드 입력하기</CodeBtn>
+                    <CodeBtn onClick={openInvite}>초대 코드 입력하기</CodeBtn>
                 </InnerHeader>
                 
                 {/* 워크스페이스 카드 부분 */}
@@ -335,9 +342,37 @@ const WorkspaceList = () => {
                     </Div>
                 </Div>
             </Modal>
+
+            
         </Div>
 
     )
+}
+
+const InviteModal = (e) => {
+    return (
+        <Modal isOpen={e.inviteOpen} onRequestClose={e.closeInvite} style={StyleModal}>
+            {/* 팀원 코드 section */}
+            <Div
+                justifyContent = "space-around"
+                alignItems="center"
+                width="100%"
+                height="90%"
+                flexDirection="column">
+                <Div
+                    fontSize="40px"
+                    fontWeight="400" 
+                    >팀원 초대하기 코드</Div>
+                <Div>
+                    <Div fontSize="90px">{e.value}</Div>
+                    <CopyToClipboard text={e.value} onCopy={() => alert("클립보드에 복사되었습니다.")}>
+                        <Img></Img>
+                    </CopyToClipboard>
+                </Div>
+                    <Div></Div>
+            </Div>
+        </Modal>
+    );
 }
 
 export default WorkspaceList;
