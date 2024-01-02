@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { ChipData, UserList } from "../../Contexts/Atom";
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
+import { Img } from "../../Components/NormalComponents/Etc";
 
 //Bingopage에 띄울 빙고판 생성 component
 //배열에 들어있는 text는 추후 기획에게 받을 예정
@@ -40,6 +41,9 @@ function BingoBoard() {
           )
         ))}
       </ParentDiv>
+      <AdRetero>회고 작성하고 빙고판 채우러 가기
+          <Img width="2.6vh" height="2.6vh" src="/img/WorkspaceView/arrowRed.png"/>
+      </AdRetero>
     </>
   );
 }
@@ -47,27 +51,28 @@ function BingoBoard() {
 export default BingoBoard ;
 
 const ParentDiv = styled.div`
-  width: 390px;
-  height: 390px;
+  width: 36vh;
+  height: 36vh;
   display: flex;
   justify-content: top;
   flex-wrap: wrap;
   align-items: center;
   padding: 0%;
-  position: relative;
+  margin-top: -50vh;
+  margin-bottom: -70vh;
 `
 
 const ChildDiv = styled.div`
   box-sizing: border-box;
-  width: 140px;
-  height: 140px;
+  width: 13vh;
+  height: 13vh;
   border-radius: 50%;
-  margin: 0 -15px -10px 0;
+  margin: 0 -1.3vh -.9vh 0;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 20px;
+  padding: 1.8vh;
   color: #EA4336;
   background-color: #F3F3F3;
   border: 1px solid #EA4336;
@@ -77,4 +82,21 @@ const ChildDiv = styled.div`
 const ChildDivFlagTrue = styled(ChildDiv)`
   background-color: #EA4336;
   color: #F9F9F9;
+`
+const AdRetero=styled.div`
+    width: 14vw;
+    height: 4vh;
+    padding: .9vh 1.8vh;
+    margin-bottom: 5vh;
+    border-radius: 40px;
+    background: var(--main_red, #EA4336);
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    color: var(--main_white, #F9F9F9);
+    font-family: WefontGothic(OTF);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    z-index: 1;
 `
