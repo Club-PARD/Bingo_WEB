@@ -146,6 +146,7 @@ export default WorkspaceView;
 const SectionLeft = styled.div`
     width: 25.7vw;
     height: 80vh;
+    overflow: hidden;
 `;
 const InformationDiv = styled.div`
     color: #838383;
@@ -285,22 +286,19 @@ const StyleModal = {
         borderRadius: "40px",
         background: "var(--main_white, #F9F9F9)",
         backgroundSize: "cover",
-        // backgroundRepeat: "no-repeat",
         margin: "0",
         width: "27.8vw",
-        height: "25.2vh",
+        height: "29.2vh",
         border: "none",
         zIndex: "2",
-        //alignItems: "center",
-
         display: "flex",
         flexDirection: "column",
-
-        //position: 'absolute',  absolute positioning
-
-        transform: "translate(87%, 60%)", // center the modal
-        // 모달 내용이 부모 요소의 높이를 초과하면 자동으로 스크롤 바를 생성하도록 설정합니다. "overflowY: 'auto'"가 그 역할을
-        // 담당합니다. 또한, 모달의 높이(height)를 조정하여 모달의 내용이 충분하지 않을 경우 모달 자체의 높이를 줄일 수 있습니다.
+        top: "50%",
+        left: "50%",
+        right: "auto",
+        bottom: "auto",
+        marginRight: "-50%",
+        transform: "translate(-50%, -50%)", // center the modal
     },
 };
 
@@ -313,7 +311,7 @@ const InviteModal = (e) => {
         >
             {/* 팀원 코드 section */}
             <Div
-                justifyContent="space-around"
+                justifyContent="center"
                 alignItems="center"
                 width="100%"
                 height="100%"
@@ -327,8 +325,8 @@ const InviteModal = (e) => {
                         onCopy={() => alert("클립보드에 복사되었습니다.")}
                     >
                         <Img
-                            width="1.6vw"
-                            height="1.6vw"
+                            width="1.7vw"
+                            height="1.7vw"
                             src="\img\WorkspaceView\content_copy.png"
                         />
                     </CopyToClipboard>
@@ -338,6 +336,7 @@ const InviteModal = (e) => {
                     height="4.7vh"
                     display="flex"
                     flexDirection="row-reverse"
+                    margin="0"
                 >
                     <ButtonDiv onClick={e.closeModal}>닫기</ButtonDiv>
                 </Div>
@@ -348,23 +347,27 @@ const InviteModal = (e) => {
 
 const ModalInfo = styled.div`
     width: 25vw;
+    height: 6.6vh;
+    border: none;
     color: var(--sec_grey, #222);
     font-family: WefontGothic(OTF);
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
     line-height: 150%; /* 30px */
-    margin-bottom: 3vh;
+    margin-bottom: -0.5vh;
+    margin-left: 1.5vw;
 `;
 const CodeDiv = styled.div`
     box-sizing: border-box;
-    width: 25vw;
+    width: 23.6vw;
+    height: 6.6vh;
     border-radius: 16px;
     background: #f0f0f0;
-    padding: 1.6vh 2.7vw 1.6vh 10vw;
+    padding: 1.6vh 2.7vw 1.6vh 8.7vw;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 1.5vh;
+    margin: 1vh 0 3vh 0;
 `;
 const Code = styled.div`
     color: var(--sec_grey, #222);
@@ -389,4 +392,5 @@ const ButtonDiv = styled.div`
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
+    margin-right: 0.8vw;
 `;
