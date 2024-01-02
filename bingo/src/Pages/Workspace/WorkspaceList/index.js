@@ -140,6 +140,7 @@ const WorkspaceList = () => {
                         <div>프로젝트 생성</div>
                     </Div>
                     {/* 현재는 더미값이지만 장기적으로는 워크스페이스 데이터 기반으로 카드 출력  */}
+                    {console.log("워크스페이스 정보 : ", workspaceData)}
                     {
                         workspaceData.length > 1 && workspaceData
                             .slice()
@@ -149,7 +150,7 @@ const WorkspaceList = () => {
                                     key={index}
                                     workspaceId = {workspace.id}
                                     name={workspace.name}
-                                    desc={workspace.desc}
+                                    desc={workspace.description}
                                     picture={workspace.picture}
                                     code={workspace.code}
                                     period={workspace.period} />
