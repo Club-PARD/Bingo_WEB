@@ -1,20 +1,38 @@
 import { Outlet, useLocation } from "react-router";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { Div } from "../Components/NormalComponents/Section";
 
 function TopMenuBar() {
     const location = useLocation();
+    const canGoToWorkspaceView = () => {
+        return location.pathname !== "/" && location.pathname !== "/Login";
+    };
     return (
         <>
             <header>
                 <Header>
-                    <LogoLink to="/workspaceView">
-                        <LogoImg
-                            src="/img/TopMenuBar/Logo.png"
-                            width="5vw"
-                            height="auto "
-                        />
-                    </LogoLink>
+                    {canGoToWorkspaceView() ? (
+                        <LogoLink to="/workspaceList">
+                            <LogoImg
+                                src="/img/TopMenuBar/Logo.png"
+                                width="5vw"
+                                height="auto "
+                            />
+                        </LogoLink>
+                    ) : (
+                        <Div
+                            margin="0 0 0 12.5vw"
+                            boxSizing="border-box"
+                            alignItems="center"
+                        >
+                            <LogoImg
+                                src="/img/TopMenuBar/Logo.png"
+                                width="5vw"
+                                height="auto "
+                            />
+                        </Div>
+                    )}
                     {location.pathname === "/" ||
                     location.pathname === "/Login" ? (
                         <LogoutLink to="/Login">로그인</LogoutLink>

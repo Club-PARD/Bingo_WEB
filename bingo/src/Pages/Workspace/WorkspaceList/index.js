@@ -122,12 +122,15 @@ const WorkspaceList = () => {
             {/*프로젝트 카드들의 나열, 해당 공간의 이름을 감싼 Div */}
             <Div
                 flexDirection="column"
-                height="55.9vh"
-                width="100%"
+                height="58.9vh"
+                width="100vw"
                 backgroundColor="#F9F9F9"
                 display="flex"
                 alignContent="center"
                 justifyContent="center"
+                margin="0 auto"
+                padding="3.2vh 0 0 0"
+                boxSizing="border-box"
             >
                 {/* 프로젝트 리스트 + 초대 모달창 버튼이 들어갈 div */}
 
@@ -165,32 +168,35 @@ const WorkspaceList = () => {
                     alignContent="baseline"
                     alignItems="center"
                     height="96%"
-                    width="100%"
+                    width="75vw"
                     flexWrap="wrap"
                     overflow="auto"
                     boxSizing="border-box"
-                    padding=" 0 0 0 3%"
+                    margin="0 auto"
                 >
                     {/* 워크스페이스 생성버튼 */}
                     <Div
+                        margin="2% 0 0 0"
                         flexDirection="column"
-                        margin="2% 0 0 2%"
                         border="1px solid transparent"
                         borderRadius="32px"
-                        width="30%"
-                        height="50%"
+                        width="24vw"
+                        height="21vh"
                         backgroundColor="#EDEDED"
                         onClick={openModal}
                         alignItems="center"
                         justifyContent="center"
                         cursor="pointer"
+                        fontSize="20px"
                     >
                         <Img
-                            width="15%"
-                            height="auto"
-                            src="/Img/WorkspaceView/ph_plus-bold.png"
+                            width="4.4vh"
+                            height="4.4vh"
+                            src="\img\WorkspaceList\add.png"
                         />
-                        <div>프로젝트 생성</div>
+                        <div style={{ marginTop: "1vh", color: "#B3b3b3" }}>
+                            프로젝트 생성
+                        </div>
                     </Div>
                     {/* 현재는 더미값이지만 장기적으로는 워크스페이스 데이터 기반으로 카드 출력  */}
                     {/* {console.log("워크스페이스 정보 : ", workspaceData)} */}
@@ -251,12 +257,14 @@ const WorkspaceList = () => {
 
                 {/* (모달) 취소버튼 */}
                 <Div
-                    width="93%"
+                    width="90%"
                     height="100%"
+                    display="flex"
                     flexDirection="column-reverse"
                     justifyContent="top"
                     alignItems="center"
-                    padding="0 3.5% 0 3.5%"
+                    boxSizing="border-box"
+                    margin="0 auto"
                 >
                     <Div
                         height="24%"
@@ -270,7 +278,7 @@ const WorkspaceList = () => {
                             height="33%"
                             backgroundColor="#F9F9F9"
                             border="1px solid #EA4336"
-                            margin=" 0 3.5% 0 0"
+                            margin=" 0 2.5% 0 0"
                             color="#EA4336"
                             borderRadius="40px"
                             fontSize="20px"
@@ -284,7 +292,7 @@ const WorkspaceList = () => {
                             width="20%"
                             height="33%"
                             backgroundColor="#EA4336"
-                            margin=" 0 3.5% 0 0"
+                            margin=" 0 2.5% 0 0"
                             color="#F9F9F9"
                             borderRadius="40px"
                             border="1px solid transparent"
@@ -390,12 +398,11 @@ const WorkspaceList = () => {
 export default WorkspaceList;
 
 const InnerHeader = styled.div`
+    width: 75vw;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-top: 2%;
-    margin-left: 5%;
-    margin-right: 5%;
+    margin: 0 auto;
     /* border : 1px solid red; */
 `;
 const CodeBtn = styled.button`
@@ -409,23 +416,24 @@ const CodeBtn = styled.button`
 `;
 
 const ModalHeader = styled.div`
-    font-size: 35px;
+    font-size: 28px;
 `;
 const ModalTitle = styled.div`
     flex-direction: column;
 `;
 const ModalLabel = styled.label`
     color: rgba(34, 34, 34, 0.6);
-    font-size: 20px;
+    font-size: 16px;
 `;
 const BannerImg = styled.img`
-    height: 38vh;
-    width: auto;
+    height: 35vh;
+    width: 100%;
+    margin: 0 auto;
 `;
 const FileInputButton = styled.button`
     height: 6vh;
     width: 10vw;
-    font-size: 24px;
+    font-size: 18px;
     align-items: center;
     margin-top: 0.5%;
     border-radius: 40px;
@@ -434,11 +442,11 @@ const FileInputButton = styled.button`
     background-size: cover;
 `;
 const SelectedFileName = styled.span`
-    font-size: 24px;
+    font-size: 18px;
     margin-left: 10px;
 `;
 const CustomInput = styled(Input)`
-    width: 100%;
+    width: 43.4vw;
     background-color: #f0f0f0;
     margin: 0.5% 0 0 0;
     font-size: 32px;
@@ -528,8 +536,9 @@ const CodeDiv = styled.input`
     border: none;
     border-radius: 16px;
     background: #f0f0f0;
-    padding: 1.6vh 2.7vw 1.6vh 10vw;
+    padding: 1.6vh 2.7vw 1.6vh 1vw;
     display: flex;
+    font-size: 18px;
     justify-content: space-between;
     margin-bottom: 1.5vh;
 
