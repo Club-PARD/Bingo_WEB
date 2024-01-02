@@ -181,7 +181,7 @@ const WorkspaceList = () => {
                 </Div>
             </Div>
 
-            {/* 모달창 출력 부분 */}
+            {/* (모달) 모달창 전체 */}
             <Modal
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}
@@ -196,12 +196,13 @@ const WorkspaceList = () => {
                         backgroundSize: "cover",
                         // backgroundRepeat: "no-repeat",
                         margin: "0",
-                        width: "61.4%",
+                        width: "60%",
                         height: "58%",
                         display: "flex",
                         border: "none",
                         //alignItems: "center",
                         overflowY: "hidden",
+                        borderRadius : "42px",
 
                         display: "flex",
                         flexDirection: "column",
@@ -216,6 +217,8 @@ const WorkspaceList = () => {
                     }
                 }}>
                 {/* 모달 내용 */}
+
+                {/* (모달) 취소버튼 */}
                 <Div
                     width="93%"
                     height="100%"
@@ -232,20 +235,24 @@ const WorkspaceList = () => {
                         <Button
                             width="11%"
                             height="33%"
-                            backgroundColor="#D9D9D9"
+                            backgroundColor="#F9F9F9"
+                            border="1px solid #EA4336"
                             margin=" 0 3.5% 0 0"
-                            color="black"
-                            borderRadius="10px"
-                            fontSize="28px"
+                            color="#EA4336"
+                            borderRadius="40px"
+                            fontSize="20px"
                             onClick={closeModal}>취소</Button>
+
+                        {/* (모달) 완료버튼 */}
                         <Button
-                            width="11%"
+                            width="20%"
                             height="33%"
-                            backgroundColor="#D9D9D9"
+                            backgroundColor="#EA4336"
                             margin=" 0 3.5% 0 0"
-                            color="black"
-                            borderRadius="10px"
-                            fontSize="28px"
+                            color="#F9F9F9"
+                            borderRadius="40px"
+                            border="1px solid transparent"
+                            fontSize="20px"
                             onClick={() => {
                                 if (!title.trim() && !desc.trim()) {
                                     alert('프로젝트 이름과 설명을 작성하세요');
@@ -260,17 +267,20 @@ const WorkspaceList = () => {
                                 } else {
                                     onButtonClick();
                                 }
-                            }}>완료</Button>
+                            }}>프로젝트 생성</Button>
                     </Div>
 
+                    {/* (모달) 프로젝트 배너 이미지 */}
                     <Div
                         alignItems="left"
                         flexDirection=" column-reverse"
                         justifyContent="space-between"
                         width="100%"
-                        height="68%">
+                        height="68%"
+                        borderRadius="50%"
+                        >
                         <Div flexDirection="column">
-                            <Div fontSize="32px" margin=".5% 0 0 0">프로젝트 배너 이미지</Div>
+                            <ModalLabel>프로젝트 배너</ModalLabel>
                             <Input
                                 type="file"
                                 style={{
@@ -279,12 +289,14 @@ const WorkspaceList = () => {
                                 ref={fileInputRef}
                                 onChange={handleFileSelect}/>
                             <Div alignItems="center">
-                                <FileInputButton onClick={handleButtonClick}>+파일 업로드</FileInputButton>
+                                <FileInputButton onClick={handleButtonClick} />
                                 {selectedFile && (<SelectedFileName>{selectedFile.name}</SelectedFileName>)}
                             </Div>
                         </Div>
+
+                        {/* (모달) 프로젝트 설명 */}
                         <Div flexDirection="column">
-                            <Label fontSize="32px">프로젝트 설명</Label>
+                            <ModalLabel>프로젝트 설명 (30자 이내로 작성해 주세요)</ModalLabel>
                             <CustomInput
                                 type="text"
                                 height="10vh"
@@ -296,8 +308,10 @@ const WorkspaceList = () => {
                                     }
                                     : {}}/>
                         </Div>
-                        <Div flexDirection="column">
-                            <Label fontSize="32px">프로젝트 이름</Label>
+
+                        {/* (모달) 프로젝트 이름 */}
+                        <ModalTitle>
+                            <ModalLabel>프로젝트 이름</ModalLabel>
                             <CustomInput
                                 type="text"
                                 height="5vh"
@@ -308,7 +322,8 @@ const WorkspaceList = () => {
                                         border: '1px solid red'
                                     }
                                     : {}}/>
-                        </Div>
+                        </ModalTitle>
+                        <ModalHeader>프로젝트 생성</ModalHeader>
                     </Div>
                 </Div>
             </Modal>
@@ -319,30 +334,62 @@ const WorkspaceList = () => {
 
 export default WorkspaceList;
 
+// const ModalDiv = styled.div`
+//     padding: 0;
+//     color: black;
+//     background: "#FFF";
+//     background-size: cover;
+//     margin: 0;
+//     width: 61.4%;
+//     height: 58%;
+//     display: flex;
+//     border: none;
+//     overflow-y: hidden;
+//     flex-direction: column;
+//     overflow-y: auto;
+//     left: 50%;
+//     top: 50%;
+//     transform: translate(-50%, -50%);
+// `;
+
+const ModalHeader = styled.div`
+    font-size : 35px;
+`
+const ModalTitle = styled.div`
+    flex-direction : column;
+`
+const ModalLabel = styled.label`
+    color : rgba(34, 34, 34, 0.60);
+    font-size : 20px;
+`
 const BannerImg = styled.img `
     height : 38vh;
     width : auto;
 `
-
 const FileInputButton = styled.button `
-    height: 3vh;
-    width: auto;
+    height: 6vh;
+    width: 10vw;
     font-size: 24px;
-    background-color: #D9D9D9;
     align-items: center;
-    border-radius: 24px;
     margin-top: .5%;
+    border-radius : 40px;
     border: none;
+    background-image : url("/img/WorkspaceList/FileUpload.png");
+    background-size : cover;
 `
-
 const SelectedFileName = styled.span `
     font-size: 24px;
     margin-left: 10px;
 `;
-
 const CustomInput = styled(Input)`
     width: 100%;
-    background-color: #D9D9D9; 
+    background-color: #F0F0F0; 
     margin: .5% 0 0 0;
     font-size: 32px;
+    border : 1px solid red;
 `;
+// const FileInputButton = styled.button`
+//   /* 다른 스타일들 추가 */
+//   background: url('이미지경로.png') no-repeat center center; /* 이미지 경로에 실제 파일 경로를 넣어주세요 */
+//   background-size: cover; /* 이미지 크기에 맞게 조절 */
+// `;
