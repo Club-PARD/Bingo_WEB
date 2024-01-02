@@ -117,7 +117,7 @@ function RetrospectInWorkspace() {
 
                                 {/*Div for 3 chip, 조회버튼*/}
                                 <RightSide>
-                                    <ViewButton to={task.linktoWrite}>
+                                    <ViewButton to="/RetrospectWrite">
                                         작성
                                         <Img
                                             width="2.6vh"
@@ -125,7 +125,7 @@ function RetrospectInWorkspace() {
                                             src="/img/WorkspaceView/arrowPink.png"
                                         />
                                     </ViewButton>
-                                    <WriteButton to={task.linktoView}>
+                                    <WriteButton to="/RetrospectView">
                                         조회
                                         <Img
                                             width="2.6vh"
@@ -214,7 +214,7 @@ const ViewButton = styled(Link)`
     height: 4.8vh;
     width: 5.5vw;
     border-radius: 40px;
-    background: #fce3e1;
+    background: #f7dfdc;
     align-items: center;
     text-align: center;
     justify-content: center;

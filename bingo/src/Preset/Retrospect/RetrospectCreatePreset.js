@@ -197,7 +197,13 @@ export const Section1 = (e) => {
                             <RadioCard
                                 value="KPT"
                                 label="KPT"
-                                description={RetrospectDescription.W_KPT}
+                                description={
+                                    <>
+                                        팀의 상황을 빠르게 돌아보고
+                                        <br />
+                                        명확한 개선 방법을 찾길 원한다면?
+                                    </>
+                                }
                                 selectedValue={e.SelectedWays}
                                 onChange={e.handleRadioChange}
                             />
@@ -228,7 +234,13 @@ export const Section1 = (e) => {
                             <RadioCard
                                 value="4LS"
                                 label="4LS"
-                                description={RetrospectDescription.W_4LS}
+                                description={
+                                    <>
+                                        팀의 과정을 돌아보고
+                                        <br />
+                                        목표를 세우길 원한다면?
+                                    </>
+                                }
                                 selectedValue={e.SelectedWays}
                                 onChange={e.handleRadioChange}
                             />
@@ -260,7 +272,13 @@ export const Section1 = (e) => {
                             <RadioCard
                                 value="5F"
                                 label="5F"
-                                description={RetrospectDescription.W_5F}
+                                description={
+                                    <>
+                                        팀의 중요한 사건들을
+                                        <br />
+                                        꼼꼼히 돌아보길 원한다면?
+                                    </>
+                                }
                                 selectedValue={e.SelectedWays}
                                 onChange={e.handleRadioChange}
                             />
@@ -681,12 +699,7 @@ const Section_Style = {
     margin: "0 auto",
     overflow: "hidden",
 };
-// 템플릿 설명 변수
-const RetrospectDescription = {
-    W_KPT: "팀의 상황을 빠르게 돌아보고 명확한 개선 방법을 찾길 원한다면?",
-    W_4LS: "팀의 과정을 돌아보고 목표를 세우길 원한다면?",
-    W_5F: "팀의 중요한 사건들을 꼼꼼히 돌아보길 원한다면?",
-};
+
 //Modal
 const StyleModal = {
     overlay: {

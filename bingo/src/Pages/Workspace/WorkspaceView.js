@@ -147,7 +147,6 @@ const SectionLeft = styled.div`
     width: 25.7vw;
     height: 80vh;
     overflow: hidden;
-    background-color: aliceblue;
 `;
 const InformationDiv = styled.div`
     color: #838383;
