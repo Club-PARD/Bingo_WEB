@@ -1,24 +1,29 @@
-import { useState } from "react";
-import { Div } from "../../../Components/NormalComponents/Section";
-import { Img } from "../../../Components/NormalComponents/Etc";
+import {useState} from "react";
+import {Div} from "../../../Components/NormalComponents/Section";
+import {Img} from "../../../Components/NormalComponents/Etc";
 import Modal from "react-modal";
-import { Link } from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import styled from "styled-components";
-
+import {useRecoilState} from "recoil";
+import {RetrospectData, loginUserState} from "../../../Contexts/Atom";
 
 //workspaceView화면 내 회고와 액션아이템 출력 컴포넌트
-function RetrospectInWorkspace(){
+function RetrospectInWorkspace() {
+  const [userInfo, setUserInfo] = useRecoilState(loginUserState);
+  const [tasks, setTasks] = useRecoilState(RetrospectData);
 
-    // map 함수로 출력하기 위한 리스트(더미데이터) 생성
-    // 나중에 추가 가능
-    const [tasks, setTasks] = useState([
-      { id: 1, name: '1차 회고', linktoView: '/RetrospectView', linktoWrite: '/RetrospectWriteText'},
-      { id: 2, name: '2차 회고', linktoView: '/RetrospectView', linktoWrite: '/RetrospectWriteText'},
-      { id: 3, name: '3차 회고', linktoView: '/RetrospectView', linktoWrite: '/RetrospectWriteText'},
-      { id: 4, name: '4차 회고', linktoView: '/RetrospectView', linktoWrite: '/RetrospectWriteText'},
-      { id: 5, name: '5차 회고', linktoView: '/RetrospectView', linktoWrite: '/RetrospectWriteText'},
-      { id: 6, name: '6차 회고', linktoView: '/RetrospectView', linktoWrite: '/RetrospectWriteText'},
-    ]);
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const workspaceId = searchParams.get('workspaceId');
+
+  const [modalIsOpen2, setModalIsOpen2] = useState(false);
+  const openModal2 = () => {
+      setModalIsOpen2(true);
+  };
+
+  const closeModal2 = () => {
+      setModalIsOpen2(false);
+  };
   
   return(
     <>
@@ -30,7 +35,7 @@ function RetrospectInWorkspace(){
             <Img width="44px" height="44px" src="/Img/WorkspaceView/ph_plus-bold.png"/>
             <WordDiv>회고생성</WordDiv>
           </AddArea>
-        {tasks.slice().reverse().map((task) => (
+        { tasks.length >= 1 && tasks.slice().reverse().map((task) => (
             <RetrospectListDiv
               key={task.id}
             >
@@ -53,6 +58,13 @@ function RetrospectInWorkspace(){
                     alignItems="center"
                     margin="0 0 3.8vh 0"
                   >{task.name}</Div>
+                  {
+                      console.log(
+                          "\n사용자 : " + userInfo.appUser.id + "\n워크스페이스 : " + workspaceId + "\n회고 : " +
+                          task.id
+                      )
+                      // console.log("워크스페이스 " + )
+                  }
                   <TwoResultChip>“서로에 대한 존중과 신뢰가 있는”</TwoResultChip>
                   <TwoResultChip>“열정 있는”</TwoResultChip>
                 </LeftSide>
@@ -104,6 +116,14 @@ const RetrospectListDiv = styled.div`
   width: 100%;
   background-color: rgba(234, 67, 54, 0.05);
   border-radius: 20px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2%;
+  padding: 0;
+`
+const LinkToRetrospectCreate2 = styled.div `
+  height: 50%;
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

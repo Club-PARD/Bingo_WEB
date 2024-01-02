@@ -42,8 +42,8 @@ function RetrospectView() {
             <Header>
                 <LeftHead>
                     <TitleDiv>{retrospective.retrospectTitle}</TitleDiv>
-                    {/* Breadcrumb은 현재 위치에 따라 달라진다 / 현위치 : 1 (회고 작성하기) */}
-                    <Breadcrumb activeKey={2}/>
+                    {/* Breadcrumb은 현재 위치에 따라 달라진다 / 현위치 : 3 (회고 조회하기) */}
+                    <Breadcrumb activeKey={3}/>
                 </LeftHead>
                 <RightHead>
                     <StepButton onClick={handleExitClick} targetLabel="나가기" 
@@ -106,6 +106,7 @@ function RetrospectView() {
 }
 
 export default RetrospectView;
+
 
 const Whole = styled.div `
     box-sizing: border-box;
