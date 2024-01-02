@@ -125,13 +125,21 @@ const WorkspaceList = () => {
                 display="flex"
                 alignContent="center"
                 justifyContent="center">
-                <Div
-                    margin="0 0 0 5%"
-                    height="4%"
-                    fontSize="20px"
-                    width="auto"
-                    borderRadius="15px"
-                    alignItems="center">프로젝트 리스트</Div>
+                {/* 프로젝트 리스트 + 초대 모달창 버튼이 들어갈 div */}
+
+                <InnerHeader>
+                    <div>
+                        <Div fontSize="20px" width="auto" borderRadius="15px" alignItems="center">
+                            프로젝트 리스트
+                        </Div>
+                        <Div fontSize="15px" width="auto" borderRadius="15px" alignItems="center" color="#9C9C9C">
+                            프로젝트를 생성하여 우리만의 솔직한 회고를 진행해 보세요!
+                        </Div>
+                    </div>
+                    
+                    <CodeBtn>초대 코드 입력하기</CodeBtn>
+                </InnerHeader>
+                
                 {/* 워크스페이스 카드 부분 */}
 
                 <Div
@@ -280,7 +288,7 @@ const WorkspaceList = () => {
                         borderRadius="50%"
                         >
                         <Div flexDirection="column">
-                            <ModalLabel>프로젝트 배너</ModalLabel>
+                            <ModalLabel>프로젝트 사진</ModalLabel>
                             <Input
                                 type="file"
                                 style={{
@@ -334,23 +342,23 @@ const WorkspaceList = () => {
 
 export default WorkspaceList;
 
-// const ModalDiv = styled.div`
-//     padding: 0;
-//     color: black;
-//     background: "#FFF";
-//     background-size: cover;
-//     margin: 0;
-//     width: 61.4%;
-//     height: 58%;
-//     display: flex;
-//     border: none;
-//     overflow-y: hidden;
-//     flex-direction: column;
-//     overflow-y: auto;
-//     left: 50%;
-//     top: 50%;
-//     transform: translate(-50%, -50%);
-// `;
+const InnerHeader = styled.div`
+    display : flex;
+    flex-direction : row;
+    justify-content : space-between;
+    margin-top : 2%;
+    margin-bottom : 3%;
+    margin-left : 5%;
+    margin-right : 5%;
+    /* border : 1px solid red; */
+`
+const CodeBtn = styled.button`
+    border-radius : 22.8px;
+    border : 1.5px solid var(#222);
+    background-color : white;
+    color : #222;
+    height : 70%;
+`
 
 const ModalHeader = styled.div`
     font-size : 35px;
@@ -388,8 +396,3 @@ const CustomInput = styled(Input)`
     font-size: 32px;
     border : 1px solid red;
 `;
-// const FileInputButton = styled.button`
-//   /* 다른 스타일들 추가 */
-//   background: url('이미지경로.png') no-repeat center center; /* 이미지 경로에 실제 파일 경로를 넣어주세요 */
-//   background-size: cover; /* 이미지 크기에 맞게 조절 */
-// `;
