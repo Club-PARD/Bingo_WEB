@@ -11,7 +11,7 @@ import { RetrospectData, loginUserState } from "../../../Contexts/Atom";
 function RetrospectInWorkspace() {
     const [userInfo, setUserInfo] = useRecoilState(loginUserState);
     const [tasks, setTasks] = useRecoilState(RetrospectData);
-
+    const state = true;
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
     const workspaceId = searchParams.get("workspaceId");
@@ -53,33 +53,68 @@ function RetrospectInWorkspace() {
                             >
                                 {/*회고 list의 상단, 몇차회고 작성버튼*/}
                                 <LeftSide>
-                                    <Div
-                                        color="#7F7F7F"
-                                        fontWeight="400"
-                                        fontFamily="WefontGothic(OTF)"
-                                        fontSize="14px"
-                                        textAlign="center"
-                                        alignItems="center"
-                                        margin="0 0 3.8vh 0"
-                                    >
-                                        {task.name}
-                                    </Div>
                                     {
-                                        console.log(
-                                            "\n사용자 : " +
-                                                userInfo.appUser.id +
-                                                "\n워크스페이스 : " +
-                                                workspaceId +
-                                                "\n회고 : " +
-                                                task.id
+                                        /*hasEvaluated*/
+                                        state ? (
+                                            // TeamEvaluation이 완료된 경우
+                                            <>
+                                                <Div
+                                                    color="#7F7F7F"
+                                                    fontWeight="400"
+                                                    fontFamily="WefontGothic(OTF)"
+                                                    fontSize="14px"
+                                                    textAlign="center"
+                                                    alignItems="center"
+                                                    margin="0 0 3.8vh 0"
+                                                >
+                                                    {task.name}
+                                                </Div>
+                                                <TwoResultChip>
+                                                    “서로에 대한 존중과 신뢰가
+                                                    있는”
+                                                </TwoResultChip>
+                                                <TwoResultChip>
+                                                    “열정 있는”
+                                                </TwoResultChip>
+                                            </>
+                                        ) : (
+                                            // TeamEvaluation이 완료되지 않은 경우
+                                            <>
+                                                <Div
+                                                    color="#7F7F7F"
+                                                    fontWeight="400"
+                                                    fontFamily="WefontGothic(OTF)"
+                                                    fontSize="14px"
+                                                    textAlign="center"
+                                                    alignItems="center"
+                                                    margin="0 0 .7vh 0"
+                                                >
+                                                    {task.name}
+                                                </Div>
+                                                <Div
+                                                    color="var(--main_red, #EA4336)"
+                                                    fontFamily=" WefontGothic(OTF)"
+                                                    fontSize="13.5px"
+                                                    fontStyle="normal"
+                                                    fontWeight="400"
+                                                    margin="0 0 4.5vh 0"
+                                                >
+                                                    이번 프로젝트는 어땠나요?
+                                                </Div>
+                                                <Div
+                                                    color="#575757"
+                                                    fontFamily=" WefontGothic(OTF)"
+                                                    fontSize="24px"
+                                                    fontStyle="normal"
+                                                    fontWeight="400"
+                                                >
+                                                    “_____________한 팀”
+                                                </Div>
+                                            </>
                                         )
-                                        // console.log("워크스페이스 " + )
                                     }
-                                    <TwoResultChip>
-                                        “서로에 대한 존중과 신뢰가 있는”
-                                    </TwoResultChip>
-                                    <TwoResultChip>“열정 있는”</TwoResultChip>
                                 </LeftSide>
+
                                 {/*Div for 3 chip, 조회버튼*/}
                                 <RightSide>
                                     <ViewButton to={task.linktoWrite}>

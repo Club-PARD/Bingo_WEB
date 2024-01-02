@@ -65,78 +65,80 @@ function WorkspaceView() {
     }, [retrospectData]);
 
     return (
-        <Div
-            width="100%"
-            height="93.9vh"
-            display="flex"
-            backgroundColor="#F9F9F9"
-            justifyContent="end"
-            flexDirection="column"
-        >
-            {/* Section1 : 빙고판 */}
+        <>
             <Div
-                width="66.3%"
-                margin="0 auto"
-                height="100%"
+                width="100%"
+                height="93.9vh"
                 display="flex"
-                flexDirection="row"
+                backgroundColor="#F9F9F9"
+                justifyContent="end"
+                flexDirection="column"
             >
-                <SectionLeft>
-                    <InformationDiv>프로젝트 정보</InformationDiv>
-                    <Section_Bingo>
-                        {/*<h1>{filteredWorkspaces[0].name}</h1>
+                {/* Section1 : 빙고판 */}
+                <Div
+                    width="66.3%"
+                    margin="0 auto"
+                    height="100%"
+                    display="flex"
+                    flexDirection="row"
+                >
+                    <SectionLeft>
+                        <InformationDiv>프로젝트 정보</InformationDiv>
+                        <Section_Bingo>
+                            {/*<h1>{filteredWorkspaces[0].name}</h1>
                         <h3>{filteredWorkspaces[0].description}</h3>*/}
-                        {/* Title : 빙고판 타이틀 */}
-                        <TitleAndButton>
-                            <Title>3!4!(쓰리포)</Title>
-                            <InviteButton onClick={openModal1}>
-                                팀원 초대하기
-                            </InviteButton>
-                        </TitleAndButton>
-                        <TeamDesc>
-                            한동대학교 PARD 롱커톤 3!4! 파이팅 !
-                        </TeamDesc>
-                        <BingoDesc>
-                            <BingoDescText>
-                                좋은 팀을 위한 9가지 가치 빙고판
-                            </BingoDescText>
-                        </BingoDesc>
+                            {/* Title : 빙고판 타이틀 */}
+                            <TitleAndButton>
+                                <Title>3!4!(쓰리포)</Title>
+                                <InviteButton onClick={openModal1}>
+                                    팀원 초대하기
+                                </InviteButton>
+                            </TitleAndButton>
+                            <TeamDesc>
+                                한동대학교 PARD 롱커톤 3!4! 파이팅 !
+                            </TeamDesc>
+                            <BingoDesc>
+                                <BingoDescText>
+                                    좋은 팀을 위한 9가지 가치 빙고판
+                                </BingoDescText>
+                            </BingoDesc>
 
-                        {/* Content : 빙고판 */}
-                        <Section_Bingo_Content>
-                            <BingoBoard />
-                        </Section_Bingo_Content>
-                    </Section_Bingo>
-                </SectionLeft>
-                <SectionEclipse>
-                    <EclipseDiv />
-                    <EclipseDiv />
-                    <EclipseDiv />
-                    <EclipseDiv />
-                    <EclipseDiv />
-                    <EclipseDiv />
-                    <EclipseDiv />
-                    <EclipseDiv />
-                </SectionEclipse>
-                {/* Section2 : 회고 리스트 */}
-                <Section_Retrospect>
-                    {/* Title : 회고 리스트 타이틀 */}
-                    <InformationDiv>
-                        회고 리스트
-                        <Link to="/RetrospectViewerPage">보러가기</Link>
-                    </InformationDiv>
-                    {/* Content : 회고 리스트 */}
-                    <Section_Retrospect_Content>
-                        <RetrospectInWorkspace />
-                    </Section_Retrospect_Content>
-                </Section_Retrospect>
+                            {/* Content : 빙고판 */}
+                            <Section_Bingo_Content>
+                                <BingoBoard />
+                            </Section_Bingo_Content>
+                        </Section_Bingo>
+                    </SectionLeft>
+                    <SectionEclipse>
+                        <EclipseDiv />
+                        <EclipseDiv />
+                        <EclipseDiv />
+                        <EclipseDiv />
+                        <EclipseDiv />
+                        <EclipseDiv />
+                        <EclipseDiv />
+                        <EclipseDiv />
+                    </SectionEclipse>
+                    {/* Section2 : 회고 리스트 */}
+                    <Section_Retrospect>
+                        {/* Title : 회고 리스트 타이틀 */}
+                        <InformationDiv>
+                            회고 리스트
+                            <Link to="/RetrospectViewerPage">보러가기</Link>
+                        </InformationDiv>
+                        {/* Content : 회고 리스트 */}
+                        <Section_Retrospect_Content>
+                            <RetrospectInWorkspace />
+                        </Section_Retrospect_Content>
+                    </Section_Retrospect>
+                </Div>
             </Div>
             <InviteModal
                 modalIsOpen1={modalIsOpen1}
                 closeModal={closeModal}
                 value={value}
             />
-        </Div>
+        </>
     );
 }
 
@@ -164,22 +166,6 @@ const Section_Bingo = styled.div`
     align-items: center;
     border-radius: 25px;
     background-color: #f3f3f3;
-`;
-const AdRetero = styled.div`
-    width: 14vw;
-    height: 4vh;
-    margin: 0 auto;
-    padding: 0.9vh 1.8vh;
-    border-radius: 40px;
-    background: var(--main_red, #ea4336);
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    color: var(--main_white, #f9f9f9);
-    font-family: WefontGothic(OTF);
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
 `;
 const TitleAndButton = styled.div`
     width: 20.3vw;
@@ -211,6 +197,7 @@ const InviteButton = styled.div`
     font-size: 15px;
     font-style: normal;
     font-weight: 400;
+    cursor: pointer;
 `;
 const TeamDesc = styled.div`
     width: 20.3vw;
@@ -300,9 +287,10 @@ const StyleModal = {
         backgroundSize: "cover",
         // backgroundRepeat: "no-repeat",
         margin: "0",
-        width: "35%",
-        height: "39%",
+        width: "27.8vw",
+        height: "25.2vh",
         border: "none",
+        zIndex: "2",
         //alignItems: "center",
 
         display: "flex",
@@ -318,7 +306,7 @@ const StyleModal = {
 
 const InviteModal = (e) => {
     return (
-        <a
+        <Modal
             isOpen={e.modalIsOpen1}
             onRequestClose={e.closeModal}
             style={StyleModal}
@@ -328,30 +316,77 @@ const InviteModal = (e) => {
                 justifyContent="space-around"
                 alignItems="center"
                 width="100%"
-                height="90%"
+                height="100%"
                 flexDirection="column"
             >
                 <ModalInfo>팀원 초대하기 코드</ModalInfo>
-                <Div>
-                    <Div fontSize="90px">{e.value}</Div>
+                <CodeDiv>
+                    <Code>{e.value}</Code>
                     <CopyToClipboard
                         text={e.value}
                         onCopy={() => alert("클립보드에 복사되었습니다.")}
                     >
-                        <Img></Img>
+                        <Img
+                            width="1.6vw"
+                            height="1.6vw"
+                            src="\img\WorkspaceView\content_copy.png"
+                        />
                     </CopyToClipboard>
+                </CodeDiv>
+                <Div
+                    width="25vw"
+                    height="4.7vh"
+                    display="flex"
+                    flexDirection="row-reverse"
+                >
+                    <ButtonDiv onClick={e.closeModal}>닫기</ButtonDiv>
                 </Div>
-                <Div></Div>
             </Div>
-        </a>
+        </Modal>
     );
 };
 
 const ModalInfo = styled.div`
+    width: 25vw;
     color: var(--sec_grey, #222);
     font-family: WefontGothic(OTF);
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
     line-height: 150%; /* 30px */
+    margin-bottom: 3vh;
+`;
+const CodeDiv = styled.div`
+    box-sizing: border-box;
+    width: 25vw;
+    border-radius: 16px;
+    background: #f0f0f0;
+    padding: 1.6vh 2.7vw 1.6vh 10vw;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.5vh;
+`;
+const Code = styled.div`
+    color: var(--sec_grey, #222);
+    text-align: center;
+    font-family: WefontGothic(OTF);
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 36px */
+`;
+const ButtonDiv = styled.div`
+    width: 4.7vw;
+    height: 4.7vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 40px;
+    border: 2px solid var(--main_red, #ea4336);
+    background: var(--main_white, #f9f9f9);
+    color: var(--main_red, #ea4336);
+    font-family: WefontGothic(OTF);
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
 `;
