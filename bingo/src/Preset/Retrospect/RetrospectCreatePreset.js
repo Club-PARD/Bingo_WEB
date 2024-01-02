@@ -642,25 +642,8 @@ const ModalButtonDiv=styled.div`
 const ModalCloseButton=styled.button`
     width: 42%;
     height: 100%;
-    background-color: #EA4336;
-    align-items: center;
-    justify-content: center;
-    color: var(--main_white, #F9F9F9);
-    font-family: WefontGothic(OTF);
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 150%; /* 27px */
-    border-radius: 40px;
-    border: 2px solid var(--main_red, #EA4336);
-    cursor: pointer;
-`
-const ModalExitButton=styled(Link)`
-    width: 50%;
-    height: 90%;
     background-color: var(--main_white, #F9F9F9);
-    display: flex;
-    padding: 0;
+    background-color: #EA4336;
     align-items: center;
     justify-content: center;
     color: var(--main_red, #EA4336);
@@ -668,7 +651,23 @@ const ModalExitButton=styled(Link)`
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
-    line-height: 150%; /* 27px */
+    border-radius: 40px;
+    border: 2px solid var(--main_red, #EA4336);
+    cursor: pointer;
+`
+const ModalExitButton=styled(Link)`
+    width: 50%;
+    height: 90%;
+    background-color: #EA4336;
+    display: flex;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    color: var(--main_white, #F9F9F9);
+    font-family: WefontGothic(OTF);
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
     border-radius: 40px;
     border: 2px solid var(--main_red, #EA4336);
     text-decoration: none;
