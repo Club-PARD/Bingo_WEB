@@ -56,7 +56,7 @@ function RetrospectInWorkspace() {
                                     )
                                     // console.log("워크스페이스 " + )
                                 }
-                                <ViewButton to={task.linktoWrite}>작성</ViewButton>
+                                <ViewButton to="/RetrospectWrite">작성</ViewButton>
                             </LinkToRetrospectCreate2>
                             {/*Div for 3 chip, 조회버튼*/}
                             <LinkToRetrospectView>
