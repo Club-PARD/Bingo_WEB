@@ -19,34 +19,17 @@ function RetrospectInWorkspace(){
       { id: 5, name: '5차 회고', linktoView: '/RetrospectView', linktoWrite: '/RetrospectWriteText'},
       { id: 6, name: '6차 회고', linktoView: '/RetrospectView', linktoWrite: '/RetrospectWriteText'},
     ]);
-
-    const [modalIsOpen2, setModalIsOpen2] = useState(false);
-    const openModal2 = () => {
-        setModalIsOpen2(true);
-    };
-
-    const closeModal2 = () => {
-        setModalIsOpen2(false);
-    };
   
   return(
     <>
       {/*Div for retrospectList height=833*/}
       
-        <Div 
-            height="15.5vh"
-            width="100%"
-            backgroundColor="#EEE"
-            borderRadius="20px"
-            alignItems="center"
-            justifyContent="center"
-            margin="1% 0 0 0"
-            flexDirection="column"
-            onClick={openModal2}
+        <AddArea 
+            to="/RetrospectCreate"
           >
             <Img width="44px" height="44px" src="/Img/WorkspaceView/ph_plus-bold.png"/>
             <WordDiv>회고생성</WordDiv>
-          </Div>
+          </AddArea>
         {tasks.slice().reverse().map((task) => (
             <RetrospectListDiv
               key={task.id}
@@ -93,6 +76,18 @@ function RetrospectInWorkspace(){
 }
 
 export default RetrospectInWorkspace ;
+const AddArea = styled(Link)`
+  height: 15.5vh;
+  width: 100%;
+  background-color: #EEE;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1% 0 0 0;
+  flex-direction: column;
+  text-decoration: none;
+`
 const WordDiv=styled.div`
   width: auto;
   height: 2.2vh;

@@ -10,8 +10,6 @@ import {WorkspaceData} from "../../Contexts/Atom.js";
 import Modal from "react-modal";
 import { useState } from "react";
 import { Img } from "../../Components/NormalComponents/Etc.js";
-import { Label } from "../../Components/NormalComponents/Text.js";
-import { Button } from "../../Components/NormalComponents/Form.js";
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 // workspace에 들어오면 보이는 화면 아직 와이어 프레임 안나와서 정확한건 미정 빙고페이지로 이동 가능 회고생성페이지로 이동 가능
