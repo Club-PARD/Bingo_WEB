@@ -11,7 +11,7 @@ import { RetrospectData, loginUserState } from "../../../Contexts/Atom";
 function RetrospectInWorkspace() {
     const [userInfo, setUserInfo] = useRecoilState(loginUserState);
     const [tasks, setTasks] = useRecoilState(RetrospectData);
-    const state = true;
+    const state = false;
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
     const workspaceId = searchParams.get("workspaceId");

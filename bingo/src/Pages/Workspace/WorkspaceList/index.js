@@ -80,7 +80,13 @@ const WorkspaceList = () => {
     const handleButtonClick = () => {
         fileInputRef.current && fileInputRef.current.click();
     };
-
+    const [inviteModalIsOpen, setInviteModalIsOpen] = useState(false);
+    const openInviteModal = () => {
+        setInviteModalIsOpen(true);
+    };
+    const closeInviteModal = () => {
+        setInviteModalIsOpen(false);
+    };
     const navigate = useNavigate();
     useEffect(() => {
         const fetchData = async () => {
@@ -136,31 +142,24 @@ const WorkspaceList = () => {
                             프로젝트 리스트
                         </Div>
                         <Div
-                            fontSize="15px"
-                            width="auto"
-                            borderRadius="15px"
-                            alignItems="center"
                             color="#9C9C9C"
+                            height="3%"
+                            fontSize="16px"
+                            width="auto"
+                            alignItems="center"
+                            margin="5% 0 0 0"
                         >
                             프로젝트를 생성하여 우리만의 솔직한 회고를 진행해
                             보세요!
                         </Div>
                     </div>
 
-                    <CodeBtn>초대 코드 입력하기</CodeBtn>
+                    <CodeBtn onClick={openInviteModal}>
+                        초대 코드 입력하기
+                    </CodeBtn>
                 </InnerHeader>
 
                 {/* 워크스페이스 카드 부분 */}
-                <Div
-                    margin="1% 0 .5% 5%"
-                    color="#9C9C9C"
-                    height="3%"
-                    fontSize="16px"
-                    width="auto"
-                    alignItems="center"
-                >
-                    프로젝트를 생성하여 우리만의 솔직한 회고를 진행해 보세요!
-                </Div>
                 <Div
                     flexDirection="row"
                     alignContent="baseline"
@@ -227,8 +226,8 @@ const WorkspaceList = () => {
                         backgroundSize: "cover",
                         // backgroundRepeat: "no-repeat",
                         margin: "0",
-                        width: "60%",
-                        height: "58%",
+                        width: "49vw",
+                        height: "59vh",
                         display: "flex",
                         border: "none",
                         //alignItems: "center",
@@ -346,7 +345,7 @@ const WorkspaceList = () => {
                             </ModalLabel>
                             <CustomInput
                                 type="text"
-                                height="10vh"
+                                height="6.5vh"
                                 value={desc}
                                 onChange={onChangeIntroduce}
                                 style={
@@ -364,7 +363,7 @@ const WorkspaceList = () => {
                             <ModalLabel>프로젝트 이름</ModalLabel>
                             <CustomInput
                                 type="text"
-                                height="5vh"
+                                height="6.5vh"
                                 value={title}
                                 onChange={onChangeTitle}
                                 style={
@@ -380,6 +379,10 @@ const WorkspaceList = () => {
                     </Div>
                 </Div>
             </Modal>
+            <InviteModal
+                inviteModalIsOpen={inviteModalIsOpen}
+                closeInviteModal={closeInviteModal}
+            />
         </Div>
     );
 };
@@ -391,7 +394,6 @@ const InnerHeader = styled.div`
     flex-direction: row;
     justify-content: space-between;
     margin-top: 2%;
-    margin-bottom: 3%;
     margin-left: 5%;
     margin-right: 5%;
     /* border : 1px solid red; */
@@ -401,7 +403,9 @@ const CodeBtn = styled.button`
     border: 1.5px solid var(#222);
     background-color: white;
     color: #222;
-    height: 70%;
+    height: 3.2vh;
+    width: 7.8vw;
+    margin-top: 2vh;
 `;
 
 const ModalHeader = styled.div`
@@ -438,5 +442,117 @@ const CustomInput = styled(Input)`
     background-color: #f0f0f0;
     margin: 0.5% 0 0 0;
     font-size: 32px;
+    border-radius: 24px;
     border: 1px solid red;
+`;
+const StyleModal = {
+    overlay: {
+        backgroundColor: "rgba(0, 0, 0,0.2)",
+    },
+    content: {
+        padding: "2vh",
+        color: "black",
+        borderRadius: "40px",
+        background: "var(--main_white, #F9F9F9)",
+        backgroundSize: "cover",
+        margin: "0",
+        width: "27.8vw",
+        height: "25.2vh",
+        border: "none",
+        zIndex: "2",
+        display: "flex",
+        flexDirection: "column",
+        top: "50%",
+        left: "50%",
+        right: "auto",
+        bottom: "auto",
+        marginRight: "-50%",
+        transform: "translate(-50%, -50%)", // center the modal
+    },
+};
+
+const InviteModal = (e) => {
+    const navigate = useNavigate(); // useNavigate 훅을 사용하여 navigate 함수를 가져옵니다.
+
+    return (
+        <Modal
+            isOpen={e.inviteModalIsOpen}
+            onRequestClose={e.closeInviteModal}
+            style={StyleModal}
+        >
+            {/* 팀원 코드 section */}
+            <Div
+                justifyContent="space-around"
+                alignItems="center"
+                width="100%"
+                height="100%"
+                flexDirection="column"
+            >
+                <ModalInfo>초대 코드 입력하기</ModalInfo>
+                <CodeDiv type="text" />
+                <Div
+                    width="25vw"
+                    height="4.7vh"
+                    display="flex"
+                    flexDirection="row-reverse"
+                >
+                    <ButtonDiv
+                        background="var(--main_red, #EA4336)"
+                        color="#F9F9F9"
+                        onClick={() => navigate("/workspaceView")} // '/workspaceView'는 원하는 경로로 변경해주세요.
+                    >
+                        완료
+                    </ButtonDiv>
+                    <ButtonDiv onClick={e.closeInviteModal}>닫기</ButtonDiv>
+                </Div>
+            </Div>
+        </Modal>
+    );
+};
+
+const ModalInfo = styled.div`
+    width: 25vw;
+    color: var(--sec_grey, #222);
+    font-family: WefontGothic(OTF);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 30px */
+    margin-bottom: 2vh;
+    margin-top: 1vh;
+`;
+const CodeDiv = styled.input`
+    box-sizing: border-box;
+    width: 25vw;
+    height: 6.6vh;
+    border: none;
+    border-radius: 16px;
+    background: #f0f0f0;
+    padding: 1.6vh 2.7vw 1.6vh 10vw;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.5vh;
+
+    &:focus {
+        border: 2px solid var(--main_red, #ea4336);
+        outline: none;
+    }
+`;
+
+const ButtonDiv = styled.div`
+    width: 4.7vw;
+    height: 4.7vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 40px;
+    border: 2px solid var(--main_red, #ea4336);
+    background: ${(props) => props.background || "var(--main_white, #f9f9f9)"};
+    color: ${(props) => props.color || "var(--main_red, #ea4336)"};
+    font-family: WefontGothic(OTF);
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    margin-left: 0.8vw;
+    cursor: pointer;
 `;
