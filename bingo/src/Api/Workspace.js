@@ -33,7 +33,7 @@ export const createWorkspace = async (data) => {
 // 나의 모든 워크스페이스 정보를 가져오는 API
 // 입력변수는 사용자 id
 // 리턴 된 값이 list 형태이므로 이걸로 map을 받는 컴포넌트들 만들기
-export const getAllProjects = async (e) => {
+export const getAllProjects = async (e, navigate) => {
   try {
     const response = await axios.get(
       `http://13.209.82.115:8080/api/v1/project/` + e.userid
@@ -42,7 +42,7 @@ export const getAllProjects = async (e) => {
     return response.data;
   } catch (error) {
     alert("프로젝트 리스트 조회 중 오류 발생했습니다");
-
+    navigate("/Login");
     throw error;
   }
 };

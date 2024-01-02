@@ -130,3 +130,26 @@ export const WorkspaceData = atom({
         }
     ]
 });
+
+export const RetrospectData = atom({
+    key: 'retrospectData',
+    default: [
+        {
+            id : null,
+            name: "",
+            questionList: [
+                {
+                    id: null,
+                    mainQuestions: "",
+                    subQuestionList: [
+                        {
+                            id: null,
+                            subQuestion : "",
+                        }
+                    ]
+                },
+            ]
+        }
+    ]
+
+});
