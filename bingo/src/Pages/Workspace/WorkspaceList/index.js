@@ -8,8 +8,8 @@ import Modal from "react-modal";
 import {Label} from "../../../Components/NormalComponents/Text.js";
 import {WorkspaceData, loginUserState} from "../../../Contexts/Atom.js";
 import {useRecoilState} from "recoil";
-import { getAllProjects } from "../../../Api/Workspace.js";
-import { useNavigate } from "react-router";
+import {getAllProjects} from "../../../Api/Workspace.js";
+import {useNavigate} from "react-router";
 
 const WorkspaceList = () => {
     const [userInfo, setUserInfo] = useRecoilState(loginUserState);
@@ -92,25 +92,46 @@ const WorkspaceList = () => {
     const navigate = useNavigate();
     useEffect(() => {
         const fetchData = async () => {
-        try {
-            const projects = await getAllProjects({ userid: userInfo.appUser.id }, navigate);
-            console.log(projects);
-            setWorkspaceData(projects);
-        } catch (error) {
-            // 에러 핸들링
-            console.error('Error fetching projects:', error);
-        }
+            try {
+                const projects = await getAllProjects({
+                    userid: userInfo.appUser.id
+                }, navigate);
+                console.log(projects);
+                setWorkspaceData(projects);
+            } catch (error) {
+                // 에러 핸들링
+                console.error('Error fetching projects:', error);
+            }
         };
 
         fetchData();
     }, []); // 빈 배열을 전달하여 컴포넌트가 마운트될 때만 실행
 
-    return(
-        <Div display="flex" flexDirection="column" height="100%" width="100%" overflow="hidden" justifyContent="center" alignContent="center">
-            <BannerImg src="/img/WorkspaceList/Workspace_Banner.png"/>
-            {/*프로젝트 카드들의 나열, 해당 공간의 이름을 감싼 Div */}
-            <Div flexDirection="column" height="54vh" width="100%" backgroundColor="#F9F9F9" display="flex" alignContent="center" justifyContent="center">
-                <Div margin="0 0 0 5%" height="4%" fontSize="20px" width="auto" borderRadius="15px" alignItems="center">프로젝트 리스트</Div>
+    return (
+        <Div
+            display="flex"
+            flexDirection="column"
+            height="100%"
+            width="100%"
+            overflow="hidden"
+            justifyContent="center"
+            alignContent="center">
+            <BannerImg src="/img/WorkspaceList/Workspace_Banner.png"/> {/*프로젝트 카드들의 나열, 해당 공간의 이름을 감싼 Div */}
+            <Div
+                flexDirection="column"
+                height="54vh"
+                width="100%"
+                backgroundColor="#F9F9F9"
+                display="flex"
+                alignContent="center"
+                justifyContent="center">
+                <Div
+                    margin="0 0 0 5%"
+                    height="4%"
+                    fontSize="20px"
+                    width="auto"
+                    borderRadius="15px"
+                    alignItems="center">프로젝트 리스트</Div>
                 {/* 워크스페이스 카드 부분 */}
 
                 <Div
@@ -140,7 +161,7 @@ const WorkspaceList = () => {
                         <div>프로젝트 생성</div>
                     </Div>
                     {/* 현재는 더미값이지만 장기적으로는 워크스페이스 데이터 기반으로 카드 출력  */}
-                    {console.log("워크스페이스 정보 : ", workspaceData)}
+                    {/* {console.log("워크스페이스 정보 : ", workspaceData)} */}
                     {
                         workspaceData.length > 1 && workspaceData
                             .slice()
@@ -148,13 +169,13 @@ const WorkspaceList = () => {
                             .map((workspace, index) => (
                                 <WorkspaceCard
                                     key={index}
-                                    workspaceId = {workspace.id}
+                                    workspaceId={workspace.id}
                                     name={workspace.name}
                                     desc={workspace.description}
                                     picture={workspace.picture}
                                     code={workspace.code}
-                                    period={workspace.period} />
-                                    
+                                    period={workspace.period}/>
+
                             ))
                     }
                 </Div>
@@ -298,13 +319,12 @@ const WorkspaceList = () => {
 
 export default WorkspaceList;
 
-
-const BannerImg = styled.img`
+const BannerImg = styled.img `
     height : 38vh;
     width : auto;
 `
 
-const FileInputButton = styled.button`
+const FileInputButton = styled.button `
     height: 3vh;
     width: auto;
     font-size: 24px;
