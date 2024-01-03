@@ -355,6 +355,9 @@ const WorkspaceList = () => {
                                 } else if (!desc.trim()) {
                                     alert("프로젝트 설명을 작성하세요");
                                     setDescEmpty(true);
+                                } else if (!file) {
+                                    alert("프로젝트 사진을 넣으세요");
+                                    setDescEmpty(true);
                                 } else {
                                     onButtonClick(handleUpload);
                                 }
