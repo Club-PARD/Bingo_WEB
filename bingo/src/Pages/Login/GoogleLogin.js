@@ -37,7 +37,6 @@ const GoogleLoginButton = () => {
                         //         return acc;
                         //     }, {});
                         // });
-
                         try {
                             // 로그인 API 호출
                             const data = await login(decodedToken);
@@ -48,7 +47,7 @@ const GoogleLoginButton = () => {
                             // 상태 업데이트
                             setUserInfo(data);
 
-                            // console.log(userInfo);
+                            console.log("userinfo", userInfo);
 
                             navigate("/WorkspaceList");
                         } catch (error) {
