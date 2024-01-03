@@ -68,9 +68,9 @@ const LoginPage = () => {
     };
 
     const [userInfo, setUserInfo] = useRecoilState(loginUserState);
-    useEffect(() => {
-        console.log("Updated UserInfo:", userInfo);
-    }, [userInfo]);
+    // useEffect(() => {
+    //     console.log("Updated UserInfo:", userInfo);
+    // }, [userInfo]);
     return (
         <LoginDiv>
             <Login>
