@@ -3,11 +3,12 @@ import styled from "styled-components";
 import Breadcrumb from "../../../Layout/Breadcrumb";
 import Chips from "./Chips";
 import { Link } from "react-router-dom";
-import { retrospectiveState } from "../../../Contexts/Atom";
+import { ChipData, retrospectQuestionsListState, retrospectiveState } from "../../../Contexts/Atom";
 import { useRecoilState } from "recoil";
 import { useState } from "react";
 import { Button } from "../../../Components/NormalComponents/Form";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
+import { postRetrospect } from "../../../Api/Retrospace";
 
 // 전체를 감싸는 div, 이 아래에 Header / Body / Footer로 나뉘어 있음
 const Whole = styled.div`
@@ -89,7 +90,8 @@ const ChipDiv = styled.div`
 `;
 
 const TeamEvaluation = (e) =>  {    
-    const [retrospective, setRetrospective] = useRecoilState(retrospectiveState);
+    // const [retrospective, setRetrospective] = useRecoilState(retrospectiveState);
+    const [retrospectQuestionsList, setRetrospectQuestionsList] = useRecoilState(retrospectQuestionsListState);
     const navigate = useNavigate();
     const handleBeforeClick = () => {
         navigate("/RetrospectWriteText");
@@ -100,12 +102,22 @@ const TeamEvaluation = (e) =>  {
             navigate(`/WorkspaceView?workspaceId=${e.workspaceId}`);
         }
     };
+
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const userId = queryParams.get("userId");
+    const workspaceId = queryParams.get("workspaceId");
+    const retrospectId = queryParams.get("retrospectId");
+
+    const [chipData, setChipData] = useRecoilState(ChipData);
+    console.log("ChipData", chipData);
+    // console.log("Again Check : " + workspaceId + ", " + userId + ", " + retrospectId);
     return (
         <Whole>
             {/* 상단바 */}
             <Header>
                 <LeftHead>
-                    <TitleDiv>{retrospective.retrospectTitle}</TitleDiv>
+                    <TitleDiv>{retrospectQuestionsList.name}</TitleDiv>
                     {/* Breadcrumb은 현재 위치에 따라 달라진다 / 현위치 : 1 (회고 작성하기) */}
                     <Breadcrumb activeKey={2} />
                 </LeftHead>
@@ -118,7 +130,8 @@ const TeamEvaluation = (e) =>  {
                     />
                     <StepButton
                         targetLabel="완료"
-                        onClick={handleNextButtonClick}
+                        onClick={() => postRetrospect({ workspaceId: workspaceId, userId: userId, retrospectId: retrospectId, retrospectQuestionsList : retrospectQuestionsList, chipData : chipData}, navigate)}
+                        // onClick={postRetrospect({ workspaceId: e.workspaceId, userId: e.userId, retrospectId: e.retrospectId, retrospectQuestionsList : retrospectQuestionsList})}
                         backgroundColor={
                             isFilled ? "#EA4336" : "rgba(234, 67, 54, 0.4)"
                         }

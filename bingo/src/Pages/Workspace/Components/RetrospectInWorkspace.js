@@ -8,7 +8,7 @@ import { useRecoilState } from "recoil";
 import { RetrospectData, loginUserState } from "../../../Contexts/Atom";
 
 //workspaceView화면 내 회고와 액션아이템 출력 컴포넌트
-function RetrospectInWorkspace() {
+const RetrospectInWorkspace=(e)=> {
     const [userInfo, setUserInfo] = useRecoilState(loginUserState);
     const [tasks, setTasks] = useRecoilState(RetrospectData);
     const state = true;
@@ -29,7 +29,7 @@ function RetrospectInWorkspace() {
         <>
             {/*Div for retrospectList height=833*/}
 
-            <AddArea to="/RetrospectCreate">
+            <AddArea to={`/RetrospectCreate?userId=${e.userId}&workspaceId=${e.workspaceId}`}>
                 <Img
                     width="44px"
                     height="44px"

@@ -30,11 +30,13 @@ function WorkspaceView() {
     const [modalIsOpen1, setModalIsOpen1] = useState(false);
     const [value, setValue] = useState("12345678");
     const [workspaceData, setWorkspaceData] = useRecoilState(WorkspaceData);
+    console.log("목요일1", workspaceData);
     const [retrospectData, setRetrospectData] = useRecoilState(RetrospectData);
 
     const filteredWorkspaces = workspaceData.find(
         (workspace) => workspace.id == workspaceId
     );
+    console.log("목요일2", filteredWorkspaces);
     const openModal1 = () => {
         setModalIsOpen1(true);
     };
@@ -61,9 +63,6 @@ function WorkspaceView() {
         fetchData();
     }, [userInfo.appUser.id, workspaceId, setRetrospectData, navigate]);
 
-    useEffect(() => {
-        // console.log(retrospectData);
-    }, [retrospectData]);
 
     return (
         <>
@@ -90,13 +89,15 @@ function WorkspaceView() {
                         <h3>{filteredWorkspaces[0].description}</h3>*/}
                             {/* Title : 빙고판 타이틀 */}
                             <TitleAndButton>
-                                <Title>{filteredWorkspaces.name}</Title>
+                                {/* <Title>{filteredWorkspaces ? filteredWorkspaces.name : "프로젝트 이름이 없습니다."}</Title> */}
+                                {/* <Title>{filteredWorkspaces.name}</Title> */}
                                 <InviteButton onClick={openModal1}>
                                     팀원 초대하기
                                 </InviteButton>
                             </TitleAndButton>
                             <TeamDesc>
-                                {filteredWorkspaces.description}
+                                {/* {filteredWorkspaces ? filteredWorkspaces.description : "프로젝트 설명이 없습니다."} */}
+                                {/* {filteredWorkspaces.description} */}
                             </TeamDesc>
                             <BingoDesc>
                                 <BingoDescText>
@@ -129,7 +130,7 @@ function WorkspaceView() {
                         </InformationDiv>
                         {/* Content : 회고 리스트 */}
                         <Section_Retrospect_Content>
-                            <RetrospectInWorkspace />
+                            <RetrospectInWorkspace userId={userInfo.appUser.id} workspaceId={workspaceId} />
                         </Section_Retrospect_Content>
                     </Section_Retrospect>
                 </Div>
