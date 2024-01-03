@@ -372,7 +372,7 @@ const CodeDiv = styled.div`
 const Code = styled.div`
     color: var(--sec_grey, #222);
     text-align: center;
-    font-family: WefontGothic(OTF);
+    font-family: "160";
     font-size: 24px;
     font-style: normal;
     font-weight: 400;

@@ -631,7 +631,13 @@ const InviteModal = (e) => {
                     >
                         완료
                     </ButtonDiv>
-                    <ButtonDiv onClick={e.closeInviteModal}>닫기</ButtonDiv>
+                    <ButtonDiv
+                        background="var(--main_white, #f9f9f9)"
+                        color="var(--main_red, #ea4336)"
+                        onClick={e.closeInviteModal}
+                    >
+                        닫기
+                    </ButtonDiv>
                 </Div>
             </Div>
         </Modal>
@@ -643,7 +649,7 @@ const ModalInfo = styled.div`
     height: 6.6vh;
     border: none;
     color: var(--sec_grey, #222);
-    font-family: WefontGothic(OTF);
+    font-family: "160";
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
@@ -660,6 +666,7 @@ const CodeDiv = styled.input`
     padding: 1.6vh 2.7vw 1.6vh 8.7vw;
     display: flex;
     justify-content: space-between;
+    font-family: "140";
     margin: 1vh 0 3vh 0;
 
     &:focus {
@@ -676,9 +683,13 @@ const ButtonDiv = styled.div`
     align-items: center;
     border-radius: 40px;
     border: 2px solid var(--main_red, #ea4336);
-    background: var(--main_white, #f9f9f9);
-    color: var(--main_red, #ea4336);
-    font-family: WefontGothic(OTF);
+    background: ${(props) =>
+        props.background ||
+        "var(--main_white, #f9f9f9)"}; // background를 props로 받아오고, 값이 없을 경우 default로 var(--main_white, #f9f9f9)를 설정
+    color: ${(props) =>
+        props.color ||
+        "var(--main_red, #ea4336)"}; // color를 props로 받아오고, 값이 없을 경우 default로 var(--main_red, #ea4336)를 설정
+    font-family: "160";
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
