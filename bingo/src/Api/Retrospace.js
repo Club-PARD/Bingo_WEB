@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 export const getAllRetrospect = async (e, navigate) => {
     try {
         const response = await axios.get(
-            `http://13.209.82.115:8080/api/v1/template/project/${e.projectId}`
+            `${process.env.REACT_APP_URL}api/v1/template/project/${e.projectId}`
         );
 
         // console.log("Result", response.data);
@@ -30,12 +30,12 @@ export const getRetrospect = async (e) => {
 
     try {
         const response = await axios.get(
-            `http://13.209.82.115:8080/api/v1/template/project/${e.workspaceId}/template/${e.retrospectId}`
+            `${process.env.REACT_APP_URL}api/v1/template/project/${e.workspaceId}/template/${e.retrospectId}`
         );
         // console.log("axios", response.data);
         return response.data;
     } catch (error) {
-        alert("프로젝트 상세 조회 중 오류 발생했습니다");
+        alert("회고 상세 조회 중 오류 발생했습니다");
 
         throw error;
     }

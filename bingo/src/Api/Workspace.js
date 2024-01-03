@@ -16,7 +16,7 @@ export const createWorkspace = async (data) => {
   };
   try {
     const response = await axios.post(
-      "http://172.17.188.80:8080/api/v1/project",
+      `${process.env.REACT_APP_URL}api/v1/project`,
       postData
     );
 
@@ -36,7 +36,7 @@ export const createWorkspace = async (data) => {
 export const getAllProjects = async (e, navigate) => {
   try {
     const response = await axios.get(
-      `http://13.209.82.115:8080/api/v1/project/` + e.userid
+      `${process.env.REACT_APP_URL}api/v1/project/` + e.userid
     );
 
     return response.data;
@@ -55,8 +55,7 @@ export const getProject = async () => {
 
   try {
     const response = await axios.get(
-      //   `http://172.17.188.80:8080/api/v1/project/${id}`
-      "http://172.17.188.80:8080/api/v1/project",
+      `${process.env.REACT_APP_URL}api/v1/project`,
       getData
     );
 
@@ -79,7 +78,7 @@ export const postProject = async (data) => {
     }
     try {
         const response = await axios.post(
-            "http://172.17.188.80:8080/api/v1/enrollment",
+            `${process.env.REACT_APP_URL}api/v1/enrollment`,
             postData
         )
     return console.log(response.data);
@@ -99,7 +98,7 @@ export const postProject = async (data) => {
 //     };
 //     try {
 //       const response = await axios.post(
-//         "http://172.17.188.80:8080/api/v1/project",
+//         `${process.env.REACT_APP_URL}api/v1/project`,
 //         postData
 //       );
   
@@ -113,7 +112,7 @@ export const postProject = async (data) => {
 //       };
 //       try {
 //         const response = await axios.post(
-//           "http://172.17.188.80:8080/api/v1/enrollment",
+//           `${process.env.REACT_APP_URL}api/v1/enrollment`,
 //           joinData
 //         );
 //         console.log(response.data);
