@@ -591,7 +591,7 @@ const RightHead = styled.div`
 `;
 const SpanCreate = styled.span`
     color: #838383;
-    font-family: WefontGothic(OTF);
+    font-family: "140";
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -600,7 +600,7 @@ const SpanCreate = styled.span`
 `;
 const SpanTitle = styled.span`
     color: var(--sec_grey, #222);
-    //font-family: WefontGothic(OTF);
+    font-family: "160";
     font-size: 28px;
     font-style: normal;
     font-weight: 400;
@@ -608,7 +608,7 @@ const SpanTitle = styled.span`
 `;
 const SpanDesc = styled.span`
     color: rgba(34, 34, 34, 0.8);
-    //font-family: WefontGothic(OTF);
+    font-family: "140";
     font-size: 15px;
     font-style: normal;
     font-weight: 400;
