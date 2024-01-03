@@ -10,6 +10,8 @@ import { WorkspaceData, loginUserState } from "../../../Contexts/Atom.js";
 import { useRecoilState } from "recoil";
 import { getAllProjects } from "../../../Api/Workspace.js";
 import { useNavigate } from "react-router";
+import { createWorkspace, handleUpload } from "../../../Api/Workspace.js";
+import axios from "axios";
 import WorkspaceBanner from "../../../assets/Img/WorkspaceList/Workspace_Banner.png";
 import "../../../font.css";
 import Add from "../../../assets/Img/WorkspaceList/add.png";
@@ -43,11 +45,18 @@ const CreateTextDiv = styled(Div)`
     font-family: "160";
 `;
 const WorkspaceList = () => {
+    const [file, setFile] = useState(null);
+
+    const handleFileChange = (event) => {
+        setFile(event.target.files[0]);
+    };
+
     const [userInfo, setUserInfo] = useRecoilState(loginUserState);
     const [titleEmpty, setTitleEmpty] = useState(false);
     const [descEmpty, setDescEmpty] = useState(false);
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [workspaceData, setWorkspaceData] = useRecoilState(WorkspaceData);
+    const [isCreate, setisCreate] = useState(false);
 
     const openModal = () => {
         setModalIsOpen(true);
@@ -86,10 +95,14 @@ const WorkspaceList = () => {
         const newWorkspace = {
             name: title,
             desc: desc,
-            picture: selectedFile ? selectedFile.name : "", // 이미지 파일명 저장 (선택된 파일이 없으면 빈 문자열),
+            picture: file ? file.name : "", // 이미지 파일명 저장 (선택된 파일이 없으면 빈 문자열),
             code: randomCode,
+            userId: userInfo.appUser.id,
         };
-
+        console.log("NEW", newWorkspace);
+        setisCreate(true);
+        createWorkspace(newWorkspace);
+        handleUpload();
         // 기존 WorkspaceData 배열에 새로운 워크스페이스 데이터 추가
         setWorkspaceData((prevData) => [...prevData, newWorkspace]);
     };
@@ -109,8 +122,35 @@ const WorkspaceList = () => {
         setSelectedFile(file);
     };
 
+    // 워크스페이스 사진 추가
+    const handleUpload = async () => {
+        console.log("실행", file);
+        try {
+            const formData = new FormData();
+            formData.append("file", file);
+
+            const response = await fetch(`${process.env.REACT_APP_URL}upload`, {
+                method: "POST",
+                body: formData,
+            });
+
+            if (response.ok) {
+                const result = await response.text(); // 또는 response.url 등을 사용
+                console.log("파일 업로드 성공:", result);
+            } else {
+                console.error("파일 업로드 실패:", response.statusText);
+            }
+        } catch (error) {
+            console.error("파일 업로드 중 에러:", error);
+        }
+    };
+
     const handleButtonClick = () => {
-        fileInputRef.current && fileInputRef.current.click();
+        if (fileInputRef.current) {
+            fileInputRef.current.style.display = "block"; // 파일 선택창을 보이도록 변경
+            fileInputRef.current.click();
+            fileInputRef.current.style.display = "none"; // 다시 숨김으로 변경
+        }
     };
     const [inviteModalIsOpen, setInviteModalIsOpen] = useState(false);
     const openInviteModal = () => {
@@ -140,7 +180,7 @@ const WorkspaceList = () => {
         fetchData();
 
         console.log(userInfo);
-    }, []); // 빈 배열을 전달하여 컴포넌트가 마운트될 때만 실행
+    }, [isCreate]); // 빈 배열을 전달하여 컴포넌트가 마운트될 때만 실행
 
     return (
         <Div
@@ -334,7 +374,7 @@ const WorkspaceList = () => {
                                     alert("프로젝트 설명을 작성하세요");
                                     setDescEmpty(true);
                                 } else {
-                                    onButtonClick();
+                                    onButtonClick(handleUpload);
                                 }
                             }}
                         >
@@ -355,24 +395,27 @@ const WorkspaceList = () => {
                             <ModalLabel>프로젝트 사진</ModalLabel>
                             <Input
                                 type="file"
-                                style={{
-                                    display: "none",
-                                }}
+                                style={
+                                    {
+                                        // display: "",
+                                    }
+                                }
                                 ref={fileInputRef}
-                                onChange={handleFileSelect}
+                                accept="image/*"
+                                onChange={handleFileChange}
                             />
                             <Div alignItems="center">
-                                <FileInputButton onClick={handleButtonClick}>
-                                    {selectedFile ? (
+                                <FileInputButton>
+                                    {file ? (
                                         <>
                                             <FileInputText>
-                                                {selectedFile.name}
+                                                {file.name}
                                             </FileInputText>
                                             <FileInputImg
                                                 src="img\WorkspaceList\close.png"
                                                 onClick={(e) => {
-                                                    e.stopPropagation(); // 이벤트 버블링을 막습니다.
-                                                    setSelectedFile(null); // selectedFile을 초기화합니다.
+                                                    e.stopPropagation();
+                                                    setFile(null);
                                                 }}
                                             />
                                         </>
@@ -427,7 +470,9 @@ const WorkspaceList = () => {
                                 }
                             />
                         </ModalTitle>
-                        <ModalHeader>프로젝트 생성</ModalHeader>
+                        <ModalHeader onClick={handleUpload}>
+                            프로젝트 생성
+                        </ModalHeader>
                     </Div>
                 </Div>
             </Modal>

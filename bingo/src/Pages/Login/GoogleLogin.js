@@ -30,7 +30,6 @@ const GoogleLoginButton = () => {
                         const decodedToken = jwtDecode(
                             credentialResponse.credential
                         );
-                        const imageUrl = credentialResponse.profileObj.imageUrl;
 
                         // const updatedData = LoginDummy.map(dummy => {
                         //     return Object.keys(dummy).reduce((acc, key) => {
@@ -41,7 +40,7 @@ const GoogleLoginButton = () => {
 
                         try {
                             // 로그인 API 호출
-                            const data = await login(decodedToken, imageUrl);
+                            const data = await login(decodedToken);
 
                             // 업데이트된 데이터 확인은 여기에서 이루어져야 합니다.
                             console.log("로그인 성공?!", data);
@@ -49,7 +48,7 @@ const GoogleLoginButton = () => {
                             // 상태 업데이트
                             setUserInfo(data);
 
-                            // console.log(userInfo);
+                            console.log(userInfo);
 
                             navigate("/WorkspaceList");
                         } catch (error) {

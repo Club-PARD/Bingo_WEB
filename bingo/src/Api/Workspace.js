@@ -7,21 +7,34 @@ const WorkspaceData = {
 };
 
 // 새로운 워크스페이스 생성 API
-// name. desc. code 를 받아와서 post로 보낸다 -> response data를 받는다 (제대로 갔는지 확인용)
-export const createWorkspace = async (data) => {
+// name. desc. code + userid, 빙고 형용사 리스트 를 받아와서 post로 보낸다 -> response data를 받는다 (제대로 갔는지 확인용)
+export const createWorkspace = async (newWorkspace) => {
+  const chipData = 
+    [
+        "서로에 대한 존중과 신뢰가 있는",
+        "소통이 활발한",
+        "개선과 혁신을 추구하는",
+        "배우고자 하는",
+        "열정 있는",
+        "개인의 역할이 뚜렷한",
+        "목표와 성과가 명확한",
+        "모두가 협업하는",
+        "일과 삶의 균형이 있는",
+    ];
   const postData = {
-    name: data.title,
-    description: data.desc,
-    code: data.code,
+    userId : newWorkspace.userId,
+    name: newWorkspace.name,
+    description: newWorkspace.desc,
+    picture : newWorkspace.picture,
+    code: newWorkspace.code,
+    tagList : chipData ,
   };
   try {
     const response = await axios.post(
-      `${process.env.REACT_APP_URL}api/v1/project`,
+      `${process.env.REACT_APP_URL}project`,
       postData
     );
-
     console.log(response.data);
-
     return response.data;
   } catch (error) {
     alert("생성 중 오류 발생했습니다");
@@ -36,7 +49,7 @@ export const createWorkspace = async (data) => {
 export const getAllProjects = async (e, navigate) => {
   try {
     const response = await axios.get(
-      `${process.env.REACT_APP_URL}api/v1/project/` + e.userid
+      `${process.env.REACT_APP_URL}project/` + e.userid
     );
 
     return response.data;
@@ -55,7 +68,7 @@ export const getProject = async () => {
 
   try {
     const response = await axios.get(
-      `${process.env.REACT_APP_URL}api/v1/project`,
+      `${process.env.REACT_APP_URL}project`,
       getData
     );
 
@@ -78,7 +91,7 @@ export const postProject = async (data) => {
     }
     try {
         const response = await axios.post(
-            `${process.env.REACT_APP_URL}api/v1/enrollment`,
+            `${process.env.REACT_APP_URL}enrollment`,
             postData
         )
     return console.log(response.data);
@@ -88,6 +101,35 @@ export const postProject = async (data) => {
         alert ("팀원 직위 설정 중 오류가 발생했습니다");
     }  
 };
+
+// 워크스페이스 사진 추가
+export const handleUpload = async (file) => {
+  try {
+    if (!file) {
+      console.error('파일이 없습니다.');
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    const response = await fetch(`${process.env.REACT_APP_URL}upload`, {
+      method: 'POST',
+      body: formData,
+    });
+    
+    if (response.ok) {
+      const result = await response.text(); // 또는 response.url 등을 사용
+      console.log('파일 업로드 성공:', result);
+    } else {
+      console.error('파일 업로드 실패:', response.statusText);
+    }
+    
+  } catch (error) {
+    console.error("파일 업로드 중 에러:", error);
+  }
+};
+
 
 // // 워크스페이스 조인하기 (새로 만든 것 -> 이거 사용하면 된다)
 // export const joinProject = async (data) => {

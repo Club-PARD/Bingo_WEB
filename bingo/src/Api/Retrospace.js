@@ -8,9 +8,8 @@ import { useNavigate } from "react-router-dom";
 export const getAllRetrospect = async (e, navigate) => {
     try {
         const response = await axios.get(
-            `${process.env.REACT_APP_URL}api/v1/template/project/${e.projectId}`
+            `${process.env.REACT_APP_URL}template/project/${e.projectId}`
         );
-
         // console.log("Result", response.data);
 
         return response.data;
@@ -30,7 +29,7 @@ export const getRetrospect = async (e) => {
 
     try {
         const response = await axios.get(
-            `${process.env.REACT_APP_URL}api/v1/template/project/${e.workspaceId}/template/${e.retrospectId}`
+            `${process.env.REACT_APP_URL}template/project/${e.workspaceId}/template/${e.retrospectId}`
         );
         // console.log("axios", response.data);
         return response.data;
@@ -41,15 +40,36 @@ export const getRetrospect = async (e) => {
     }
 };
 
-// export const postRetrospect = async (e) => {
-//     try {
-//         const response = await axios.post(
-//             ``
-//         );
+export const postRetrospect = async (e) => {
 
-//         console.log("post result", response);
+    const answerList = [];
 
-//     } catch(error) {
-//         throw "postRetrospect Error " + error;
-//     }
-// }
+    e.retrospectQuestionsList.questionList.forEach((mainQuestion) => {
+        mainQuestion.subQuestionList.forEach((subQuestion) => {
+            if (subQuestion.answerResponse) {
+                answerList.push({
+                    id: 0, // 이 부분은 적절한 값을 넣어주셔야 합니다.
+                    subQuestionId: subQuestion.id,
+                    ans: subQuestion.answerResponse,
+                });
+            }
+        });
+    });
+
+    const data = {
+        "appUserId": e.userId,
+        "projectId": e.workspaceId,
+        "templateId": e.retrospectId,
+        "answerList" : answerList
+        // "answerList": [{"id" : 0, "subQuestionId" : 0, "ans" : "22차 회고 답변1"},{"id" : 0, "subQuestionId" : 0, "ans" : "22차 회고 답변2"},{"id" : 0, "subQuestionId" : 0, "ans" : "22차 회고 답변3"},{"id" : 0, "subQuestionId" : 0, "ans" : "22차 회고 답변4"},{"id" : 0, "subQuestionId" : 0, "ans" : "22차 회고 답변5"},{"id" : 0, "subQuestionId" : 0, "ans" : "22차 회고 답변6"},{"id" : 0, "subQuestionId" : 0, "ans" : "22차 회고 답변7"},{"id" : 0, "subQuestionId" : 0, "ans" : "22차 회고 답변8"},{"id" : 0, "subQuestionId" : 0, "ans" : "22차 회고 답변9"},]
+    }
+    console.log("data 체크 ", data);
+    try {
+        await axios.post(
+            `${process.env.REACT_APP_URL}retrospect/write`, data
+        );
+
+    } catch(error) {
+        throw "postRetrospect Error > " + error;
+    }
+}
