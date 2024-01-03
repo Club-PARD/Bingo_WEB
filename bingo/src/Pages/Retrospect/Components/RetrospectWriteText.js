@@ -242,13 +242,15 @@ const RetrospectWriteText = (e) => {
                         backgroundColor="#F9F9F9"
                         color="#EA4336"
                     />
-                <StepButton
-                    targetLabel="다음"
-                    onClick={() => postRetrospect({ workspaceId: e.workspaceId, userId: e.userId, retrospectId: e.retrospectId, retrospectQuestionsList : retrospectQuestionsList})}
-                    backgroundColor={isFilled ? "#EA4336" : "rgba(234, 67, 54, 0.4)"}
-                    color="#F9F9F9"
-                />
-
+                    <StepButton
+                        targetLabel="다음"
+                        onClick={handleNextButtonClick}
+                        // onClick={postRetrospect({ workspaceId: e.workspaceId, userId: e.userId, retrospectId: e.retrospectId, retrospectQuestionsList : retrospectQuestionsList})}
+                        backgroundColor={
+                            isFilled ? "#EA4336" : "rgba(234, 67, 54, 0.4)"
+                        }
+                        color="#F9F9F9"
+                    />
                 </RightHead>
             </Header>
 
