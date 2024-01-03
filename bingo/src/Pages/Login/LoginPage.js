@@ -1,4 +1,5 @@
 /* eslint-disable */
+
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { ID, LoginBtn, PW } from "../../Preset/LoginPreset";
@@ -68,9 +69,9 @@ const LoginPage = () => {
     };
 
     const [userInfo, setUserInfo] = useRecoilState(loginUserState);
-    useEffect(() => {
-        console.log("Updated UserInfo:", userInfo);
-    }, [userInfo]);
+    // useEffect(() => {
+    //     console.log("Updated UserInfo:", userInfo);
+    // }, [userInfo]);
     return (
         <LoginDiv>
             <Login>

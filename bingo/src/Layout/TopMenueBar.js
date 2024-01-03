@@ -1,7 +1,11 @@
+/* eslint-disable */
+
 import { Outlet, useLocation } from "react-router";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { Div } from "../Components/NormalComponents/Section";
+import Logo from "../assets/Img/TopMenuBar/Logo.png";
+import "../font.css";
 
 function TopMenuBar() {
     const location = useLocation();
@@ -14,11 +18,7 @@ function TopMenuBar() {
                 <Header>
                     {canGoToWorkspaceView() ? (
                         <LogoLink to="/workspaceList">
-                            <LogoImg
-                                src="/img/TopMenuBar/Logo.png"
-                                width="5vw"
-                                height="auto "
-                            />
+                            <LogoImg src={Logo} width="5vw" height="auto " />
                         </LogoLink>
                     ) : (
                         <Div
@@ -26,11 +26,7 @@ function TopMenuBar() {
                             boxSizing="border-box"
                             alignItems="center"
                         >
-                            <LogoImg
-                                src="/img/TopMenuBar/Logo.png"
-                                width="5vw"
-                                height="auto "
-                            />
+                            <LogoImg src={Logo} width="5vw" height="auto " />
                         </Div>
                     )}
                     {location.pathname === "/" ||
@@ -76,6 +72,7 @@ const LogoImg = styled.img`
 const LogoutLink = styled(Link)`
     color: #000;
     text-align: center;
+    font-family: "140";
     font-size: 16px;
     font-style: normal;
     font-weight: 700;

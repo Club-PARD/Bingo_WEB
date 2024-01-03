@@ -8,15 +8,13 @@ export const login = async (decodedToken) => {
       email : decodedToken.email,
       emailVerified : decodedToken.email_verified,
   }
-  // console.log('받아온 값 ', data);
+
   try {
     const response = await axios.post(
       `http://172.17.188.80:8080/api/v1/auth/signIn`, data
     )
 
     console.log("API 성공!");
-    // console.log("아래의 정보는 response.data입니다.");
-    // console.log(response.data);
     return response.data;
   } catch (error) {
     alert("로그인 과정에서 문제가 발생했습니다");
