@@ -22,7 +22,7 @@ const LoginDiv = styled.div`
     text-align: center;
     margin: 0 auto; /* 가운데 정렬을 위한 추가 */
     align-items: stretch; /* 하위 클래스 left, right의 높이를 자동으로 맞춤 */
-    height: 100vh; /* 화면 전체에 적용 */
+    height: 93.9vh; /* 화면 전체에 적용 */
     width: 100vw;
 `;
 // 여기서부터는 로그인 화면에서 보여줄 서비스의 간략한 설명

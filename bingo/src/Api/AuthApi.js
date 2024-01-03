@@ -7,16 +7,16 @@ export const login = async (decodedToken, imageUrl) => {
         name: decodedToken.name,
         email: decodedToken.email,
         emailVerified: decodedToken.email_verified,
-        imageUrl: imageUrl,
+        // imageUrl: imageUrl,
     };
 
     try {
         const response = await axios.post(
-            `${process.env.REACT_APP_URL}auth/signIn`,
-            data
+            `${process.env.REACT_APP_URL}auth/signIn`,data
         );
 
         console.log("API 성공!");
+        console.log("로그인 response data", response.data);
         return response.data;
     } catch (error) {
         alert("로그인 과정에서 문제가 발생했습니다");

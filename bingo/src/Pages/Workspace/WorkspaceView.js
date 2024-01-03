@@ -18,6 +18,7 @@ import {
     RetrospectData,
 } from "../../Contexts/Atom.js";
 import { getAllRetrospect } from "../../Api/Retrospace.js";
+import Copy from "../../assets/Img/WorkspaceView/content_copy.png";
 
 // workspace에 들어오면 보이는 화면 아직 와이어 프레임 안나와서 정확한건 미정 빙고페이지로 이동 가능 회고생성페이지로 이동 가능
 // RetrospectInWorkspace component출력 회고결과 출력(이것도 디자인이 완성되고 백엔드가 연결되어야 가능하다)
@@ -106,7 +107,7 @@ function WorkspaceView() {
 
                             {/* Content : 빙고판 */}
                             <Section_Bingo_Content>
-                                <BingoBoard />
+                                <BingoBoard modalIsOpen={modalIsOpen1} />
                             </Section_Bingo_Content>
                         </Section_Bingo>
                     </SectionLeft>
@@ -123,10 +124,7 @@ function WorkspaceView() {
                     {/* Section2 : 회고 리스트 */}
                     <Section_Retrospect>
                         {/* Title : 회고 리스트 타이틀 */}
-                        <InformationDiv>
-                            회고 리스트
-                            <Link to="/RetrospectViewerPage">보러가기</Link>
-                        </InformationDiv>
+                        <InformationDiv>회고 리스트</InformationDiv>
                         {/* Content : 회고 리스트 */}
                         <Section_Retrospect_Content>
                             <RetrospectInWorkspace />
@@ -151,7 +149,7 @@ const SectionLeft = styled.div`
 `;
 const InformationDiv = styled.div`
     color: #838383;
-    font-family: WefontGothic(OTF);
+    font-family: "140";
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -180,7 +178,7 @@ const TitleAndButton = styled.div`
 `;
 const Title = styled.div`
     color: var(--sec_grey, #222);
-    font-family: WefontGothic(OTF);
+    font-family: "160";
     font-size: 28px;
     font-style: normal;
     font-weight: 400;
@@ -195,7 +193,7 @@ const InviteButton = styled.div`
     border-radius: 28px;
     border: 1.5px solid #222;
     color: var(--sec_grey, #222);
-    font-family: WefontGothic(OTF);
+    font-family: "140";
     font-size: 15px;
     font-style: normal;
     font-weight: 400;
@@ -206,7 +204,7 @@ const TeamDesc = styled.div`
     height: 2vh;
     margin-top: 0.7vh;
     color: rgba(34, 34, 34, 0.8);
-    font-family: WefontGothic(OTF);
+    font-family: "140";
     font-size: 15px;
     font-style: normal;
     font-weight: 400;
@@ -223,7 +221,7 @@ const BingoDesc = styled.div`
 `;
 const BingoDescText = styled.div`
     color: #6b6b6b;
-    font-family: WefontGothic(OTF);
+    font-family: "140";
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -328,7 +326,8 @@ const InviteModal = (e) => {
                         <Img
                             width="1.7vw"
                             height="1.7vw"
-                            src="\img\WorkspaceView\content_copy.png"
+                            margin=".3vh 0 0 0"
+                            src={Copy}
                         />
                     </CopyToClipboard>
                 </CodeDiv>
@@ -351,7 +350,7 @@ const ModalInfo = styled.div`
     height: 6.6vh;
     border: none;
     color: var(--sec_grey, #222);
-    font-family: WefontGothic(OTF);
+    font-family: "160";
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
@@ -389,7 +388,7 @@ const ButtonDiv = styled.div`
     border: 2px solid var(--main_red, #ea4336);
     background: var(--main_white, #f9f9f9);
     color: var(--main_red, #ea4336);
-    font-family: WefontGothic(OTF);
+    font-family: "160";
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
