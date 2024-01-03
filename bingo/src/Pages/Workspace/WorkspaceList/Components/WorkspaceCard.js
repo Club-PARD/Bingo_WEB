@@ -11,13 +11,17 @@ const CardLink = styled(Link)`
     justify-content: center;
 `;
 const CardBorder = styled.div`
-    margin-top: 2%;
+    margin: ${(props) =>
+        props.index % 3 === (props.total % 3) - 2
+            ? "2% 1.3vw 0 1.3vw"
+            : "2% 0 0 0"};
     display: flex;
     align-items: center;
     border-radius: 32px;
     width: 24vw;
     height: 21vh;
-    background-color: #f8f0ef;
+    background-color: ${(props) =>
+        props.index % 3 === props.total % 3 ? "#f8f0ef" : "black"};
     border: 1px solid transparent;
 `;
 const ImgBox = styled.div`
@@ -34,7 +38,7 @@ const ImgBox = styled.div`
     /* box-sizing: border-box; */
 `;
 const TextBox = styled.div`
-    width: 45%;
+    width: 8.7vw;
     height: 100%;
     /* border : 1px solid blue; */
     display: flex;
@@ -74,11 +78,20 @@ const CardImg = styled.img`
     border: 1px solid black;
 `;
 
-const WorkspaceCard = ({ workspaceId, name, desc, picture, code, period }) => (
-    <CardBorder>
+const WorkspaceCard = ({
+    key,
+    workspaceId,
+    name,
+    desc,
+    picture,
+    code,
+    period,
+    total,
+}) => (
+    <CardBorder index={key} total={total}>
         <CardLink to={`/WorkspaceView?workspaceId=${workspaceId}`}>
             <ImgBox>
-                <CardImg src={picture} alt={code} />
+                <CardImg src="\Img\WorkspaceList\post3.jpg" alt={code} />
             </ImgBox>
             <TextBox>
                 <TextSet>
