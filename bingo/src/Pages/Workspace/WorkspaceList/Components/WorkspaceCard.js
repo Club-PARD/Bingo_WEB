@@ -38,7 +38,7 @@ const ImgBox = styled.div`
     /* box-sizing: border-box; */
 `;
 const TextBox = styled.div`
-    width: 45%;
+    width: 8.7vw;
     height: 100%;
     /* border : 1px solid blue; */
     display: flex;

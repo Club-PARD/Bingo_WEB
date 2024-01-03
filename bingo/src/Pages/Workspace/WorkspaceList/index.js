@@ -10,6 +10,7 @@ import { WorkspaceData, loginUserState } from "../../../Contexts/Atom.js";
 import { useRecoilState } from "recoil";
 import { getAllProjects } from "../../../Api/Workspace.js";
 import { useNavigate } from "react-router";
+import WorkspaceBanner from "../../../assets/Img/WorkspaceList/Workspace_Banner.png";
 
 const WorkspaceList = () => {
     const [userInfo, setUserInfo] = useRecoilState(loginUserState);
@@ -121,7 +122,7 @@ const WorkspaceList = () => {
             justifyContent="center"
             alignContent="center"
         >
-            <BannerImg src="/img/WorkspaceList/Workspace_Banner.png" />{" "}
+            <BannerImg src={WorkspaceBanner} />{" "}
             {/*프로젝트 카드들의 나열, 해당 공간의 이름을 감싼 Div */}
             <Div
                 flexDirection="column"

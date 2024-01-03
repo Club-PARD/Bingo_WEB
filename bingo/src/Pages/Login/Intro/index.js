@@ -4,10 +4,11 @@ import styled from "styled-components";
 import Reddotimg from "../../../assets/Img/Login/Reddot.png";
 import OnBoard from "../../../assets/Img/Login/Onboard.png";
 import IntroBtn from "../../../assets/Img/Login/IntroBtn.png";
+import "../../../font.css";
 
 const Introwhole = styled.div`
     width: 100vw;
-    height: 100vh;
+    height: 93.9vh;
     background-image: url(${OnBoard});
     background-size: cover;
     padding-top: 7%;
@@ -15,7 +16,7 @@ const Introwhole = styled.div`
 `;
 
 const LoginDiv = styled.div`
-    margin-left: 10%;
+    margin-left: 12.4vw;
     height: 75%;
     width: 35%;
     display: flex;
@@ -26,29 +27,41 @@ const LoginDiv = styled.div`
     /* border: 1px solid red; */
 `;
 const Div1 = styled.div`
-    color: "#000";
-    font-size: 17px;
-    margin-top: 0;
-    margin-bottom: 5%;
+    color: #000;
+    font-family: "140";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 24px */
+    margin-left: 0.2vw;
+    margin-bottom: 1.1vh;
 `;
 const Div2 = styled.div`
-    color: "#222";
-    font-size: 50px;
-    font-weight: bold;
-    margin-bottom: 7%;
+    color: var(--sec_grey, #222);
+    font-family: "160";
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 72px */
+    margin-bottom: 3.7vh;
 `;
 const Div3 = styled.div`
     color: #000;
-    font-size: 23px;
-    margin-bottom: 5%;
+    font-family: "140";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 30px */
+    margin-left: 0.2vw;
+    margin-bottom: 1.1vh;
 `;
 const Reddot = styled.img`
     width: 0.5vw;
-    margin: 3% 0 5% 1%;
+    margin: 2.2vh 0 3.3vh 1%;
 `;
 const LoginBtn = styled.button`
-    width: 40%;
-    height: 10%;
+    width: 10.2vw;
+    height: 5.7vh;
     font-size: 24px;
     border-radius: 40px;
     border: 1px solid transparent;
@@ -68,12 +81,14 @@ const Intro = () => {
                     함께 채우는 순간들!
                 </Div2>
                 <Div3>
-                    팀 회고를 통해 프로젝트의 결과와 과정의
-                    <strong>BALANCE</strong>를 맞춰보세요! <br />
-                    우리 팀에 가장 <strong>적합한 방법</strong>과 질문으로
-                    과정을 돌아보고,
-                    <br /> 한눈에 <strong>모두의 답변을 모아보며</strong>{" "}
-                    프로젝트의 마침표를 찍어보세요.
+                    팀 회고를 통해 잘하기와 자라기 사이의{" "}
+                    <strong>BALANCE</strong>를 맞춰보세요!
+                </Div3>
+                <Div3>
+                    팀에 <strong>가장 적합한 방법</strong>과{" "}
+                    <strong>질문</strong>으로 프로젝트 과정을 돌아보고,
+                    <br /> 모두의 답변을 <strong>한눈에 모아보며</strong>{" "}
+                    마침표를 찍어보세요.
                 </Div3>
                 <Reddot src={Reddotimg} />
                 <LoginBtn onClick={() => (window.location.href = "/Login")} />
