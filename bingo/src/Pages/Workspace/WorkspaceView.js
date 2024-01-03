@@ -52,6 +52,7 @@ function WorkspaceView() {
                     { userid: userInfo.appUser.id, projectId: workspaceId },
                     navigate
                 );
+                console.log("temp Data", allRetrospect);
                 setRetrospectData(allRetrospect); // allRetrospect.data로 설정
             } catch (error) {
                 // 에러 핸들링

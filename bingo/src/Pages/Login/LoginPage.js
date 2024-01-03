@@ -11,6 +11,7 @@ import { Div } from "../../Components/NormalComponents/Section";
 import { Link } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { loginUserState } from "../../Contexts/Atom";
+import "../../font.css";
 
 // 로그인 화면 전체를 감싸는 Div
 // 서비스에 가장 먼저 접속할 화면이 로그인 화면이기 때문에, 로그인 기능과 더불어 서비스에 대한 간략한 설명을 첨부하면 좋을 것 같아 7:3 비율로 화면을 나누었습니다
@@ -45,6 +46,8 @@ const Login = styled.div`
     bottom: 0;
     width: 100%;
     margin-top: 5%;
+    font-family: "180";
+    font-size: 40px;
 `;
 const Logo = styled.div`
     height: 10%;
@@ -75,7 +78,7 @@ const LoginPage = () => {
     return (
         <LoginDiv>
             <Login>
-                <h1>Sign to Bingo</h1>
+                <div>Sign to Bingo</div>
                 <GoogleLoginButton />
             </Login>
         </LoginDiv>
