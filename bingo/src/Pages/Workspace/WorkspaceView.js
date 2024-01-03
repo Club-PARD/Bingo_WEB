@@ -90,13 +90,13 @@ function WorkspaceView() {
                         <h3>{filteredWorkspaces[0].description}</h3>*/}
                             {/* Title : 빙고판 타이틀 */}
                             <TitleAndButton>
-                                <Title>3!4!(쓰리포)</Title>
+                                <Title>{filteredWorkspaces.name}</Title>
                                 <InviteButton onClick={openModal1}>
                                     팀원 초대하기
                                 </InviteButton>
                             </TitleAndButton>
                             <TeamDesc>
-                                한동대학교 PARD 롱커톤 3!4! 파이팅 !
+                                {filteredWorkspaces.description}
                             </TeamDesc>
                             <BingoDesc>
                                 <BingoDescText>
