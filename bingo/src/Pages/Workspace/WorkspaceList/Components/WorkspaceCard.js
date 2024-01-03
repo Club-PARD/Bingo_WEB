@@ -11,21 +11,25 @@ const CardLink = styled(Link)`
     justify-content: center;
 `;
 const CardBorder = styled.div`
-    justify-content: center;
+    display: flex;
     align-items: center;
-    margin: 2% 0 0 2%;
+    margin: 2% 0 0 1.3vw;
     border-radius: 32px;
-    width: 30%;
-    height: 50%;
+    width: 24vw;
+    height: 21vh;
     background-color: #f8f0ef;
     border: 1px solid transparent;
 `;
 const ImgBox = styled.div`
-    width: 45%;
-    height: 100%;
+    width: 15.5vh;
+    height: 15.5vh;
+    margin: 2.7vh 2.4vw 0 1.7vw;
+    border-radius: 50%;
+    border: 1px solid #ea4336;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-shrink: 0;
     /* border : 1px solid red; */
     /* box-sizing: border-box; */
 `;
@@ -48,12 +52,13 @@ const TextSet = styled.div`
     align-items: start;
 `;
 const Content = styled.div`
-    color: #ea4336;
-    font-size: 15px;
+    color: #f2aba5;
+    font-size: 14px;
+    margin-bottom: 0.5vh;
 `;
 const Title = styled.div`
     color: #222;
-    font-size: 25px;
+    font-size: 24px;
 `;
 const Desc = styled.div`
     color: #222;
@@ -61,9 +66,8 @@ const Desc = styled.div`
 `;
 
 const CardImg = styled.div`
-    height: 50%;
-    width: auto;
-    margin: 15%;
+    height: 14vh;
+    width: 14vh;
     flex-direction: column;
     border-radius: 50%;
     background-color: #f8f0ef;
@@ -74,7 +78,7 @@ const WorkspaceCard = ({ workspaceId, name, desc, picture, code, period }) => (
     <CardBorder>
         <CardLink to={`/WorkspaceView?workspaceId=${workspaceId}`}>
             <ImgBox>
-                <CardImg src={picture} alt={code} />
+                <CardImg src="\img\WorkspaceList\add.png" alt={code} />
             </ImgBox>
             <TextBox>
                 <TextSet>
@@ -83,7 +87,15 @@ const WorkspaceCard = ({ workspaceId, name, desc, picture, code, period }) => (
                 </TextSet>
                 <TextSet>
                     <Content>프로젝트 설명</Content>
-                    <div>{desc}</div>
+                    <div
+                        style={{
+                            fontSize: "16px",
+                            lineHeight: "150%",
+                            color: "#787474",
+                        }}
+                    >
+                        {desc}
+                    </div>
                 </TextSet>
             </TextBox>
         </CardLink>

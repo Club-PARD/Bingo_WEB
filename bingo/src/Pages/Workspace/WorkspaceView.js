@@ -58,53 +58,80 @@ function WorkspaceView() {
 
     
     return (
-        <Div width="100%" height="93.9vh" display="flex" backgroundColor="#F9F9F9" justifyContent="end" flexDirection="column">
+        <>
+            <Div
+                width="100%"
+                height="93.9vh"
+                display="flex"
+                backgroundColor="#F9F9F9"
+                justifyContent="end"
+                flexDirection="column"
+            >
                 {/* Section1 : 빙고판 */}
-            <Div width="66.3%" margin="0 auto" height="100%" display="flex" flexDirection="row">
-                <SectionLeft>
-                    <InformationDiv>프로젝트 정보</InformationDiv>
-                    <Section_Bingo>
-                        
-                        {/*<h1>{filteredWorkspaces.name}</h1>
-                        <h3>{filteredWorkspaces.description}</h3>*/}
-                        {/* Title : 빙고판 타이틀 */}
-                        <TitleAndButton>
-                            <Title>{filteredWorkspaces.name}</Title>
-                            <InviteButton onClick={openModal1}>팀원 초대하기</InviteButton>
-                        </TitleAndButton>
-                        <TeamDesc>{filteredWorkspaces.description}</TeamDesc>
-                        <BingoDesc>
-                            <BingoDescText>좋은 팀을 위한 9가지 가치 빙고판</BingoDescText>
-                        </BingoDesc>
+                <Div
+                    width="66.3%"
+                    margin="0 auto"
+                    height="100%"
+                    display="flex"
+                    flexDirection="row"
+                >
+                    <SectionLeft>
+                        <InformationDiv>프로젝트 정보</InformationDiv>
+                        <Section_Bingo>
+                            {/*<h1>{filteredWorkspaces[0].name}</h1>
+                        <h3>{filteredWorkspaces[0].description}</h3>*/}
+                            {/* Title : 빙고판 타이틀 */}
+                            <TitleAndButton>
+                                <Title>3!4!(쓰리포)</Title>
+                                <InviteButton onClick={openModal1}>
+                                    팀원 초대하기
+                                </InviteButton>
+                            </TitleAndButton>
+                            <TeamDesc>
+                                한동대학교 PARD 롱커톤 3!4! 파이팅 !
+                            </TeamDesc>
+                            <BingoDesc>
+                                <BingoDescText>
+                                    좋은 팀을 위한 9가지 가치 빙고판
+                                </BingoDescText>
+                            </BingoDesc>
 
-                        {/* Content : 빙고판 */}
-                        <Section_Bingo_Content>
-                            <BingoBoard/>
-                        </Section_Bingo_Content>
-                    </Section_Bingo>
-                </SectionLeft>
-                <SectionEclipse>
-                    <EclipseDiv/>
-                    <EclipseDiv/>
-                    <EclipseDiv/>
-                    <EclipseDiv/>
-                    <EclipseDiv/>
-                    <EclipseDiv/>
-                    <EclipseDiv/>
-                    <EclipseDiv/>
-                </SectionEclipse>
-                {/* Section2 : 회고 리스트 */}
-                <Section_Retrospect>
-                    {/* Title : 회고 리스트 타이틀 */}
-                    <InformationDiv>회고 리스트<Link to = "/RetrospectViewerPage">보러가기</Link></InformationDiv>
-                    {/* Content : 회고 리스트 */}
-                    <Section_Retrospect_Content>
-                        <RetrospectInWorkspace/>
-                    </Section_Retrospect_Content>
-                </Section_Retrospect>
+                            {/* Content : 빙고판 */}
+                            <Section_Bingo_Content>
+                                <BingoBoard />
+                            </Section_Bingo_Content>
+                        </Section_Bingo>
+                    </SectionLeft>
+                    <SectionEclipse>
+                        <EclipseDiv />
+                        <EclipseDiv />
+                        <EclipseDiv />
+                        <EclipseDiv />
+                        <EclipseDiv />
+                        <EclipseDiv />
+                        <EclipseDiv />
+                        <EclipseDiv />
+                    </SectionEclipse>
+                    {/* Section2 : 회고 리스트 */}
+                    <Section_Retrospect>
+                        {/* Title : 회고 리스트 타이틀 */}
+                        <InformationDiv>
+                            회고 리스트
+                            <Link to="/RetrospectViewerPage">보러가기</Link>
+                        </InformationDiv>
+                        {/* Content : 회고 리스트 */}
+                        <Section_Retrospect_Content>
+                            <RetrospectInWorkspace />
+                        </Section_Retrospect_Content>
+                    </Section_Retrospect>
+                </Div>
             </Div>
-            <InviteModal modalIsOpen1={modalIsOpen1} closeModal={closeModal} value={value}/>
-        </Div>
+            <InviteModal
+                modalIsOpen1={modalIsOpen1}
+                closeModal={closeModal}
+                value={value}
+            />
+        </>
     );
 }
 
@@ -112,8 +139,9 @@ export default WorkspaceView;
 const SectionLeft=styled.div`
     width: 25.7vw;
     height: 80vh;
-`
-const InformationDiv=styled.div`
+    overflow: hidden;
+`;
+const InformationDiv = styled.div`
     color: #838383;
     font-family: WefontGothic(OTF);
     font-size: 16px;
@@ -133,23 +161,7 @@ const Section_Bingo = styled.div`
     border-radius: 25px;
     background-color: #F3F3F3;
 `;
-const AdRetero=styled.div`
-    width: 14vw;
-    height: 4vh;
-    margin: 0 auto;
-    padding: .9vh 1.8vh;
-    border-radius: 40px;
-    background: var(--main_red, #EA4336);
-    align-items: center;
-    justify-content: center;
-    display: flex;
-    color: var(--main_white, #F9F9F9);
-    font-family: WefontGothic(OTF);
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-`
-const TitleAndButton=styled.div`
+const TitleAndButton = styled.div`
     width: 20.3vw;
     height: 3vh;
     margin-top: 4.7vh;
@@ -179,8 +191,9 @@ const InviteButton=styled.div`
     font-size: 15px;
     font-style: normal;
     font-weight: 400;
-`
-const TeamDesc=styled.div`
+    cursor: pointer;
+`;
+const TeamDesc = styled.div`
     width: 20.3vw;
     height: 2vh;
     margin-top: .7vh;
@@ -266,46 +279,111 @@ const StyleModal = {
         borderRadius: "40px",
         background: "var(--main_white, #F9F9F9)",
         backgroundSize: "cover",
-        // backgroundRepeat: "no-repeat",
         margin: "0",
-        width: "35%",
-        height: "39%",
+        width: "27.8vw",
+        height: "29.2vh",
         border: "none",
-        //alignItems: "center",
-
+        zIndex: "2",
         display: "flex",
         flexDirection: "column",
-
-        //position: 'absolute',  absolute positioning
-
-        transform: "translate(87%, 60%)", // center the modal
-        // 모달 내용이 부모 요소의 높이를 초과하면 자동으로 스크롤 바를 생성하도록 설정합니다. "overflowY: 'auto'"가 그 역할을
-        // 담당합니다. 또한, 모달의 높이(height)를 조정하여 모달의 내용이 충분하지 않을 경우 모달 자체의 높이를 줄일 수 있습니다.
-    }
-}
+        top: "50%",
+        left: "50%",
+        right: "auto",
+        bottom: "auto",
+        marginRight: "-50%",
+        transform: "translate(-50%, -50%)", // center the modal
+    },
+};
 
 const InviteModal = (e) => {
     return (
-        <Modal isOpen={e.modalIsOpen1} onRequestClose={e.closeModal} style={StyleModal}>
+        <Modal
+            isOpen={e.modalIsOpen1}
+            onRequestClose={e.closeModal}
+            style={StyleModal}
+        >
             {/* 팀원 코드 section */}
             <Div
-                justifyContent = "space-around"
+                justifyContent="center"
                 alignItems="center"
                 width="100%"
-                height="90%"
-                flexDirection="column">
-                <Div
-                    fontSize="40px"
-                    fontWeight="400" 
-                    >팀원 초대하기 코드</Div>
-                <Div>
-                    <Div fontSize="90px">{e.value}</Div>
-                    <CopyToClipboard text={e.value} onCopy={() => alert("클립보드에 복사되었습니다.")}>
-                        <Img></Img>
+                height="100%"
+                flexDirection="column"
+            >
+                <ModalInfo>팀원 초대하기 코드</ModalInfo>
+                <CodeDiv>
+                    <Code>{e.value}</Code>
+                    <CopyToClipboard
+                        text={e.value}
+                        onCopy={() => alert("클립보드에 복사되었습니다.")}
+                    >
+                        <Img
+                            width="1.7vw"
+                            height="1.7vw"
+                            src="\img\WorkspaceView\content_copy.png"
+                        />
                     </CopyToClipboard>
+                </CodeDiv>
+                <Div
+                    width="25vw"
+                    height="4.7vh"
+                    display="flex"
+                    flexDirection="row-reverse"
+                    margin="0"
+                >
+                    <ButtonDiv onClick={e.closeModal}>닫기</ButtonDiv>
                 </Div>
-                    <Div></Div>
             </Div>
         </Modal>
     );
-}
+};
+
+const ModalInfo = styled.div`
+    width: 25vw;
+    height: 6.6vh;
+    border: none;
+    color: var(--sec_grey, #222);
+    font-family: WefontGothic(OTF);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 30px */
+    margin-bottom: -0.5vh;
+    margin-left: 1.5vw;
+`;
+const CodeDiv = styled.div`
+    box-sizing: border-box;
+    width: 23.6vw;
+    height: 6.6vh;
+    border-radius: 16px;
+    background: #f0f0f0;
+    padding: 1.6vh 2.7vw 1.6vh 8.7vw;
+    display: flex;
+    justify-content: space-between;
+    margin: 1vh 0 3vh 0;
+`;
+const Code = styled.div`
+    color: var(--sec_grey, #222);
+    text-align: center;
+    font-family: WefontGothic(OTF);
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 36px */
+`;
+const ButtonDiv = styled.div`
+    width: 4.7vw;
+    height: 4.7vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 40px;
+    border: 2px solid var(--main_red, #ea4336);
+    background: var(--main_white, #f9f9f9);
+    color: var(--main_red, #ea4336);
+    font-family: WefontGothic(OTF);
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    margin-right: 0.8vw;
+`;

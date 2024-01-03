@@ -15,14 +15,18 @@ export const getAllRetrospect = async (e, navigate) => {
 
         return response.data;
     } catch (error) {
-        alert("회고 리스트 조회 중 오류 발생했습니다");
-        navigate("/");
+        // alert("회고 리스트 조회 중 오류 발생했습니다");
+        // navigate("/");
 
         throw error;
     }
 };
 
 export const getRetrospect = async (e) => {
+    const getData = {
+        userId: 1,
+        projectId: 1,
+    };
 
     try {
         const response = await axios.get(
