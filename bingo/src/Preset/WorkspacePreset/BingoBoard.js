@@ -12,7 +12,7 @@ import "../../font.css";
 function BingoBoard({ modalIsOpen }) {
     const [chipData, setChipData] = useRecoilState(ChipData);
     const [usrList, setUserList] = useRecoilState(UserList);
-    const IsRetrospect = true;
+    const IsRetrospect = false;
     /*
   const [items, setItems] = useState([
     { text: '존중하는', flag: true },
