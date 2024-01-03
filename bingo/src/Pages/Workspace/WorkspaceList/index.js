@@ -55,28 +55,33 @@ const WorkspaceList = () => {
     };
 
     // 난수생성 버튼 클릭 시 동작
-    const onButtonClick = () => {
+    const onButtonClick = async () => {
         const randomCode = generateRandomValue();
         console.log(randomCode);
         setModalIsOpen(false);
         setTitleEmpty(false);
         setDescEmpty(false);
-
+    
         // 새로운 워크스페이스 데이터 생성
         const newWorkspace = {
             name: title,
             desc: desc,
-            picture: file ? file.name : "", // 이미지 파일명 저장 (선택된 파일이 없으면 빈 문자열),
+            picture: file ? file.name : "default_image.jpg", // 이미지 파일명 저장 (선택된 파일이 없으면 디폴트 이미지 파일명),
             code: randomCode,
-            userId : userInfo.appUser.id,
+            userId: userInfo.appUser.id,
         };
         console.log("NEW", newWorkspace);
         setisCreate(true);
-        createWorkspace(newWorkspace);
-        handleUpload();
+    
+        // 이미지 업로드 처리
+        if (file) {
+            await handleUpload();
+        }
+    
         // 기존 WorkspaceData 배열에 새로운 워크스페이스 데이터 추가
         setWorkspaceData((prevData) => [...prevData, newWorkspace]);
     };
+    
     const [title, setTitle] = useState("");
     const onChangeTitle = (event) => {
         setTitle(event.target.value);
@@ -152,7 +157,7 @@ const WorkspaceList = () => {
         fetchData();
 
         console.log(userInfo);
-    }, [isCreate]); // 빈 배열을 전달하여 컴포넌트가 마운트될 때만 실행
+    }, [isCreate]); // 생성이 실행되면 하기
 
     return (
         <Div
