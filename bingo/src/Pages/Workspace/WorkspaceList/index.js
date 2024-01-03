@@ -10,7 +10,7 @@ import { WorkspaceData, loginUserState } from "../../../Contexts/Atom.js";
 import { useRecoilState } from "recoil";
 import { getAllProjects } from "../../../Api/Workspace.js";
 import { useNavigate } from "react-router";
-import { createWorkspace } from "../../../Api/Workspace.js";
+import { createWorkspace , handleUpload } from "../../../Api/Workspace.js";
 import axios from "axios";
 import WorkspaceBanner from "../../../assets/Img/WorkspaceList/Workspace_Banner.png";
 
@@ -20,34 +20,13 @@ const WorkspaceList = () => {
     const handleFileChange = (event) => {
       setFile(event.target.files[0]);
     };
-  
-    const handleUpload = async () => {
-      try {
-        const formData = new FormData();
-        formData.append("file", file);
-  
-        const response = await fetch('http://3.34.44.0:8080/api/v1/upload', {
-          method: 'POST',
-          body: formData,
-        });
-        
-        if (response.ok) {
-          const result = await response.text(); // 또는 response.url 등을 사용
-          console.log('파일 업로드 성공:', result);
-        } else {
-          console.error('파일 업로드 실패:', response.statusText);
-        }
-        
-      } catch (error) {
-        console.error("파일 업로드 중 에러:", error);
-      }
-    };
 
     const [userInfo, setUserInfo] = useRecoilState(loginUserState);
     const [titleEmpty, setTitleEmpty] = useState(false);
     const [descEmpty, setDescEmpty] = useState(false);
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [workspaceData, setWorkspaceData] = useRecoilState(WorkspaceData);
+    const [isCreate, setisCreate] = useState(false);
     
 
     const openModal = () => {
@@ -92,7 +71,9 @@ const WorkspaceList = () => {
             userId : userInfo.appUser.id,
         };
         console.log("NEW", newWorkspace);
+        setisCreate(true);
         createWorkspace(newWorkspace);
+        handleUpload();
         // 기존 WorkspaceData 배열에 새로운 워크스페이스 데이터 추가
         setWorkspaceData((prevData) => [...prevData, newWorkspace]);
     };
@@ -111,6 +92,30 @@ const WorkspaceList = () => {
         const file = event.target.files[0];
         setSelectedFile(file);
     };
+
+    // 워크스페이스 사진 추가
+    const handleUpload = async () => {
+        console.log("실행",file);
+        try {
+          const formData = new FormData();
+          formData.append("file", file);
+    
+          const response = await fetch(`${process.env.REACT_APP_URL}upload`, {
+            method: 'POST',
+            body: formData,
+          });
+          
+          if (response.ok) {
+            const result = await response.text(); // 또는 response.url 등을 사용
+            console.log('파일 업로드 성공:', result);
+          } else {
+            console.error('파일 업로드 실패:', response.statusText);
+          }
+          
+        } catch (error) {
+          console.error("파일 업로드 중 에러:", error);
+        }
+      };
 
     const handleButtonClick = () => {
         if (fileInputRef.current) {
@@ -147,7 +152,7 @@ const WorkspaceList = () => {
         fetchData();
 
         console.log(userInfo);
-    }, [workspaceData.length]); // 빈 배열을 전달하여 컴포넌트가 마운트될 때만 실행
+    }, [isCreate]); // 빈 배열을 전달하여 컴포넌트가 마운트될 때만 실행
 
     return (
         <Div
@@ -351,7 +356,7 @@ const WorkspaceList = () => {
                                     alert("프로젝트 설명을 작성하세요");
                                     setDescEmpty(true);
                                 } else {
-                                    onButtonClick();
+                                    onButtonClick(handleUpload);
                                 }
                             }}
                         >
@@ -380,25 +385,24 @@ const WorkspaceList = () => {
                                 onChange={handleFileChange}
                             />
                             <Div alignItems="center">
-                            <FileInputButton onClick={handleUpload}>
+                            <FileInputButton>
                                 {file ? (
                                     <>
                                         <FileInputText>{file.name}</FileInputText>
-                                        <FileInputImg
-                                            src="img\WorkspaceList\close.png"
-                                            onClick={(e) => {
-                                                e.stopPropagation();
-                                                setFile(null);
+                                        <FileInputImg src="img\WorkspaceList\close.png" onClick={(e) => {
+                                            e.stopPropagation();
+                                            setFile(null);
                                             }}
                                         />
                                     </>
                                 ) : (
                                 <>
-                                    <FileInputImg src="img\WorkspaceList\arrow_upward.png" />
-                                    <FileInputText>파일 업로드</FileInputText>
+                            <FileInputImg src="img\WorkspaceList\arrow_upward.png" />
+                            <FileInputText>파일 업로드</FileInputText>
                                 </>
-                                )}
+                                    )}
                             </FileInputButton>
+
                             </Div>
                         </Div>
 
@@ -441,7 +445,7 @@ const WorkspaceList = () => {
                                 }
                             />
                         </ModalTitle>
-                        <ModalHeader>프로젝트 생성</ModalHeader>
+                        <ModalHeader onClick={handleUpload}>프로젝트 생성</ModalHeader>
                     </Div>
                 </Div>
             </Modal>

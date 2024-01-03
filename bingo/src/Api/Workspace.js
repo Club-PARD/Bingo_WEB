@@ -25,12 +25,13 @@ export const createWorkspace = async (newWorkspace) => {
     userId : newWorkspace.userId,
     name: newWorkspace.name,
     description: newWorkspace.desc,
+    picture : newWorkspace.picture,
     code: newWorkspace.code,
     tagList : chipData ,
   };
   try {
     const response = await axios.post(
-      `http://172.17.188.80:8080/api/v1/project`,
+      `${process.env.REACT_APP_URL}project`,
       postData
     );
     console.log(response.data);
@@ -48,7 +49,7 @@ export const createWorkspace = async (newWorkspace) => {
 export const getAllProjects = async (e, navigate) => {
   try {
     const response = await axios.get(
-      `http://172.17.188.80:8080/api/v1/project/` + e.userid
+      `${process.env.REACT_APP_URL}project/` + e.userid
     );
 
     return response.data;
@@ -67,7 +68,7 @@ export const getProject = async () => {
 
   try {
     const response = await axios.get(
-      `http://172.17.188.80:8080/api/v1/project`,
+      `${process.env.REACT_APP_URL}project`,
       getData
     );
 
@@ -90,7 +91,7 @@ export const postProject = async (data) => {
     }
     try {
         const response = await axios.post(
-            `http://172.17.188.80:8080/api/v1/enrollment`,
+            `${process.env.REACT_APP_URL}enrollment`,
             postData
         )
     return console.log(response.data);
@@ -100,6 +101,35 @@ export const postProject = async (data) => {
         alert ("팀원 직위 설정 중 오류가 발생했습니다");
     }  
 };
+
+// 워크스페이스 사진 추가
+export const handleUpload = async (file) => {
+  try {
+    if (!file) {
+      console.error('파일이 없습니다.');
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    const response = await fetch(`${process.env.REACT_APP_URL}upload`, {
+      method: 'POST',
+      body: formData,
+    });
+    
+    if (response.ok) {
+      const result = await response.text(); // 또는 response.url 등을 사용
+      console.log('파일 업로드 성공:', result);
+    } else {
+      console.error('파일 업로드 실패:', response.statusText);
+    }
+    
+  } catch (error) {
+    console.error("파일 업로드 중 에러:", error);
+  }
+};
+
 
 // // 워크스페이스 조인하기 (새로 만든 것 -> 이거 사용하면 된다)
 // export const joinProject = async (data) => {
