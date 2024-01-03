@@ -17,6 +17,7 @@ const WorkspaceList = () => {
     const [descEmpty, setDescEmpty] = useState(false);
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [workspaceData, setWorkspaceData] = useRecoilState(WorkspaceData);
+
     const openModal = () => {
         setModalIsOpen(true);
         // Modal이 열릴 때 상태 초기화
@@ -91,9 +92,12 @@ const WorkspaceList = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const projects = await getAllProjects({
-                    userid: userInfo.appUser.id
-                }, navigate);
+                const projects = await getAllProjects(
+                    {
+                        userid: userInfo.appUser.id,
+                    },
+                    navigate
+                );
                 console.log("프로젝트 목록", projects);
                 setWorkspaceData(projects);
             } catch (error) {
@@ -164,7 +168,7 @@ const WorkspaceList = () => {
                 {/* 워크스페이스 카드 부분 */}
                 <Div
                     display="flex"
-                    justifyContent="space-between"
+                    justifyContent="start"
                     flexDirection="row"
                     alignItems="top"
                     height="96%"
@@ -213,6 +217,7 @@ const WorkspaceList = () => {
                                     picture={workspace.picture}
                                     code={workspace.code}
                                     period={workspace.period}
+                                    total={workspaceData.length}
                                 />
                             ))}
                 </Div>
@@ -509,7 +514,7 @@ const StyleModal = {
         backgroundSize: "cover",
         margin: "0",
         width: "27.8vw",
-        height: "25.2vh",
+        height: "29.2vh",
         border: "none",
         zIndex: "2",
         display: "flex",
@@ -564,27 +569,27 @@ const InviteModal = (e) => {
 
 const ModalInfo = styled.div`
     width: 25vw;
+    height: 6.6vh;
+    border: none;
     color: var(--sec_grey, #222);
     font-family: WefontGothic(OTF);
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
     line-height: 150%; /* 30px */
-    margin-bottom: 2vh;
-    margin-top: 1vh;
+    margin-bottom: -0.5vh;
+    margin-left: 1.5vw;
 `;
 const CodeDiv = styled.input`
     box-sizing: border-box;
-    width: 25vw;
+    width: 23.6vw;
     height: 6.6vh;
-    border: none;
     border-radius: 16px;
     background: #f0f0f0;
-    padding: 1.6vh 2.7vw 1.6vh 1vw;
+    padding: 1.6vh 2.7vw 1.6vh 8.7vw;
     display: flex;
-    font-size: 18px;
     justify-content: space-between;
-    margin-bottom: 1.5vh;
+    margin: 1vh 0 3vh 0;
 
     &:focus {
         border: 2px solid var(--main_red, #ea4336);
@@ -600,12 +605,12 @@ const ButtonDiv = styled.div`
     align-items: center;
     border-radius: 40px;
     border: 2px solid var(--main_red, #ea4336);
-    background: ${(props) => props.background || "var(--main_white, #f9f9f9)"};
-    color: ${(props) => props.color || "var(--main_red, #ea4336)"};
+    background: var(--main_white, #f9f9f9);
+    color: var(--main_red, #ea4336);
     font-family: WefontGothic(OTF);
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
-    margin-left: 0.8vw;
+    margin-right: 0.8vw;
     cursor: pointer;
 `;

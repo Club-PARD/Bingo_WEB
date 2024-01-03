@@ -1,11 +1,14 @@
 /* eslint-disable */
 import React from "react";
 import styled from "styled-components";
+import Reddotimg from "../../../assets/Img/Login/Reddot.png";
+import OnBoard from "../../../assets/Img/Login/Onboard.png";
+import IntroBtn from "../../../assets/Img/Login/IntroBtn.png";
 
 const Introwhole = styled.div`
     width: 100vw;
     height: 100vh;
-    background-image: url("/img/Login/Onboard.png");
+    background-image: url(${OnBoard});
     background-size: cover;
     padding-top: 7%;
     box-sizing: border-box;
@@ -17,7 +20,7 @@ const LoginDiv = styled.div`
     width: 35%;
     display: flex;
     /* justify-content: center; */
-    margin-top : 4%;
+    margin-top: 4%;
     align-items: left;
     flex-direction: column;
     /* border: 1px solid red; */
@@ -26,30 +29,30 @@ const Div1 = styled.div`
     color: "#000";
     font-size: 17px;
     margin-top: 0;
-    margin-bottom : 5%;
+    margin-bottom: 5%;
 `;
 const Div2 = styled.div`
     color: "#222";
     font-size: 50px;
-    font-weight : bold;
-    margin-bottom : 7%;
+    font-weight: bold;
+    margin-bottom: 7%;
 `;
 const Div3 = styled.div`
     color: #000;
     font-size: 23px;
-    margin-bottom : 5%;
+    margin-bottom: 5%;
 `;
 const Reddot = styled.img`
-  width : 0.5vw;
-  margin : 3% 0 5% 1%;
-`
+    width: 0.5vw;
+    margin: 3% 0 5% 1%;
+`;
 const LoginBtn = styled.button`
     width: 40%;
     height: 10%;
     font-size: 24px;
     border-radius: 40px;
     border: 1px solid transparent;
-    background: url("/img/Login/IntroBtn.png") no-repeat;
+    background: url(${IntroBtn}) no-repeat;
     background-size: cover;
     margin-right: 3%;
 `;
@@ -72,7 +75,7 @@ const Intro = () => {
                     <br /> 한눈에 <strong>모두의 답변을 모아보며</strong>{" "}
                     프로젝트의 마침표를 찍어보세요.
                 </Div3>
-                <Reddot src="/img/Login/Reddot.png" />
+                <Reddot src={Reddotimg} />
                 <LoginBtn onClick={() => (window.location.href = "/Login")} />
             </LoginDiv>
         </Introwhole>

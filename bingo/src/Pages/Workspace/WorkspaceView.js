@@ -1,18 +1,21 @@
-import {Div} from "../../Components/NormalComponents/Section";
-import {React, useEffect} from "react";
+import { Div } from "../../Components/NormalComponents/Section";
+import { React, useEffect } from "react";
 import RetrospectInWorkspace from "./Components/RetrospectInWorkspace";
 import BingoBoard from "../../Preset/WorkspacePreset/BingoBoard";
 import styled from "styled-components";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useParams } from 'react-router-dom';
-import {useRecoilState} from "recoil";
+import { useParams } from "react-router-dom";
+import { useRecoilState } from "recoil";
 import Modal from "react-modal";
 import { useState } from "react";
 import { Img } from "../../Components/NormalComponents/Etc.js";
-import {CopyToClipboard} from 'react-copy-to-clipboard';
-import {WorkspaceData, loginUserState, RetrospectData} from "../../Contexts/Atom.js";
+import { CopyToClipboard } from "react-copy-to-clipboard";
+import {
+    WorkspaceData,
+    loginUserState,
+    RetrospectData,
+} from "../../Contexts/Atom.js";
 import { getAllRetrospect } from "../../Api/Retrospace.js";
-
 
 // workspace에 들어오면 보이는 화면 아직 와이어 프레임 안나와서 정확한건 미정 빙고페이지로 이동 가능 회고생성페이지로 이동 가능
 // RetrospectInWorkspace component출력 회고결과 출력(이것도 디자인이 완성되고 백엔드가 연결되어야 가능하다)
@@ -21,13 +24,15 @@ function WorkspaceView() {
     const [userInfo, setUserInfo] = useRecoilState(loginUserState);
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
-    const workspaceId = searchParams.get('workspaceId');
+    const workspaceId = searchParams.get("workspaceId");
     const [modalIsOpen1, setModalIsOpen1] = useState(false);
     const [value, setValue] = useState("12345678");
     const [workspaceData, setWorkspaceData] = useRecoilState(WorkspaceData);
     const [retrospectData, setRetrospectData] = useRecoilState(RetrospectData);
 
-    const filteredWorkspaces = workspaceData.find(workspace => workspace.id == workspaceId);
+    const filteredWorkspaces = workspaceData.find(
+        (workspace) => workspace.id == workspaceId
+    );
     const openModal1 = () => {
         setModalIsOpen1(true);
     };
@@ -40,11 +45,14 @@ function WorkspaceView() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const allRetrospect = await getAllRetrospect({ userid: userInfo.appUser.id, projectId: workspaceId }, navigate);
+                const allRetrospect = await getAllRetrospect(
+                    { userid: userInfo.appUser.id, projectId: workspaceId },
+                    navigate
+                );
                 setRetrospectData(allRetrospect); // allRetrospect.data로 설정
             } catch (error) {
                 // 에러 핸들링
-                console.error('Error fetching projects:', error);
+                console.error("Error fetching projects:", error);
             }
         };
 
@@ -55,8 +63,6 @@ function WorkspaceView() {
         // console.log(retrospectData);
     }, [retrospectData]);
 
-
-    
     return (
         <>
             <Div
@@ -136,7 +142,7 @@ function WorkspaceView() {
 }
 
 export default WorkspaceView;
-const SectionLeft=styled.div`
+const SectionLeft = styled.div`
     width: 25.7vw;
     height: 80vh;
     overflow: hidden;
@@ -150,7 +156,7 @@ const InformationDiv = styled.div`
     line-height: 150%; /* 24px */
     letter-spacing: -0.16px;
     margin: 7.7vh 0 1.1vh;
-`
+`;
 // [컴포넌트] 빙고판 Section
 const Section_Bingo = styled.div`
     width: 25.7vw;
@@ -159,7 +165,7 @@ const Section_Bingo = styled.div`
     flex-direction: column;
     align-items: center;
     border-radius: 25px;
-    background-color: #F3F3F3;
+    background-color: #f3f3f3;
 `;
 const TitleAndButton = styled.div`
     width: 20.3vw;
@@ -169,16 +175,16 @@ const TitleAndButton = styled.div`
     justify-content: space-between;
     flex-direction: row;
     align-items: center;
-`
-const Title=styled.div`
+`;
+const Title = styled.div`
     color: var(--sec_grey, #222);
     font-family: WefontGothic(OTF);
     font-size: 28px;
     font-style: normal;
     font-weight: 400;
     line-height: 150%; /* 42px */
-`
-const InviteButton=styled.div`
+`;
+const InviteButton = styled.div`
     width: 6vw;
     height: 3vh;
     display: flex;
@@ -196,15 +202,15 @@ const InviteButton=styled.div`
 const TeamDesc = styled.div`
     width: 20.3vw;
     height: 2vh;
-    margin-top: .7vh;
-    color: rgba(34, 34, 34, 0.80);
+    margin-top: 0.7vh;
+    color: rgba(34, 34, 34, 0.8);
     font-family: WefontGothic(OTF);
     font-size: 15px;
     font-style: normal;
     font-weight: 400;
     line-height: 150%; /* 22.5px */
-`
-const BingoDesc=styled.div`
+`;
+const BingoDesc = styled.div`
     width: 20.3vw;
     height: 2vh;
     margin-top: 5.3vh;
@@ -212,17 +218,17 @@ const BingoDesc=styled.div`
     flex-direction: row;
     justify-content: left;
     align-items: center;
-`
-const BingoDescText=styled.div`
-    color: #6B6B6B;
+`;
+const BingoDescText = styled.div`
+    color: #6b6b6b;
     font-family: WefontGothic(OTF);
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
     line-height: 150%; /* 24px */
     letter-spacing: -0.16px;
-`
-const SectionEclipse=styled.div`
+`;
+const SectionEclipse = styled.div`
     width: 6.4vw;
     height: 24vh;
     margin-top: 29vh;
@@ -230,15 +236,15 @@ const SectionEclipse=styled.div`
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-`
-const EclipseDiv =styled.div`
+`;
+const EclipseDiv = styled.div`
     width: 0.6vw;
-    height: .6vw;
+    height: 0.6vw;
     border: none;
     box-sizing: border-box;
-    background-color: #E1E1E1;
+    background-color: #e1e1e1;
     border-radius: 50%;
-`
+`;
 // [컴포넌트] 회고 리스트 Section
 const Section_Retrospect = styled.div`
     /* background-color: skyblue; */
@@ -247,11 +253,11 @@ const Section_Retrospect = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-`
+`;
 // [컴포넌트] 빙고 Section의 컨텐츠
 const Section_Bingo_Content = styled(Div)`
     width: 36vh;
-    height : 36vh;
+    height: 36vh;
     margin-top: 1.2vh;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -262,7 +268,7 @@ const Section_Bingo_Content = styled(Div)`
 // [컴포넌트] 회고 리스트 Section의 콘텐츠
 const Section_Retrospect_Content = styled.div`
     width: 34vw;
-    height : 90%;
+    height: 90%;
     overflow: auto;
     align-items: end;
     justify-content: top;
@@ -271,7 +277,7 @@ const Section_Retrospect_Content = styled.div`
 `;
 const StyleModal = {
     overlay: {
-        backgroundColor: "rgba(0, 0, 0,0.2)"
+        backgroundColor: "rgba(0, 0, 0,0.2)",
     },
     content: {
         padding: "2vh",
@@ -386,4 +392,5 @@ const ButtonDiv = styled.div`
     font-style: normal;
     font-weight: 400;
     margin-right: 0.8vw;
+    cursor: pointer;
 `;
