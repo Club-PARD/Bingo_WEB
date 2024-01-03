@@ -14,6 +14,8 @@ export const ProjectSelectedFileState = atom({
     default: "",
 });
 
+export const retrospectQuestionsListState = atom({ key: 'retrospectQuestionsList', default: null });
+
 export const loginUserState = atom({
     key: "uniqueLoginUserKey",
     default: {

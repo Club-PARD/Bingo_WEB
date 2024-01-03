@@ -91,13 +91,10 @@ const WorkspaceList = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const projects = await getAllProjects(
-                    {
-                        userid: userInfo.appUser.id,
-                    },
-                    navigate
-                );
-                console.log(projects);
+                const projects = await getAllProjects({
+                    userid: userInfo.appUser.id
+                }, navigate);
+                console.log("프로젝트 목록", projects);
                 setWorkspaceData(projects);
             } catch (error) {
                 // 에러 핸들링
@@ -106,6 +103,8 @@ const WorkspaceList = () => {
         };
 
         fetchData();
+
+        console.log(userInfo);
     }, []); // 빈 배열을 전달하여 컴포넌트가 마운트될 때만 실행
 
     return (

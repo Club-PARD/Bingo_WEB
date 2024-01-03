@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 export const getAllRetrospect = async (e, navigate) => {
     try {
         const response = await axios.get(
-            `http://13.209.82.115:8080/api/v1/template/appUser/${e.userid}/project/${e.projectId}`
+            `http://13.209.82.115:8080/api/v1/template/project/${e.projectId}`
         );
 
         // console.log("Result", response.data);
@@ -22,7 +22,7 @@ export const getAllRetrospect = async (e, navigate) => {
     }
 };
 
-export const getRetrospect = async () => {
+export const getRetrospect = async (e) => {
     const getData = {
         userId: 1,
         projectId: 1,
@@ -30,15 +30,26 @@ export const getRetrospect = async () => {
 
     try {
         const response = await axios.get(
-            //   `http://172.17.188.80:8080/api/v1/project/${id}`
-            "http://172.17.188.80:8080/api/v1/project",
-            getData
+            `http://13.209.82.115:8080/api/v1/template/project/${e.workspaceId}/template/${e.retrospectId}`
         );
-
-        return console.log(response.data);
+        // console.log("axios", response.data);
+        return response.data;
     } catch (error) {
         alert("프로젝트 상세 조회 중 오류 발생했습니다");
 
         throw error;
     }
 };
+
+// export const postRetrospect = async (e) => {
+//     try {
+//         const response = await axios.post(
+//             ``
+//         );
+
+//         console.log("post result", response);
+
+//     } catch(error) {
+//         throw "postRetrospect Error " + error;
+//     }
+// }

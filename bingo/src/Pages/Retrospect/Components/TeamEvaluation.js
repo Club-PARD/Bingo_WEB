@@ -88,18 +88,16 @@ const ChipDiv = styled.div`
     width: 48vw;
 `;
 
-function TeamEvaluation() {
-    const [retrospective, setRetrospective] =
-        useRecoilState(retrospectiveState);
+const TeamEvaluation = (e) =>  {    
+    const [retrospective, setRetrospective] = useRecoilState(retrospectiveState);
     const navigate = useNavigate();
     const handleBeforeClick = () => {
         navigate("/RetrospectWriteText");
     };
     const [isFilled, setIsFilled] = useState(false);
-    const handleNextButtonClick = (e) => {
-        if (isFilled) {
-            // isFilled가 true일 경우에만 다음 페이지로 이동
-            navigate("/WorkspaceView");
+    const handleNextButtonClick = () => {
+        if (isFilled) { // isFilled가 true일 경우에만 다음 페이지로 이동
+            navigate(`/WorkspaceView?workspaceId=${e.workspaceId}`);
         }
     };
     return (
