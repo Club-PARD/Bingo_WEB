@@ -1,7 +1,7 @@
 /* eslint-disable */
 import styled from "styled-components";
 import Breadcrumb from "../../../Layout/Breadcrumb";
-import { WorkspaceData } from "../../../Contexts/Atom";
+import { WorkspaceData, retrospectQuestionsListState } from "../../../Contexts/Atom";
 import { useRecoilState } from "recoil";
 import { useNavigate } from "react-router";
 import { useState, useRef, useEffect } from "react";
@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import Modal from "react-modal";
 import { Button } from "../../../Components/NormalComponents/Form";
 import { ConstructionOutlined } from "@mui/icons-material";
+import { postRetrospect } from "../../../Api/Retrospace";
 
 
 // 전체를 감싸는 div, 이 아래에 Header / Body / Footer로 나뉘어 있음
@@ -166,6 +167,7 @@ const RetrospectWriteText = (e) => {
     const navigate = useNavigate();
 
     const [workspaceData, setWorkspaceData] = useRecoilState(WorkspaceData);
+    const [retrospectQuestionsList, setRetrospectQuestionsList] = useRecoilState(retrospectQuestionsListState);
     
 
     const filteredWorkspaces = workspaceData.find(workspace => workspace.id == e.workspaceId);
@@ -203,7 +205,36 @@ const RetrospectWriteText = (e) => {
         setModalCancleIsOpen(false);
     };
 
-    
+    const [temp, setTemp] = useState();
+    const handlerSetTemp = (e) => {
+        setTemp(e.target.value);
+    }
+
+    const handleRetroTextChange = (event, dataIndex, subQuestionIndex) => {
+        const updatedValue = event.target.value;
+
+        // Update the Recoil state
+        setRetrospectQuestionsList((prevList) => {
+            const newList = [...prevList];
+
+            // Find the specific question
+            const updatedQuestion = { ...newList[dataIndex] };
+
+            // Find the specific sub-question
+            const updatedSubQuestion = { ...updatedQuestion.subQuestionList[subQuestionIndex] };
+
+            // Update the value in the sub-question
+            updatedSubQuestion.answerResponse.ams = updatedValue;
+
+            // Update the sub-question in the question
+            updatedQuestion.subQuestionList[subQuestionIndex] = updatedSubQuestion;
+
+            // Update the question in the list
+            newList[dataIndex] = updatedQuestion;
+
+            return newList;
+        });
+    };
 
     return (
         <Whole>
@@ -223,7 +254,8 @@ const RetrospectWriteText = (e) => {
                     />
                     <StepButton
                         targetLabel="다음"
-                        onClick={handleNextButtonClick}
+                        // onClick={handleNextButtonClick}
+                        onClick={postRetrospect}
                         backgroundColor={
                             isFilled ? "#EA4336" : "rgba(234, 67, 54, 0.4)"
                         }
@@ -231,70 +263,58 @@ const RetrospectWriteText = (e) => {
                     />
                 </RightHead>
             </Header>
+
+
             {/* 회고 작성 창 */}
             <BodyMom>
-                <Body>
-                    <Div
-                        width="66.3vw"
-                        height="4.2vh"
-                        display="flex"
-                        margin="2.2vh 0 0 0"
-                        justifyContent="center"
-                        alignItems="center"
-                        backgroundColor="#F9F9F9"
-                        color="rgba(22, 22, 22, 0.3)"
-                        fontFamily="WefontGothic(OTF)"
-                        fontSize="18px"
-                        fontStyle="normal"
-                        fontWeight="400"
-                        borderRadius="14px"
-                    >{e.retrospectQuestionsList.templateType}</Div>
-
-                    {
-                        e.retrospectQuestionsList
-                        .questionList
-                            .map((data, index) => (
-                            // data.title &&
-                            <Border key={index}>
-                                <RetroType>
-                                    <RetroABC>{data.mainQuestion[0]}</RetroABC>
-                                    <RetroLabel>{data.mainQuestion}</RetroLabel>
-                                </RetroType>
-                                {
-                                data
-                                    .subQuestionList
-                                    .map((retro, index2) => (
-                                    // retro.dataQ &&
-                                    <div key={index2}>
-                                        <RetroData>{retro.subQuestion}</RetroData>
-                                        <RetroText
-                                        placeholder="답변을 입력하세요..."
-                                        onInput={resizeTextarea}
-                                        value={""}
-                                        onChange={(e) => {
-                                            // const updatedAnswers = { ...retrospective };
-                                            // updatedAnswers.questions = [...updatedAnswers.questions];
-                                            // updatedAnswers.questions[index] = {
-                                            // id: index + 1,
-                                            // content: [...(updatedAnswers.questions[index]?.content) || []],
-                                            // };
-                                            // updatedAnswers.questions[index].title = data.title;
-                                            // updatedAnswers.questions[index].content[index2] = {
-                                            // ...(updatedAnswers.questions[index]?.content[index2] || {}),
-                                            // dataA: e.target.value,
-                                            // }
-                                            // setRetrospective(updatedAnswers);
-                                            // checkIfAllFilled(updatedAnswers);
-                                            // console.log(retrospective);
-                                        }}
-                                        />
-                                    </div>
-                                    ))
-                                }
-                            </Border>
-                        ))
-                    }
-                </Body>
+                {retrospectQuestionsList ?
+                    <Body>
+                        <Div
+                            width="66.3vw"
+                            height="4.2vh"
+                            display="flex"
+                            margin="2.2vh 0 0 0"
+                            justifyContent="center"
+                            alignItems="center"
+                            backgroundColor="#F9F9F9"
+                            color="rgba(22, 22, 22, 0.3)"
+                            fontFamily="WefontGothic(OTF)"
+                            fontSize="18px"
+                            fontStyle="normal"
+                            fontWeight="400"
+                            borderRadius="14px"
+                        >{retrospectQuestionsList.templateType}</Div>
+                        {
+                            retrospectQuestionsList
+                                .questionList
+                                .map((data, index) => (
+                                    // data.title &&
+                                    <Border key={index}>
+                                        <RetroType>
+                                            <RetroABC>{data.mainQuestion[0]}</RetroABC>
+                                            <RetroLabel>{data.mainQuestion}</RetroLabel>
+                                        </RetroType>
+                                        {
+                                            data
+                                                .subQuestionList
+                                                .map((retro, index2) => (
+                                                    // retro.dataQ &&
+                                                    <div key={index2}>
+                                                        <RetroData>{retro.subQuestion}</RetroData>
+                                                        <RetroText
+                                                            placeholder="답변을 입력하세요..."
+                                                            onInput={resizeTextarea}
+                                                            value={retro.answerResponse == null ? "" : retro.answerResponse.ams}
+                                                            onChange={(f) => handleRetroTextChange(f, index, index2)}
+                                                        />
+                                                    </div>
+                                                ))
+                                        }
+                                    </Border>
+                                ))
+                        }
+                    </Body>
+                    : ""}
                 {/* 취소 다음 버튼 */}
                 {/*
                 <footer>
