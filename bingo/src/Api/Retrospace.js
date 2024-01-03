@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 export const getAllRetrospect = async (e, navigate) => {
     try {
         const response = await axios.get(
-            `http://172.17.188.80:8080/api/v1/template/project/${e.projectId}`
+            `${process.env.REACT_APP_URL}template/project/${e.projectId}`
         );
         // console.log("Result", response.data);
 
@@ -30,7 +30,7 @@ export const getRetrospect = async (e) => {
 
     try {
         const response = await axios.get(
-            `http://172.17.188.80:8080/api/v1/template/project/${e.workspaceId}/template/${e.retrospectId}`
+            `${process.env.REACT_APP_URL}template/project/${e.workspaceId}/template/${e.retrospectId}`
         );
         console.log("axios", response.data);
         return response.data;
@@ -69,7 +69,7 @@ export const postRetrospect = async (e, navigate) => {
     console.log("data 체크 ", data);
     try {
         await axios.post(
-            `${process.env.REACT_APP_URL}api/v1/retrospect/write`, data
+            `${process.env.REACT_APP_URL}retrospect/write`, data
         );
 
         alert("회고 작성이 완료되었습니다.");

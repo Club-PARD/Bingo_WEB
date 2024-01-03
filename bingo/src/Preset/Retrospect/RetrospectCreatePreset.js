@@ -822,4 +822,4 @@ const ModalExitButton = styled(Link)`
     border: 2px solid var(--main_red, #ea4336);
     text-decoration: none;
     cursor: pointer;
-`;
+`
