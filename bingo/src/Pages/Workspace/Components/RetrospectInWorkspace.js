@@ -6,12 +6,58 @@ import { Link, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { useRecoilState } from "recoil";
 import { RetrospectData, loginUserState } from "../../../Contexts/Atom";
+import ArrowPink from "../../../assets/Img/WorkspaceView/arrowPink.png";
+import PlusBold from "../../../assets/Img/WorkspaceView/ph_plus-bold.png";
+import "../../../font.css";
+const NameIsValueDiv = styled(Div)`
+    font-family: "160";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 
+    color: #7f7f7f;
+
+    text-align: center;
+    align-items: center;
+    margin: 0 0 3.8vh 0;
+`;
+const SubIsNotValue = styled(Div)`
+    margin: 0 0 4.5vh 0;
+
+    color: var(--main_red, #ea4336);
+    font-family: "110";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+`;
+const NameIsNotDiv = styled(Div)`
+    font-family: "160";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    color: #7f7f7f;
+
+    text-align: center;
+    align-items: center;
+    margin: 0 0 0.7vh 0;
+`;
+const EmptyValue = styled(Div)`
+    color: #575757;
+    font-family: "160";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+`;
 //workspaceView화면 내 회고와 액션아이템 출력 컴포넌트
 function RetrospectInWorkspace() {
     const [userInfo, setUserInfo] = useRecoilState(loginUserState);
     const [tasks, setTasks] = useRecoilState(RetrospectData);
-    const state = true;
+    const state = false;
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
     const workspaceId = searchParams.get("workspaceId");
@@ -30,11 +76,7 @@ function RetrospectInWorkspace() {
             {/*Div for retrospectList height=833*/}
 
             <AddArea to="/RetrospectCreate">
-                <Img
-                    width="44px"
-                    height="44px"
-                    src="/Img/WorkspaceView/ph_plus-bold.png"
-                />
+                <Img width="44px" height="44px" src={PlusBold} />
                 <WordDiv>회고생성</WordDiv>
             </AddArea>
             {tasks.length >= 1 &&
@@ -58,17 +100,9 @@ function RetrospectInWorkspace() {
                                         state ? (
                                             // TeamEvaluation이 완료된 경우
                                             <>
-                                                <Div
-                                                    color="#7F7F7F"
-                                                    fontWeight="400"
-                                                    fontFamily="WefontGothic(OTF)"
-                                                    fontSize="14px"
-                                                    textAlign="center"
-                                                    alignItems="center"
-                                                    margin="0 0 3.8vh 0"
-                                                >
+                                                <NameIsValueDiv>
                                                     {task.name}
-                                                </Div>
+                                                </NameIsValueDiv>
                                                 <TwoResultChip>
                                                     “서로에 대한 존중과 신뢰가
                                                     있는”
@@ -80,35 +114,25 @@ function RetrospectInWorkspace() {
                                         ) : (
                                             // TeamEvaluation이 완료되지 않은 경우
                                             <>
-                                                <Div
-                                                    color="#7F7F7F"
-                                                    fontWeight="400"
-                                                    fontFamily="WefontGothic(OTF)"
-                                                    fontSize="14px"
-                                                    textAlign="center"
-                                                    alignItems="center"
-                                                    margin="0 0 .7vh 0"
-                                                >
+                                                <NameIsNotDiv>
                                                     {task.name}
-                                                </Div>
-                                                <Div
-                                                    color="var(--main_red, #EA4336)"
-                                                    fontFamily=" WefontGothic(OTF)"
-                                                    fontSize="13.5px"
-                                                    fontStyle="normal"
-                                                    fontWeight="400"
-                                                    margin="0 0 4.5vh 0"
-                                                >
+                                                </NameIsNotDiv>
+                                                <SubIsNotValue>
                                                     이번 프로젝트는 어땠나요?
-                                                </Div>
+                                                </SubIsNotValue>
                                                 <Div
-                                                    color="#575757"
-                                                    fontFamily=" WefontGothic(OTF)"
-                                                    fontSize="24px"
-                                                    fontStyle="normal"
-                                                    fontWeight="400"
+                                                    width="auto"
+                                                    height="2.7vh"
                                                 >
-                                                    “_____________한 팀”
+                                                    <EmptyValue>“</EmptyValue>
+                                                    <Div
+                                                        width="6.9vw"
+                                                        height="100%"
+                                                        borderBottom="2px solid #575757"
+                                                    ></Div>
+                                                    <EmptyValue>
+                                                        한 팀”
+                                                    </EmptyValue>
                                                 </Div>
                                             </>
                                         )
@@ -117,12 +141,14 @@ function RetrospectInWorkspace() {
 
                                 {/*Div for 3 chip, 조회버튼*/}
                                 <RightSide>
-                                    <ViewButton to={`/RetrospectWrite?userId=${userInfo.appUser.id}&workspaceId=${workspaceId}&retrospectId=${task.id}`}>
+                                    <ViewButton
+                                        to={`/RetrospectWrite?userId=${userInfo.appUser.id}&workspaceId=${workspaceId}&retrospectId=${task.id}`}
+                                    >
                                         작성
                                         <Img
                                             width="2.6vh"
                                             height="2.6vh"
-                                            src="/img/WorkspaceView/arrowPink.png"
+                                            src={ArrowPink}
                                         />
                                     </ViewButton>
                                     <WriteButton to="/RetrospectView">
@@ -130,7 +156,7 @@ function RetrospectInWorkspace() {
                                         <Img
                                             width="2.6vh"
                                             height="2.6vh"
-                                            src="/img/WorkspaceView/arrowPink.png"
+                                            src={ArrowPink}
                                         />
                                     </WriteButton>
                                 </RightSide>
@@ -159,7 +185,7 @@ const WordDiv = styled.div`
     height: 2.2vh;
     color: #6f6f6f;
     text-align: center;
-    font-family: WefontGothic(OTF);
+    font-family: "160";
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -194,7 +220,7 @@ const TwoResultChip = styled.div`
     width: auto;
     height: 2.6vh;
     color: #575757;
-    font-family: WefontGothic(OTF);
+    font-family: "160";
     font-size: 24px;
     font-style: normal;
     font-weight: 400;
@@ -220,7 +246,7 @@ const ViewButton = styled(Link)`
     justify-content: center;
     display: flex;
     color: var(--main_red, #ea4336);
-    font-family: WefontGothic(OTF);
+    font-family: "160";
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
@@ -236,7 +262,7 @@ const WriteButton = styled(Link)`
     justify-content: center;
     display: flex;
     color: var(--main_red, #ea4336);
-    font-family: WefontGothic(OTF);
+    font-family: "160";
     font-size: 18px;
     font-style: normal;
     font-weight: 400;

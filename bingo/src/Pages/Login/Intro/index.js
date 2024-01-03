@@ -68,6 +68,7 @@ const LoginBtn = styled.button`
     background: url(${IntroBtn}) no-repeat;
     background-size: cover;
     margin-right: 3%;
+    cursor: pointer;
 `;
 
 const Intro = () => {

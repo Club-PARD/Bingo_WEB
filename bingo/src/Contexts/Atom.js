@@ -14,7 +14,10 @@ export const ProjectSelectedFileState = atom({
     default: "",
 });
 
-export const retrospectQuestionsListState = atom({ key: 'retrospectQuestionsList', default: null });
+export const retrospectQuestionsListState = atom({
+    key: "retrospectQuestionsList",
+    default: null,
+});
 
 export const loginUserState = atom({
     key: "uniqueLoginUserKey",
@@ -37,7 +40,7 @@ export const ChipData = atom({
     default: [
         {
             key: 0,
-            label: "서로에 대한 존중과 신뢰가 있는",
+            label: "서로에 대한\n존중과\n신뢰가 있는",
             flag: false,
         },
         {
@@ -47,12 +50,12 @@ export const ChipData = atom({
         },
         {
             key: 2,
-            label: "개선과 혁신을 추구하는",
+            label: "개선과 혁신을\n추구하는",
             flag: false,
         },
         {
             key: 3,
-            label: "배우고자 하는",
+            label: "배우고자\n하는",
             flag: false,
         },
         {
@@ -62,22 +65,22 @@ export const ChipData = atom({
         },
         {
             key: 5,
-            label: "개인의 역할이 뚜렷한",
+            label: "개인의 역할이\n뚜렷한",
             flag: false,
         },
         {
             key: 6,
-            label: "목표와 성과가 명확한",
+            label: "목표와\n성과가 명확한",
             flag: false,
         },
         {
             key: 7,
-            label: "모두가 협업하는",
+            label: "모두가\n협업하는",
             flag: false,
         },
         {
             key: 8,
-            label: "일과 삶의 균형이 있는",
+            label: "일과 삶의\n균형이 있는",
             flag: false,
         },
     ],
