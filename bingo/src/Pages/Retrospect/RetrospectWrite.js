@@ -27,7 +27,12 @@ function RetrospectWrite() {
     const retrospectId = queryParams.get("retrospectId");
 
     const [retrospectQuestionsList, setRetrospectQuestionsList] = useRecoilState(retrospectQuestionsListState);
+    const [isOpenPage, setIsOpenPage] = useState(false);
 
+    const handleChangeOpenPage = () => {
+        setIsOpenPage((prevIsOpenPage) => !prevIsOpenPage);
+    }
+    
     useEffect(() => {
         const retrospectResult = async () => {
             try {
@@ -42,7 +47,7 @@ function RetrospectWrite() {
         retrospectResult();
     }, [userId, workspaceId, retrospectId]); // 의존성 배열 추가
 
-    console.log("retrospectQuestionsList Data", retrospectQuestionsList);
+    console.log("retrospectQuestionsList Data", retrospectQuestionsList);   
     return (
         <Div
             display="block"
@@ -55,9 +60,9 @@ function RetrospectWrite() {
             }}
         >
             {/* 회고 작성 페이지 */}
-            <RetrospectWriteText retrospectQuestionsList={retrospectQuestionsList} userId={userId} workspaceId={workspaceId} retrospectId={retrospectId} />
+            <RetrospectWriteText userId={userId} workspaceId={workspaceId} retrospectId={retrospectId} />
             {/* 팀 평가 페이지 */}
-            {/* <TeamEvaluation workspaceId={workspaceId} /> */}
+            <TeamEvaluation workspaceId={workspaceId} />
         </Div>
     );
 }

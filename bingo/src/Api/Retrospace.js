@@ -41,15 +41,21 @@ export const getRetrospect = async (e) => {
     }
 };
 
-// export const postRetrospect = async (e) => {
-//     try {
-//         const response = await axios.post(
-//             ``
-//         );
+export const postRetrospect = async (e) => {
 
-//         console.log("post result", response);
+    const data = {
+        "appUserId": 2,
+        "projectId": 17,
+        "templateId": 36,
+        "answerList": [{"id" : 0, "subQuestionId" : 0, "ans" : "22차 회고 답변1"},{"id" : 0, "subQuestionId" : 0, "ans" : "22차 회고 답변2"},{"id" : 0, "subQuestionId" : 0, "ans" : "22차 회고 답변3"},{"id" : 0, "subQuestionId" : 0, "ans" : "22차 회고 답변4"},{"id" : 0, "subQuestionId" : 0, "ans" : "22차 회고 답변5"},{"id" : 0, "subQuestionId" : 0, "ans" : "22차 회고 답변6"},{"id" : 0, "subQuestionId" : 0, "ans" : "22차 회고 답변7"},{"id" : 0, "subQuestionId" : 0, "ans" : "22차 회고 답변8"},{"id" : 0, "subQuestionId" : 0, "ans" : "22차 회고 답변9"},]
+    }
+    console.log("data 체크 ", data);
+    try {
+        await axios.post(
+            `${process.env.REACT_APP_URL}api/v1/retrospect/write`, data
+        );
 
-//     } catch(error) {
-//         throw "postRetrospect Error " + error;
-//     }
-// }
+    } catch(error) {
+        throw "postRetrospect Error > " + error;
+    }
+}
