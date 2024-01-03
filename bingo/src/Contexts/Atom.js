@@ -1,5 +1,10 @@
+/* eslint-disable */
+
 // atom.js
 import { atom } from "recoil";
+import { recoilPersist } from "recoil-persist";
+
+const {persistAtom} = recoilPersist();
 
 // test
 export const countState = atom({ key: "counter", default: 0 });
@@ -21,18 +26,22 @@ export const retrospectQuestionsListState = atom({
 
 export const loginUserState = atom({
     key: "uniqueLoginUserKey",
-    default: {
+    default: () => ({
         exprTime: 10000,
         appUser: {
             email: "",
             name: "",
             token: "",
+            id: "",
             answerList: [],
             enrollmentList: [],
             subQuestionList: [],
         },
-    },
+    }),
+    effects_UNSTABLE: [persistAtom],
 });
+
+
 
 // team evaluation in BingoBoard
 export const ChipData = atom({

@@ -8,7 +8,10 @@ import { useNavigate } from "react-router-dom";
 export const getAllRetrospect = async (e, navigate) => {
     try {
         const response = await axios.get(
-            `${process.env.REACT_APP_URL}template/project/${e.projectId}`
+            `${process.env.REACT_APP_URL}template/project/${e.projectId}`, 
+            {
+              headers: { Authorization:"Bearer "+ localStorage.getItem("email") } ,
+            }
         );
         // console.log("Result", response.data);
 
@@ -29,7 +32,10 @@ export const getRetrospect = async (e) => {
 
     try {
         const response = await axios.get(
-            `${process.env.REACT_APP_URL}template/project/${e.workspaceId}/template/${e.retrospectId}`
+            `${process.env.REACT_APP_URL}template/project/${e.workspaceId}/template/${e.retrospectId}`, 
+            {
+              headers: { Authorization:"Bearer "+ localStorage.getItem("email") } ,
+            }
         );
         // console.log("axios", response.data);
         return response.data;
@@ -66,7 +72,10 @@ export const postRetrospect = async (e) => {
     console.log("data 체크 ", data);
     try {
         await axios.post(
-            `${process.env.REACT_APP_URL}retrospect/write`, data
+            `${process.env.REACT_APP_URL}retrospect/write`, data, 
+            {
+              headers: { Authorization:"Bearer "+ localStorage.getItem("email") } ,
+            }
         );
 
     } catch(error) {
