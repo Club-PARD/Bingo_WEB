@@ -11,7 +11,7 @@ export const login = async (decodedToken) => {
   // console.log('받아온 값 ', data);
   try {
     const response = await axios.post(
-      `${process.env.REACT_APP_URL}api/v1/auth/signIn`, data
+      `http://172.17.188.80:8080/api/v1/auth/signIn`, data
     )
 
     console.log("API 성공!");
@@ -32,7 +32,7 @@ export const login = async (decodedToken) => {
 export const getUserData = async () => {
   try {
     const response = await axios.get(
-      `${process.env.REACT_APP_URL}api/v1/appUser/2`,
+      `http://172.17.188.80:8080/api/v1/appUser/2`,
     );
     
     console.log(response.data);

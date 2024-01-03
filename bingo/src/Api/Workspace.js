@@ -7,21 +7,33 @@ const WorkspaceData = {
 };
 
 // 새로운 워크스페이스 생성 API
-// name. desc. code 를 받아와서 post로 보낸다 -> response data를 받는다 (제대로 갔는지 확인용)
-export const createWorkspace = async (data) => {
+// name. desc. code + userid, 빙고 형용사 리스트 를 받아와서 post로 보낸다 -> response data를 받는다 (제대로 갔는지 확인용)
+export const createWorkspace = async (newWorkspace) => {
+  const chipData = 
+    [
+        "서로에 대한 존중과 신뢰가 있는",
+        "소통이 활발한",
+        "개선과 혁신을 추구하는",
+        "배우고자 하는",
+        "열정 있는",
+        "개인의 역할이 뚜렷한",
+        "목표와 성과가 명확한",
+        "모두가 협업하는",
+        "일과 삶의 균형이 있는",
+    ];
   const postData = {
-    name: data.title,
-    description: data.desc,
-    code: data.code,
+    userId : newWorkspace.userId,
+    name: newWorkspace.name,
+    description: newWorkspace.desc,
+    code: newWorkspace.code,
+    tagList : chipData ,
   };
   try {
     const response = await axios.post(
-      `${process.env.REACT_APP_URL}api/v1/project`,
+      `http://172.17.188.80:8080/api/v1/project`,
       postData
     );
-
     console.log(response.data);
-
     return response.data;
   } catch (error) {
     alert("생성 중 오류 발생했습니다");
@@ -36,7 +48,7 @@ export const createWorkspace = async (data) => {
 export const getAllProjects = async (e, navigate) => {
   try {
     const response = await axios.get(
-      `${process.env.REACT_APP_URL}api/v1/project/` + e.userid
+      `http://172.17.188.80:8080/api/v1/project/` + e.userid
     );
 
     return response.data;
@@ -55,7 +67,7 @@ export const getProject = async () => {
 
   try {
     const response = await axios.get(
-      `${process.env.REACT_APP_URL}api/v1/project`,
+      `http://172.17.188.80:8080/api/v1/project`,
       getData
     );
 
@@ -78,7 +90,7 @@ export const postProject = async (data) => {
     }
     try {
         const response = await axios.post(
-            `${process.env.REACT_APP_URL}api/v1/enrollment`,
+            `http://172.17.188.80:8080/api/v1/enrollment`,
             postData
         )
     return console.log(response.data);

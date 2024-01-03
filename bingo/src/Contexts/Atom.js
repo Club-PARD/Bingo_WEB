@@ -108,7 +108,7 @@ export const UserList = atom({
 export const retrospectiveState = atom({
     key: "retrospective",
     default: {
-        retrospectTitle: "안녕", // 회고 타이틀
+        retrospectTitle: "회고 이름을 입력하세요", // 회고 타이틀
         selectedWays: "KPT", // 선택된 템플릿 방식 (KPT, 4LS, 5F)
         questions: [
             {

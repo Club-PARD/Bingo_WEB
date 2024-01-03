@@ -10,13 +10,44 @@ import { WorkspaceData, loginUserState } from "../../../Contexts/Atom.js";
 import { useRecoilState } from "recoil";
 import { getAllProjects } from "../../../Api/Workspace.js";
 import { useNavigate } from "react-router";
+import { createWorkspace } from "../../../Api/Workspace.js";
+import axios from "axios";
 
 const WorkspaceList = () => {
+    const [file, setFile] = useState(null);
+
+    const handleFileChange = (event) => {
+      setFile(event.target.files[0]);
+    };
+  
+    const handleUpload = async () => {
+      try {
+        const formData = new FormData();
+        formData.append("file", file);
+  
+        const response = await fetch('http://3.34.44.0:8080/api/v1/upload', {
+          method: 'POST',
+          body: formData,
+        });
+        
+        if (response.ok) {
+          const result = await response.text(); // 또는 response.url 등을 사용
+          console.log('파일 업로드 성공:', result);
+        } else {
+          console.error('파일 업로드 실패:', response.statusText);
+        }
+        
+      } catch (error) {
+        console.error("파일 업로드 중 에러:", error);
+      }
+    };
+
     const [userInfo, setUserInfo] = useRecoilState(loginUserState);
     const [titleEmpty, setTitleEmpty] = useState(false);
     const [descEmpty, setDescEmpty] = useState(false);
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [workspaceData, setWorkspaceData] = useRecoilState(WorkspaceData);
+    
     const openModal = () => {
         setModalIsOpen(true);
         // Modal이 열릴 때 상태 초기화
@@ -54,10 +85,12 @@ const WorkspaceList = () => {
         const newWorkspace = {
             name: title,
             desc: desc,
-            picture: selectedFile ? selectedFile.name : "", // 이미지 파일명 저장 (선택된 파일이 없으면 빈 문자열),
+            picture: file ? file.name : "", // 이미지 파일명 저장 (선택된 파일이 없으면 빈 문자열),
             code: randomCode,
+            userId : userInfo.appUser.id,
         };
-
+        console.log("NEW", newWorkspace);
+        createWorkspace(newWorkspace);
         // 기존 WorkspaceData 배열에 새로운 워크스페이스 데이터 추가
         setWorkspaceData((prevData) => [...prevData, newWorkspace]);
     };
@@ -78,7 +111,11 @@ const WorkspaceList = () => {
     };
 
     const handleButtonClick = () => {
-        fileInputRef.current && fileInputRef.current.click();
+        if (fileInputRef.current) {
+            fileInputRef.current.style.display = 'block'; // 파일 선택창을 보이도록 변경
+            fileInputRef.current.click();
+            fileInputRef.current.style.display = 'none'; // 다시 숨김으로 변경
+        }
     };
     const [inviteModalIsOpen, setInviteModalIsOpen] = useState(false);
     const openInviteModal = () => {
@@ -105,7 +142,7 @@ const WorkspaceList = () => {
         fetchData();
 
         console.log(userInfo);
-    }, []); // 빈 배열을 전달하여 컴포넌트가 마운트될 때만 실행
+    }, [workspaceData.length]); // 빈 배열을 전달하여 컴포넌트가 마운트될 때만 실행
 
     return (
         <Div
@@ -330,35 +367,32 @@ const WorkspaceList = () => {
                             <Input
                                 type="file"
                                 style={{
-                                    display: "none",
+                                    // display: "",
                                 }}
                                 ref={fileInputRef}
-                                onChange={handleFileSelect}
+                                accept="image/*"
+                                onChange={handleFileChange}
                             />
                             <Div alignItems="center">
-                                <FileInputButton onClick={handleButtonClick}>
-                                    {selectedFile ? (
-                                        <>
-                                            <FileInputText>
-                                                {selectedFile.name}
-                                            </FileInputText>
-                                            <FileInputImg
-                                                src="img\WorkspaceList\close.png"
-                                                onClick={(e) => {
-                                                    e.stopPropagation(); // 이벤트 버블링을 막습니다.
-                                                    setSelectedFile(null); // selectedFile을 초기화합니다.
-                                                }}
-                                            />
-                                        </>
-                                    ) : (
-                                        <>
-                                            <FileInputImg src="img\WorkspaceList\arrow_upward.png" />
-                                            <FileInputText>
-                                                파일 업로드
-                                            </FileInputText>
-                                        </>
-                                    )}
-                                </FileInputButton>
+                            <FileInputButton onClick={handleUpload}>
+                                {file ? (
+                                    <>
+                                        <FileInputText>{file.name}</FileInputText>
+                                        <FileInputImg
+                                            src="img\WorkspaceList\close.png"
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                setFile(null);
+                                            }}
+                                        />
+                                    </>
+                                ) : (
+                                <>
+                                    <FileInputImg src="img\WorkspaceList\arrow_upward.png" />
+                                    <FileInputText>파일 업로드</FileInputText>
+                                </>
+                                )}
+                            </FileInputButton>
                             </Div>
                         </Div>
 
