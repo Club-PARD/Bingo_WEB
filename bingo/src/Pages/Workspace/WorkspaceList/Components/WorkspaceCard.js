@@ -11,9 +11,9 @@ const CardLink = styled(Link)`
     justify-content: center;
 `;
 const CardBorder = styled.div`
+    margin-top: 2%;
     display: flex;
     align-items: center;
-    margin: 2% 0 0 1.3vw;
     border-radius: 32px;
     width: 24vw;
     height: 21vh;
@@ -65,7 +65,7 @@ const Desc = styled.div`
     font-size: 17px;
 `;
 
-const CardImg = styled.div`
+const CardImg = styled.img`
     height: 14vh;
     width: 14vh;
     flex-direction: column;
@@ -78,7 +78,7 @@ const WorkspaceCard = ({ workspaceId, name, desc, picture, code, period }) => (
     <CardBorder>
         <CardLink to={`/WorkspaceView?workspaceId=${workspaceId}`}>
             <ImgBox>
-                <CardImg src="\img\WorkspaceList\add.png" alt={code} />
+                <CardImg src={picture} alt={code} />
             </ImgBox>
             <TextBox>
                 <TextSet>
