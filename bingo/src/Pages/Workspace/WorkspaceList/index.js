@@ -13,6 +13,7 @@ import { useNavigate } from "react-router";
 import { createWorkspace , handleUpload } from "../../../Api/Workspace.js";
 import axios from "axios";
 import WorkspaceBanner from "../../../assets/Img/WorkspaceList/Workspace_Banner.png";
+import { useRecoilValue } from "recoil";
 
 const WorkspaceList = () => {
     const [file, setFile] = useState(null);
@@ -21,6 +22,10 @@ const WorkspaceList = () => {
       setFile(event.target.files[0]);
     };
 
+    const keepUserId = useRecoilValue(loginUserState);
+    const keepuserId = keepUserId.appUser.id;
+    console.log("KUID",keepuserId);
+
     const [userInfo, setUserInfo] = useRecoilState(loginUserState);
     const [titleEmpty, setTitleEmpty] = useState(false);
     const [descEmpty, setDescEmpty] = useState(false);
@@ -28,6 +33,17 @@ const WorkspaceList = () => {
     const [workspaceData, setWorkspaceData] = useRecoilState(WorkspaceData);
     const [isCreate, setisCreate] = useState(false);
     
+    // 페이지 새로고침 함수 정의
+    const refreshPage = () => {
+        window.location.reload();
+    };
+
+    // 워크스페이스 생성 후 페이지 새로고침
+    useEffect(() => {
+        if (isCreate) {
+            refreshPage();
+        }
+    }, [isCreate]);
 
     const openModal = () => {
         setModalIsOpen(true);
@@ -132,28 +148,53 @@ const WorkspaceList = () => {
         setInviteModalIsOpen(false);
     };
     const navigate = useNavigate();
+    
     useEffect(() => {
         const fetchData = async () => {
-            try {
-                const projects = await getAllProjects(
-                    {
-                        userid: userInfo.appUser.id,
-                    },
-                    navigate
-                );
-                console.log("프로젝트 목록", projects);
-                setWorkspaceData(projects);
-            } catch (error) {
-                // 에러 핸들링
-                console.error("Error fetching projects:", error);
-            }
+          try {
+            const projects = await getAllProjects(
+              {
+                userid: userInfo.appUser.id,
+              },
+              navigate
+            );
+            console.log("프로젝트 목록", projects);
+            setWorkspaceData(projects);
+          } catch (error) {
+            // 에러 핸들링
+            console.error("Error fetching projects:", error);
+          }
         };
+      
+        if (userInfo.appUser.id) {
+          fetchData();
+          console.log(userInfo);
+        }
+      }, [userInfo.appUser.id, isCreate]);
 
-        fetchData();
-
-        console.log(userInfo);
-    }, [isCreate]); // 빈 배열을 전달하여 컴포넌트가 마운트될 때만 실행
-
+    // useEffect(() => {
+    //     const fetchData = async () => {
+    //       try {
+    //         const projects = await getAllProjects(
+    //           {
+    //             userid: userInfo.appUser.id,
+    //           },
+    //           navigate
+    //         );
+    //         console.log("프로젝트 목록", projects);
+    //         setWorkspaceData(projects);
+    //       } catch (error) {
+    //         // 에러 핸들링
+    //         console.error("Error fetching projects:", error);
+    //       }
+    //     };
+      
+    //     fetchData();
+      
+    //     console.log(userInfo.appUser.id);
+    //   }, [isCreate, userInfo.appUser.id]); // userInfo.appUser.id도 의존성에 추가
+      
+      
     return (
         <Div
             display="flex"
