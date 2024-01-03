@@ -22,10 +22,9 @@ const GoogleLoginButton = () => {
 
     return (
         <>
-            {/* <GoogleOAuthProvider
+            <GoogleOAuthProvider
                 clientId={process.env.REACT_APP_GOOGLE_AUTH_CLIENT_ID}
-            > */}
-            <GoogleOAuthProvider clientId="797219813265-6ttnkh7is7q3ieb6ek4p0ngn6d5pa0pf.apps.googleusercontent.com">
+            >
                 <GoogleLogin
                     onSuccess={async (credentialResponse) => {
                         const decodedToken = jwtDecode(
