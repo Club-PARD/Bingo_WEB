@@ -591,7 +591,7 @@ const RightHead = styled.div`
 `;
 const SpanCreate = styled.span`
     color: #838383;
-    //font-family: WefontGothic(OTF);
+    font-family: WefontGothic(OTF);
     font-size: 16px;
     font-style: normal;
     font-weight: 400;

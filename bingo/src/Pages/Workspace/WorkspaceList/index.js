@@ -10,15 +10,45 @@ import { WorkspaceData, loginUserState } from "../../../Contexts/Atom.js";
 import { useRecoilState } from "recoil";
 import { getAllProjects } from "../../../Api/Workspace.js";
 import { useNavigate } from "react-router";
-import { createWorkspace , handleUpload } from "../../../Api/Workspace.js";
+import { createWorkspace, handleUpload } from "../../../Api/Workspace.js";
 import axios from "axios";
 import WorkspaceBanner from "../../../assets/Img/WorkspaceList/Workspace_Banner.png";
+import "../../../font.css";
+import Add from "../../../assets/Img/WorkspaceList/add.png";
 
+const TextDescDiv = styled.div`
+    color: #9c9c9c;
+    height: 3%;
+    font-size: 16px;
+    width: auto;
+    align-items: center;
+    margin: 5% 0 0 0;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 24px */
+    letter-spacing: -0.16px;
+    font-family: "140";
+`;
+const TextTitleDiv = styled.div`
+    width: auto;
+    border-radius: 15px;
+    align-items: center;
+    color: #6a6a6a;
+    font-family: "140";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 30px */
+    letter-spacing: -0.2px;
+`;
+const CreateTextDiv = styled(Div)`
+    font-family: "160";
+`;
 const WorkspaceList = () => {
     const [file, setFile] = useState(null);
 
     const handleFileChange = (event) => {
-      setFile(event.target.files[0]);
+        setFile(event.target.files[0]);
     };
 
     const [userInfo, setUserInfo] = useRecoilState(loginUserState);
@@ -27,7 +57,6 @@ const WorkspaceList = () => {
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [workspaceData, setWorkspaceData] = useRecoilState(WorkspaceData);
     const [isCreate, setisCreate] = useState(false);
-    
 
     const openModal = () => {
         setModalIsOpen(true);
@@ -68,7 +97,7 @@ const WorkspaceList = () => {
             desc: desc,
             picture: file ? file.name : "", // 이미지 파일명 저장 (선택된 파일이 없으면 빈 문자열),
             code: randomCode,
-            userId : userInfo.appUser.id,
+            userId: userInfo.appUser.id,
         };
         console.log("NEW", newWorkspace);
         setisCreate(true);
@@ -95,33 +124,32 @@ const WorkspaceList = () => {
 
     // 워크스페이스 사진 추가
     const handleUpload = async () => {
-        console.log("실행",file);
+        console.log("실행", file);
         try {
-          const formData = new FormData();
-          formData.append("file", file);
-    
-          const response = await fetch(`${process.env.REACT_APP_URL}upload`, {
-            method: 'POST',
-            body: formData,
-          });
-          
-          if (response.ok) {
-            const result = await response.text(); // 또는 response.url 등을 사용
-            console.log('파일 업로드 성공:', result);
-          } else {
-            console.error('파일 업로드 실패:', response.statusText);
-          }
-          
+            const formData = new FormData();
+            formData.append("file", file);
+
+            const response = await fetch(`${process.env.REACT_APP_URL}upload`, {
+                method: "POST",
+                body: formData,
+            });
+
+            if (response.ok) {
+                const result = await response.text(); // 또는 response.url 등을 사용
+                console.log("파일 업로드 성공:", result);
+            } else {
+                console.error("파일 업로드 실패:", response.statusText);
+            }
         } catch (error) {
-          console.error("파일 업로드 중 에러:", error);
+            console.error("파일 업로드 중 에러:", error);
         }
-      };
+    };
 
     const handleButtonClick = () => {
         if (fileInputRef.current) {
-            fileInputRef.current.style.display = 'block'; // 파일 선택창을 보이도록 변경
+            fileInputRef.current.style.display = "block"; // 파일 선택창을 보이도록 변경
             fileInputRef.current.click();
-            fileInputRef.current.style.display = 'none'; // 다시 숨김으로 변경
+            fileInputRef.current.style.display = "none"; // 다시 숨김으로 변경
         }
     };
     const [inviteModalIsOpen, setInviteModalIsOpen] = useState(false);
@@ -182,25 +210,11 @@ const WorkspaceList = () => {
 
                 <InnerHeader>
                     <div>
-                        <Div
-                            fontSize="20px"
-                            width="auto"
-                            borderRadius="15px"
-                            alignItems="center"
-                        >
-                            프로젝트 리스트
-                        </Div>
-                        <Div
-                            color="#9C9C9C"
-                            height="3%"
-                            fontSize="16px"
-                            width="auto"
-                            alignItems="center"
-                            margin="5% 0 0 0"
-                        >
+                        <TextTitleDiv>프로젝트 리스트</TextTitleDiv>
+                        <TextDescDiv>
                             프로젝트를 생성하여 우리만의 솔직한 회고를 진행해
                             보세요!
-                        </Div>
+                        </TextDescDiv>
                     </div>
 
                     <CodeBtn onClick={openInviteModal}>
@@ -223,7 +237,7 @@ const WorkspaceList = () => {
                 >
                     {/* 워크스페이스 생성버튼 */}
                     <Div
-                        margin="2% 0 0 0"
+                        margin="2vh 0 0 0"
                         flexDirection="column"
                         border="1px solid transparent"
                         borderRadius="32px"
@@ -236,14 +250,18 @@ const WorkspaceList = () => {
                         cursor="pointer"
                         fontSize="20px"
                     >
-                        <Img
-                            width="4.4vh"
-                            height="4.4vh"
-                            src="\img\WorkspaceList\add.png"
-                        />
-                        <div style={{ marginTop: "1vh", color: "#B3b3b3" }}>
+                        <Img width="4vh" height="4vh" src={Add} />
+                        <CreateTextDiv
+                            margin="1vh 0 0 0"
+                            color="#B3b3b3"
+                            textAlign="center"
+                            fontSize="20px"
+                            fontStyle="normal"
+                            fontWeight="400"
+                            lineHeight="150%" /* 30px */
+                        >
                             프로젝트 생성
-                        </div>
+                        </CreateTextDiv>
                     </Div>
                     {/* 현재는 더미값이지만 장기적으로는 워크스페이스 데이터 기반으로 카드 출력  */}
                     {/* {console.log("워크스페이스 정보 : ", workspaceData)} */}
@@ -253,7 +271,7 @@ const WorkspaceList = () => {
                             .reverse()
                             .map((workspace, index) => (
                                 <WorkspaceCard
-                                    key={index}
+                                    number={index}
                                     workspaceId={workspace.id}
                                     name={workspace.name}
                                     desc={workspace.description}
@@ -377,32 +395,39 @@ const WorkspaceList = () => {
                             <ModalLabel>프로젝트 사진</ModalLabel>
                             <Input
                                 type="file"
-                                style={{
-                                    // display: "",
-                                }}
+                                style={
+                                    {
+                                        // display: "",
+                                    }
+                                }
                                 ref={fileInputRef}
                                 accept="image/*"
                                 onChange={handleFileChange}
                             />
                             <Div alignItems="center">
-                            <FileInputButton>
-                                {file ? (
-                                    <>
-                                        <FileInputText>{file.name}</FileInputText>
-                                        <FileInputImg src="img\WorkspaceList\close.png" onClick={(e) => {
-                                            e.stopPropagation();
-                                            setFile(null);
-                                            }}
-                                        />
-                                    </>
-                                ) : (
-                                <>
-                            <FileInputImg src="img\WorkspaceList\arrow_upward.png" />
-                            <FileInputText>파일 업로드</FileInputText>
-                                </>
+                                <FileInputButton>
+                                    {file ? (
+                                        <>
+                                            <FileInputText>
+                                                {file.name}
+                                            </FileInputText>
+                                            <FileInputImg
+                                                src="img\WorkspaceList\close.png"
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    setFile(null);
+                                                }}
+                                            />
+                                        </>
+                                    ) : (
+                                        <>
+                                            <FileInputImg src="img\WorkspaceList\arrow_upward.png" />
+                                            <FileInputText>
+                                                파일 업로드
+                                            </FileInputText>
+                                        </>
                                     )}
-                            </FileInputButton>
-
+                                </FileInputButton>
                             </Div>
                         </Div>
 
@@ -445,7 +470,9 @@ const WorkspaceList = () => {
                                 }
                             />
                         </ModalTitle>
-                        <ModalHeader onClick={handleUpload}>프로젝트 생성</ModalHeader>
+                        <ModalHeader onClick={handleUpload}>
+                            프로젝트 생성
+                        </ModalHeader>
                     </Div>
                 </Div>
             </Modal>
@@ -470,11 +497,16 @@ const InnerHeader = styled.div`
 const CodeBtn = styled.button`
     border-radius: 22.8px;
     border: 1.5px solid var(#222);
-    background-color: white;
-    color: #222;
+    background-color: #f9f9f9;
     height: 3.2vh;
     width: 7.8vw;
     margin-top: 2vh;
+    color: var(--sec_grey, #222);
+    font-family: "140";
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 22.5px */
 `;
 
 const ModalHeader = styled.div`
