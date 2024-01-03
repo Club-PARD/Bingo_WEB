@@ -163,9 +163,10 @@ const WorkspaceList = () => {
 
                 {/* 워크스페이스 카드 부분 */}
                 <Div
+                    display="flex"
+                    justifyContent="space-between"
                     flexDirection="row"
-                    alignContent="baseline"
-                    alignItems="center"
+                    alignItems="top"
                     height="96%"
                     width="75vw"
                     flexWrap="wrap"
@@ -233,7 +234,6 @@ const WorkspaceList = () => {
                         margin: "0",
                         width: "49vw",
                         height: "59vh",
-                        display: "flex",
                         border: "none",
                         //alignItems: "center",
                         overflowY: "hidden",
@@ -336,12 +336,29 @@ const WorkspaceList = () => {
                                 onChange={handleFileSelect}
                             />
                             <Div alignItems="center">
-                                <FileInputButton onClick={handleButtonClick} />
-                                {selectedFile && (
-                                    <SelectedFileName>
-                                        {selectedFile.name}
-                                    </SelectedFileName>
-                                )}
+                                <FileInputButton onClick={handleButtonClick}>
+                                    {selectedFile ? (
+                                        <>
+                                            <FileInputText>
+                                                {selectedFile.name}
+                                            </FileInputText>
+                                            <FileInputImg
+                                                src="img\WorkspaceList\close.png"
+                                                onClick={(e) => {
+                                                    e.stopPropagation(); // 이벤트 버블링을 막습니다.
+                                                    setSelectedFile(null); // selectedFile을 초기화합니다.
+                                                }}
+                                            />
+                                        </>
+                                    ) : (
+                                        <>
+                                            <FileInputImg src="img\WorkspaceList\arrow_upward.png" />
+                                            <FileInputText>
+                                                파일 업로드
+                                            </FileInputText>
+                                        </>
+                                    )}
+                                </FileInputButton>
                             </Div>
                         </Div>
 
@@ -351,6 +368,7 @@ const WorkspaceList = () => {
                                 프로젝트 설명 (30자 이내로 작성해 주세요)
                             </ModalLabel>
                             <CustomInput
+                                placeholder="우리팀은 그냥 최고지"
                                 type="text"
                                 height="6.5vh"
                                 value={desc}
@@ -369,6 +387,7 @@ const WorkspaceList = () => {
                         <ModalTitle>
                             <ModalLabel>프로젝트 이름</ModalLabel>
                             <CustomInput
+                                placeholder="빙고"
                                 type="text"
                                 height="6.5vh"
                                 value={title}
@@ -429,16 +448,31 @@ const BannerImg = styled.img`
     width: 100%;
     margin: 0 auto;
 `;
-const FileInputButton = styled.button`
-    height: 6vh;
-    width: 10vw;
-    font-size: 18px;
+const FileInputButton = styled.div`
+    height: 4.8vh;
+    width: auto;
+    display: flex;
     align-items: center;
+    box-sizing: border-box;
+    padding: 1.1vh 0.9vw;
     margin-top: 0.5%;
     border-radius: 40px;
+    background-color: #f0f0f0;
     border: none;
-    background-image: url("/img/WorkspaceList/FileUpload.png");
-    background-size: cover;
+`;
+const FileInputImg = styled.img`
+    width: 2.6vh;
+    height: 2.6vh;
+    margin: 0 0.1vw;
+`;
+const FileInputText = styled.div`
+    color: rgba(var(--sec_grey, #222), 0.8);
+    font-family: WefontGothic(OTF);
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    margin: 0 0.1vw;
+    line-height: 150%; /* 27px */
 `;
 const SelectedFileName = styled.span`
     font-size: 18px;
@@ -448,9 +482,20 @@ const CustomInput = styled(Input)`
     width: 43.4vw;
     background-color: #f0f0f0;
     margin: 0.5% 0 0 0;
-    font-size: 32px;
     border-radius: 24px;
-    border: 1px solid red;
+    padding: 1vh 1.4vw;
+    color: #222;
+    font-family: WefontGothic(OTF);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 160%; /* 32px */
+    letter-spacing: -0.2px;
+
+    &:focus {
+        border: 2px solid var(--main_red, #ea4336);
+        outline: none;
+    }
 `;
 const StyleModal = {
     overlay: {
