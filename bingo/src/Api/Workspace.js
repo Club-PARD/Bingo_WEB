@@ -48,7 +48,7 @@ export const createWorkspace = async (newWorkspace) => {
 export const getAllProjects = async (e, navigate) => {
     try {
         const response = await axios.get(
-            `${process.env.REACT_APP_URL}api/v1/project/` + e.userid
+            `${process.env.REACT_APP_URL}project/` + e.userid
         );
 
         return response.data;
@@ -67,7 +67,7 @@ export const getProject = async () => {
 
     try {
         const response = await axios.get(
-            `${process.env.REACT_APP_URL}api/v1/project`,
+            `${process.env.REACT_APP_URL}project`,
             getData
         );
 
@@ -79,26 +79,27 @@ export const getProject = async () => {
     }
 };
 
-// 워크스페이스 조인하기
-export const postProject = async (data) => {
-    const postData = {
-        // 실제 사용 시에는 7,14, "" 가 아니라 실제 정보를 연동하면 된다
-        userId: 7,
-        projectId: 22,
-        code: "",
-        role: "TEAM_LEADER",
-    };
-    try {
-        const response = await axios.post(
-            `${process.env.REACT_APP_URL}enrollment`,
-            postData
-        );
-        return console.log(response.data);
-    } catch (error) {
-        console.log(error);
-        alert("팀원 직위 설정 중 오류가 발생했습니다");
-    }
-};
+// 워크스페이스 조인하기 
+// export const postProject = async (data) => {
+//     const postData = {
+//         // 실제 사용 시에는 7,14, "" 가 아니라 실제 정보를 연동하면 된다
+//         userId : 7,
+//         projectId : 22,
+//         code : "",
+//         role : "TEAM_LEADER",
+//     }
+//     try {
+//         const response = await axios.post(
+//             `${process.env.REACT_APP_URL}enrollment`,
+//             postData
+//         )
+//     return console.log(response.data);
+//     }
+//     catch (error) {
+//         console.log(error);
+//         alert ("팀원 직위 설정 중 오류가 발생했습니다");
+//     }  
+// };
 
 // 워크스페이스 사진 추가
 export const handleUpload = async (file) => {

@@ -4,8 +4,6 @@ import { Card } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import "../../../../font.css";
-import Dummy from "../../../../assets/Img/WorkspaceList/post3.jpg";
 
 const CardLink = styled(Link)`
     height: 100%;
@@ -16,13 +14,16 @@ const CardLink = styled(Link)`
 `;
 const CardBorder = styled.div`
     margin: ${(props) =>
-        props.index % 3 === 0 ? "2vh 1.3vw 0 1.3vw" : "2vh 0 0 0"};
+        props.index % 3 === (props.total % 3) - 2
+            ? "2% 1.3vw 0 1.3vw"
+            : "2% 0 0 0"};
     display: flex;
     align-items: center;
     border-radius: 32px;
     width: 24vw;
     height: 21vh;
-    background-color: #f8f0ef;
+    background-color: ${(props) =>
+        props.index % 3 === props.total % 3 ? "#f8f0ef" : "black"};
     border: 1px solid transparent;
 `;
 const ImgBox = styled.div`
@@ -39,7 +40,7 @@ const ImgBox = styled.div`
     /* box-sizing: border-box; */
 `;
 const TextBox = styled.div`
-    width: 9vw;
+    width: 8.7vw;
     height: 100%;
     /* border : 1px solid blue; */
     display: flex;
@@ -59,28 +60,15 @@ const TextSet = styled.div`
 const Content = styled.div`
     color: #f2aba5;
     font-size: 14px;
-    margin-bottom: 0vh;
-    font-family: "160";
-    font-style: normal;
-    font-weight: 400;
-    line-height: 150%; /* 21px */
-    letter-spacing: -0.14px;
+    margin-bottom: 0.5vh;
 `;
 const Title = styled.div`
-    color: var(--sec_grey, #222);
-    font-family: "160";
+    color: #222;
     font-size: 24px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 150%; /* 36px */
 `;
 const Desc = styled.div`
-    color: #787474;
-    font-family: "160";
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 150%; /* 24px */
+    color: #222;
+    font-size: 17px;
 `;
 
 const CardImg = styled.img`
@@ -93,7 +81,7 @@ const CardImg = styled.img`
 `;
 
 const WorkspaceCard = ({
-    number,
+    key,
     workspaceId,
     name,
     desc,
@@ -101,27 +89,32 @@ const WorkspaceCard = ({
     code,
     period,
     total,
-}) => {
-    console.log("number:", number); // key 출력 코드 추가
-    return (
-        <CardBorder index={number}>
-            <CardLink to={`/WorkspaceView?workspaceId=${workspaceId}`}>
-                <ImgBox>
-                    <CardImg src={Dummy} alt={code} />
-                </ImgBox>
-                <TextBox>
-                    <TextSet>
-                        <Content>프로젝트 타이틀</Content>
-                        <Title>{name}</Title>
-                    </TextSet>
-                    <TextSet>
-                        <Content>프로젝트 설명</Content>
-                        <Desc>{desc}</Desc>
-                    </TextSet>
-                </TextBox>
-            </CardLink>
-        </CardBorder>
-    );
-};
+}) => (
+    <CardBorder index={key} total={total}>
+        <CardLink to={`/WorkspaceView?workspaceId=${workspaceId}`}>
+            <ImgBox>
+                <CardImg src="\Img\WorkspaceList\post3.jpg" alt={code} />
+            </ImgBox>
+            <TextBox>
+                <TextSet>
+                    <Content>프로젝트 타이틀</Content>
+                    <Title>{name}</Title>
+                </TextSet>
+                <TextSet>
+                    <Content>프로젝트 설명</Content>
+                    <div
+                        style={{
+                            fontSize: "16px",
+                            lineHeight: "150%",
+                            color: "#787474",
+                        }}
+                    >
+                        {desc}
+                    </div>
+                </TextSet>
+            </TextBox>
+        </CardLink>
+    </CardBorder>
+);
 
 export default WorkspaceCard;
