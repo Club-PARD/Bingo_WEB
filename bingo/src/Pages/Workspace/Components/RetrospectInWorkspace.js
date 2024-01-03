@@ -82,7 +82,7 @@ function RetrospectInWorkspace() {
                                 </LeftSide>
                                 {/*Div for 3 chip, 조회버튼*/}
                                 <RightSide>
-                                    <ViewButton to={task.linktoWrite}>
+                                    <ViewButton to={`/RetrospectWrite?userId=${userInfo.appUser.id}&workspaceId=${workspaceId}&retrospectId=${task.id}`}>
                                         작성
                                         <Img
                                             width="2.6vh"

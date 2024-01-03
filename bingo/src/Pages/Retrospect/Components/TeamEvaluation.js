@@ -89,16 +89,16 @@ const ChipDiv = styled.div`
     background-color: red;
 `
 
-function TeamEvaluation() {    
+const TeamEvaluation = (e) =>  {    
     const [retrospective, setRetrospective] = useRecoilState(retrospectiveState);
     const navigate = useNavigate();
     const handleBeforeClick = () => {
         navigate("/RetrospectWriteText");
     };
     const [isFilled, setIsFilled] = useState(false);
-    const handleNextButtonClick = (e) => {
+    const handleNextButtonClick = () => {
         if (isFilled) { // isFilled가 true일 경우에만 다음 페이지로 이동
-            navigate("/WorkspaceView");
+            navigate(`/WorkspaceView?workspaceId=${e.workspaceId}`);
         }
     };
     return(

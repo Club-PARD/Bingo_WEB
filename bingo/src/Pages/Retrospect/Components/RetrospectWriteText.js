@@ -1,14 +1,16 @@
 /* eslint-disable */
 import styled from "styled-components";
 import Breadcrumb from "../../../Layout/Breadcrumb";
-import { retrospectiveState } from "../../../Contexts/Atom";
+import { WorkspaceData } from "../../../Contexts/Atom";
 import { useRecoilState } from "recoil";
 import { useNavigate } from 'react-router'
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { Div } from "../../../Components/NormalComponents/Section";
 import { Link } from "react-router-dom";
 import Modal from "react-modal";
 import { Button } from "../../../Components/NormalComponents/Form";
+import { ConstructionOutlined } from "@mui/icons-material";
+
 
 // 전체를 감싸는 div, 이 아래에 Header / Body / Footer로 나뉘어 있음
 const Whole = styled.div `
@@ -157,10 +159,18 @@ const Btn = styled.button `
     justify-content: center;
 `
 
-function RetrospectWriteText() {
+const RetrospectWriteText = (e) => {
+    // console.log(e.retrospectQuestionsList.questionList[0])
     // Recoil 상태 사용
-    const [retrospective, setRetrospective] = useRecoilState(retrospectiveState);
+    // const [retrospective, setRetrospective] = useRecoilState(retrospectiveState);
     const navigate = useNavigate();
+
+    const [workspaceData, setWorkspaceData] = useRecoilState(WorkspaceData);
+    
+
+    const filteredWorkspaces = workspaceData.find(workspace => workspace.id == e.workspaceId);
+    console.log("filteredWorkspaces Data", filteredWorkspaces);
+
     const [isFilled, setIsFilled] = useState(false);
     const checkIfAllFilled = (retrospective) => {
         for (let question of retrospective.questions) {
@@ -191,12 +201,15 @@ function RetrospectWriteText() {
     const closeModalCancle = () => {
         setModalCancleIsOpen(false);
     };
+
+    
+
     return (
         <Whole>
             {/* 상단바 */}
             <Header>
                 <LeftHead>
-                    <TitleDiv>{retrospective.retrospectTitle}</TitleDiv>
+                    <TitleDiv>{filteredWorkspaces.name}</TitleDiv>
                     {/* Breadcrumb은 현재 위치에 따라 달라진다 / 현위치 : 1 (회고 작성하기) */}
                     <Breadcrumb activeKey={1}/>
                 </LeftHead>
@@ -228,43 +241,44 @@ function RetrospectWriteText() {
                         fontStyle="normal"
                         fontWeight="400"
                         borderRadius="14px"
-                        >{retrospective.selectedWays}</Div>
+                    >{e.retrospectQuestionsList.templateType}</Div>
+
                     {
-                        retrospective
-                        .questions
-                        .map((data, index) => (
-                            data.title &&
+                        e.retrospectQuestionsList
+                        .questionList
+                            .map((data, index) => (
+                            // data.title &&
                             <Border key={index}>
                                 <RetroType>
-                                <RetroABC>{data.title[0]}</RetroABC>
-                                <RetroLabel>{data.title}</RetroLabel>
+                                    <RetroABC>{data.mainQuestion[0]}</RetroABC>
+                                    <RetroLabel>{data.mainQuestion}</RetroLabel>
                                 </RetroType>
                                 {
                                 data
-                                    .content
+                                    .subQuestionList
                                     .map((retro, index2) => (
-                                    retro.dataQ &&
+                                    // retro.dataQ &&
                                     <div key={index2}>
-                                        <RetroData>{retro.dataQ}</RetroData>
+                                        <RetroData>{retro.subQuestion}</RetroData>
                                         <RetroText
                                         placeholder="답변을 입력하세요..."
                                         onInput={resizeTextarea}
-                                        value={retro.dataA}
+                                        value={""}
                                         onChange={(e) => {
-                                            const updatedAnswers = { ...retrospective };
-                                            updatedAnswers.questions = [...updatedAnswers.questions];
-                                            updatedAnswers.questions[index] = {
-                                            id: index + 1,
-                                            content: [...(updatedAnswers.questions[index]?.content) || []],
-                                            };
-                                            updatedAnswers.questions[index].title = data.title;
-                                            updatedAnswers.questions[index].content[index2] = {
-                                            ...(updatedAnswers.questions[index]?.content[index2] || {}),
-                                            dataA: e.target.value,
-                                            }
-                                            setRetrospective(updatedAnswers);
-                                            checkIfAllFilled(updatedAnswers);
-                                            console.log(retrospective);
+                                            // const updatedAnswers = { ...retrospective };
+                                            // updatedAnswers.questions = [...updatedAnswers.questions];
+                                            // updatedAnswers.questions[index] = {
+                                            // id: index + 1,
+                                            // content: [...(updatedAnswers.questions[index]?.content) || []],
+                                            // };
+                                            // updatedAnswers.questions[index].title = data.title;
+                                            // updatedAnswers.questions[index].content[index2] = {
+                                            // ...(updatedAnswers.questions[index]?.content[index2] || {}),
+                                            // dataA: e.target.value,
+                                            // }
+                                            // setRetrospective(updatedAnswers);
+                                            // checkIfAllFilled(updatedAnswers);
+                                            // console.log(retrospective);
                                         }}
                                         />
                                     </div>
@@ -287,7 +301,7 @@ function RetrospectWriteText() {
             */}
             </BodyMom>
 
-            <CancleModal modalCancleIsOpen={modalCancleIsOpen} closeModalCancle={closeModalCancle} />
+            <CancleModal modalCancleIsOpen={modalCancleIsOpen} closeModalCancle={closeModalCancle} workspaceId={e.workspaceId} />
         </Whole>
     );
 }
@@ -326,7 +340,7 @@ const CancleModal = (e) => {
                 <ModalTextDiv>정말 나가시겠어요?</ModalTextDiv>
                 <ModalButtonDiv>
                     <ModalCloseButton onClick={e.closeModalCancle}>취소</ModalCloseButton>
-                    <ModalExitButton to="/WorkspaceView">나가기</ModalExitButton>
+                    <ModalExitButton to={`/WorkspaceView?workspaceId=${e.workspaceId}`}>나가기</ModalExitButton>
                 </ModalButtonDiv>
             </ModalLargest>
         </Modal>
