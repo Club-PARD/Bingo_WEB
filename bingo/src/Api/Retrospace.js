@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 
 // 리턴 된 값이 list 형태이므로 이걸로 map을 받는 컴포넌트들 만들기
 export const getAllRetrospect = async (e, navigate) => {
-    console.log("PID",e.projectId);
     try {
         const response = await axios.get(
             `http://172.17.188.80:8080/api/v1/template/project/${e.projectId}`
@@ -43,11 +42,26 @@ export const getRetrospect = async (e) => {
 
 export const postRetrospect = async (e) => {
 
+    const answerList = [];
+
+    e.retrospectQuestionsList.questionList.forEach((mainQuestion) => {
+        mainQuestion.subQuestionList.forEach((subQuestion) => {
+            if (subQuestion.answerResponse) {
+                answerList.push({
+                    id: 0, // 이 부분은 적절한 값을 넣어주셔야 합니다.
+                    subQuestionId: subQuestion.id,
+                    ans: subQuestion.answerResponse,
+                });
+            }
+        });
+    });
+
     const data = {
-        "appUserId": 2,
-        "projectId": 17,
-        "templateId": 36,
-        "answerList": [{"id" : 0, "subQuestionId" : 0, "ans" : "22차 회고 답변1"},{"id" : 0, "subQuestionId" : 0, "ans" : "22차 회고 답변2"},{"id" : 0, "subQuestionId" : 0, "ans" : "22차 회고 답변3"},{"id" : 0, "subQuestionId" : 0, "ans" : "22차 회고 답변4"},{"id" : 0, "subQuestionId" : 0, "ans" : "22차 회고 답변5"},{"id" : 0, "subQuestionId" : 0, "ans" : "22차 회고 답변6"},{"id" : 0, "subQuestionId" : 0, "ans" : "22차 회고 답변7"},{"id" : 0, "subQuestionId" : 0, "ans" : "22차 회고 답변8"},{"id" : 0, "subQuestionId" : 0, "ans" : "22차 회고 답변9"},]
+        "appUserId": e.userId,
+        "projectId": e.workspaceId,
+        "templateId": e.retrospectId,
+        "answerList" : answerList
+        // "answerList": [{"id" : 0, "subQuestionId" : 0, "ans" : "22차 회고 답변1"},{"id" : 0, "subQuestionId" : 0, "ans" : "22차 회고 답변2"},{"id" : 0, "subQuestionId" : 0, "ans" : "22차 회고 답변3"},{"id" : 0, "subQuestionId" : 0, "ans" : "22차 회고 답변4"},{"id" : 0, "subQuestionId" : 0, "ans" : "22차 회고 답변5"},{"id" : 0, "subQuestionId" : 0, "ans" : "22차 회고 답변6"},{"id" : 0, "subQuestionId" : 0, "ans" : "22차 회고 답변7"},{"id" : 0, "subQuestionId" : 0, "ans" : "22차 회고 답변8"},{"id" : 0, "subQuestionId" : 0, "ans" : "22차 회고 답변9"},]
     }
     console.log("data 체크 ", data);
     try {

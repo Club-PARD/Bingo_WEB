@@ -11,6 +11,7 @@ import Modal from "react-modal";
 import { Button } from "../../../Components/NormalComponents/Form";
 import { ConstructionOutlined } from "@mui/icons-material";
 import { postRetrospect } from "../../../Api/Retrospace";
+import { cloneDeep } from "lodash";
 
 
 // 전체를 감싸는 div, 이 아래에 Header / Body / Footer로 나뉘어 있음
@@ -174,10 +175,10 @@ const RetrospectWriteText = (e) => {
     console.log("filteredWorkspaces Data", filteredWorkspaces);
 
     const [isFilled, setIsFilled] = useState(false);
-    const checkIfAllFilled = (retrospective) => {
-        for (let question of retrospective.questions) {
-            for (let content of question.content) {
-                if (content.dataA === "") {
+    const checkIfAllFilled = () => {
+        for (let data of retrospectQuestionsList.questionList) {
+            for (let retro of data.subQuestionList) {
+                if (retro.answerResponse == null) {
                     setIsFilled(false);
                     return;
                 }
@@ -186,9 +187,12 @@ const RetrospectWriteText = (e) => {
         setIsFilled(true);
     };
     const handleNextButtonClick = (e) => {
+        checkIfAllFilled();
         if (isFilled) {
             // isFilled가 true일 경우에만 다음 페이지로 이동
             navigate("/TeamEvaluation");
+        } else {
+            console.log("채워주세요.");
         }
     };
 
@@ -212,28 +216,14 @@ const RetrospectWriteText = (e) => {
 
     const handleRetroTextChange = (event, dataIndex, subQuestionIndex) => {
         const updatedValue = event.target.value;
+        console.log(dataIndex + ", " + subQuestionIndex + ", " + updatedValue);
+        
+        const tempList = cloneDeep(retrospectQuestionsList);
+        tempList.questionList[dataIndex].subQuestionList[subQuestionIndex].answerResponse = updatedValue;
 
-        // Update the Recoil state
-        setRetrospectQuestionsList((prevList) => {
-            const newList = [...prevList];
 
-            // Find the specific question
-            const updatedQuestion = { ...newList[dataIndex] };
-
-            // Find the specific sub-question
-            const updatedSubQuestion = { ...updatedQuestion.subQuestionList[subQuestionIndex] };
-
-            // Update the value in the sub-question
-            updatedSubQuestion.answerResponse.ams = updatedValue;
-
-            // Update the sub-question in the question
-            updatedQuestion.subQuestionList[subQuestionIndex] = updatedSubQuestion;
-
-            // Update the question in the list
-            newList[dataIndex] = updatedQuestion;
-
-            return newList;
-        });
+        // console.log("temp : ", tempList.questionList[dataIndex].subQuestionList[subQuestionIndex]);
+        setRetrospectQuestionsList(tempList);
     };
 
     return (
@@ -252,15 +242,13 @@ const RetrospectWriteText = (e) => {
                         backgroundColor="#F9F9F9"
                         color="#EA4336"
                     />
-                    <StepButton
-                        targetLabel="다음"
-                        // onClick={handleNextButtonClick}
-                        onClick={postRetrospect}
-                        backgroundColor={
-                            isFilled ? "#EA4336" : "rgba(234, 67, 54, 0.4)"
-                        }
-                        color="#F9F9F9"
-                    />
+                <StepButton
+                    targetLabel="다음"
+                    onClick={() => postRetrospect({ workspaceId: e.workspaceId, userId: e.userId, retrospectId: e.retrospectId, retrospectQuestionsList : retrospectQuestionsList})}
+                    backgroundColor={isFilled ? "#EA4336" : "rgba(234, 67, 54, 0.4)"}
+                    color="#F9F9F9"
+                />
+
                 </RightHead>
             </Header>
 
