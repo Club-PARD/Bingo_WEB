@@ -1,16 +1,15 @@
 import axios from "axios";
 
 const WorkspaceData = {
-    name : "Wade",
-    description : "Male",
-    code : "1234",
+    name: "Wade",
+    description: "Male",
+    code: "1234",
 };
 
 // 새로운 워크스페이스 생성 API
 // name. desc. code + userid, 빙고 형용사 리스트 를 받아와서 post로 보낸다 -> response data를 받는다 (제대로 갔는지 확인용)
 export const createWorkspace = async (newWorkspace) => {
-  const chipData = 
-    [
+    const chipData = [
         "서로에 대한 존중과 신뢰가 있는",
         "소통이 활발한",
         "개선과 혁신을 추구하는",
@@ -41,8 +40,8 @@ export const createWorkspace = async (newWorkspace) => {
   } catch (error) {
     alert("생성 중 오류 발생했습니다");
 
-    throw error;
-  }
+        throw error;
+    }
 };
 
 // 나의 모든 워크스페이스 정보를 가져오는 API
@@ -74,10 +73,10 @@ export const getAllProjects = async (e, navigate) => {
 
 
 export const getProject = async () => {
-  const getData = {
-    userId: 1,
-    projectId: 1,
-  };
+    const getData = {
+        userId: 1,
+        projectId: 1,
+    };
 
   try {
     const response = await axios.get(
@@ -87,12 +86,12 @@ export const getProject = async () => {
       }
     );
 
-    return console.log(response.data);
-  } catch (error) {
-    alert("프로젝트 상세 조회 중 오류 발생했습니다");
+        return console.log(response.data);
+    } catch (error) {
+        alert("프로젝트 상세 조회 중 오류 발생했습니다");
 
-    throw error;
-  }
+        throw error;
+    }
 };
 
 // 워크스페이스 조인하기 
@@ -121,14 +120,14 @@ export const postProject = async (data) => {
 
 // 워크스페이스 사진 추가
 export const handleUpload = async (file) => {
-  try {
-    if (!file) {
-      console.error('파일이 없습니다.');
-      return;
-    }
+    try {
+        if (!file) {
+            console.error("파일이 없습니다.");
+            return;
+        }
 
-    const formData = new FormData();
-    formData.append("file", file);
+        const formData = new FormData();
+        formData.append("file", file);
 
     const response = await fetch(`${process.env.REACT_APP_URL}upload`, {
       method: 'POST',
@@ -162,9 +161,9 @@ export const handleUpload = async (file) => {
 //         `${process.env.REACT_APP_URL}api/v1/project`,
 //         postData
 //       );
-  
+
 //       console.log(response.data);
-  
+
 //       const joinData = {
 //         userId: 7,
 //         projectId: 19,
@@ -180,11 +179,10 @@ export const handleUpload = async (file) => {
 //       } catch (error) {
 //         alert("팀원 직위 추가(ver2_2) 중 오류가 발생했습니다");
 //       }
-  
+
 //       return response.data;
 //     } catch (error) {
 //       alert("생성 중 오류 발생했습니다");
 //       throw error;
 //     }
 //   };
-  

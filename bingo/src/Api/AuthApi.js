@@ -12,10 +12,10 @@ export const login = async (decodedToken) => {
       emailVerified : decodedToken.email_verified,
   }
 
-  try {
-    const response = await axios.post(
-      `${process.env.REACT_APP_URL}auth/signIn`, data
-    )
+    try {
+        const response = await axios.post(
+            `${process.env.REACT_APP_URL}auth/signIn`,data
+        );
 
     console.log("API 성공!");
     console.log("LOGIN DATAS",response.data);
