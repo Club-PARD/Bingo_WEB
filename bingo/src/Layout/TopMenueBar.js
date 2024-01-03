@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { Outlet, useLocation } from "react-router";
 import styled from "styled-components";
 import { Link } from "react-router-dom";

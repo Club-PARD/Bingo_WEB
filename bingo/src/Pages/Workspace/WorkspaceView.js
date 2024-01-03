@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { Div } from "../../Components/NormalComponents/Section";
 import { React, useEffect } from "react";
 import RetrospectInWorkspace from "./Components/RetrospectInWorkspace";

@@ -6,11 +6,11 @@ import { useNavigate } from "react-router-dom";
 
 // 리턴 된 값이 list 형태이므로 이걸로 map을 받는 컴포넌트들 만들기
 export const getAllRetrospect = async (e, navigate) => {
+    console.log("PID",e.projectId);
     try {
         const response = await axios.get(
-            `${process.env.REACT_APP_URL}api/v1/template/project/${e.projectId}`
+            `http://172.17.188.80:8080/api/v1/template/project/${e.projectId}`
         );
-
         // console.log("Result", response.data);
 
         return response.data;
@@ -30,7 +30,7 @@ export const getRetrospect = async (e) => {
 
     try {
         const response = await axios.get(
-            `${process.env.REACT_APP_URL}api/v1/template/project/${e.workspaceId}/template/${e.retrospectId}`
+            `http://172.17.188.80:8080/api/v1/template/project/${e.workspaceId}/template/${e.retrospectId}`
         );
         // console.log("axios", response.data);
         return response.data;

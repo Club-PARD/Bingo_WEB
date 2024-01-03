@@ -95,7 +95,6 @@ const UserApprove = () => {
     const handleCheckBoxChange = (event) => {
         setIsChecked((prevChecked) => !prevChecked);
     };
-    
 
     const isButtonEnabled = isChecked;
 

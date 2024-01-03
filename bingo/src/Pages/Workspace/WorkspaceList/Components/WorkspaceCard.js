@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { Card } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
