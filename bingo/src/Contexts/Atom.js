@@ -165,7 +165,7 @@ export const RetrospectData = atom({
     default: [
         {
             id: null,
-            name: "hi",
+            name: "",
             questionList: [
                 {
                     id: null,

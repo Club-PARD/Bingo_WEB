@@ -47,7 +47,7 @@ const GoogleLoginButton = () => {
 
                             // 상태 업데이트
                             setUserInfo(data);
-                            console.log("USERID",userInfo.appUser.id);
+                            console.log("USERID", userInfo.appUser.id);
 
                             navigate("/WorkspaceList");
                         } catch (error) {

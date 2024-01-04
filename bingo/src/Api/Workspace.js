@@ -3,7 +3,7 @@ import axios from "axios";
 const WorkspaceData = {
     name: "Wade",
     description: "Male",
-    code: "1234"
+    code: "1234",
 };
 
 // 새로운 워크스페이스 생성 API name. desc. code + userid, 빙고 형용사 리스트 를 받아와서 post로 보낸다 ->
@@ -18,7 +18,7 @@ export const createWorkspace = async (newWorkspace) => {
         "개인의 역할이 뚜렷한",
         "목표와 성과가 명확한",
         "모두가 협업하는",
-        "일과 삶의 균형이 있는"
+        "일과 삶의 균형이 있는",
     ];
     const postData = {
         userId: newWorkspace.userId,
@@ -26,7 +26,7 @@ export const createWorkspace = async (newWorkspace) => {
         description: newWorkspace.desc,
         picture: newWorkspace.picture,
         code: newWorkspace.code,
-        tagList: chipData
+        tagList: chipData,
     };
     alert(localStorage.getItem("email"));
     try {
@@ -34,8 +34,8 @@ export const createWorkspace = async (newWorkspace) => {
             `${process.env.REACT_APP_URL}project`, postData,
             {
                 headers: {
-                    Authorization: "Bearer " + localStorage.getItem("email")
-                }
+                    Authorization: "Bearer " + localStorage.getItem("email"),
+                },
             }
         );
         console.log(response.data);
@@ -55,8 +55,8 @@ export const getAllProjects = async (e, navigate) => {
             `${process.env.REACT_APP_URL}project/` + e.userid,
             {
                 headers: {
-                    Authorization: "Bearer " + localStorage.getItem("email")
-                }
+                    Authorization: "Bearer " + localStorage.getItem("email"),
+                },
             }
         );
 
@@ -78,7 +78,7 @@ export const getAllProjects = async (e, navigate) => {
 export const getProject = async () => {
     const getData = {
         userId: 1,
-        projectId: 1
+        projectId: 1,
     };
 
     try {
@@ -87,8 +87,8 @@ export const getProject = async () => {
             getData,
             {
                 headers: {
-                    Authorization: "Bearer " + localStorage.getItem("email")
-                }
+                    Authorization: "Bearer " + localStorage.getItem("email"),
+                },
             }
         );
 
@@ -107,18 +107,18 @@ export const postProject = async (data) => {
         userId: 7,
         projectId: 22,
         code: "",
-        role: "TEAM_LEADER"
-    }
+        role: "TEAM_LEADER",
+    };
     try {
         const response = await axios.post(
             `${process.env.REACT_APP_URL}enrollment`,
             postData,
             {
                 headers: {
-                    Authorization: "Bearer " + localStorage.getItem("email")
-                }
+                    Authorization: "Bearer " + localStorage.getItem("email"),
+                },
             }
-        )
+        );
         return console.log(response.data);
     } catch (error) {
         console.log(error);
@@ -139,20 +139,19 @@ export const handleUpload = async (file) => {
         formData.append("file", file);
 
         const response = await fetch(`${process.env.REACT_APP_URL}upload`, {
-            method: 'POST',
+            method: "POST",
             body: formData,
             headers: {
-                Authorization: "Bearer " + localStorage.getItem("email")
-            }
+                Authorization: "Bearer " + localStorage.getItem("email"),
+            },
         });
 
         if (response.ok) {
             const result = await response.text(); // 또는 response.url 등을 사용
-            console.log('파일 업로드 성공:', result);
+            console.log("파일 업로드 성공:", result);
         } else {
-            console.error('파일 업로드 실패:', response.statusText);
+            console.error("파일 업로드 실패:", response.statusText);
         }
-
     } catch (error) {
         console.error("파일 업로드 중 에러:", error);
     }

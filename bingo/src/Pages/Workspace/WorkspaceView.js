@@ -54,6 +54,7 @@ function WorkspaceView() {
                     { userid: userInfo.appUser.id, projectId: workspaceId },
                     navigate
                 );
+                console.log("temp Data", allRetrospect);
                 setRetrospectData(allRetrospect); // allRetrospect.data로 설정
             } catch (error) {
                 // 에러 핸들링
@@ -373,7 +374,7 @@ const CodeDiv = styled.div`
 const Code = styled.div`
     color: var(--sec_grey, #222);
     text-align: center;
-    font-family: WefontGothic(OTF);
+    font-family: "160";
     font-size: 24px;
     font-style: normal;
     font-weight: 400;
