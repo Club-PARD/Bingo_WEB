@@ -647,6 +647,7 @@ const StepButton = (e) => {
                 border="2px solid var(--main_red, #EA4336)"
                 backgroundColor={e.backgroundColor}
                 color={e.color}
+                style={{ fontFamily: "160" }}
             >
                 {e.targetLabel}
             </Button>
