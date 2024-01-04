@@ -8,7 +8,7 @@ import Modal from "react-modal";
 import {UrlInfo, WorkspaceData, WorkspaceInfo, workspaceInfo} from "../../Contexts/Atom";
 import {useRecoilState} from "recoil";
 import * as RCP from "./RetrospectCreatePresetStyle";
-
+import { postRetrospectCreated } from "../../Api/Retrospace";
 
 // Section1 영역
 export const Section1 = (e) => {
@@ -231,7 +231,7 @@ export const Section1 = (e) => {
                                 const retrospectDataTemp = { ...e.retrospectData };
                                 // 새로운 객체에 변경된 값을 할당
                                 retrospectDataTemp.templateType ="KPT";
-                                retrospectDataTemp.questionsList = [
+                                retrospectDataTemp.questionRequestList = [
                                     {
                                         id: null,
                                         mainQuestion: "Keep",
@@ -285,7 +285,7 @@ export const Section1 = (e) => {
                                 const retrospectDataTemp = { ...e.retrospectData };
                                 // 새로운 객체에 변경된 값을 할당
                                 retrospectDataTemp.templateType ="4LS";
-                                retrospectDataTemp.questionsList = [
+                                retrospectDataTemp.questionRequestList = [
                                     {
                                         id: null,
                                         mainQuestion: "Liked",
@@ -343,7 +343,7 @@ export const Section1 = (e) => {
                                 const retrospectDataTemp = { ...e.retrospectData };
                                 // 새로운 객체에 변경된 값을 할당
                                 retrospectDataTemp.templateType = "5F";
-                                retrospectDataTemp.questionsList = [
+                                retrospectDataTemp.questionRequestList = [
                                     {
                                         id: null,
                                         mainQuestion: "Feel",
@@ -399,6 +399,8 @@ export const Section2 = (e) => {
     const [urlInfo, setUrlInfo] = useRecoilState(UrlInfo);
 
     var InputCounts = 0;
+    const InputTempValue2 = { ...e.retrospectData };
+    const navigate = useNavigate();
     const handleMakeThreeSection = (way, labels) => {
         InputCounts = 0;
 
@@ -453,7 +455,7 @@ export const Section2 = (e) => {
 
                             <Div flexDirection="column" width="66.3vw" height="22.4vh" justifyContent="end">
                                 {
-                                    console.log(e.retrospectData.questionsList[index])
+                                    // console.log(e.retrospectData.questionsList[index])
                                 }
                                 {
                                     Array
@@ -464,10 +466,10 @@ export const Section2 = (e) => {
                                                 type="text"
                                                 placeholder={`세부 질문을 입력하세요.`}
                                                 style={RCP.InputStyle}
-                                                value={e.retrospectData.questionsList[index].subQuestionList[contentIndex]}
+                                                value={e.retrospectData.questionRequestList[index].subQuestionList[contentIndex]}
                                                 onChange={(f) => {
                                                     const InputTempValue = { ...e.retrospectData };
-                                                    InputTempValue.questionsList[index].subQuestionList[contentIndex] = f.target.value;
+                                                    InputTempValue.questionRequestList[index].subQuestionList[contentIndex] = f.target.value;
                                                     e.setRetrospectData(InputTempValue);
                                                             
                                                 }}
@@ -477,6 +479,10 @@ export const Section2 = (e) => {
                             </Div>
                         </Div>
                     ))}
+                {console.log("InputCounts", InputCounts)}
+                {InputTempValue2.tagList = Array.from({ length: InputCounts }, () => "1")}
+                {console.log(InputTempValue2)}
+
 
             </Div>
         );
@@ -517,7 +523,7 @@ export const Section2 = (e) => {
                         backgroundColor="#F9F9F9"
                         color="#EA4336"/>
                     <StepButton
-                        onClick={e.onSubmitClick}
+                        onClick={(f) => postRetrospectCreated(e.retrospectData, navigate)}
                         targetLabel="생성"
                         backgroundColor="#EA4336"
                         color="#F9F9F9"/>

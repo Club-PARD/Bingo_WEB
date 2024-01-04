@@ -11,7 +11,24 @@ export default function RetrospectCreate() {
         name: "",
         templateType: "KPT",
         tagList: [],
-        questionsList: []
+        userId: null,
+        projectId : null,
+        questionRequestList: [
+            {
+                id: null,
+                mainQuestion: "Keep",
+                subQuestionList : ["", "", ""]
+            },{
+                id: null,
+                mainQuestion: "Problem",
+                subQuestionList : ["", "", ""]
+            }    ,{
+                id: null,
+                mainQuestion: "Try",
+                subQuestionList : ["", "", ""]
+            }    
+                
+        ]
     }
     const [retrospectData, setRetrospectData] = useState(retrospectDataInit);
 
@@ -34,8 +51,12 @@ export default function RetrospectCreate() {
     useEffect(() => {
         // 초기화 된 상태값을 사용하면서 불필요한 useEffect 호출을 막습니다.
         if (workspaceId && userId) {
-            setWorkspaceInfo(filteredWorkspaces);
             setUrlInfo(urlInfoInit);
+            const tempArray = { ...retrospectData };
+            tempArray.userId = urlInfoInit.userId;
+            tempArray.projectId = urlInfoInit.workspaceId;
+            setRetrospectData(tempArray);
+            setWorkspaceInfo(filteredWorkspaces);
         }
     }, []);
 

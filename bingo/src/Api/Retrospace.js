@@ -48,6 +48,51 @@ export const getRetrospect = async (e) => {
     }
 };
 
+
+const getTagListByTemplateType = (templateType) => {
+    switch (templateType) {
+        case "KPT":
+            return Array.from({ length: 9 }, () => "");
+        case "4LS":
+            return Array.from({ length: 12 }, () => "");
+        case "5F":
+            return Array.from({ length: 15 }, () => "");
+        default:
+            return [];
+    }
+};
+
+export const postRetrospectCreated = async (e, navigate) => {
+    const userId = parseInt(e.userId, 10);
+    const projectId = parseInt(e.projectId, 10);
+
+    const retrosectData = {
+        name: e.name,
+        userId: userId,
+        projectId: projectId,
+        templateType: e.templateType,
+        questionRequestList: e.questionRequestList,
+        tagList: getTagListByTemplateType(e.templateType)
+    };
+
+    console.log("찐이야", retrosectData);
+
+    try {
+        await axios.post(`${process.env.REACT_APP_URL}template`, retrosectData, {
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("email")
+            }
+        });
+
+        
+        alert("회고 생성이 완료되었습니다.");
+        navigate(`/WorkspaceView?workspaceId=${e.projectId}`);
+    } catch (error) {
+        throw "postRetrospect Error > " + error;
+        // console.log("postRetrospect Error > " + error);
+    }
+};
+
 export const postRetrospect = async (e, navigate) => {
 
     const answerList = [];
