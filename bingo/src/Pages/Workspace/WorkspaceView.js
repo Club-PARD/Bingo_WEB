@@ -37,6 +37,7 @@ function WorkspaceView() {
     const filteredWorkspaces = workspaceData.find(
         (workspace) => workspace.id == workspaceId
     );
+    console.log("file~~: ", filteredWorkspaces);
     // console.log("목요일2", filteredWorkspaces);
     const openModal1 = () => {
         setModalIsOpen1(true);
@@ -64,7 +65,6 @@ function WorkspaceView() {
 
         fetchData();
     }, [userInfo.appUser.id, workspaceId, setRetrospectData, navigate]);
-
 
     return (
         <>
@@ -129,7 +129,10 @@ function WorkspaceView() {
                         <InformationDiv>회고 리스트</InformationDiv>
                         {/* Content : 회고 리스트 */}
                         <Section_Retrospect_Content>
-                            <RetrospectInWorkspace userId={userInfo.appUser.id} workspaceId={workspaceId} />
+                            <RetrospectInWorkspace
+                                userId={userInfo.appUser.id}
+                                workspaceId={workspaceId}
+                            />
                         </Section_Retrospect_Content>
                     </Section_Retrospect>
                 </Div>

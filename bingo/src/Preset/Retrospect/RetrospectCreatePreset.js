@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import { Button, Input } from "../../Components/NormalComponents/Form";
 import { CenterDiv, Div } from "../../Components/NormalComponents/Section";
 import { Label, P } from "../../Components/NormalComponents/Text";
@@ -6,46 +5,24 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useSpring, animated } from "react-spring";
 import { useEffect, useState } from "react";
 import Modal from "react-modal";
-import { Link } from "react-router-dom";
-import { WorkspaceData } from "../../Contexts/Atom";
+import {
+    UrlInfo,
+    WorkspaceData,
+    WorkspaceInfo,
+    workspaceInfo,
+} from "../../Contexts/Atom";
 import { useRecoilState } from "recoil";
+import * as RCP from "./RetrospectCreatePresetStyle";
+import { postRetrospectCreated } from "../../Api/Retrospace";
+import styled from "styled-components";
 
 // Section1 영역
 export const Section1 = (e) => {
-    const NoQuestionSubmit = (q) => {
-        let NoQuestions;
-
-        if (e.SelectedWays === "KPT") {
-            const kptTitles = ["Keep", "Problem", "Try"];
-            NoQuestions = kptTitles.map((title) => ({
-                title,
-                content: [{ dataQ: "자유롭게 남겨주세요.", dataA: "" }],
-            }));
-        } else if (e.SelectedWays === "4LS") {
-            const lsTitles = ["Liked", "Learned", "Lacked", "Longed for"];
-            NoQuestions = lsTitles.map((title) => ({
-                title,
-                content: [{ dataQ: "자유롭게 남겨주세요.", dataA: "" }],
-            }));
-        } else if (e.SelectedWays === "5F") {
-            const fTitles = ["Feel", "Find", "Finish", "Future", "Feedback"];
-            NoQuestions = fTitles.map((title) => ({
-                title,
-                content: [{ dataQ: "자유롭게 남겨주세요.", dataA: "" }],
-            }));
-        } else {
-            console.log("no selected");
-        }
-
-        e.setQuestions(NoQuestions);
-        console.log(e.questions);
-        e.onSubmitClick();
-    };
-
+    // 페이지 이동 관련
     const navigate = useNavigate();
 
     const handleNextButtonClick = () => {
-        // 필요한 데이터와 함께 Section2로 이동
+        // navigate(`/RetrospectCreate#section2?userId=${userId}&workspaceId=${workspaceId}`, {
         navigate("/RetrospectCreate#section2", {
             state: {
                 retrospectTitle: e.retrospectTitle,
@@ -53,6 +30,29 @@ export const Section1 = (e) => {
             },
         });
     };
+
+    const handleMyConfirm = () => {
+        if (window.confirm("생성하시겠습니까?")) {
+            alert("생성되었습니다.");
+            navigate(`/WorkspaceView?workspaceId=${urlInfo.workspaceId}`);
+        } else {
+            alert("취소되었습니다.");
+        }
+    };
+
+    // handleMyConfirm : 회고 생성 취소 버튼 클릭 시 실행되는 핸들러
+    const handleMyCancleConfirm = () => {
+        if (window.confirm("회고 생성을 취소하시겠습니까?")) {
+            alert("취소되었습니다.");
+            navigate(`/WorkspaceView?workspaceId=${urlInfo.workspaceId}`);
+        }
+    };
+
+    //
+    //
+    //
+
+    // 회고 별 높이 지정
     const [heightKPT, setHeightKPT] = useState("29vh");
     const [height4LS, setHeight4LS] = useState("29vh");
     const [height5F, setHeight5F] = useState("29vh");
@@ -63,17 +63,31 @@ export const Section1 = (e) => {
 
     const stylesKPT = useSpring({
         height: heightKPT,
-        config: { tension: 210, friction: 20 },
+        config: {
+            tension: 210,
+            friction: 20,
+        },
     });
     const styles4LS = useSpring({
         height: height4LS,
-        config: { tension: 210, friction: 20 },
+        config: {
+            tension: 210,
+            friction: 20,
+        },
     });
     const styles5F = useSpring({
         height: height5F,
-        config: { tension: 210, friction: 20 },
+        config: {
+            tension: 210,
+            friction: 20,
+        },
     });
-    //CancleModal관련
+
+    //
+    //
+    //
+
+    // Modal 관련
     const [modalCancleIsOpen, setModalCancleIsOpen] = useState(false); // Modal 창의 open 여부를 저장하는 변수
     const openModalCancle = () => {
         setModalCancleIsOpen(true);
@@ -81,7 +95,7 @@ export const Section1 = (e) => {
     const closeModalCancle = () => {
         setModalCancleIsOpen(false);
     };
-    //InvalidModal관련
+
     const [modalInvalidIsOpen, setModalInvalidIsOpen] = useState(false); // Modal 창의 open 여부를 저장하는 변수
     const openModalInvalid = () => {
         setModalInvalidIsOpen(true);
@@ -90,72 +104,59 @@ export const Section1 = (e) => {
         setModalInvalidIsOpen(false);
     };
 
-    const location = useLocation();
-    const searchParams = new URLSearchParams(location.search);
-    const workspaceId = searchParams.get("workspaceId");
+    //
+    //
+    //
 
-    const [workspaceData, setWorkspaceData] = useRecoilState(WorkspaceData);
-
-    const filteredWorkspaces = workspaceData.find(
-        (workspace) => workspace.id == workspaceId
-    );
-    console.log(filteredWorkspaces);
+    const [workspaceInfo, setWorkspaceInfo] = useRecoilState(WorkspaceInfo);
+    const [urlInfo, setUrlInfo] = useRecoilState(UrlInfo);
 
     return (
-        <Div id="section1" style={Section_Style}>
-            <Header>
-                <LeftHead>
-                    <SpanCreate>회고 생성</SpanCreate>
-                    <SpanTitle>
-                        {filteredWorkspaces
-                            ? filteredWorkspaces.name
+        <Div id="section1" style={RCP.Section_Style}>
+            <RCP.Header>
+                <RCP.LeftHead>
+                    <RCP.SpanCreate>회고 생성</RCP.SpanCreate>
+                    <RCP.SpanTitle>
+                        {workspaceInfo
+                            ? workspaceInfo.name
                             : "프로젝트 이름이 없습니다."}
-                    </SpanTitle>
-                    <SpanDesc>
-                        {filteredWorkspaces
-                            ? filteredWorkspaces.description
+                    </RCP.SpanTitle>
+                    <RCP.SpanDesc>
+                        {workspaceInfo
+                            ? workspaceInfo.description
                             : "프로젝트 설명이 없습니다."}
-                    </SpanDesc>
-                </LeftHead>
-                <RightHead>
-                    <EclipseDiv
+                    </RCP.SpanDesc>
+                </RCP.LeftHead>
+                <RCP.RightHead>
+                    <RCP.EclipseDiv
                         style={{
                             marginRight: "0.8vw",
-                            backgroundColor:
-                                window.location.hash === "#section1"
-                                    ? "#ea4336"
-                                    : "#e1e1e1",
                         }}
                     />
-                    <EclipseDiv
+                    <RCP.EclipseDiv
                         style={{
                             marginRight: "1.8vw",
-                            backgroundColor:
-                                window.location.hash === "#section2"
-                                    ? "#ea4336"
-                                    : "#e1e1e1",
                         }}
                     />
                     <StepButton
                         onClick={openModalCancle}
-                        targetPage={`/WorkspaceView?workspaceId=${workspaceId}`}
                         targetLabel="취소"
                         backgroundColor="#F9F9F9"
                         color="#EA4336"
                     />
                     <StepButton
-                        targetPage={e.retrospectTitle ? "#section2" : null}
+                        targetPage={e.retrospectData.name ? "#section2" : null}
                         targetLabel="다음"
                         onClick={handleNextButtonClick}
                         backgroundColor={
-                            e.retrospectTitle
+                            e.retrospectData.name
                                 ? "#EA4336"
                                 : "rgba(234, 67, 54, 0.4)"
                         }
                         color="#F9F9F9"
                     />
-                </RightHead>
-            </Header>
+                </RCP.RightHead>
+            </RCP.Header>
 
             {/* Content Section */}
             <Div
@@ -174,7 +175,8 @@ export const Section1 = (e) => {
                             fontSize: "16px",
                             fontStyle: "normal",
                             fontWeight: "400",
-                            lineHeight: "150%" /* 24px */,
+                            lineHeight: "150%",
+                            /* 24px */
                         }}
                     >
                         회고 타이틀
@@ -213,10 +215,11 @@ export const Section1 = (e) => {
                                 fontSize: "16px",
                                 fontStyle: "normal",
                                 fontWeight: "400",
-                                lineHeight: "150%" /* 24px */,
+                                lineHeight: "150%",
+                                /* 24px */
                             }}
                         >
-                            템플릿을 선택해 주세요
+                            템플릿 선택
                         </P>
                     </Div>
 
@@ -230,10 +233,10 @@ export const Section1 = (e) => {
                         <animated.div
                             style={{
                                 ...propsKPT,
-                                ...menuStyle,
+                                ...RCP.menuStyle,
                                 ...stylesKPT,
                                 backgroundColor:
-                                    e.SelectedWays === "KPT" ||
+                                    e.retrospectData.templateType === "KPT" ||
                                     heightKPT === "43vh"
                                         ? "#222"
                                         : "#EFEFEF",
@@ -246,31 +249,68 @@ export const Section1 = (e) => {
                                 label="KPT"
                                 description={
                                     <>
-                                        팀의 상황을 빠르게 돌아보고
-                                        <br />
-                                        명확한 개선 방법을 찾길 원한다면?
+                                        팀의 상황을 빠르게 돌아보고 <br />{" "}
+                                        명확한 개선 방법을 찾길 원한다면 ?{" "}
                                     </>
                                 }
-                                selectedValue={e.SelectedWays}
-                                onChange={e.handleRadioChange}
-                            />
+                                selectedValue={e.retrospectData.templateType}
+                                // onChange={e.handleRadioChange}
+                                onChange={(k) => {
+                                    // 깊은 복사를 통해 새로운 객체 생성
+                                    const retrospectDataTemp = {
+                                        ...e.retrospectData,
+                                    };
+                                    // 새로운 객체에 변경된 값을 할당
+                                    retrospectDataTemp.templateType = "KPT";
+                                    retrospectDataTemp.questionRequestList = [
+                                        {
+                                            templateId: null,
+                                            mainQuestion: "Keep",
+                                            subQuestionRequest: {
+                                                questionId: null,
+                                                question: ["", "", ""],
+                                            },
+                                        },
+                                        {
+                                            templateId: null,
+                                            mainQuestion: "Problem",
+                                            subQuestionRequest: {
+                                                questionId: null,
+                                                question: ["", "", ""],
+                                            },
+                                        },
+                                        {
+                                            templateId: null,
+                                            mainQuestion: "Try",
+                                            subQuestionRequest: {
+                                                questionId: null,
+                                                question: ["", "", ""],
+                                            },
+                                        },
+                                    ];
+
+                                    // 상태 업데이트 시 새로운 객체를 사용
+                                    e.setRetrospectData(retrospectDataTemp);
+                                }}
+                            />{" "}
                             {heightKPT === "43vh" && (
-                                <DivKPTText>
+                                <RCP.DivKPTText>
                                     Keep(유지할 점) / Problem(개선할 점) /
                                     Try(시도할 점)
                                     <br />
-                                    <br /> 단기 프로젝트의 회고를 진행하는
-                                    사람들에게 추천해요!
-                                </DivKPTText>
+                                    <br />
+                                    단기 프로젝트의 회고를 진행하는 사람들에게
+                                    추천해요!
+                                </RCP.DivKPTText>
                             )}
                         </animated.div>
                         <animated.div
                             style={{
                                 ...props4LS,
-                                ...menuStyle,
+                                ...RCP.menuStyle,
                                 ...styles4LS,
                                 backgroundColor:
-                                    e.SelectedWays === "4LS" ||
+                                    e.retrospectData.templateType === "Ls4" ||
                                     height4LS === "45vh"
                                         ? "#222"
                                         : "#EFEFEF",
@@ -349,10 +389,10 @@ export const Section1 = (e) => {
                         <animated.div
                             style={{
                                 ...props5F,
-                                ...menuStyle,
+                                ...RCP.menuStyle,
                                 ...styles5F,
                                 backgroundColor:
-                                    e.SelectedWays === "5F" ||
+                                    e.retrospectData.templateType === "F5" ||
                                     height5F === "45vh"
                                         ? "#222"
                                         : "#EFEFEF",
@@ -440,59 +480,14 @@ export const Section1 = (e) => {
                 </Div>
             </Div>
             <CancleModal
+                workspaceId={urlInfo.workspaceId}
                 modalCancleIsOpen={modalCancleIsOpen}
                 closeModalCancle={closeModalCancle}
             />
         </Div>
     );
 };
-//animation card CSS
-const menuStyle = {
-    overflow: "visible",
-    border: "2px solid #ddd",
-    width: "20.8vw",
-    borderTopLeftRadius: "30px",
-    borderTopRightRadius: "30px",
-    borderBottomLeftRadius: "16px",
-    borderBottomRightRadius: "16px",
-    border: "1px solid #EFEFEF",
-    color: "var(--main_white, #F9F9F9)",
-    fontFamily: "WefontGothic(OTF)",
-    fontSize: "16px",
-    fontStyle: "normal",
-    fontWeight: "400",
-    lineHeight: "150%" /* 24px */,
-};
-const DivKPTText = styled.div`
-    color: var(--main_white, #f9f9f9);
-    font-family: WefontGothic(OTF);
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 150%; /* 24px */
-    width: 15.4vw;
-    margin: 2.6vh auto;
-`;
-const Div4LSText = styled.div`
-    color: var(--main_white, #f9f9f9);
-    font-family: WefontGothic(OTF);
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 150%; /* 24px */
-    width: 15.4vw;
-    margin: 2.6vh auto;
-`;
-const Div5FText = styled.div`
-    color: var(--main_white, #f9f9f9);
-    font-family: WefontGothic(OTF);
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 150%; /* 24px */
-    width: 15.4vw;
-    margin: 2.6vh auto;
-`;
+
 // Section2 영역
 export const Section2 = (e) => {
     const [workspaceInfo, setWorkspaceInfo] = useRecoilState(WorkspaceInfo);
@@ -601,7 +596,7 @@ export const Section2 = (e) => {
     };
 
     return (
-        <Div id="section2" style={Section_Style}>
+        <Div id="section2" style={RCP.Section_Style}>
             {/* Content Section */}
             {/* {console.log(e.retrospectData)} */}
 
@@ -637,7 +632,9 @@ export const Section2 = (e) => {
                         color="#EA4336"
                     />
                     <StepButton
-                        onClick={e.onSubmitClick}
+                        onClick={(f) =>
+                            postRetrospectCreated(e.retrospectData, navigate)
+                        }
                         targetLabel="생성"
                         backgroundColor="#EA4336"
                         color="#F9F9F9"
@@ -651,29 +648,32 @@ export const Section2 = (e) => {
                     width="70.5%"
                     margin="0 auto"
                 >
-                    {e.SelectedWays === "KPT" &&
+                    {e.retrospectData.templateType === "KPT" &&
                         handleMakeThreeSection(
                             "KPT",
                             ["Keep", "Problem", "Try"],
-                            e.questions,
-                            e.setQuestions
+                            e.retrospectData,
+                            e.setRetrospectData
                         )}
-                    {e.SelectedWays === "4LS" &&
+                    {e.retrospectData.templateType === "Ls4" &&
                         handleMakeThreeSection(
-                            "4LS",
+                            "Ls4",
                             ["Liked", "Learned", "Lacked", "Longed for"],
-                            e.questions,
-                            e.setQuestions
+                            e.retrospectData,
+                            e.setRetrospectData
                         )}
-                    {e.SelectedWays === "5F" &&
+                    {e.retrospectData.templateType === "F5" &&
                         handleMakeThreeSection(
-                            "5F",
+                            "F5",
                             ["Feel", "Find", "Finish", "Future", "Feedback"],
-                            e.questions,
-                            e.setQuestions
+                            e.retrospectData,
+                            e.setRetrospectData
                         )}
                 </Div>
             </Div>
+            {/* {console.log(InputCounts)}
+            {emptyTagList = Array.from({ length: InputCounts }, () => "")}
+            {console.log(emptyTagList)} */}
         </Div>
     );
 };
@@ -692,7 +692,7 @@ const RadioCard = (e) => {
                 style={{
                     display: "none",
                 }}
-            />
+            />{" "}
             {/* show 처리 되는 부분 */}
             <Div
                 width="100%"
@@ -712,11 +712,26 @@ const RadioCard = (e) => {
             >
                 {/* 템플릿 Title */}
                 <CenterDiv>{e.label}</CenterDiv>
-                <DotDiv>
-                    <EclipseDiv style={{ width: ".45vw", height: ".45vw" }} />
-                    <EclipseDiv style={{ width: ".45vw", height: ".45vw" }} />
-                    <EclipseDiv style={{ width: ".45vw", height: ".45vw" }} />
-                </DotDiv>
+                <RCP.DotDiv>
+                    <RCP.EclipseDiv
+                        style={{
+                            width: ".45vw",
+                            height: ".45vw",
+                        }}
+                    />
+                    <RCP.EclipseDiv
+                        style={{
+                            width: ".45vw",
+                            height: ".45vw",
+                        }}
+                    />
+                    <RCP.EclipseDiv
+                        style={{
+                            width: ".45vw",
+                            height: ".45vw",
+                        }}
+                    />
+                </RCP.DotDiv>
                 {/* 템플릿 설명 */}
                 <Div
                     width="100%"
@@ -732,171 +747,10 @@ const RadioCard = (e) => {
     );
 };
 
-// handleMakeThreeSection : lable에 맞춰서 질문을 생성해주는 핸들러
-// handleMakeThreeSection 함수 수정
-const handleMakeThreeSection = (way, labels, questions, setQuestions) => (
-    <Div flexDirection="column">
-        {labels.map((label, index) => (
-            <Div
-                key={index}
-                flexDirection="column"
-                border="none"
-                backgroundColor="#F3F3F3"
-                width="100%"
-                height="47vh"
-                margin={index === 0 ? "0% 0px" : "2% 0px"}
-                boxSizing="border-box"
-                borderRadius="40px"
-                display="flex"
-                justifyContent="space-between"
-                alignItems="center"
-                padding="1.2vw"
-            >
-                <Div
-                    width="66.3vw"
-                    height="4vh"
-                    display="flex"
-                    justifyContent="center"
-                    alignItems="center"
-                    backgroundColor="#F9F9F9"
-                    color="rgba(22, 22, 22, 0.3)"
-                    fontFamily="WefontGothic(OTF)"
-                    fontSize="18px"
-                    fontStyle="normal"
-                    fontWeight="400"
-                >
-                    {way}
-                </Div>
-                {/* Title */}
-                <Div width="66.3vw" height="8.3vh" alignItems="end">
-                    <Label fontSize="60px" color="rgb(234, 67, 52)">
-                        {label[0]}
-                    </Label>
-                    <Label
-                        fontSize="20px"
-                        color="rgba(234, 67, 52, 0.4)"
-                        width="20%"
-                        margin="0 0 0.4vh 0.2vw"
-                    >
-                        {label}
-                    </Label>
-                </Div>
-                {
-                    // console.log(questions[index].content)
-                }
-                {/* 질문 모음 */}
-                <Div
-                    flexDirection="column"
-                    width="66.3vw"
-                    height="22.4vh"
-                    justifyContent="end"
-                >
-                    {Array.from({ length: 3 }).map((_, contentIndex) => (
-                        <Input
-                            type="text"
-                            placeholder={`세부 질문을 입력하세요.`}
-                            style={InputStyle}
-                            value={
-                                questions[index]?.content[contentIndex]
-                                    ?.dataQ || ""
-                            }
-                            onChange={(e) => {
-                                const updatedQuestions = [...questions];
-                                updatedQuestions[index] = {
-                                    id: index + 1,
-                                    content: [
-                                        ...(updatedQuestions[index]?.content ||
-                                            []),
-                                    ],
-                                };
-                                updatedQuestions[index].title = label;
-                                updatedQuestions[index].content[contentIndex] =
-                                    {
-                                        ...(updatedQuestions[index]?.content[
-                                            contentIndex
-                                        ] || {}),
-                                        dataQ: e.target.value,
-                                        dataA: "",
-                                    };
-                                setQuestions(updatedQuestions);
-                            }}
-                        />
-                    ))}
-                </Div>
-            </Div>
-        ))}
-    </Div>
-);
+// handleMakeThreeSection : lable에 맞춰서 질문을 생성해주는 핸들러 handleMakeThreeSection 함수
+// 수정
 
-// StepButton : Next / Last 버튼 분리화
-const Header = styled.div`
-    width: 66vw;
-    height: 24%;
-    margin: 0 auto;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: space-between;
-    align-items: end;
-`;
-const LeftHead = styled.div`
-    margin-bottom: 5.4vh;
-    width: auto;
-    height: 46%; //114px
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-`;
-const RightHead = styled.div`
-    margin-bottom: 5.4vh;
-    width: 30%; //330px
-    height: 24%; //59px
-    display: flex;
-    flex-direction: row;
-    justify-content: Right;
-    align-items: end;
-`;
-const SpanCreate = styled.span`
-    color: #838383;
-    font-family: "140";
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 150%; /* 24px */
-    letter-spacing: -0.16px;
-`;
-const SpanTitle = styled.span`
-    color: var(--sec_grey, #222);
-    font-family: "160";
-    font-size: 28px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 150%; /* 42px */
-`;
-const SpanDesc = styled.span`
-    color: rgba(34, 34, 34, 0.8);
-    font-family: "140";
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 150%; /* 22.5px */
-`;
-const EclipseDiv = styled.div`
-    width: 0.6vw;
-    height: 0.6vw;
-    border: none;
-    box-sizing: border-box;
-    background-color: #e1e1e1;
-    border-radius: 50%;
-`;
-const DotDiv = styled.div`
-    height: 4vh;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-bottom: 3vh;
-`;
-// StepButton : Next / Last 버튼 분리화
+// StepButton: Next / Last 버튼 분리화
 const StepButton = (e) => {
     return (
         <a href={e.targetPage}>
@@ -950,138 +804,70 @@ const StepButtonSkip = (e) => {
     );
 };
 
-// Input 스타일 지정
-const InputStyle = {
-    padding: "1.7vh 1.4vw 1.7vh 1.4vw",
-    type: "text",
-    width: "100%",
-    height: "6.5vh",
-    borderRadius: "24px",
-    backgroundColor: "#EBEBEB",
-    color: "#222",
-    fontFamily: "WefontGothic(OTF)",
-    fontSize: "20px",
-    fontStyle: "normal",
-    fontSeight: "400",
-    lineHeight: "160%" /* 32px */,
-    letterSpacing: "-0.2px",
-    marginTop: "1vh",
-    marginBottom: "2.5vh",
-};
-
-// Section 스타일
-const Section_Style = {
-    width: "100%",
-    height: "93.9vh",
-    flexDirection: "column",
-    margin: "0 auto",
-    overflow: "hidden",
-};
-
-//Modal
-const StyleModal = {
-    overlay: {
-        backgroundColor: "rgba(0, 0, 0,0.2)",
-    },
-    content: {
-        top: "50%",
-        left: "50%",
-        right: "auto",
-        bottom: "auto",
-        marginRight: "-50%",
-        transform: "translate(-50%, -50%)",
-        borderRadius: "40px",
-        padding: 0,
-        color: "black",
-        background: `#F9F9F9`,
-        margin: "0",
-        width: "23.6vw",
-        height: "25.5vh",
-        display: "flex",
-        border: "none",
-        flexDirection: "column",
-        justifyContent: "end",
-    },
-};
 const CancleModal = (e) => {
     return (
         <Modal
             isOpen={e.modalCancleIsOpen}
             onRequestClose={e.closeModalCancle}
-            style={StyleModal}
+            style={RCP.StyleModal}
         >
-            <ModalLargest>
-                <ModalTextDiv>정말 나가시겠어요?</ModalTextDiv>
-                <ModalButtonDiv>
-                    <ModalCloseButton onClick={e.closeModalCancle}>
+            <RCP.ModalLargest>
+                <RCP.ModalTextDiv>정말 나가시겠어요?</RCP.ModalTextDiv>
+                <RCP.ModalButtonDiv>
+                    <RCP.ModalCloseButton onClick={e.closeModalCancle}>
                         취소
-                    </ModalCloseButton>
-                    <ModalExitButton to="/WorkspaceView">
+                    </RCP.ModalCloseButton>
+                    <RCP.ModalExitButton
+                        to={`/WorkspaceView?workspaceId=${e.workspaceId}`}
+                    >
                         나가기
-                    </ModalExitButton>
-                </ModalButtonDiv>
-            </ModalLargest>
+                    </RCP.ModalExitButton>
+                </RCP.ModalButtonDiv>
+            </RCP.ModalLargest>
         </Modal>
     );
 };
+// const NoQuestionSubmit = (q) => {
+//     let NoQuestions;
 
-const ModalLargest = styled.div`
-    width: 100%;
-    height: 91%;
-    margin-top: 7%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-`;
-const ModalTextDiv = styled.div`
-    width: auto;
-    height: 30px;
-    color: var(--sec_grey, #222);
-    font-family: WefontGothic(OTF);
-    font-size: 20px;
-    font-style: normal;
-    font-weight: 400;
-    text-align: center;
-`;
-//width:213px; height:51px;
-const ModalButtonDiv = styled.div`
-    width: 47%;
-    height: 18.5%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-`;
-const ModalCloseButton = styled.button`
-    width: 42%;
-    height: 100%;
-    background-color: var(--main_white, #f9f9f9);
-    align-items: center;
-    justify-content: center;
-    color: var(--main_red, #ea4336);
-    font-family: WefontGothic(OTF);
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    border-radius: 40px;
-    border: 2px solid var(--main_red, #ea4336);
-    cursor: pointer;
-`;
-const ModalExitButton = styled(Link)`
-    width: 50%;
-    height: 90%;
-    background-color: #ea4336;
-    display: flex;
-    padding: 0;
-    align-items: center;
-    justify-content: center;
-    color: var(--main_white, #f9f9f9);
-    font-family: WefontGothic(OTF);
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    border-radius: 40px;
-    border: 2px solid var(--main_red, #ea4336);
-    text-decoration: none;
-    cursor: pointer;
-`;
+//     if (e.SelectedWays === "KPT") {
+//         const kptTitles = ["Keep", "Problem", "Try"];
+//         NoQuestions = kptTitles.map((title) => ({
+//             title,
+//             content: [
+//                 {
+//                     dataQ: "자유롭게 남겨주세요.",
+//                     dataA: ""
+//                 }
+//             ]
+//         }));
+//     } else if (e.SelectedWays === "4LS") {
+//         const lsTitles = ["Liked", "Learned", "Lacked", "Longed for"];
+//         NoQuestions = lsTitles.map((title) => ({
+//             title,
+//             content: [
+//                 {
+//                     dataQ: "자유롭게 남겨주세요.",
+//                     dataA: ""
+//                 }
+//             ]
+//         }));
+//     } else if (e.SelectedWays === "5F") {
+//         const fTitles = ["Feel", "Find", "Finish", "Future", "Feedback"];
+//         NoQuestions = fTitles.map((title) => ({
+//             title,
+//             content: [
+//                 {
+//                     dataQ: "자유롭게 남겨주세요.",
+//                     dataA: ""
+//                 }
+//             ]
+//         }));
+//     } else {
+//         console.log("no selected");
+//     }
+
+//     e.setQuestions(NoQuestions);
+//     console.log(e.questions);
+//     e.onSubmitClick();
+// };
