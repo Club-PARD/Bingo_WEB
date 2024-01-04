@@ -14,7 +14,7 @@ export const login = async (decodedToken) => {
 
     try {
         const response = await axios.post(
-            `${process.env.REACT_APP_URL}api/v1/auth/signIn`,
+            `${process.env.REACT_APP_URL}auth/signIn`,
             data
         );
 

@@ -118,10 +118,26 @@ export const Section1 = (e) => {
                     </SpanDesc>
                 </LeftHead>
                 <RightHead>
-                    <EclipseDiv style={{ marginRight: "0.8vw" }} />
-                    <EclipseDiv style={{ marginRight: "1.8vw" }} />
+                    <EclipseDiv
+                        style={{
+                            marginRight: "0.8vw",
+                            backgroundColor:
+                                window.location.hash === "#section1"
+                                    ? "#ea4336"
+                                    : "#e1e1e1",
+                        }}
+                    />
+                    <EclipseDiv
+                        style={{
+                            marginRight: "1.8vw",
+                            backgroundColor:
+                                window.location.hash === "#section2"
+                                    ? "#ea4336"
+                                    : "#e1e1e1",
+                        }}
+                    />
                     <StepButton
-                        // onClick={openModalCancle}
+                        onClick={openModalCancle}
                         targetPage={`/WorkspaceView?workspaceId=${workspaceId}`}
                         targetLabel="취소"
                         backgroundColor="#F9F9F9"
@@ -181,7 +197,7 @@ export const Section1 = (e) => {
                     backgroundColor=""
                 >
                     {/* Title */}
-                    <Div height="6.5%">
+                    <Div height="6.5%" margin="1vh 0 0 0">
                         <P
                             styled={{
                                 color: "rgba(34, 34, 34, 0.60)",
@@ -192,7 +208,7 @@ export const Section1 = (e) => {
                                 lineHeight: "150%" /* 24px */,
                             }}
                         >
-                            템플릿 선택
+                            템플릿을 선택해 주세요
                         </P>
                     </Div>
 
@@ -614,7 +630,7 @@ const RightHead = styled.div`
 `;
 const SpanCreate = styled.span`
     color: #838383;
-    //font-family: WefontGothic(OTF);
+    font-family: "140";
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -623,7 +639,7 @@ const SpanCreate = styled.span`
 `;
 const SpanTitle = styled.span`
     color: var(--sec_grey, #222);
-    //font-family: WefontGothic(OTF);
+    font-family: "160";
     font-size: 28px;
     font-style: normal;
     font-weight: 400;
@@ -631,7 +647,7 @@ const SpanTitle = styled.span`
 `;
 const SpanDesc = styled.span`
     color: rgba(34, 34, 34, 0.8);
-    //font-family: WefontGothic(OTF);
+    font-family: "140";
     font-size: 15px;
     font-style: normal;
     font-weight: 400;
@@ -657,7 +673,7 @@ const DotDiv = styled.div`
 const StepButton = (e) => {
     return (
         <a href={e.targetPage}>
-            <Button
+            <StepBtn
                 width="5.5vw"
                 height="5vh"
                 borderRadius="40px"
@@ -672,11 +688,22 @@ const StepButton = (e) => {
                 color={e.color}
             >
                 {e.targetLabel}
-            </Button>
+            </StepBtn>
         </a>
     );
 };
-
+const StepBtn = styled(Button)`
+    width: 5.5vw;
+    height: 5vh;
+    border-radius: 40px;
+    font-size: 18px;
+    font-weight: 400;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0 0 0.8vw;
+    border: 2px solid var(--main_red, #ea4336);
+    font-family: "160";
+`;
 const StepButtonSkip = (e) => {
     return (
         <a href={e.targetPage}>
@@ -711,7 +738,8 @@ const InputStyle = {
     fontSeight: "400",
     lineHeight: "160%" /* 32px */,
     letterSpacing: "-0.2px",
-    marginBottom: "1.5vh",
+    marginTop: "1vh",
+    marginBottom: "2.5vh",
 };
 
 // Section 스타일

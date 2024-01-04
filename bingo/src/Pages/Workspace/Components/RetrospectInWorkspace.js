@@ -11,7 +11,7 @@ import PlusBold from "../../../assets/Img/WorkspaceView/ph_plus-bold.png";
 import "../../../font.css";
 
 //workspaceView화면 내 회고와 액션아이템 출력 컴포넌트
-const RetrospectInWorkspace=(e)=> {
+const RetrospectInWorkspace = (e) => {
     const [userInfo, setUserInfo] = useRecoilState(loginUserState);
     const [tasks, setTasks] = useRecoilState(RetrospectData);
     const state = true;
@@ -32,12 +32,10 @@ const RetrospectInWorkspace=(e)=> {
         <>
             {/*Div for retrospectList height=833*/}
 
-            <AddArea to={`/RetrospectCreate?userId=${e.userId}&workspaceId=${e.workspaceId}`}>
-                <Img
-                    width="44px"
-                    height="44px"
-                    src={PlusBold}
-                />
+            <AddArea
+                to={`/RetrospectCreate?userId=${e.userId}&workspaceId=${e.workspaceId}`}
+            >
+                <Img width="44px" height="44px" src={PlusBold} />
                 <WordDiv>회고생성</WordDiv>
             </AddArea>
             {tasks.length >= 1 &&
@@ -126,7 +124,7 @@ const RetrospectInWorkspace=(e)=> {
                     ))}
         </>
     );
-}
+};
 
 export default RetrospectInWorkspace;
 const AddArea = styled(Link)`
@@ -146,7 +144,7 @@ const WordDiv = styled.div`
     height: 2.2vh;
     color: #6f6f6f;
     text-align: center;
-    font-family: WefontGothic(OTF);
+    font-family: "160";
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -207,7 +205,7 @@ const ViewButton = styled(Link)`
     justify-content: center;
     display: flex;
     color: var(--main_red, #ea4336);
-    font-family: WefontGothic(OTF);
+    font-family: "160";
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
@@ -223,7 +221,7 @@ const WriteButton = styled(Link)`
     justify-content: center;
     display: flex;
     color: var(--main_red, #ea4336);
-    font-family: WefontGothic(OTF);
+    font-family: "160";
     font-size: 18px;
     font-style: normal;
     font-weight: 400;

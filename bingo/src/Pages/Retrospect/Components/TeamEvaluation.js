@@ -8,7 +8,6 @@ import {
     retrospectQuestionsListState,
     retrospectiveState,
 } from "../../../Contexts/Atom";
-import { ChipData, retrospectQuestionsListState, retrospectiveState } from "../../../Contexts/Atom";
 import { useRecoilState } from "recoil";
 import { useState } from "react";
 import { Button } from "../../../Components/NormalComponents/Form";
@@ -95,30 +94,18 @@ const ChipDiv = styled.div`
 `;
 
 const TeamEvaluation = (e) => {
-    const [retrospective, setRetrospective] =
-        useRecoilState(retrospectiveState);
-const TeamEvaluation = (e) =>  {    
     // const [retrospective, setRetrospective] = useRecoilState(retrospectiveState);
-    const [retrospectQuestionsList, setRetrospectQuestionsList] = useRecoilState(retrospectQuestionsListState);
+    const [retrospectQuestionsList, setRetrospectQuestionsList] =
+        useRecoilState(retrospectQuestionsListState);
     const navigate = useNavigate();
     const handleBeforeClick = () => {
         navigate("/RetrospectWriteText");
     };
-
-    const location = useLocation();
-    const queryParams = new URLSearchParams(location.search);
-    const userId = queryParams.get("userId");
-    const workspaceId = queryParams.get("workspaceId");
-    const retrospectId = queryParams.get("retrospectId");
-    const [retrospectQuestionsList, setRetrospectQuestionsList] =
-        useRecoilState(retrospectQuestionsListState);
-    const [chipData, setChipData] = useRecoilState(ChipData);
-
     const [isFilled, setIsFilled] = useState(false);
     const handleNextButtonClick = () => {
         if (isFilled) {
             // isFilled가 true일 경우에만 다음 페이지로 이동
-            navigate(`/WorkspaceView?workspaceId=${workspaceId}`);
+            navigate(`/WorkspaceView?workspaceId=${e.workspaceId}`);
         }
     };
 
@@ -162,7 +149,6 @@ const TeamEvaluation = (e) =>  {
                                 navigate
                             )
                         }
-                        onClick={() => postRetrospect({ workspaceId: workspaceId, userId: userId, retrospectId: retrospectId, retrospectQuestionsList : retrospectQuestionsList, chipData : chipData}, navigate)}
                         // onClick={postRetrospect({ workspaceId: e.workspaceId, userId: e.userId, retrospectId: e.retrospectId, retrospectQuestionsList : retrospectQuestionsList})}
                         backgroundColor={
                             isFilled ? "#EA4336" : "rgba(234, 67, 54, 0.4)"
