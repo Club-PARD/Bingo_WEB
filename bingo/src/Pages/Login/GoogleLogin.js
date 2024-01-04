@@ -52,6 +52,7 @@ const GoogleLoginButton = () => {
                             if(data.isSigned == 1) {
                                 window.location.href = "/UserApprove";
                             }
+                            alert("isSigned : ",data.isSigned);
                             window.location.href = "/WorkspaceList"
 
                             // navigate("/WorkspaceList");
