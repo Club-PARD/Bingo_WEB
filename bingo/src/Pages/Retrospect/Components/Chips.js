@@ -35,10 +35,10 @@ export default function Chips({ isFilled, setIsFilled }) {
     const isAnyChipSelected = newChipData.some((chip) => chip.flag);
     setIsFilled(isAnyChipSelected);
   };
-  //flag가 잘 바뀌는지 확인
-  React.useEffect(() => {
-    console.log(chipData[1].flag);
-  }, [chipData[1].flag]);
+  // //flag가 잘 바뀌는지 확인
+  // React.useEffect(() => {
+  //   console.log(chipData[1].flag);
+  // }, [chipData[1].flag]);
 
   const handleDelete = (chipToDelete) => () => {
     setChipData((chips) => chips.filter((chip) => chip.key !== chipToDelete.key));

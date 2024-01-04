@@ -100,7 +100,7 @@ const TeamEvaluation = (e) => {
     console.log("정보 보자잇", retrospectQuestionsList.tagList[0]);
     const navigate = useNavigate();
     const handleBeforeClick = () => {
-        navigate("/RetrospectWriteText");
+        navigate(`/RetrospectWrite?userId=${userId}&workspaceId=${workspaceId}&retrospectId=${retrospectId}`);
     };
     const [isFilled, setIsFilled] = useState(false);
     const handleNextButtonClick = () => {
@@ -169,6 +169,7 @@ const TeamEvaluation = (e) => {
                                         retrospectQuestionsList:
                                             retrospectQuestionsList,
                                         chipData: finalChipData,
+                                        setChipData : setChipData,
                                     },
                                     navigate
                                 )
