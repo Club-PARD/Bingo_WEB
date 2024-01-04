@@ -9,24 +9,24 @@ const WorkspaceData = {
 // 새로운 워크스페이스 생성 API name. desc. code + userid, 빙고 형용사 리스트 를 받아와서 post로 보낸다 ->
 // response data를 받는다 (제대로 갔는지 확인용)
 export const createWorkspace = async (newWorkspace) => {
-    const chipData = [
-        "서로에 대한 존중과 신뢰가 있는",
-        "소통이 활발한",
-        "개선과 혁신을 추구하는",
-        "배우고자 하는",
-        "열정 있는",
-        "개인의 역할이 뚜렷한",
-        "목표와 성과가 명확한",
-        "모두가 협업하는",
-        "일과 삶의 균형이 있는",
-    ];
     const postData = {
         userId: newWorkspace.userId,
         name: newWorkspace.name,
         description: newWorkspace.desc,
         picture: newWorkspace.picture,
+        projectId : null,
         code: newWorkspace.code,
-        tagList: chipData,
+        tagList: [
+            "서로에 대한 존중과 신뢰가 있는",
+            "소통이 활발한",
+            "개선과 혁신을 추구하는",
+            "배우고자 하는",
+            "열정 있는",
+            "개인의 역할이 뚜렷한",
+            "목표와 성과가 명확한",
+            "모두가 협업하는",
+            "일과 삶의 균형이 있는"
+        ]
     };
     alert(localStorage.getItem("email"));
     try {
@@ -137,13 +137,13 @@ export const handleUpload = async (file) => {
 
         const formData = new FormData();
         formData.append("file", file);
+        
+        console.log("FD",formData);
 
         const response = await fetch(`${process.env.REACT_APP_URL}upload`, {
             method: "POST",
             body: formData,
-            headers: {
-                Authorization: "Bearer " + localStorage.getItem("email"),
-            },
+            headers: { Authorization: `Bearer ${localStorage.getItem("email")}` }
         });
 
         if (response.ok) {
