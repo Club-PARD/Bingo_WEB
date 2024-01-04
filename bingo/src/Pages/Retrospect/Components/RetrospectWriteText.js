@@ -282,6 +282,7 @@ const RetrospectWriteText = (e) => {
                         >
                             {retrospectQuestionsList.templateType}
                         </Div>
+
                         {retrospectQuestionsList.questionList.map(
                             (data, index) => (
                                 // data.title &&
@@ -298,6 +299,7 @@ const RetrospectWriteText = (e) => {
                                         (retro, index2) => (
                                             // retro.dataQ &&
                                             <div key={index2}>
+                                                {console.log("정보", data.subQuestionList[index2])}
                                                 <RetroData>
                                                     {retro.subQuestion}
                                                 </RetroData>
