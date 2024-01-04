@@ -117,7 +117,7 @@ const WorkspaceList = () => {
             code: randomCode,
             userId: userInfo.appUser.id,
         };
-        
+
         console.log("NEW", newWorkspace);
         createWorkspace(newWorkspace);
         handleUpload(file);
@@ -389,6 +389,42 @@ const WorkspaceList = () => {
                             <ModalLabel>프로젝트 사진</ModalLabel>
                             <Input
                                 type="file"
+                                style={{ display: "none" }}
+                                ref={fileInputRef}
+                                accept="image/*"
+                                onChange={handleFileChange}
+                            />
+                            <Div alignItems="center">
+                                {file ? (
+                                    <FileInputButton
+                                        onClick={(e) => {
+                                            e.stopPropagation();
+                                            setFile(null);
+                                        }}
+                                    >
+                                        <FileInputText>
+                                            {file.name}
+                                        </FileInputText>
+                                        <FileInputImg src="img\WorkspaceList\close.png" />
+                                    </FileInputButton>
+                                ) : (
+                                    <FileInputButton
+                                        onClick={() =>
+                                            fileInputRef.current.click()
+                                        }
+                                    >
+                                        <FileInputImg src="img\WorkspaceList\arrow_upward.png" />
+                                        <FileInputText>
+                                            파일 업로드
+                                        </FileInputText>
+                                    </FileInputButton>
+                                )}
+                            </Div>
+                        </Div>
+                        {/* <Div flexDirection="column">
+                            <ModalLabel>프로젝트 사진</ModalLabel>
+                            <Input
+                                type="file"
                                 style={
                                     {
                                         // display: "",
@@ -426,7 +462,7 @@ const WorkspaceList = () => {
                                     )}
                                 </FileInputButton>
                             </Div>
-                        </Div>
+                        </Div> */}
 
                         {/* (모달) 프로젝트 설명 */}
                         <Div flexDirection="column">

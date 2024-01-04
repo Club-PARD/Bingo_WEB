@@ -46,7 +46,7 @@ export const Div = styled.div`
 export const CenterDiv = styled(Div)`
     width: 100%;
     height: 40%;
-    font-family: WefontGothic(OTF);
+    font-family: "160";
     font-size: 40px;
     font-weight: 400;
     font-style: normal;

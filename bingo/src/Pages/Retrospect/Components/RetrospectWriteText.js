@@ -53,7 +53,7 @@ const TitleDiv = styled.div`
     width: auto;
     height: 4vh;
     color: var(--sec_grey, #222);
-    font-family: WefontGothic(OTF);
+    font-family: "160";
     font-size: 28px;
     font-style: normal;
     font-weight: 400;
@@ -82,6 +82,7 @@ const Body = styled.div`
     flex-direction: column;
     align-items: center;
     border-radius: 40px;
+    padding-bottom: 2.5vh;
 `;
 
 // Body 안에 들어가는 회고 작성칸을 감싸는 테두리
@@ -103,13 +104,13 @@ const RetroType = styled.div`
 
 const RetroABC = styled.div`
     color: var(--main_red, #ea4336);
-    font-family: WefontGothic(OTF);
+    font-family: "160";
     font-size: 60px;
     font-style: normal;
     font-weight: 400;
 `;
 const RetroLabel = styled.div`
-    font-family: WefontGothic(OTF);
+    font-family: "160";
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
@@ -122,7 +123,7 @@ const RetroData = styled.div`
     width: 66.3vw;
     height: 2.8vh;
     color: #222;
-    font-family: WefontGothic(OTF);
+    font-family: "160";
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
@@ -142,7 +143,7 @@ const RetroText = styled.textarea`
     box-sizing: border-box;
     border: none;
     color: #222;
-    font-family: WefontGothic(OTF);
+    font-family: "140";
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
@@ -162,6 +163,21 @@ const Btn = styled.button`
     align-items: center;
     display: flex;
     justify-content: center;
+`;
+const TemplateTypeDiv = styled(Div)`
+    width: 66.3vw;
+    height: 4.2vh;
+    display: flex;
+    margin: 2.2vh 0 0 0;
+    justify-content: center;
+    align-items: center;
+    background-color: #f9f9f9;
+    color: rgba(22, 22, 22, 0.3);
+    font-family: "180";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    border-radius: 14px;
 `;
 
 const RetrospectWriteText = (e) => {
@@ -266,23 +282,9 @@ const RetrospectWriteText = (e) => {
             <BodyMom>
                 {retrospectQuestionsList ? (
                     <Body>
-                        <Div
-                            width="66.3vw"
-                            height="4.2vh"
-                            display="flex"
-                            margin="2.2vh 0 0 0"
-                            justifyContent="center"
-                            alignItems="center"
-                            backgroundColor="#F9F9F9"
-                            color="rgba(22, 22, 22, 0.3)"
-                            fontFamily="WefontGothic(OTF)"
-                            fontSize="18px"
-                            fontStyle="normal"
-                            fontWeight="400"
-                            borderRadius="14px"
-                        >
+                        <TemplateTypeDiv>
                             {retrospectQuestionsList.templateType}
-                        </Div>
+                        </TemplateTypeDiv>
 
                         {retrospectQuestionsList.questionList.map(
                             (data, index) => (
@@ -300,7 +302,10 @@ const RetrospectWriteText = (e) => {
                                         (retro, index2) => (
                                             // retro.dataQ &&
                                             <div key={index2}>
-                                                {console.log("정보", data.subQuestionList[index2])}
+                                                {console.log(
+                                                    "정보",
+                                                    data.subQuestionList[index2]
+                                                )}
                                                 <RetroData>
                                                     {retro.subQuestion}
                                                 </RetroData>
@@ -419,7 +424,7 @@ const ModalTextDiv = styled.div`
     width: auto;
     height: 30px;
     color: var(--sec_grey, #222);
-    font-family: WefontGothic(OTF);
+    font-family: "160";
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
@@ -440,7 +445,7 @@ const ModalCloseButton = styled.button`
     align-items: center;
     justify-content: center;
     color: var(--main_red, #ea4336);
-    font-family: WefontGothic(OTF);
+    font-family: "160";
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
@@ -457,7 +462,7 @@ const ModalExitButton = styled(Link)`
     align-items: center;
     justify-content: center;
     color: var(--main_white, #f9f9f9);
-    font-family: WefontGothic(OTF);
+    font-family: "160";
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
@@ -470,22 +475,25 @@ const ModalExitButton = styled(Link)`
 const StepButton = (e) => {
     return (
         <a href={e.targetPage}>
-            <Button
-                width="5.5vw"
-                height="5vh"
-                borderRadius="40px"
-                fontSize="18px"
-                fontWeight="400"
+            <StepBtn
                 onClick={e.onClick}
-                justifyContent="center"
-                alignItems="center"
-                margin=" 0 0 0 .8vw"
-                border="2px solid var(--main_red, #EA4336)"
                 backgroundColor={e.backgroundColor}
                 color={e.color}
             >
                 {e.targetLabel}
-            </Button>
+            </StepBtn>
         </a>
     );
 };
+const StepBtn = styled(Button)`
+    width: 5.5vw;
+    height: 5vh;
+    border-radius: 40px;
+    font-size: 18px;
+    font-weight: 400;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0 0 0.8vw;
+    border: 2px solid var(--main_red, #ea4336);
+    font-family: "160";
+`;

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export const ModalLargest = styled.div `
+export const ModalLargest = styled.div`
     width: 100%;
     height: 91%;
     margin-top: 7%;
@@ -10,32 +10,32 @@ export const ModalLargest = styled.div `
     align-items: center;
     justify-content: space-evenly;
 `;
-export const ModalTextDiv = styled.div `
+export const ModalTextDiv = styled.div`
     width: auto;
     height: 30px;
     color: var(--sec_grey, #222);
-    font-family: WefontGothic(OTF);
+    font-family: "160";
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
     text-align: center;
 `;
 //width:213px; height:51px;
-export const ModalButtonDiv = styled.div `
+export const ModalButtonDiv = styled.div`
     width: 47%;
     height: 18.5%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 `;
-export const ModalCloseButton = styled.button `
+export const ModalCloseButton = styled.button`
     width: 42%;
     height: 100%;
     background-color: var(--main_white, #f9f9f9);
     align-items: center;
     justify-content: center;
     color: var(--main_red, #ea4336);
-    font-family: WefontGothic(OTF);
+    font-family: "160";
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
@@ -52,7 +52,7 @@ export const ModalExitButton = styled(Link)`
     align-items: center;
     justify-content: center;
     color: var(--main_white, #f9f9f9);
-    font-family: WefontGothic(OTF);
+    font-family: "160";
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
@@ -60,7 +60,7 @@ export const ModalExitButton = styled(Link)`
     border: 2px solid var(--main_red, #ea4336);
     text-decoration: none;
     cursor: pointer;
-`
+`;
 
 // Input 스타일 지정
 export const InputStyle = {
@@ -78,7 +78,7 @@ export const InputStyle = {
     lineHeight: "160%",
     /* 32px */
     letterSpacing: "-0.2px",
-    marginBottom: "1.5vh"
+    marginBottom: "1.5vh",
 };
 
 // Section 스타일
@@ -87,13 +87,13 @@ export const Section_Style = {
     height: "93.9vh",
     flexDirection: "column",
     margin: "0 auto",
-    overflow: "hidden"
+    overflow: "hidden",
 };
 
 //Modal
 export const StyleModal = {
     overlay: {
-        backgroundColor: "rgba(0, 0, 0,0.2)"
+        backgroundColor: "rgba(0, 0, 0,0.2)",
     },
     content: {
         top: "50%",
@@ -112,12 +112,12 @@ export const StyleModal = {
         display: "flex",
         border: "none",
         flexDirection: "column",
-        justifyContent: "end"
-    }
+        justifyContent: "end",
+    },
 };
 
 // StepButton : Next / Last 버튼 분리화
-export const Header = styled.div `
+export const Header = styled.div`
     width: 66vw;
     height: 24%;
     margin: 0 auto;
@@ -126,7 +126,7 @@ export const Header = styled.div `
     justify-content: space-between;
     align-items: end;
 `;
-export const LeftHead = styled.div `
+export const LeftHead = styled.div`
     margin-bottom: 5.4vh;
     width: auto;
     height: 46%; //114px
@@ -134,7 +134,7 @@ export const LeftHead = styled.div `
     flex-direction: column;
     justify-content: space-between;
 `;
-export const RightHead = styled.div `
+export const RightHead = styled.div`
     margin-bottom: 5.4vh;
     width: 30%; //330px
     height: 24%; //59px
@@ -143,40 +143,39 @@ export const RightHead = styled.div `
     justify-content: Right;
     align-items: end;
 `;
-export const SpanCreate = styled.span `
+export const SpanCreate = styled.span`
     color: #838383;
-    //font-family: WefontGothic(OTF);
+    font-family: "140";
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
     line-height: 150%; /* 24px */
     letter-spacing: -0.16px;
 `;
-export const SpanTitle = styled.span `
+export const SpanTitle = styled.span`
     color: var(--sec_grey, #222);
-    //font-family: WefontGothic(OTF);
+    font-family: "160";
     font-size: 28px;
     font-style: normal;
     font-weight: 400;
     line-height: 150%; /* 42px */
 `;
-export const SpanDesc = styled.span `
+export const SpanDesc = styled.span`
     color: rgba(34, 34, 34, 0.8);
-    //font-family: WefontGothic(OTF);
+    font-family: "140";
     font-size: 15px;
     font-style: normal;
     font-weight: 400;
     line-height: 150%; /* 22.5px */
 `;
-export const EclipseDiv = styled.div `
+export const EclipseDiv = styled.div`
     width: 0.6vw;
     height: 0.6vw;
     border: none;
     box-sizing: border-box;
-    background-color: #e1e1e1;
     border-radius: 50%;
 `;
-export const DotDiv = styled.div `
+export const DotDiv = styled.div`
     height: 4vh;
     width: 100%;
     display: flex;
@@ -203,9 +202,9 @@ export const menuStyle = {
     lineHeight: "150%",
     /* 24px */
 };
-export const DivKPTText = styled.div `
+export const DivKPTText = styled.div`
     color: var(--main_white, #f9f9f9);
-    font-family: WefontGothic(OTF);
+    font-family: "140";
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -213,9 +212,9 @@ export const DivKPTText = styled.div `
     width: 15.4vw;
     margin: 2.6vh auto;
 `;
-export const Div4LSText = styled.div `
+export const Div4LSText = styled.div`
     color: var(--main_white, #f9f9f9);
-    font-family: WefontGothic(OTF);
+    font-family: "140";
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -223,9 +222,9 @@ export const Div4LSText = styled.div `
     width: 15.4vw;
     margin: 2.6vh auto;
 `;
-export const Div5FText = styled.div `
+export const Div5FText = styled.div`
     color: var(--main_white, #f9f9f9);
-    font-family: WefontGothic(OTF);
+    font-family: "140";
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -233,4 +232,3 @@ export const Div5FText = styled.div `
     width: 15.4vw;
     margin: 2.6vh auto;
 `;
-
