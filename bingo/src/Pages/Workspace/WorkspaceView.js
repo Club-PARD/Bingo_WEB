@@ -92,14 +92,14 @@ function WorkspaceView() {
                             {/* Title : 빙고판 타이틀 */}
                             <TitleAndButton>
                                 {/* <Title>{filteredWorkspaces ? filteredWorkspaces.name : "프로젝트 이름이 없습니다."}</Title> */}
-                                {/* <Title>{filteredWorkspaces.name}</Title> */}
+                                <Title>{filteredWorkspaces.name}</Title>
                                 <InviteButton onClick={openModal1}>
                                     팀원 초대하기
                                 </InviteButton>
                             </TitleAndButton>
                             <TeamDesc>
                                 {/* {filteredWorkspaces ? filteredWorkspaces.description : "프로젝트 설명이 없습니다."} */}
-                                {/* {filteredWorkspaces.description} */}
+                                {filteredWorkspaces.description}
                             </TeamDesc>
                             <BingoDesc>
                                 <BingoDescText>
