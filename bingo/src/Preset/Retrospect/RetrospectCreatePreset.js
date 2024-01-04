@@ -98,7 +98,6 @@ export const Section1 = (e) => {
     };
     const closeModalInvalid = () => {
         setModalInvalidIsOpen(false);
-
     };
 
     //
@@ -190,7 +189,7 @@ export const Section1 = (e) => {
                 {/* 템플릿 선택 Section */}
                 <Div flexDirection="column" width="100%" height="80%" backgroundColor="">
                     {/* Title */}
-                    <Div height="6.5%">
+                    <Div height="6.5%" margin="1vh 0 0 0">
                         <P
                             styled={{
                                 color: "rgba(34, 34, 34, 0.60)",
@@ -615,7 +614,7 @@ const RadioCard = (e) => {
 const StepButton = (e) => {
     return (
         <a href={e.targetPage}>
-            <Button
+            <StepBtn
                 width="5.5vw"
                 height="5vh"
                 borderRadius="40px"
@@ -629,11 +628,22 @@ const StepButton = (e) => {
                 backgroundColor={e.backgroundColor}
                 color={e.color}>
                 {e.targetLabel}
-            </Button>
+            </StepBtn>
         </a>
     );
 };
-
+const StepBtn = styled(Button)`
+    width: 5.5vw;
+    height: 5vh;
+    border-radius: 40px;
+    font-size: 18px;
+    font-weight: 400;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0 0 0.8vw;
+    border: 2px solid var(--main_red, #ea4336);
+    font-family: "160";
+`;
 const StepButtonSkip = (e) => {
     return (
         <a href={e.targetPage}>
