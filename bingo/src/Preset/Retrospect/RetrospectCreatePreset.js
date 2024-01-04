@@ -9,6 +9,8 @@ import {UrlInfo, WorkspaceData, WorkspaceInfo, workspaceInfo} from "../../Contex
 import {useRecoilState} from "recoil";
 import * as RCP from "./RetrospectCreatePresetStyle";
 import { postRetrospectCreated } from "../../Api/Retrospace";
+import styled from "styled-components";
+
 
 // Section1 영역
 export const Section1 = (e) => {
@@ -232,20 +234,23 @@ export const Section1 = (e) => {
                                 retrospectDataTemp.templateType ="KPT";
                                 retrospectDataTemp.questionRequestList = [
                                     {
-                                        id: null,
+                                        templateId: null,
                                         mainQuestion: "Keep",
-                                        subQuestionList : ["", "", ""]
+                                        subQuestionRequest: {questionId : null, question : ["", "", ""]}
                                     },{
-                                        id: null,
+                                        templateId: null,
                                         mainQuestion: "Problem",
-                                        subQuestionList : ["", "", ""]
+                                        subQuestionRequest: {questionId : null, question : ["", "", ""]}
                                     }    ,{
-                                        id: null,
+                                        templateId: null,
                                         mainQuestion: "Try",
-                                        subQuestionList : ["", "", ""]
-                                    }    
-                                        
+                                        subQuestionRequest: {questionId : null, question : ["", "", ""]}
+                                    }                   
                                 ];
+                                    
+                                
+                                    
+                                
                                 // 상태 업데이트 시 새로운 객체를 사용
                                 e.setRetrospectData(retrospectDataTemp);
                             }}
@@ -265,15 +270,15 @@ export const Section1 = (e) => {
                                 ...props4LS,
                                 ...RCP.menuStyle,
                                 ...styles4LS,
-                                backgroundColor:e.retrospectData.templateType === "4LS" || height4LS === "45vh"
+                                backgroundColor:e.retrospectData.templateType === "Ls4" || height4LS === "45vh"
                                     ? "#222"
                                     : "#EFEFEF"
                             }}
                             onMouseEnter={() => setHeight4LS("45vh")}
                             onMouseLeave={() => setHeight4LS("29vh")}>
                             <RadioCard
-                                value="4LS"
-                                label="4LS"
+                                value="Ls4"
+                                label="Ls4"
                                 description={<>
                                 팀의 과정을 돌아보고 < br /> 목표를 세우길 원한다면
                                     ? </>}
@@ -283,24 +288,24 @@ export const Section1 = (e) => {
                                 // 깊은 복사를 통해 새로운 객체 생성
                                 const retrospectDataTemp = { ...e.retrospectData };
                                 // 새로운 객체에 변경된 값을 할당
-                                retrospectDataTemp.templateType ="4LS";
+                                retrospectDataTemp.templateType ="Ls4";
                                 retrospectDataTemp.questionRequestList = [
                                     {
-                                        id: null,
+                                        templateId: null,
                                         mainQuestion: "Liked",
-                                        subQuestionList : ["", "", ""]
+                                        subQuestionRequest: {questionId : null, question : ["", "", ""]}
                                     },{
-                                        id: null,
+                                        templateId: null,
                                         mainQuestion: "Learned",
-                                        subQuestionList : ["", "", ""]
+                                        subQuestionRequest: {questionId : null, question : ["", "", ""]}
                                     }    ,{
-                                        id: null,
+                                        templateId: null,
                                         mainQuestion: "Lacked",
-                                        subQuestionList : ["", "", ""]
+                                        subQuestionRequest: {questionId : null, question : ["", "", ""]}
                                     }    ,{
-                                        id: null,
+                                        templateId: null,
                                         mainQuestion: "Longed for",
-                                        subQuestionList : ["", "", ""]
+                                        subQuestionRequest: {questionId : null, question : ["", "", ""]}
                                     }  
                                         
                                 ];
@@ -323,15 +328,15 @@ export const Section1 = (e) => {
                                 ...props5F,
                                 ...RCP.menuStyle,
                                 ...styles5F,
-                                backgroundColor:e.retrospectData.templateType === "5F" || height5F === "45vh"
+                                backgroundColor:e.retrospectData.templateType === "F5" || height5F === "45vh"
                                     ? "#222"
                                     : "#EFEFEF"
                             }}
                             onMouseEnter={() => setHeight5F("45vh")}
                             onMouseLeave={() => setHeight5F("29vh")}>
                             <RadioCard
-                                value="5F"
-                                label="5F"
+                                value="F5"
+                                label="F5"
                                 description={<>
                                 팀의 중요한 사건들을 < br /> 꼼꼼히 돌아보길 원한다면
                                     ? </>}
@@ -341,28 +346,28 @@ export const Section1 = (e) => {
                                 // 깊은 복사를 통해 새로운 객체 생성
                                 const retrospectDataTemp = { ...e.retrospectData };
                                 // 새로운 객체에 변경된 값을 할당
-                                retrospectDataTemp.templateType = "5F";
+                                retrospectDataTemp.templateType = "F5";
                                 retrospectDataTemp.questionRequestList = [
                                     {
-                                        id: null,
+                                        templateId: null,
                                         mainQuestion: "Feel",
-                                        subQuestionList : ["", "", ""]
+                                        subQuestionRequest: {questionId : null, question : ["", "", ""]}
                                     },{
-                                        id: null,
+                                        templateId: null,
                                         mainQuestion: "Find",
-                                        subQuestionList : ["", "", ""]
+                                        subQuestionRequest: {questionId : null, question : ["", "", ""]}
                                     }    ,{
-                                        id: null,
+                                        templateId: null,
                                         mainQuestion: "Finish",
-                                        subQuestionList : ["", "", ""]
+                                        subQuestionRequest: {questionId : null, question : ["", "", ""]}
                                     }    ,{
-                                        id: null,
+                                        templateId: null,
                                         mainQuestion: "Future",
-                                        subQuestionList : ["", "", ""]
+                                        subQuestionRequest: {questionId : null, question : ["", "", ""]}
                                     }    ,{
-                                        id: null,
+                                        templateId: null,
                                         mainQuestion: "Feedback",
-                                        subQuestionList : ["", "", ""]
+                                        subQuestionRequest: {questionId : null, question : ["", "", ""]}
                                     }  
                                         
                                 ];
@@ -465,10 +470,10 @@ export const Section2 = (e) => {
                                                 type="text"
                                                 placeholder={`세부 질문을 입력하세요.`}
                                                 style={RCP.InputStyle}
-                                                value={e.retrospectData.questionRequestList[index].subQuestionList[contentIndex]}
+                                                value={e.retrospectData.questionRequestList[index].subQuestionRequest[contentIndex]}
                                                 onChange={(f) => {
                                                     const InputTempValue = { ...e.retrospectData };
-                                                    InputTempValue.questionRequestList[index].subQuestionList[contentIndex] = f.target.value;
+                                                    InputTempValue.questionRequestList[index].subQuestionRequest[contentIndex] = f.target.value;
                                                     e.setRetrospectData(InputTempValue);
                                                             
                                                 }}
@@ -531,8 +536,8 @@ export const Section2 = (e) => {
             <Div width="100%" height="71.3vh" overflow="auto">
                 <Div flexDirection="column" height="100%" width="70.5%" margin="0 auto">
                     {e.retrospectData.templateType === "KPT" && handleMakeThreeSection("KPT", ["Keep", "Problem", "Try"], e.retrospectData, e.setRetrospectData)}
-                    {e.retrospectData.templateType === "4LS" && handleMakeThreeSection("4LS", ["Liked", "Learned", "Lacked", "Longed for"], e.retrospectData, e.setRetrospectData)}
-                    {e.retrospectData.templateType === "5F" && handleMakeThreeSection("5F", ["Feel", "Find", "Finish", "Future", "Feedback"], e.retrospectData, e.setRetrospectData)}
+                    {e.retrospectData.templateType === "Ls4" && handleMakeThreeSection("Ls4", ["Liked", "Learned", "Lacked", "Longed for"], e.retrospectData, e.setRetrospectData)}
+                    {e.retrospectData.templateType === "F5" && handleMakeThreeSection("F5", ["Feel", "Find", "Finish", "Future", "Feedback"], e.retrospectData, e.setRetrospectData)}
                 </Div>
             </Div>
             {/* {console.log(InputCounts)}

@@ -53,9 +53,9 @@ const getTagListByTemplateType = (templateType) => {
     switch (templateType) {
         case "KPT":
             return Array.from({ length: 9 }, () => "");
-        case "4LS":
+        case "Ls4":
             return Array.from({ length: 12 }, () => "");
-        case "5F":
+        case "F5":
             return Array.from({ length: 15 }, () => "");
         default:
             return [];
