@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import Checkbox from '@mui/material/Checkbox';
+import LogoUserApprove from "../../../assets/Img/UserApprove/LogoUserApprove.png"
+
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
 
 const Whole = styled.div`
@@ -10,7 +12,6 @@ const Whole = styled.div`
     align-items: center;
     padding : 7%;
 `;
-
 const WholeBox = styled.div`
     display : flex;
     align-items: center;
@@ -22,18 +23,15 @@ const WholeBox = styled.div`
     border-radius: 36px;
     border: 2px solid transparent;
 `;
-
 const LogoImg = styled.img`
     width : 15%;
     padding : 7%;
 `;
-
 const ProfileBox = styled.div`
     height : 25vh;
     width : 10vw;
     margin : 5%;
 `;
-
 const ProfileImgBox = styled.div`
     border : 1px solid transparent;
     border-radius : 24px;
@@ -44,13 +42,11 @@ const ProfileImgBox = styled.div`
     justify-content : center;
     align-items : center;
 `;
-
 const ProfileImg = styled.img`
     border-radius : 50%;
     border : 1px solid red;
     width : 50%;
 `;
-
 const ProfileName = styled.div`
     border : 1px solid transparent;
     border-radius : 24px;
@@ -60,7 +56,6 @@ const ProfileName = styled.div`
     justify-content : center;
     align-items : center;
 `;
-
 const NameSpace = styled.div`
     // 추가적인 스타일링이 필요하다면 여기에 작성
 `;
@@ -70,7 +65,7 @@ const CheckText = styled.div`
     justify-content : center;
     align-items : center;
     color: #222222;
-`
+`;
 const Approve = styled.button`
     border: 1px solid ${({ disabled }) => (disabled ? "#CCCCCC" : "#EA4336")};
     background-color: ${({ disabled }) => (disabled ? "#CCCCCC" : "#EA4336")};
@@ -82,7 +77,6 @@ const Approve = styled.button`
     margin: 5%;
     cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
 `;
-
 const CheckBox = ({ handleChange, isChecked }) => (
     <div>
         <Checkbox {...label} checked={isChecked} onChange={handleChange} />
@@ -117,7 +111,7 @@ const UserApprove = () => {
     return (
         <Whole>
             <WholeBox>
-                <LogoImg src="/img/UserApprove/Logo_UserApprove.png" />
+                <LogoImg src={LogoUserApprove} />
                 <div style={{ color: "#222222" }}>
                     입력하신 내용으로<br />
                     빙고 계정을 생성할까요?
@@ -138,7 +132,7 @@ const UserApprove = () => {
                 <CheckText>
                     빙고 이용 약관과 개인정보 처리 방침에 동의합니다.
                 </CheckText>
-                <Approve disabled={!isButtonEnabled}>
+                <Approve disabled={!isButtonEnabled} onClick={() => (window.location.href = "/WorkspaceList")}>   
                     동의하고 가입하기
                 </Approve>
             </WholeBox>

@@ -28,7 +28,7 @@ export const createWorkspace = async (newWorkspace) => {
             "일과 삶의 균형이 있는"
         ]
     };
-    alert(localStorage.getItem("email"));
+   
     try {
         const response = await axios.post(
             `${process.env.REACT_APP_URL}project`, postData,

@@ -49,7 +49,13 @@ const GoogleLoginButton = () => {
                             setUserInfo(data);
                             console.log("USERID", userInfo.appUser.id);
 
-                            navigate("/WorkspaceList");
+                            if(data.isSigned == 1) {
+                                window.location.href = "/UserApprove";
+                            }
+                            alert("isSigned : ",data.isSigned);
+                            window.location.href = "/WorkspaceList"
+
+                            // navigate("/WorkspaceList");
                         } catch (error) {
                             console.error("로그인 에러", error);
                         }
