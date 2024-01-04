@@ -2,11 +2,13 @@ import styled from "styled-components";
 import { Button, Input } from "../../Components/NormalComponents/Form";
 import { CenterDiv, Div } from "../../Components/NormalComponents/Section";
 import { Label, P } from "../../Components/NormalComponents/Text";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useSpring, animated } from "react-spring";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Modal from "react-modal";
 import { Link } from "react-router-dom";
+import { WorkspaceData } from "../../Contexts/Atom";
+import { useRecoilState } from "recoil";
 
 // Section1 영역
 export const Section1 = (e) => {
@@ -86,20 +88,34 @@ export const Section1 = (e) => {
     };
     const closeModalInvalid = () => {
         setModalInvalidIsOpen(false);
+        
     };
+
+    const location = useLocation();
+    const searchParams = new URLSearchParams(location.search);
+    const workspaceId = searchParams.get("workspaceId");
+
+    const [workspaceData, setWorkspaceData] = useRecoilState(WorkspaceData);
+
+    const filteredWorkspaces = workspaceData.find(
+        (workspace) => workspace.id == workspaceId
+    );
+    console.log(filteredWorkspaces);
+
     return (
         <Div id="section1" style={Section_Style}>
             <Header>
                 <LeftHead>
                     <SpanCreate>회고 생성</SpanCreate>
-                    <SpanTitle>3!4!(쓰리포)</SpanTitle>
-                    <SpanDesc>한동대학교 PARD 롱커톤 3!4! 파이팅!</SpanDesc>
+                    <SpanTitle>{filteredWorkspaces ? filteredWorkspaces.name : "프로젝트 이름이 없습니다."}</SpanTitle>
+                    <SpanDesc>{filteredWorkspaces ? filteredWorkspaces.description : "프로젝트 설명이 없습니다."}</SpanDesc>
                 </LeftHead>
                 <RightHead>
                     <EclipseDiv style={{ marginRight: "0.8vw" }} />
                     <EclipseDiv style={{ marginRight: "1.8vw" }} />
                     <StepButton
-                        onClick={openModalCancle}
+                        // onClick={openModalCancle}
+                        targetPage={`/WorkspaceView?workspaceId=${workspaceId}`}
                         targetLabel="취소"
                         backgroundColor="#F9F9F9"
                         color="#EA4336"
@@ -591,7 +607,7 @@ const RightHead = styled.div`
 `;
 const SpanCreate = styled.span`
     color: #838383;
-    font-family: WefontGothic(OTF);
+    //font-family: WefontGothic(OTF);
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -806,4 +822,4 @@ const ModalExitButton = styled(Link)`
     border: 2px solid var(--main_red, #ea4336);
     text-decoration: none;
     cursor: pointer;
-`;
+`

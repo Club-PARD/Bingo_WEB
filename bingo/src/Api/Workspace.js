@@ -3,11 +3,11 @@ import axios from "axios";
 const WorkspaceData = {
     name: "Wade",
     description: "Male",
-    code: "1234",
+    code: "1234"
 };
 
-// 새로운 워크스페이스 생성 API
-// name. desc. code + userid, 빙고 형용사 리스트 를 받아와서 post로 보낸다 -> response data를 받는다 (제대로 갔는지 확인용)
+// 새로운 워크스페이스 생성 API name. desc. code + userid, 빙고 형용사 리스트 를 받아와서 post로 보낸다 ->
+// response data를 받는다 (제대로 갔는지 확인용)
 export const createWorkspace = async (newWorkspace) => {
     const chipData = [
         "서로에 대한 존중과 신뢰가 있는",
@@ -18,73 +18,79 @@ export const createWorkspace = async (newWorkspace) => {
         "개인의 역할이 뚜렷한",
         "목표와 성과가 명확한",
         "모두가 협업하는",
-        "일과 삶의 균형이 있는",
+        "일과 삶의 균형이 있는"
     ];
-  const postData = {
-    userId : newWorkspace.userId,
-    name: newWorkspace.name,
-    description: newWorkspace.desc,
-    picture : newWorkspace.picture,
-    code: newWorkspace.code,
-    tagList : chipData ,
-  };
-  try {
-    const response = await axios.post(
-      `${process.env.REACT_APP_URL}project`, postData, 
-      {
-        headers: { Authorization:"Bearer "+ localStorage.getItem("email") } ,
-      }
-    );
-    console.log(response.data);
-    return response.data;
-  } catch (error) {
-    alert("생성 중 오류 발생했습니다");
+    const postData = {
+        userId: newWorkspace.userId,
+        name: newWorkspace.name,
+        description: newWorkspace.desc,
+        picture: newWorkspace.picture,
+        code: newWorkspace.code,
+        tagList: chipData
+    };
+    try {
+        const response = await axios.post(
+            `${process.env.REACT_APP_URL}project`,
+            postData,
+            {
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem("email")
+                }
+            }
+        );
+        console.log(response.data);
+        return response.data;
+    } catch (error) {
+        alert("생성 중 오류 발생했습니다");
 
         throw error;
     }
 };
 
-// 나의 모든 워크스페이스 정보를 가져오는 API
-// 입력변수는 사용자 id
-// 리턴 된 값이 list 형태이므로 이걸로 map을 받는 컴포넌트들 만들기
+// 나의 모든 워크스페이스 정보를 가져오는 API 입력변수는 사용자 id 리턴 된 값이 list 형태이므로 이걸로 map을 받는 컴포넌트들
+// 만들기
 export const getAllProjects = async (e, navigate) => {
-  try {
-    const response = await axios.get(
-      `${process.env.REACT_APP_URL}project/` + e.userid , 
-      {
-        headers: { Authorization:"Bearer "+ localStorage.getItem("email") } ,
-      }
-    );
+    try {
+        const response = await axios.get(
+            `${process.env.REACT_APP_URL}project/` + e.userid,
+            {
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem("email")
+                }
+            }
+        );
 
-    return response.data;
-  } catch (error) {
-    if (error.response && error.response.status === 401) {
-      // 로그인이 되어 있지 않은 경우
-      alert("로그인이 필요합니다");
-      navigate("/Login");
-    } else {
-      // 다른 오류인 경우
-      alert("프로젝트 리스트 조회 중 오류 발생했습니다");
+        return response.data;
+    } catch (error) {
+        if (error.response && error.response.status === 401) {
+            // 로그인이 되어 있지 않은 경우
+            alert("로그인이 필요합니다");
+            navigate("/Login");
+        } else {
+            // 다른 오류인 경우
+            alert("프로젝트 리스트 조회 중 오류 발생했습니다");
+        }
+
+        throw error;
     }
-    
-    throw error;
-  }
 };
-
 
 export const getProject = async () => {
     const getData = {
         userId: 1,
-        projectId: 1,
+        projectId: 1
     };
 
-  try {
-    const response = await axios.get(
-      `${process.env.REACT_APP_URL}project`, getData, 
-      {
-        headers: { Authorization:"Bearer "+ localStorage.getItem("email") } ,
-      }
-    );
+    try {
+        const response = await axios.get(
+            `${process.env.REACT_APP_URL}project`,
+            getData,
+            {
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem("email")
+                }
+            }
+        );
 
         return console.log(response.data);
     } catch (error) {
@@ -94,28 +100,30 @@ export const getProject = async () => {
     }
 };
 
-// 워크스페이스 조인하기 
+// 워크스페이스 조인하기
 export const postProject = async (data) => {
     const postData = {
         // 실제 사용 시에는 7,14, "" 가 아니라 실제 정보를 연동하면 된다
-        userId : 7,
-        projectId : 22,
-        code : "",
-        role : "TEAM_LEADER",
+        userId: 7,
+        projectId: 22,
+        code: "",
+        role: "TEAM_LEADER"
     }
     try {
         const response = await axios.post(
-            `${process.env.REACT_APP_URL}enrollment`, postData, 
+            `${process.env.REACT_APP_URL}enrollment`,
+            postData,
             {
-              headers: { Authorization:"Bearer "+ localStorage.getItem("email") } ,
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem("email")
+                }
             }
         )
-    return console.log(response.data);
-    }
-    catch (error) {
+        return console.log(response.data);
+    } catch (error) {
         console.log(error);
-        alert ("팀원 직위 설정 중 오류가 발생했습니다");
-    }  
+        alert("팀원 직위 설정 중 오류가 발생했습니다");
+    }
 };
 
 // 워크스페이스 사진 추가
@@ -129,60 +137,35 @@ export const handleUpload = async (file) => {
         const formData = new FormData();
         formData.append("file", file);
 
-    const response = await fetch(`${process.env.REACT_APP_URL}upload`, {
-      method: 'POST',
-      body: formData,
-      headers: { Authorization: "Bearer " + localStorage.getItem("email") },
-    });
+        const response = await fetch(`${process.env.REACT_APP_URL}upload`, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("email")
+            }
+        });
 
-    if (response.ok) {
-      const result = await response.text(); // 또는 response.url 등을 사용
-      console.log('파일 업로드 성공:', result);
-    } else {
-      console.error('파일 업로드 실패:', response.statusText);
+        if (response.ok) {
+            const result = await response.text(); // 또는 response.url 등을 사용
+            console.log('파일 업로드 성공:', result);
+        } else {
+            console.error('파일 업로드 실패:', response.statusText);
+        }
+
+    } catch (error) {
+        console.error("파일 업로드 중 에러:", error);
     }
-
-  } catch (error) {
-    console.error("파일 업로드 중 에러:", error);
-  }
 };
 
-
-
-// // 워크스페이스 조인하기 (새로 만든 것 -> 이거 사용하면 된다)
-// export const joinProject = async (data) => {
-//     const postData = {
-//       name: data.title,
-//       description: data.desc,
-//       code: data.code,
-//     };
-//     try {
-//       const response = await axios.post(
-//         `${process.env.REACT_APP_URL}api/v1/project`,
-//         postData
-//       );
-
-//       console.log(response.data);
-
-//       const joinData = {
-//         userId: 7,
-//         projectId: 19,
-//         code: "",
-//         role: "TEAM_LEADER",
-//       };
-//       try {
-//         const response = await axios.post(
-//           `${process.env.REACT_APP_URL}api/v1/enrollment`,
-//           joinData
-//         );
-//         console.log(response.data);
-//       } catch (error) {
-//         alert("팀원 직위 추가(ver2_2) 중 오류가 발생했습니다");
-//       }
-
-//       return response.data;
-//     } catch (error) {
-//       alert("생성 중 오류 발생했습니다");
-//       throw error;
-//     }
-//   };
+// 워크스페이스 조인하기 (새로 만든 것 -> 이거 사용하면 된다) export const joinProject = async (data)
+// => {     const postData = {       name: data.title,       description:
+// data.desc,       code: data.code,     };     try {       const response =
+// await axios.post(         `${process.env.REACT_APP_URL}api/v1/project`,
+// postData       );       console.log(response.data);       const joinData = {
+// userId: 7,         projectId: 19,         code: "",         role:
+// "TEAM_LEADER",       };       try {         const response = await
+// axios.post(           `${process.env.REACT_APP_URL}api/v1/enrollment`,
+// joinData         );         console.log(response.data);       } catch (error)
+// {         alert("팀원 직위 추가(ver2_2) 중 오류가 발생했습니다");       }       return
+// response.data;     } catch (error) {       alert("생성 중 오류 발생했습니다");
+// throw error;     }   };

@@ -2,13 +2,14 @@ import {useEffect, useState} from "react";
 import {Div} from "../../Components/NormalComponents/Section";
 import {useNavigate} from "react-router-dom";
 import {Section1, Section2, Section3} from "../../Preset/Retrospect/RetrospectCreatePreset";
-import {retrospectiveState} from "../../Contexts/Atom";
+import {WorkspaceData, retrospectiveState} from "../../Contexts/Atom";
 import {useRecoilState} from "recoil";
 
 export default function RetrospectCreate() {
 
     // Recoil 상태 사용
-    const [retrospective, setRetrospective] = useRecoilState(retrospectiveState);
+    // const [retrospective, setRetrospective] = useRecoilState(retrospectiveState);
+    const [retrospective, setRetrospective] = useState([]);
 
     // retrospectTitle 업데이트
     const setRetrospectTitle = (newTitle) => {
