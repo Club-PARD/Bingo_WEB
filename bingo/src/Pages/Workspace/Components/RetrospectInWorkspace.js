@@ -9,52 +9,9 @@ import { RetrospectData, loginUserState } from "../../../Contexts/Atom";
 import ArrowPink from "../../../assets/Img/WorkspaceView/arrowPink.png";
 import PlusBold from "../../../assets/Img/WorkspaceView/ph_plus-bold.png";
 import "../../../font.css";
-const NameIsValueDiv = styled(Div)`
-    font-family: "160";
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
 
-    color: #7f7f7f;
-
-    text-align: center;
-    align-items: center;
-    margin: 0 0 3.8vh 0;
-`;
-const SubIsNotValue = styled(Div)`
-    margin: 0 0 4.5vh 0;
-
-    color: var(--main_red, #ea4336);
-    font-family: "110";
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-`;
-const NameIsNotDiv = styled(Div)`
-    font-family: "160";
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-
-    color: #7f7f7f;
-
-    text-align: center;
-    align-items: center;
-    margin: 0 0 0.7vh 0;
-`;
-const EmptyValue = styled(Div)`
-    color: #575757;
-    font-family: "160";
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-`;
 //workspaceView화면 내 회고와 액션아이템 출력 컴포넌트
-function RetrospectInWorkspace() {
+const RetrospectInWorkspace=(e)=> {
     const [userInfo, setUserInfo] = useRecoilState(loginUserState);
     const [tasks, setTasks] = useRecoilState(RetrospectData);
     const state = true;
@@ -75,8 +32,12 @@ function RetrospectInWorkspace() {
         <>
             {/*Div for retrospectList height=833*/}
 
-            <AddArea to="/RetrospectCreate">
-                <Img width="44px" height="44px" src={PlusBold} />
+            <AddArea to={`/RetrospectCreate?userId=${e.userId}&workspaceId=${e.workspaceId}`}>
+                <Img
+                    width="44px"
+                    height="44px"
+                    src={PlusBold}
+                />
                 <WordDiv>회고생성</WordDiv>
             </AddArea>
             {tasks.length >= 1 &&
@@ -185,7 +146,7 @@ const WordDiv = styled.div`
     height: 2.2vh;
     color: #6f6f6f;
     text-align: center;
-    font-family: "160";
+    font-family: WefontGothic(OTF);
     font-size: 16px;
     font-style: normal;
     font-weight: 400;
@@ -220,7 +181,7 @@ const TwoResultChip = styled.div`
     width: auto;
     height: 2.6vh;
     color: #575757;
-    font-family: "160";
+    font-family: WefontGothic(OTF);
     font-size: 24px;
     font-style: normal;
     font-weight: 400;
@@ -246,7 +207,7 @@ const ViewButton = styled(Link)`
     justify-content: center;
     display: flex;
     color: var(--main_red, #ea4336);
-    font-family: "160";
+    font-family: WefontGothic(OTF);
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
@@ -262,9 +223,54 @@ const WriteButton = styled(Link)`
     justify-content: center;
     display: flex;
     color: var(--main_red, #ea4336);
-    font-family: "160";
+    font-family: WefontGothic(OTF);
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
     text-decoration: none;
+`;
+
+const NameIsValueDiv = styled(Div)`
+    font-family: "160";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    color: #7f7f7f;
+
+    text-align: center;
+    align-items: center;
+    margin: 0 0 3.8vh 0;
+`;
+const SubIsNotValue = styled(Div)`
+    margin: 0 0 4.5vh 0;
+
+    color: var(--main_red, #ea4336);
+    font-family: "110";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+`;
+const NameIsNotDiv = styled(Div)`
+    font-family: "160";
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+
+    color: #7f7f7f;
+
+    text-align: center;
+    align-items: center;
+    margin: 0 0 0.7vh 0;
+`;
+const EmptyValue = styled(Div)`
+    color: #575757;
+    font-family: "160";
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
 `;

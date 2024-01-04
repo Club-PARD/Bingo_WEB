@@ -13,8 +13,9 @@ import { Link } from "react-router-dom";
 import Modal from "react-modal";
 import { Button } from "../../../Components/NormalComponents/Form";
 import { ConstructionOutlined } from "@mui/icons-material";
-import { postRetrospect } from "../../../Api/Retrospace";
+
 import { cloneDeep } from "lodash";
+import { postRetrospect } from "../../../Api/Retrospace";
 
 // 전체를 감싸는 div, 이 아래에 Header / Body / Footer로 나뉘어 있음
 const Whole = styled.div`
@@ -252,7 +253,6 @@ const RetrospectWriteText = (e) => {
                     <StepButton
                         targetLabel="다음"
                         onClick={handleNextButtonClick}
-                        // onClick={postRetrospect({ workspaceId: e.workspaceId, userId: e.userId, retrospectId: e.retrospectId, retrospectQuestionsList : retrospectQuestionsList})}
                         backgroundColor={
                             isFilled ? "#EA4336" : "rgba(234, 67, 54, 0.4)"
                         }

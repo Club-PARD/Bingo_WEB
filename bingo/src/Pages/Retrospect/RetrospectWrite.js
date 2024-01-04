@@ -47,10 +47,7 @@ function RetrospectWrite() {
         retrospectResult();
     }, [userId, workspaceId, retrospectId]); // 의존성 배열 추가
 
-    console.log(
-        "RetrospectWrite 페이지 : retrospectQuestionsList Data",
-        retrospectQuestionsList
-    );
+    // console.log("RetrospectWrite 페이지 : retrospectQuestionsList Data", retrospectQuestionsList);
 
     return (
         <Div
@@ -70,7 +67,7 @@ function RetrospectWrite() {
                 retrospectId={retrospectId}
             />
             {/* 팀 평가 페이지 */}
-            {/* <TeamEvaluation workspaceId={workspaceId} /> */}
+            {/* <TeamEvaluation userId={userId} workspaceId={workspaceId} retrospectId={retrospectId} /> */}
         </Div>
     );
 }
