@@ -199,7 +199,7 @@ const RetrospectWriteText = (e) => {
                 `/TeamEvaluation?userId=${e.userId}&workspaceId=${e.workspaceId}&retrospectId=${e.retrospectId}`
             );
         } else {
-            console.log("채워주세요.");
+            alert("빈 항목이 있는지 확인해주세요!");
         }
     };
 
