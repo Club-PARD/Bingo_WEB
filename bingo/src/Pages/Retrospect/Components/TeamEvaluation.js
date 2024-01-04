@@ -9,7 +9,7 @@ import {
     retrospectiveState,
 } from "../../../Contexts/Atom";
 import { useRecoilState } from "recoil";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "../../../Components/NormalComponents/Form";
 import { useLocation, useNavigate } from "react-router";
 import { postRetrospect } from "../../../Api/Retrospace";
@@ -97,6 +97,7 @@ const TeamEvaluation = (e) => {
     // const [retrospective, setRetrospective] = useRecoilState(retrospectiveState);
     const [retrospectQuestionsList, setRetrospectQuestionsList] =
         useRecoilState(retrospectQuestionsListState);
+    console.log("정보 보자잇", retrospectQuestionsList.tagList[0]);
     const navigate = useNavigate();
     const handleBeforeClick = () => {
         navigate("/RetrospectWriteText");
@@ -116,7 +117,27 @@ const TeamEvaluation = (e) => {
     const retrospectId = queryParams.get("retrospectId");
 
     const [chipData, setChipData] = useRecoilState(ChipData);
-    console.log("ChipData", chipData);
+    const [updatedChipData, setUpdatedChipData] = useState(chipData);
+    const [finalChipData, setFinalChipData] = useState();
+    useEffect(() => {
+        setUpdatedChipData(chipData);
+    }, chipData)
+
+    const changeData = () => {
+        const tempChipData = [...chipData]; // 배열로 변경
+
+        console.log("Before tempChipData", tempChipData);
+
+        const modifiedData = tempChipData.map(({ key, flag }) => ({
+            id : retrospectQuestionsList.tagList[key].id ? retrospectQuestionsList.tagList[key].id : null,
+            selected: flag === true ? 2 : flag === false ? 1 : flag
+        }));
+
+        console.log("After tempChipData", modifiedData);
+        setFinalChipData(modifiedData);
+        // 여기서 modifiedData를 사용하거나 필요한 처리를 추가하세요.
+    }
+
     // console.log("Again Check : " + workspaceId + ", " + userId + ", " + retrospectId);
     return (
         <Whole>
@@ -136,23 +157,27 @@ const TeamEvaluation = (e) => {
                     />
                     <StepButton
                         targetLabel="완료"
-                        onClick={() =>
-                            postRetrospect(
-                                {
-                                    workspaceId: workspaceId,
-                                    userId: userId,
-                                    retrospectId: retrospectId,
-                                    retrospectQuestionsList:
-                                        retrospectQuestionsList,
-                                    chipData: chipData,
-                                },
-                                navigate
-                            )
-                        }
+                        onClick={() => {
+                            console.log("updatedChipData", updatedChipData),
+                                changeData();
+                            console.log("updatedChipData Again", finalChipData),
+                                postRetrospect(
+                                    {
+                                        workspaceId: workspaceId,
+                                        userId: userId,
+                                        retrospectId: retrospectId,
+                                        retrospectQuestionsList:
+                                            retrospectQuestionsList,
+                                        chipData: finalChipData,
+                                    },
+                                    navigate
+                                )
+                        }}
                         // onClick={postRetrospect({ workspaceId: e.workspaceId, userId: e.userId, retrospectId: e.retrospectId, retrospectQuestionsList : retrospectQuestionsList})}
                         backgroundColor={
                             isFilled ? "#EA4336" : "rgba(234, 67, 54, 0.4)"
                         }
+                        
                         color="#F9F9F9"
                     />
                 </RightHead>

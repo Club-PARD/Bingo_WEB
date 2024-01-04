@@ -33,8 +33,8 @@ function BingoBoard({ modalIsOpen }) {
             )
         );
     };
-    console.log("modal: " + modalIsOpen);
-    console.log("Retro: " + IsRetrospect);
+    // console.log("modal: " + modalIsOpen);
+    // console.log("Retro: " + IsRetrospect);
     return (
         <>
             <ParentDiv isRetrospect={IsRetrospect} modalIsOpen={modalIsOpen}>

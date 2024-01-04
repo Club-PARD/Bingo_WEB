@@ -31,13 +31,13 @@ function WorkspaceView() {
     const [modalIsOpen1, setModalIsOpen1] = useState(false);
     const [value, setValue] = useState("12345678");
     const [workspaceData, setWorkspaceData] = useRecoilState(WorkspaceData);
-    console.log("목요일1", workspaceData);
+    // console.log("목요일1", workspaceData);
     const [retrospectData, setRetrospectData] = useRecoilState(RetrospectData);
 
     const filteredWorkspaces = workspaceData.find(
         (workspace) => workspace.id == workspaceId
     );
-    console.log("목요일2", filteredWorkspaces);
+    // console.log("목요일2", filteredWorkspaces);
     const openModal1 = () => {
         setModalIsOpen1(true);
     };
@@ -54,7 +54,7 @@ function WorkspaceView() {
                     { userid: userInfo.appUser.id, projectId: workspaceId },
                     navigate
                 );
-                console.log("temp Data", allRetrospect);
+                // console.log("temp Data", allRetrospect);
                 setRetrospectData(allRetrospect); // allRetrospect.data로 설정
             } catch (error) {
                 // 에러 핸들링

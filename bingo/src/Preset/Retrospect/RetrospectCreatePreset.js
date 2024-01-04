@@ -179,7 +179,7 @@ export const Section1 = (e) => {
                         onChange={(k) => {
                             // 깊은 복사를 통해 새로운 객체 생성
                             const retrospectDataTemp = { ...e.retrospectData };
-                            console.log(retrospectDataTemp);
+                            // console.log(retrospectDataTemp);
                             // 새로운 객체에 변경된 값을 할당
                             retrospectDataTemp.name = k.target.value;
                             // 상태 업데이트 시 새로운 객체를 사용
@@ -309,6 +309,7 @@ export const Section1 = (e) => {
                                     }  
                                         
                                 ];
+                                    
                                 // 상태 업데이트 시 새로운 객체를 사용
                                 e.setRetrospectData(retrospectDataTemp);
                             }}
@@ -371,6 +372,7 @@ export const Section1 = (e) => {
                                     }  
                                         
                                 ];
+                                    
                                 // 상태 업데이트 시 새로운 객체를 사용
                                 e.setRetrospectData(retrospectDataTemp);
                             }}
@@ -403,7 +405,6 @@ export const Section2 = (e) => {
     const [urlInfo, setUrlInfo] = useRecoilState(UrlInfo);
 
     var InputCounts = 0;
-    const InputTempValue2 = { ...e.retrospectData };
     const navigate = useNavigate();
     const handleMakeThreeSection = (way, labels) => {
         InputCounts = 0;
@@ -473,7 +474,7 @@ export const Section2 = (e) => {
                                                 value={e.retrospectData.questionRequestList[index].subQuestionRequest[contentIndex]}
                                                 onChange={(f) => {
                                                     const InputTempValue = { ...e.retrospectData };
-                                                    InputTempValue.questionRequestList[index].subQuestionRequest[contentIndex] = f.target.value;
+                                                    InputTempValue.questionRequestList[index].subQuestionRequest.question[contentIndex] = f.target.value;
                                                     e.setRetrospectData(InputTempValue);
                                                             
                                                 }}
@@ -483,9 +484,7 @@ export const Section2 = (e) => {
                             </Div>
                         </Div>
                     ))}
-                {console.log("InputCounts", InputCounts)}
-                {InputTempValue2.tagList = Array.from({ length: InputCounts }, () => "1")}
-                {console.log(InputTempValue2)}
+
 
 
             </Div>
@@ -496,7 +495,7 @@ export const Section2 = (e) => {
     return (
         <Div id="section2" style={RCP.Section_Style}>
             {/* Content Section */}
-            {console.log(e.retrospectData)}
+            {/* {console.log(e.retrospectData)} */}
             
             <RCP.Header>
                 <RCP.LeftHead>
