@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router";
 import { Button } from "../../Components/NormalComponents/Form";
 import { Div } from "../../Components/NormalComponents/Section";
+import LeftDD from "../../assets/Img/Retrospect/DDL.png";
+import RightDD from "../../assets/Img/Retrospect/DDR.png";
 
 function RetrospectView() {
     const [retrospective, setRetrospective] =
@@ -70,7 +72,7 @@ function RetrospectView() {
                                 height: "1.6vw",
                                 marginBottom: "15vh",
                             }}
-                            src="\img\Retrospect\“.png"
+                            src={LeftDD}
                         />
                     </DivColumn>
                     <DivValue>
@@ -84,7 +86,7 @@ function RetrospectView() {
                                 height: "1.6vw",
                                 marginBottom: "14vh",
                             }}
-                            src="\img\Retrospect\”.png"
+                            src={RightDD}
                         />
                     </DivColumn>
                     <DivOurTeam>팀이에요!</DivOurTeam>
