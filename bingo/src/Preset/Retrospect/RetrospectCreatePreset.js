@@ -12,50 +12,7 @@ import * as RCP from "./RetrospectCreatePresetStyle";
 
 // Section1 영역
 export const Section1 = (e) => {
-    const NoQuestionSubmit = (q) => {
-        let NoQuestions;
 
-        if (e.SelectedWays === "KPT") {
-            const kptTitles = ["Keep", "Problem", "Try"];
-            NoQuestions = kptTitles.map((title) => ({
-                title,
-                content: [
-                    {
-                        dataQ: "자유롭게 남겨주세요.",
-                        dataA: ""
-                    }
-                ]
-            }));
-        } else if (e.SelectedWays === "4LS") {
-            const lsTitles = ["Liked", "Learned", "Lacked", "Longed for"];
-            NoQuestions = lsTitles.map((title) => ({
-                title,
-                content: [
-                    {
-                        dataQ: "자유롭게 남겨주세요.",
-                        dataA: ""
-                    }
-                ]
-            }));
-        } else if (e.SelectedWays === "5F") {
-            const fTitles = ["Feel", "Find", "Finish", "Future", "Feedback"];
-            NoQuestions = fTitles.map((title) => ({
-                title,
-                content: [
-                    {
-                        dataQ: "자유롭게 남겨주세요.",
-                        dataA: ""
-                    }
-                ]
-            }));
-        } else {
-            console.log("no selected");
-        }
-
-        e.setQuestions(NoQuestions);
-        console.log(e.questions);
-        e.onSubmitClick();
-    };
 
     // 페이지 이동 관련
     const navigate = useNavigate();
@@ -274,6 +231,22 @@ export const Section1 = (e) => {
                                 const retrospectDataTemp = { ...e.retrospectData };
                                 // 새로운 객체에 변경된 값을 할당
                                 retrospectDataTemp.templateType ="KPT";
+                                retrospectDataTemp.questionsList = [
+                                    {
+                                        id: null,
+                                        mainQuestion: "Keep",
+                                        subQuestionList : ["", "", ""]
+                                    },{
+                                        id: null,
+                                        mainQuestion: "Problem",
+                                        subQuestionList : ["", "", ""]
+                                    }    ,{
+                                        id: null,
+                                        mainQuestion: "Try",
+                                        subQuestionList : ["", "", ""]
+                                    }    
+                                        
+                                ];
                                 // 상태 업데이트 시 새로운 객체를 사용
                                 e.setRetrospectData(retrospectDataTemp);
                             }}
@@ -312,6 +285,26 @@ export const Section1 = (e) => {
                                 const retrospectDataTemp = { ...e.retrospectData };
                                 // 새로운 객체에 변경된 값을 할당
                                 retrospectDataTemp.templateType ="4LS";
+                                retrospectDataTemp.questionsList = [
+                                    {
+                                        id: null,
+                                        mainQuestion: "Liked",
+                                        subQuestionList : ["", "", ""]
+                                    },{
+                                        id: null,
+                                        mainQuestion: "Learned",
+                                        subQuestionList : ["", "", ""]
+                                    }    ,{
+                                        id: null,
+                                        mainQuestion: "Lacked",
+                                        subQuestionList : ["", "", ""]
+                                    }    ,{
+                                        id: null,
+                                        mainQuestion: "Longed for",
+                                        subQuestionList : ["", "", ""]
+                                    }  
+                                        
+                                ];
                                 // 상태 업데이트 시 새로운 객체를 사용
                                 e.setRetrospectData(retrospectDataTemp);
                             }}
@@ -349,7 +342,31 @@ export const Section1 = (e) => {
                                 // 깊은 복사를 통해 새로운 객체 생성
                                 const retrospectDataTemp = { ...e.retrospectData };
                                 // 새로운 객체에 변경된 값을 할당
-                                retrospectDataTemp.templateType ="5F";
+                                retrospectDataTemp.templateType = "5F";
+                                retrospectDataTemp.questionsList = [
+                                    {
+                                        id: null,
+                                        mainQuestion: "Feel",
+                                        subQuestionList : ["", "", ""]
+                                    },{
+                                        id: null,
+                                        mainQuestion: "Find",
+                                        subQuestionList : ["", "", ""]
+                                    }    ,{
+                                        id: null,
+                                        mainQuestion: "Finish",
+                                        subQuestionList : ["", "", ""]
+                                    }    ,{
+                                        id: null,
+                                        mainQuestion: "Future",
+                                        subQuestionList : ["", "", ""]
+                                    }    ,{
+                                        id: null,
+                                        mainQuestion: "Feedback",
+                                        subQuestionList : ["", "", ""]
+                                    }  
+                                        
+                                ];
                                 // 상태 업데이트 시 새로운 객체를 사용
                                 e.setRetrospectData(retrospectDataTemp);
                             }}
@@ -380,11 +397,96 @@ export const Section2 = (e) => {
 
     const [workspaceInfo, setWorkspaceInfo] = useRecoilState(WorkspaceInfo);
     const [urlInfo, setUrlInfo] = useRecoilState(UrlInfo);
-    
+
+    var InputCounts = 0;
+    const handleMakeThreeSection = (way, labels) => {
+        InputCounts = 0;
+
+        return (
+            <Div flexDirection="column">
+                {
+                    labels.map((label, index) => (
+                        <Div
+                            key={index}
+                            flexDirection="column"
+                            border="none"
+                            backgroundColor="#F3F3F3"
+                            width="100%"
+                            height="47vh"
+                            margin={index === 0
+                                ? "0% 0px"
+                                : "2% 0px"}
+                            boxSizing="border-box"
+                            borderRadius="40px"
+                            display="flex"
+                            justifyContent="space-between"
+                            alignItems="center"
+                            padding="1.2vw">
+                            <Div
+                                width="66.3vw"
+                                height="4vh"
+                                display="flex"
+                                justifyContent="center"
+                                alignItems="center"
+                                backgroundColor="#F9F9F9"
+                                color="rgba(22, 22, 22, 0.3)"
+                                fontFamily="WefontGothic(OTF)"
+                                fontSize="18px"
+                                fontStyle="normal"
+                                fontWeight="400">
+                                {way}
+                            </Div>
+                            {/* Title */}
+                            <Div width="66.3vw" height="8.3vh" alignItems="end">
+                                <Label fontSize="60px" color="rgb(234, 67, 52)">
+                                    {label[0]}
+                                </Label>
+                                <Label
+                                    fontSize="20px"
+                                    color="rgba(234, 67, 52, 0.4)"
+                                    width="20%"
+                                    margin="0 0 0.4vh 0.2vw">
+                                    {label}
+                                </Label>
+                            </Div>
+                            {/* 질문 모음 */}
+
+                            <Div flexDirection="column" width="66.3vw" height="22.4vh" justifyContent="end">
+                                {
+                                    console.log(e.retrospectData.questionsList[index])
+                                }
+                                {
+                                    Array
+                                        .from({ length: 3 })
+                                        .map((_, contentIndex) => (
+                                            InputCounts++,
+                                            <Input
+                                                type="text"
+                                                placeholder={`세부 질문을 입력하세요.`}
+                                                style={RCP.InputStyle}
+                                                value={e.retrospectData.questionsList[index].subQuestionList[contentIndex]}
+                                                onChange={(f) => {
+                                                    const InputTempValue = { ...e.retrospectData };
+                                                    InputTempValue.questionsList[index].subQuestionList[contentIndex] = f.target.value;
+                                                    e.setRetrospectData(InputTempValue);
+                                                            
+                                                }}
+                                            />
+                                        ))
+                                }
+                            </Div>
+                        </Div>
+                    ))}
+
+            </Div>
+        );
+    };
+
+
     return (
         <Div id="section2" style={RCP.Section_Style}>
             {/* Content Section */}
-            
+            {console.log(e.retrospectData)}
             
             <RCP.Header>
                 <RCP.LeftHead>
@@ -423,23 +525,15 @@ export const Section2 = (e) => {
             </RCP.Header>
             <Div width="100%" height="71.3vh" overflow="auto">
                 <Div flexDirection="column" height="100%" width="70.5%" margin="0 auto">
-                    {
-                        e.retrospectData.templateType === "KPT" && handleMakeThreeSection("KPT", [
-                            "Keep", "Problem", "Try"
-                        ], e.retrospectData)
-                    }
-                    {
-                        e.retrospectData.templateType === "4LS" && handleMakeThreeSection("4LS", [
-                            "Liked", "Learned", "Lacked", "Longed for"
-                        ], e.retrospectData)
-                    }
-                    {
-                        e.retrospectData.templateType === "5F" && handleMakeThreeSection("5F", [
-                            "Feel", "Find", "Finish", "Future", "Feedback"
-                        ], e.retrospectData)
-                    }
+                    {e.retrospectData.templateType === "KPT" && handleMakeThreeSection("KPT", ["Keep", "Problem", "Try"], e.retrospectData, e.setRetrospectData)}
+                    {e.retrospectData.templateType === "4LS" && handleMakeThreeSection("4LS", ["Liked", "Learned", "Lacked", "Longed for"], e.retrospectData, e.setRetrospectData)}
+                    {e.retrospectData.templateType === "5F" && handleMakeThreeSection("5F", ["Feel", "Find", "Finish", "Future", "Feedback"], e.retrospectData, e.setRetrospectData)}
                 </Div>
             </Div>
+            {/* {console.log(InputCounts)}
+            {emptyTagList = Array.from({ length: InputCounts }, () => "")}
+            {console.log(emptyTagList)} */}
+            
         </Div>
     );
 };
@@ -509,97 +603,7 @@ const RadioCard = (e) => {
 
 // handleMakeThreeSection : lable에 맞춰서 질문을 생성해주는 핸들러 handleMakeThreeSection 함수
 // 수정
-const handleMakeThreeSection = (way, labels) => (
-    <Div flexDirection="column">
-        {
-            labels.map((label, index) => (
-                <Div
-                    key={index}
-                    flexDirection="column"
-                    border="none"
-                    backgroundColor="#F3F3F3"
-                    width="100%"
-                    height="47vh"
-                    margin={index === 0
-                        ? "0% 0px"
-                        : "2% 0px"}
-                    boxSizing="border-box"
-                    borderRadius="40px"
-                    display="flex"
-                    justifyContent="space-between"
-                    alignItems="center"
-                    padding="1.2vw">
-                    <Div
-                        width="66.3vw"
-                        height="4vh"
-                        display="flex"
-                        justifyContent="center"
-                        alignItems="center"
-                        backgroundColor="#F9F9F9"
-                        color="rgba(22, 22, 22, 0.3)"
-                        fontFamily="WefontGothic(OTF)"
-                        fontSize="18px"
-                        fontStyle="normal"
-                        fontWeight="400">
-                        {way}
-                    </Div>
-                    {/* Title */}
-                    <Div width="66.3vw" height="8.3vh" alignItems="end">
-                        <Label fontSize="60px" color="rgb(234, 67, 52)">
-                            {label[0]}
-                        </Label>
-                        <Label
-                            fontSize="20px"
-                            color="rgba(234, 67, 52, 0.4)"
-                            width="20%"
-                            margin="0 0 0.4vh 0.2vw">
-                            {label}
-                        </Label>
-                    </Div>
-                    {/* 질문 모음 */}
-                    <Div flexDirection="column" width="66.3vw" height="22.4vh" justifyContent="end">
-                        {
-                            Array
-                                .from({length: 3})
-                                .map((_, contentIndex) => (
-                                    <Input
-                                        type="text"
-                                        placeholder={`세부 질문을 입력하세요.`}
-                                        style={RCP.InputStyle}
-                                        value = "입력값"
-                                        // value={questions[index]
-                                        //     ?.content[contentIndex]
-                                        //         ?.dataQ || ""
-                                            // }
-                                        // onChange={(e) => {
-                                        //     const updatedQuestions = [...questions];
-                                        //     updatedQuestions[index] = {
-                                        //         id: index + 1,
-                                        //         content: [...(
-                                        //                 updatedQuestions[index]
-                                        //                     ?.content || []
-                                        //             )]
-                                        //     };
-                                        //     updatedQuestions[index].title = label;
-                                        //     updatedQuestions[index].content[contentIndex] = {
-                                        //         ...(
-                                        //             updatedQuestions[index]
-                                        //                 ?.content[contentIndex] || {}
-                                        //         ),
-                                        //         dataQ: e.target.value,
-                                        //         dataA: ""
-                                        //     };
-                                        //     setQuestions(updatedQuestions);
-                                    // }}
-                                    />
-                                ))
-                        }
-                    </Div>
-                </Div>
-            ))
-        }
-    </Div>
-);
+
 
 // StepButton: Next / Last 버튼 분리화
 const StepButton = (e) => {
@@ -662,3 +666,47 @@ const CancleModal = (e) => {
         </Modal>
     );
 };
+    // const NoQuestionSubmit = (q) => {
+    //     let NoQuestions;
+
+    //     if (e.SelectedWays === "KPT") {
+    //         const kptTitles = ["Keep", "Problem", "Try"];
+    //         NoQuestions = kptTitles.map((title) => ({
+    //             title,
+    //             content: [
+    //                 {
+    //                     dataQ: "자유롭게 남겨주세요.",
+    //                     dataA: ""
+    //                 }
+    //             ]
+    //         }));
+    //     } else if (e.SelectedWays === "4LS") {
+    //         const lsTitles = ["Liked", "Learned", "Lacked", "Longed for"];
+    //         NoQuestions = lsTitles.map((title) => ({
+    //             title,
+    //             content: [
+    //                 {
+    //                     dataQ: "자유롭게 남겨주세요.",
+    //                     dataA: ""
+    //                 }
+    //             ]
+    //         }));
+    //     } else if (e.SelectedWays === "5F") {
+    //         const fTitles = ["Feel", "Find", "Finish", "Future", "Feedback"];
+    //         NoQuestions = fTitles.map((title) => ({
+    //             title,
+    //             content: [
+    //                 {
+    //                     dataQ: "자유롭게 남겨주세요.",
+    //                     dataA: ""
+    //                 }
+    //             ]
+    //         }));
+    //     } else {
+    //         console.log("no selected");
+    //     }
+
+    //     e.setQuestions(NoQuestions);
+    //     console.log(e.questions);
+    //     e.onSubmitClick();
+    // };
