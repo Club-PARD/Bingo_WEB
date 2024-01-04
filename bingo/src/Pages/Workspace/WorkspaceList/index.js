@@ -16,7 +16,6 @@ import { createWorkspace, handleUpload } from "../../../Api/Workspace.js";
 import axios from "axios";
 import WorkspaceBanner from "../../../assets/Img/WorkspaceList/Workspace_Banner.png";
 import { useRecoilValue } from "recoil";
-import Add from "../../../assets/Img/WorkspaceList/add.png";
 
 const TextDescDiv = styled.div`
     color: #9c9c9c;
