@@ -14,6 +14,7 @@ import {createWorkspace, handleUpload} from "../../../Api/Workspace.js";
 import axios from "axios";
 import WorkspaceBanner from "../../../assets/Img/WorkspaceList/Workspace_Banner.png";
 import {useRecoilValue} from "recoil";
+import Add from "../../../assets/Img/WorkspaceList/add.png";
 
 const WorkspaceList = () => {
     const [file, setFile] = useState(null);
@@ -43,7 +44,7 @@ const WorkspaceList = () => {
     // 워크스페이스 생성 후 페이지 새로고침
     useEffect(() => {
         if (isCreate) {
-            refreshPage();
+            // refreshPage();
         }
     }, [isCreate]);
 
@@ -83,19 +84,22 @@ const WorkspaceList = () => {
         const newWorkspace = {
             name: title,
             desc: desc,
-            picture: file
-                ? file.name
-                : "default_image.jpg", // 이미지 파일명 저장 (선택된 파일이 없으면 디폴트 이미지 파일명),
+            picture: file,
+                // ? file.name
+                // : "default_image.jpg", // 이미지 파일명 저장 (선택된 파일이 없으면 디폴트 이미지 파일명),
             code: randomCode,
             userId: userInfo.appUser.id
         };
         console.log("NEW", newWorkspace);
+        createWorkspace(newWorkspace);
+        handleUpload(file);
+
         setisCreate(true);
 
         // 이미지 업로드 처리
-        if (file) {
-            await handleUpload();
-        }
+        // if (file) {
+        //     await handleUpload();
+        // }
 
         // 기존 WorkspaceData 배열에 새로운 워크스페이스 데이터 추가
         setWorkspaceData((prevData) => [
@@ -120,30 +124,6 @@ const WorkspaceList = () => {
             .target
             .files[0];
         setSelectedFile(file);
-    };
-
-    // 워크스페이스 사진 추가
-    const handleUpload = async () => {
-        console.log("실행", file);
-        try {
-            const formData = new FormData();
-            formData.append("file", file);
-
-            const response = await fetch(`${process.env.REACT_APP_URL}upload`, {
-                method: 'POST',
-                body: formData
-            });
-
-            if (response.ok) {
-                const result = await response.text(); // 또는 response.url 등을 사용
-                console.log('파일 업로드 성공:', result);
-            } else {
-                console.error('파일 업로드 실패:', response.statusText);
-            }
-
-        } catch (error) {
-            console.error("파일 업로드 중 에러:", error);
-        }
     };
 
     const handleButtonClick = () => {
@@ -264,7 +244,7 @@ const WorkspaceList = () => {
                         justifyContent="center"
                         cursor="pointer"
                         fontSize="20px">
-                        <Img width="4.4vh" height="4.4vh" src="\img\WorkspaceList\add.png"/>
+                        <Img width="4.4vh" height="4.4vh" src={Add}/>
                         <div
                             style={{
                                 marginTop: "1vh",
