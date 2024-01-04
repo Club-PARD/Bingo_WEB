@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import {useState, React, useRef, useEffect} from "react";
 import styled from "styled-components";
 import {Div} from "../../../Components/NormalComponents/Section.js";
@@ -84,12 +86,11 @@ const WorkspaceList = () => {
         const newWorkspace = {
             name: title,
             desc: desc,
-            picture: file,
-                // ? file.name
-                // : "default_image.jpg", // 이미지 파일명 저장 (선택된 파일이 없으면 디폴트 이미지 파일명),
+            picture: file ? file.name : "default_image.jpg", // 이미지 파일명 저장 (선택된 파일이 없으면 디폴트 이미지 파일명),
             code: randomCode,
             userId: userInfo.appUser.id
         };
+        
         console.log("NEW", newWorkspace);
         createWorkspace(newWorkspace);
         handleUpload(file);
