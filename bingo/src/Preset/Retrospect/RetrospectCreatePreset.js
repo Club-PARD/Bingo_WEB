@@ -183,10 +183,18 @@ export const Section1 = (e) => {
                     {/* Input */}
                     <Input
                         placeholder="1차 회고"
-                        style={InputStyle}
-                        value={e.retrospectTitle}
-                        onChange={(k) => e.setRetrospectiTitle(k.target.value)}
-                    ></Input>
+                        style={RCP.InputStyle}
+                        value={e.retrospectData.name}
+                        onChange={(k) => {
+                            // 깊은 복사를 통해 새로운 객체 생성
+                            const retrospectDataTemp = { ...e.retrospectData };
+                            // console.log(retrospectDataTemp);
+                            // 새로운 객체에 변경된 값을 할당
+                            retrospectDataTemp.name = k.target.value;
+                            // 상태 업데이트 시 새로운 객체를 사용
+                            e.setRetrospectData(retrospectDataTemp);
+                        }}
+                    />
                 </Div>
 
                 {/* 템플릿 선택 Section */}
@@ -271,27 +279,71 @@ export const Section1 = (e) => {
                             onMouseLeave={() => setHeight4LS("29vh")}
                         >
                             <RadioCard
-                                value="4LS"
-                                label="4LS"
+                                value="Ls4"
+                                label="Ls4"
                                 description={
                                     <>
-                                        팀의 과정을 돌아보고
-                                        <br />
-                                        목표를 세우길 원한다면?
+                                        팀의 과정을 돌아보고 <br /> 목표를
+                                        세우길 원한다면 ?{" "}
                                     </>
                                 }
-                                selectedValue={e.SelectedWays}
-                                onChange={e.handleRadioChange}
-                            />
+                                selectedValue={e.retrospectData.templateType}
+                                // onChange={e.handleRadioChange}
+                                onChange={(k) => {
+                                    // 깊은 복사를 통해 새로운 객체 생성
+                                    const retrospectDataTemp = {
+                                        ...e.retrospectData,
+                                    };
+                                    // 새로운 객체에 변경된 값을 할당
+                                    retrospectDataTemp.templateType = "Ls4";
+                                    retrospectDataTemp.questionRequestList = [
+                                        {
+                                            templateId: null,
+                                            mainQuestion: "Liked",
+                                            subQuestionRequest: {
+                                                questionId: null,
+                                                question: ["", "", ""],
+                                            },
+                                        },
+                                        {
+                                            templateId: null,
+                                            mainQuestion: "Learned",
+                                            subQuestionRequest: {
+                                                questionId: null,
+                                                question: ["", "", ""],
+                                            },
+                                        },
+                                        {
+                                            templateId: null,
+                                            mainQuestion: "Lacked",
+                                            subQuestionRequest: {
+                                                questionId: null,
+                                                question: ["", "", ""],
+                                            },
+                                        },
+                                        {
+                                            templateId: null,
+                                            mainQuestion: "Longed for",
+                                            subQuestionRequest: {
+                                                questionId: null,
+                                                question: ["", "", ""],
+                                            },
+                                        },
+                                    ];
+
+                                    // 상태 업데이트 시 새로운 객체를 사용
+                                    e.setRetrospectData(retrospectDataTemp);
+                                }}
+                            />{" "}
                             {height4LS === "45vh" && (
-                                <Div4LSText>
+                                <RCP.Div4LSText>
                                     Liked(좋았던 점) / Lacked(아쉬운 점) /
                                     Learned(배운 점) / Longed for (바라는 점)
                                     <br />
                                     <br />
                                     프로젝트의 중간 회고를 진행하는 사람들에게
                                     추천해요!
-                                </Div4LSText>
+                                </RCP.Div4LSText>
                             )}
                         </animated.div>
                         <animated.div
@@ -309,27 +361,79 @@ export const Section1 = (e) => {
                             onMouseLeave={() => setHeight5F("29vh")}
                         >
                             <RadioCard
-                                value="5F"
-                                label="5F"
+                                value="F5"
+                                label="F5"
                                 description={
                                     <>
-                                        팀의 중요한 사건들을
-                                        <br />
-                                        꼼꼼히 돌아보길 원한다면?
+                                        팀의 중요한 사건들을 <br /> 꼼꼼히
+                                        돌아보길 원한다면 ?{" "}
                                     </>
                                 }
-                                selectedValue={e.SelectedWays}
-                                onChange={e.handleRadioChange}
-                            />
+                                selectedValue={e.retrospectData.templateType}
+                                // onChange={e.handleRadioChange}
+                                onChange={(k) => {
+                                    // 깊은 복사를 통해 새로운 객체 생성
+                                    const retrospectDataTemp = {
+                                        ...e.retrospectData,
+                                    };
+                                    // 새로운 객체에 변경된 값을 할당
+                                    retrospectDataTemp.templateType = "F5";
+                                    retrospectDataTemp.questionRequestList = [
+                                        {
+                                            templateId: null,
+                                            mainQuestion: "Feel",
+                                            subQuestionRequest: {
+                                                questionId: null,
+                                                question: ["", "", ""],
+                                            },
+                                        },
+                                        {
+                                            templateId: null,
+                                            mainQuestion: "Find",
+                                            subQuestionRequest: {
+                                                questionId: null,
+                                                question: ["", "", ""],
+                                            },
+                                        },
+                                        {
+                                            templateId: null,
+                                            mainQuestion: "Finish",
+                                            subQuestionRequest: {
+                                                questionId: null,
+                                                question: ["", "", ""],
+                                            },
+                                        },
+                                        {
+                                            templateId: null,
+                                            mainQuestion: "Future",
+                                            subQuestionRequest: {
+                                                questionId: null,
+                                                question: ["", "", ""],
+                                            },
+                                        },
+                                        {
+                                            templateId: null,
+                                            mainQuestion: "Feedback",
+                                            subQuestionRequest: {
+                                                questionId: null,
+                                                question: ["", "", ""],
+                                            },
+                                        },
+                                    ];
+
+                                    // 상태 업데이트 시 새로운 객체를 사용
+                                    e.setRetrospectData(retrospectDataTemp);
+                                }}
+                            />{" "}
                             {height5F === "45vh" && (
-                                <Div5FText>
+                                <RCP.Div5FText>
                                     Fact(사실) / Feeling(느낌) / Finding(교훈) /
                                     Future action(향후 행동) / Feedback(피드백)
                                     <br />
                                     <br />
                                     장기 프로젝트의 회고를 진행하는 사람들에게
                                     추천해요!
-                                </Div5FText>
+                                </RCP.Div5FText>
                             )}
                         </animated.div>
                     </Div>
@@ -391,18 +495,141 @@ const Div5FText = styled.div`
 `;
 // Section2 영역
 export const Section2 = (e) => {
+    const [workspaceInfo, setWorkspaceInfo] = useRecoilState(WorkspaceInfo);
+    const [urlInfo, setUrlInfo] = useRecoilState(UrlInfo);
+
+    var InputCounts = 0;
+    const navigate = useNavigate();
+    const handleMakeThreeSection = (way, labels) => {
+        InputCounts = 0;
+
+        return (
+            <Div flexDirection="column">
+                {labels.map((label, index) => (
+                    <Div
+                        key={index}
+                        flexDirection="column"
+                        border="none"
+                        backgroundColor="#F3F3F3"
+                        width="100%"
+                        height="47vh"
+                        margin={index === 0 ? "0% 0px" : "2% 0px"}
+                        boxSizing="border-box"
+                        borderRadius="40px"
+                        display="flex"
+                        justifyContent="space-between"
+                        alignItems="center"
+                        padding="1.2vw"
+                    >
+                        <Div
+                            width="66.3vw"
+                            height="4vh"
+                            display="flex"
+                            justifyContent="center"
+                            alignItems="center"
+                            backgroundColor="#F9F9F9"
+                            color="rgba(22, 22, 22, 0.3)"
+                            fontFamily="WefontGothic(OTF)"
+                            fontSize="18px"
+                            fontStyle="normal"
+                            fontWeight="400"
+                        >
+                            {way}
+                        </Div>
+                        {/* Title */}
+                        <Div width="66.3vw" height="8.3vh" alignItems="end">
+                            <Label fontSize="60px" color="rgb(234, 67, 52)">
+                                {label[0]}
+                            </Label>
+                            <Label
+                                fontSize="20px"
+                                color="rgba(234, 67, 52, 0.4)"
+                                width="20%"
+                                margin="0 0 0.4vh 0.2vw"
+                            >
+                                {label}
+                            </Label>
+                        </Div>
+                        {/* 질문 모음 */}
+
+                        <Div
+                            flexDirection="column"
+                            width="66.3vw"
+                            height="22.4vh"
+                            justifyContent="end"
+                        >
+                            {
+                                // console.log(e.retrospectData.questionsList[index])
+                            }
+                            {Array.from({ length: 3 }).map(
+                                (_, contentIndex) => (
+                                    InputCounts++,
+                                    (
+                                        <Input
+                                            type="text"
+                                            placeholder={`세부 질문을 입력하세요.`}
+                                            style={RCP.InputStyle}
+                                            value={
+                                                e.retrospectData
+                                                    .questionRequestList[index]
+                                                    .subQuestionRequest[
+                                                    contentIndex
+                                                ]
+                                            }
+                                            onChange={(f) => {
+                                                const InputTempValue = {
+                                                    ...e.retrospectData,
+                                                };
+                                                InputTempValue.questionRequestList[
+                                                    index
+                                                ].subQuestionRequest.question[
+                                                    contentIndex
+                                                ] = f.target.value;
+                                                e.setRetrospectData(
+                                                    InputTempValue
+                                                );
+                                            }}
+                                        />
+                                    )
+                                )
+                            )}
+                        </Div>
+                    </Div>
+                ))}
+            </Div>
+        );
+    };
+
     return (
         <Div id="section2" style={Section_Style}>
             {/* Content Section */}
-            <Header>
-                <LeftHead>
-                    <SpanCreate>회고 생성</SpanCreate>
-                    <SpanTitle>3!4!(쓰리포)</SpanTitle>
-                    <SpanDesc>한동대학교 PARD 롱커톤 3!4! 파이팅!</SpanDesc>
-                </LeftHead>
-                <RightHead>
-                    <EclipseDiv style={{ marginRight: "0.8vw" }} />
-                    <EclipseDiv style={{ marginRight: "1.8vw" }} />
+            {/* {console.log(e.retrospectData)} */}
+
+            <RCP.Header>
+                <RCP.LeftHead>
+                    <RCP.SpanCreate>회고 생성</RCP.SpanCreate>
+                    <RCP.SpanTitle>
+                        {workspaceInfo
+                            ? workspaceInfo.name
+                            : "프로젝트 이름이 없습니다."}
+                    </RCP.SpanTitle>
+                    <RCP.SpanDesc>
+                        {workspaceInfo
+                            ? workspaceInfo.description
+                            : "프로젝트 설명이 없습니다."}
+                    </RCP.SpanDesc>
+                </RCP.LeftHead>
+                <RCP.RightHead>
+                    <RCP.EclipseDiv
+                        style={{
+                            marginRight: "0.8vw",
+                        }}
+                    />
+                    <RCP.EclipseDiv
+                        style={{
+                            marginRight: "1.8vw",
+                        }}
+                    />
                     <StepButton
                         targetPage="#section1"
                         targetLabel="이전"
@@ -415,8 +642,8 @@ export const Section2 = (e) => {
                         backgroundColor="#EA4336"
                         color="#F9F9F9"
                     />
-                </RightHead>
-            </Header>
+                </RCP.RightHead>
+            </RCP.Header>
             <Div width="100%" height="71.3vh" overflow="auto">
                 <Div
                     flexDirection="column"

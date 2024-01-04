@@ -52,9 +52,9 @@ const getTagListByTemplateType = (templateType) => {
         case "KPT":
             return Array.from({ length: 9 }, () => "");
         case "Ls4":
-            return Array.from({ length: 12 }, () => "");
+            return Array.from({ length: 9 }, () => "");
         case "F5":
-            return Array.from({ length: 15 }, () => "");
+            return Array.from({ length: 9 }, () => "");
         default:
             return [];
     }
@@ -98,21 +98,25 @@ export const postRetrospect = async (e, navigate) => {
     const answerList = [];
 
     e.retrospectQuestionsList.questionList.forEach((mainQuestion) => {
-        mainQuestion.subQuestionList.forEach((subQuestion) => {
+        mainQuestion.subQuestionList.forEach((subQuestion, index) => {
             if (subQuestion.answerResponse) {
                 answerList.push({
                     id: 0, // 이 부분은 적절한 값을 넣어주셔야 합니다.
-                    subQuestionId: subQuestion.id,
+                    subQuestionId: 0,
                     ans: subQuestion.answerResponse,
                 });
             }
         });
     });
 
+    const userId = parseInt(e.userId, 10);
+    const projectId = parseInt(e.workspaceId, 10);
+    const retrospectId = parseInt(e.retrospectId, 10);
+
     const data = {
-        appUserId: e.userId,
-        projectId: e.workspaceId,
-        templateId: e.retrospectId,
+        appUserId: userId,
+        projectId: projectId,
+        templateId: retrospectId,
         answerList: answerList,
         tagList: e.chipData,
         // "answerList": [{"id" : 0, "subQuestionId" : 0, "ans" : "22차 회고 답변1"},{"id" :
