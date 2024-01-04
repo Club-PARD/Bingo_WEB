@@ -54,6 +54,7 @@ function WorkspaceView() {
                     { userid: userInfo.appUser.id, projectId: workspaceId },
                     navigate
                 );
+                console.log("temp Data", allRetrospect);
                 setRetrospectData(allRetrospect); // allRetrospect.data로 설정
             } catch (error) {
                 // 에러 핸들링
@@ -91,14 +92,14 @@ function WorkspaceView() {
                             {/* Title : 빙고판 타이틀 */}
                             <TitleAndButton>
                                 {/* <Title>{filteredWorkspaces ? filteredWorkspaces.name : "프로젝트 이름이 없습니다."}</Title> */}
-                                {/* <Title>{filteredWorkspaces.name}</Title> */}
+                                <Title>{filteredWorkspaces.name}</Title>
                                 <InviteButton onClick={openModal1}>
                                     팀원 초대하기
                                 </InviteButton>
                             </TitleAndButton>
                             <TeamDesc>
                                 {/* {filteredWorkspaces ? filteredWorkspaces.description : "프로젝트 설명이 없습니다."} */}
-                                {/* {filteredWorkspaces.description} */}
+                                {filteredWorkspaces.description}
                             </TeamDesc>
                             <BingoDesc>
                                 <BingoDescText>
@@ -373,7 +374,7 @@ const CodeDiv = styled.div`
 const Code = styled.div`
     color: var(--sec_grey, #222);
     text-align: center;
-    font-family: WefontGothic(OTF);
+    font-family: "160";
     font-size: 24px;
     font-style: normal;
     font-weight: 400;

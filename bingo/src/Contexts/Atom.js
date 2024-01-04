@@ -165,7 +165,7 @@ export const RetrospectData = atom({
     default: [
         {
             id: null,
-            name: "hi",
+            name: "",
             questionList: [
                 {
                     id: null,
@@ -181,3 +181,13 @@ export const RetrospectData = atom({
         },
     ],
 });
+
+export const WorkspaceInfo = atom({
+    key: "workspaceInfo",
+    default: [],
+});
+
+export const UrlInfo = atom({
+    key: 'urlInfo',
+    default : [],
+})
