@@ -28,10 +28,10 @@ export const createWorkspace = async (newWorkspace) => {
         code: newWorkspace.code,
         tagList: chipData,
     };
+    alert(localStorage.getItem("email"));
     try {
         const response = await axios.post(
-            `${process.env.REACT_APP_URL}project`,
-            postData,
+            `${process.env.REACT_APP_URL}project`, postData,
             {
                 headers: {
                     Authorization: "Bearer " + localStorage.getItem("email"),
@@ -41,7 +41,7 @@ export const createWorkspace = async (newWorkspace) => {
         console.log(response.data);
         return response.data;
     } catch (error) {
-        alert("생성 중 오류 발생했습니다");
+        alert("워크스페이스 생성 중 오류가 발생했습니다");
 
         throw error;
     }
@@ -131,6 +131,7 @@ export const handleUpload = async (file) => {
     try {
         if (!file) {
             console.error("파일이 없습니다.");
+            alert("파일이 없습니다!");
             return;
         }
 
