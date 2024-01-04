@@ -24,7 +24,7 @@ export const login = async (decodedToken) => {
         return response.data;
     } catch (error) {
         alert("로그인 과정에서 문제가 발생했습니다");
-        window.location.href = "/";
+        // window.location.href = "/";
         // console.error("Error in postInquiries:", error);
         throw error;
     }

@@ -177,6 +177,7 @@ const RetrospectWriteText = (e) => {
     const filteredWorkspaces = workspaceData.find(
         (workspace) => workspace.id == e.workspaceId
     );
+    console.log("WoekspaceDate :", workspaceData);
     console.log("filteredWorkspaces Data", filteredWorkspaces);
 
     const [isFilled, setIsFilled] = useState(false);

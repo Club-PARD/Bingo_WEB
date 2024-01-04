@@ -29,7 +29,6 @@ export const getRetrospect = async (e) => {
         userId: 1,
         projectId: 1,
     };
-
     try {
         const response = await axios.get(
             `${process.env.REACT_APP_URL}template/project/${e.workspaceId}/template/${e.retrospectId}`,
@@ -47,7 +46,6 @@ export const getRetrospect = async (e) => {
         throw error;
     }
 };
-
 
 const getTagListByTemplateType = (templateType) => {
     switch (templateType) {
@@ -72,19 +70,22 @@ export const postRetrospectCreated = async (e, navigate) => {
         projectId: projectId,
         templateType: e.templateType,
         questionRequestList: e.questionRequestList,
-        tagList: getTagListByTemplateType(e.templateType)
+        tagList: getTagListByTemplateType(e.templateType),
     };
 
     console.log("찐이야", retrosectData);
 
     try {
-        await axios.post(`${process.env.REACT_APP_URL}template`, retrosectData, {
-            headers: {
-                Authorization: "Bearer " + localStorage.getItem("email")
+        await axios.post(
+            `${process.env.REACT_APP_URL}template`,
+            retrosectData,
+            {
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem("email"),
+                },
             }
-        });
+        );
 
-        
         alert("회고 생성이 완료되었습니다.");
         navigate(`/WorkspaceView?workspaceId=${e.projectId}`);
     } catch (error) {

@@ -110,7 +110,9 @@ const RetrospectInWorkspace = (e) => {
                                             src={ArrowPink}
                                         />
                                     </ViewButton>
-                                    <WriteButton to="/RetrospectView">
+                                    <WriteButton
+                                        to={`/RetrospectView?userId=${userInfo.appUser.id}&workspaceId=${workspaceId}&retrospectId=${task.id}`}
+                                    >
                                         조회
                                         <Img
                                             width="2.6vh"
