@@ -25,6 +25,7 @@ import RetrospectViewerPage from './Pages/Retrospect/RetrospectViewerPage';
 import TopMenuBar from './Layout/TopMenueBar';
 import { RiceBowl } from '@mui/icons-material';
 import UserApprove from './Pages/Login/UserApprove';
+import { Section2 } from './Preset/Retrospect/RetrospectCreatePreset';
 
 
 
@@ -46,7 +47,8 @@ const Routers = () => {
                         <Route path='/WorkspaceList' element={<WorkspaceList />}/>
                         {/*<Route path="" element={<Header/>}>*/}
                             <Route path='/WorkspaceView' element={<WorkspaceView />}/>
-                            <Route path='/RetrospectCreate' element={<RetrospectCreate />}/>
+                            <Route path='/RetrospectCreate' element={<RetrospectCreate />} />
+                            <Route path="/RetrospectCreate#section2" element={<Section2/>} />
                             <Route path='/RetrospectList' element={<RetrospectList />}/>
                             <Route path='/RetrospectView' element={<RetrospectView />}/>
                             <Route path='/RetrospectWrite' element={<RetrospectWrite />}/>
