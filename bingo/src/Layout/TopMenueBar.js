@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { Div } from "../Components/NormalComponents/Section";
 import Logo from "../assets/Img/TopMenuBar/Logo.png";
+import { handleGoogleLogin } from "../Api/AuthApi";
 import { useRecoilValue } from "recoil";
 import { useRecoilState } from "recoil";
 import { loginUserState } from "../Contexts/Atom";
@@ -48,7 +49,8 @@ function TopMenuBar() {
                     )}
                     {location.pathname === "/" ||
                     location.pathname === "/Login" ? (
-                        <LogoutLink to="/Login">로그인</LogoutLink>
+                        // <LogoutLink to="/Login">로그인</LogoutLink>
+                        <LogoutLink onClick={handleGoogleLogin}>로그인</LogoutLink>
                     ) : (
                         <LogoutLink onClick={handleLogout}>로그아웃</LogoutLink>
                     )}

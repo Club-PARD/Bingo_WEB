@@ -5,6 +5,7 @@ import styled from "styled-components";
 import Reddotimg from "../../../assets/Img/Login/Reddot.png";
 import OnBoard from "../../../assets/Img/Login/Onboard.png";
 import IntroBtn from "../../../assets/Img/Login/IntroBtn.png";
+import { handleGoogleLogin } from "../../../Api/AuthApi";
 import "../../../font.css";
 
 const Introwhole = styled.div`
@@ -93,7 +94,7 @@ const Intro = () => {
                     마침표를 찍어보세요.
                 </Div3>
                 <Reddot src={Reddotimg} />
-                <LoginBtn onClick={() => (window.location.href = "/Login")} />
+                <LoginBtn onClick={handleGoogleLogin} />
             </LoginDiv>
         </Introwhole>
     );

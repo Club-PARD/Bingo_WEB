@@ -6,6 +6,8 @@ import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import GoogleLoginButton from "./GoogleLogin";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { login } from "../../Api/AuthApi";
+import { handleGoogleLogin } from "../../Api/AuthApi";
 
 const LoginDiv = styled.div`
   flex-direction: column;
@@ -33,18 +35,21 @@ const Login = styled.div`
 `;
 
 const LoginPage = () => {
-  const handleGoogleLogin = async () => {
-    try {
-      const auth = getAuth();
-      const provider = new GoogleAuthProvider();
-      const result = await signInWithPopup(auth, provider);
-      const user = result.user;
-      console.log("유저 ", user);
-      return user;
-    } catch (error) {
-      console.error("Google 로그인 에러:", error);
-    }
-  };
+  // const handleGoogleLogin = async () => {
+  //   try {
+  //     const auth = getAuth();
+  //     const provider = new GoogleAuthProvider(); // provider를 구글로 설정
+  //     await signInWithPopup(auth, provider); // popup을 이용한 signup
+  //     const user = auth.currentUser;
+  //     console.log("유저정보:  ", user);
+
+  //     login(user);
+
+  //     return user;
+  //   } catch (error) {
+  //     console.error("Google 로그인 에러:", error);
+  //   }
+  // };
 
   const [userInfo, setUserInfo] = useRecoilState(loginUserState);
 
