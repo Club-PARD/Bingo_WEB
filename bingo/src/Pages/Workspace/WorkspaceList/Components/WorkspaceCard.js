@@ -47,7 +47,8 @@ const TextBox = styled.div`
     align-items: center;
     box-sizing: border-box;
     padding-top: 4vh;
-    overflow: scroll;
+    overflow: auto;
+    /* background-color: aliceblue; */
 `;
 const TextSet = styled.div`
     width: 90%;
