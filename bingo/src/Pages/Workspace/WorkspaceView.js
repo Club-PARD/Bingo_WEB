@@ -19,6 +19,7 @@ import {
 } from "../../Contexts/Atom.js";
 import { getAllRetrospect } from "../../Api/Retrospace.js";
 import Copy from "../../assets/Img/WorkspaceView/content_copy.png";
+import { getProject } from "../../Api/Workspace";
 
 // workspace에 들어오면 보이는 화면 아직 와이어 프레임 안나와서 정확한건 미정 빙고페이지로 이동 가능 회고생성페이지로 이동 가능
 // RetrospectInWorkspace component출력 회고결과 출력(이것도 디자인이 완성되고 백엔드가 연결되어야 가능하다)
@@ -30,10 +31,10 @@ function WorkspaceView() {
     const workspaceId = searchParams.get("workspaceId");
     const [modalIsOpen1, setModalIsOpen1] = useState(false);
     const [value, setValue] = useState("12345678");
+    const [tagCount, setTagCount] = useState();
     const [workspaceData, setWorkspaceData] = useRecoilState(WorkspaceData);
     const [retrospectData, setRetrospectData] = useRecoilState(RetrospectData);
     console.log("retrospectData", retrospectData);
-
 
     const filteredWorkspaces = workspaceData.find(
         (workspace) => workspace.id == workspaceId
@@ -56,19 +57,30 @@ function WorkspaceView() {
                     { userid: userInfo.appUser.id, projectId: workspaceId },
                     navigate
                 );
-                // console.log("temp Data", allRetrospect);
+                console.log("temp Data", allRetrospect);
                 setRetrospectData(allRetrospect); // allRetrospect.data로 설정
             } catch (error) {
                 // 에러 핸들링
                 console.error("Error fetching projects:", error);
             }
         };
-
+        console.log("Ids", userInfo.appUser.id, workspaceId);
+        const fetchTagCount = async () => {
+            try {
+                const allTagCount = await getProject({
+                    userid: userInfo.appUser.id,
+                    workspaceId: workspaceId,
+                });
+                setTagCount(allTagCount);
+                console.log("fetchData", allTagCount);
+            } catch (error) {
+                console.error("Error Tag Count:", error);
+            }
+        };
+        fetchTagCount();
         fetchData();
     }, [userInfo.appUser.id, workspaceId, setRetrospectData, navigate]);
-
     const [WriteButtonModalIsOpen, setWriteButtonModalIsOpen] = useState(false);
-
 
     return (
         <>
@@ -135,7 +147,9 @@ function WorkspaceView() {
                         <Section_Retrospect_Content>
                             <RetrospectInWorkspace
                                 WriteButtonModalIsOpen={WriteButtonModalIsOpen}
-                                setWriteButtonModalIsOpen = {setWriteButtonModalIsOpen}
+                                setWriteButtonModalIsOpen={
+                                    setWriteButtonModalIsOpen
+                                }
                                 userId={userInfo.appUser.id}
                                 workspaceId={workspaceId}
                             />

@@ -70,23 +70,18 @@ export const getAllProjects = async (e, navigate) => {
     }
 };
 
-export const getProject = async () => {
-    const getData = {
-        userId: 1,
-        projectId: 1,
-    };
-
+export const getProject = async (e) => {
+    alert("UID", e.userId);
+    alert("WID", e.workspaceId);
     try {
         const response = await axios.get(
-            `${process.env.REACT_APP_URL}project`,
-            getData,
+            `${process.env.REACT_APP_URL}user/${e.userid}/projects/${e.workspaceId}`,
             {
                 headers: {
                     Authorization: "Bearer " + localStorage.getItem("email"),
                 },
             }
         );
-
         alert("WDATA : ", response.data);
         return response.data;
     } catch (error) {
