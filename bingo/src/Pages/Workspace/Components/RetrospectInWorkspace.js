@@ -20,7 +20,7 @@ import { ButtonDiv, ModalInfo } from "../../Workspace/WorkspaceView";
 const RetrospectInWorkspace = (e) => {
     const [userInfo, setUserInfo] = useRecoilState(loginUserState);
     const [retrospectData, setRetrospectData] = useRecoilState(RetrospectData);
-    const state = false;
+    const [state, setState] = useState(false);
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
     const workspaceId = searchParams.get("workspaceId");
@@ -81,7 +81,8 @@ const RetrospectInWorkspace = (e) => {
                                 <LeftSide>
                                     {
                                         /*hasEvaluated*/
-                                        state ? (
+                                        data.isWritedList &&
+                                        data.isWritedList[index] == 2 ? (
                                             // TeamEvaluation이 완료된 경우
                                             <div>
                                                 <NameIsValueDiv>

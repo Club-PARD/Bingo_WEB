@@ -108,7 +108,7 @@ const WorkspaceCard = ({
     <CardBorder index={number}>
         <CardLink to={`/WorkspaceView?workspaceId=${workspaceId}`}>
             <ImgBox>
-                <CardImg src={`${picture}`} alt={code} />
+                <CardImg src={`${picture}`} />
             </ImgBox>
             <TextBox>
                 <TextSet>
