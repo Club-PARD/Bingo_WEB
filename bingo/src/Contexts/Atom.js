@@ -31,7 +31,7 @@ export const loginUserState = atom({
         appUser: {
             email: "",
             name: "",
-            image : "",
+            picture : "",
             token: "",
             id: "",
             answerList: [],
@@ -41,8 +41,6 @@ export const loginUserState = atom({
     }),
     effects_UNSTABLE: [persistAtom],
 });
-
-
 
 // team evaluation in BingoBoard
 export const ChipData = atom({
@@ -156,6 +154,7 @@ export const WorkspaceData = atom({
             id: null,
             name: "",
             desc: "",
+            code: "",
             role: "",
         },
     ],

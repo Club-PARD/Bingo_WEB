@@ -1,10 +1,5 @@
+import { AltRoute } from "@mui/icons-material";
 import axios from "axios";
-
-const WorkspaceData = {
-    name: "Wade",
-    description: "Male",
-    code: "1234",
-};
 
 // 새로운 워크스페이스 생성 API name. desc. code + userid, 빙고 형용사 리스트 를 받아와서 post로 보낸다 ->
 // response data를 받는다 (제대로 갔는지 확인용)
@@ -59,7 +54,6 @@ export const getAllProjects = async (e, navigate) => {
                 },
             }
         );
-
         return response.data;
     } catch (error) {
         if (error.response && error.response.status === 401) {
@@ -92,7 +86,8 @@ export const getProject = async () => {
             }
         );
 
-        return console.log(response.data);
+        alert("WDATA : ",response.data);
+        return response.data;
     } catch (error) {
         alert("프로젝트 상세 조회 중 오류 발생했습니다");
 
