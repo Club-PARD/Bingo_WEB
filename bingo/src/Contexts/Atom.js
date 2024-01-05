@@ -31,6 +31,7 @@ export const loginUserState = atom({
         appUser: {
             email: "",
             name: "",
+            picture : "",
             token: "",
             id: "",
             answerList: [],
@@ -154,6 +155,7 @@ export const WorkspaceData = atom({
             id: null,
             name: "",
             desc: "",
+            code: "",
             role: "",
         },
     ],

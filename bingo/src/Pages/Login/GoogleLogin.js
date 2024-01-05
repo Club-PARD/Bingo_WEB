@@ -47,7 +47,7 @@ const GoogleLoginButton = () => {
 
                             // 상태 업데이트
                             setUserInfo(data);
-                            console.log("USERID", userInfo.appUser.id);
+                            console.log("USER DATA", userInfo);
 
                             if(data.isSigned == 1) {
                                 window.location.href = "/UserApprove";

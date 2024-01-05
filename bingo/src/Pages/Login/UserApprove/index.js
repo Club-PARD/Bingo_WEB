@@ -1,6 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 import Checkbox from '@mui/material/Checkbox';
+import {useRecoilValue} from "recoil";
+import {loginUserState} from "../../../Contexts/Atom.js"
+// 이미지 import
 import LogoUserApprove from "../../../assets/Img/UserApprove/LogoUserApprove.png"
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
@@ -44,8 +47,9 @@ const ProfileImgBox = styled.div`
 `;
 const ProfileImg = styled.img`
     border-radius : 50%;
-    border : 1px solid red;
+    border : 1px solid transparent;
     width : 50%;
+    height : 50%;
 `;
 const ProfileName = styled.div`
     border : 1px solid transparent;
@@ -57,7 +61,7 @@ const ProfileName = styled.div`
     align-items : center;
 `;
 const NameSpace = styled.div`
-    // 추가적인 스타일링이 필요하다면 여기에 작성
+    font-size:17px;
 `;
 const CheckText = styled.div`
     display : flex;
@@ -84,8 +88,15 @@ const CheckBox = ({ handleChange, isChecked }) => (
 );
 
 const UserApprove = () => {
+    // Atom에서 가져온 유저 정보를 저장할 객체 user
+    const user = useRecoilValue(loginUserState);
+    // 객체에서 유저 이름과 이미지를 변수로 저장
+    const userImage = user.appUser.picture;
+    const userName = user.appUser.name;
+    
+    // 체크박스가 체크되었는지 확인
     const [isChecked, setIsChecked] = React.useState(false);
-
+    // 바뀌었는지 확인하는 handler
     const handleCheckBoxChange = (event) => {
         setIsChecked((prevChecked) => !prevChecked);
     };
@@ -118,10 +129,10 @@ const UserApprove = () => {
                 </div>
                 <ProfileBox>
                     <ProfileImgBox>
-                        <ProfileImg src="img/UserApprove/Logo_Circle.png" />
+                        <ProfileImg src={userImage} />
                     </ProfileImgBox>
                     <ProfileName>
-                        {/* 프로필 이름 관련 내용 추가 */}
+                        <NameSpace>{userName}</NameSpace>
                     </ProfileName>
                 </ProfileBox>
                 {/* <CheckBox /> */}
