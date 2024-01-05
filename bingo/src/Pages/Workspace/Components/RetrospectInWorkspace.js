@@ -138,6 +138,7 @@ const RetrospectInWorkspace = (e) => {
                                             ) : (
                                                 <ViewButton
                                                     to={`/RetrospectWrite?userId=${userInfo.appUser.id}&workspaceId=${workspaceId}&retrospectId=${data.id}`}
+                                                    // to={`/RetrospectWrite?userId=${userInfo.appUser.id}&workspaceId=${workspaceId}&retrospectId=${data.id}`}
                                                 >
                                                     작성
                                                     <Img
@@ -151,7 +152,8 @@ const RetrospectInWorkspace = (e) => {
                                     ) : null}
 
                                     <WriteButton
-                                        to={`/RetrospectView?userId=${userInfo.appUser.id}&workspaceId=${workspaceId}&retrospectId=${data.id}`}
+                                        to={`/RetrospectWrite?userId=${userInfo.appUser.id}&workspaceId=${workspaceId}&retrospectId=${data.id}`}
+                                        // to={`/RetrospectView?userId=${userInfo.appUser.id}&workspaceId=${workspaceId}&retrospectId=${data.id}`}
                                     >
                                         조회
                                         <Img
