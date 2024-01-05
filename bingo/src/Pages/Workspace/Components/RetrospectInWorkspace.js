@@ -46,17 +46,24 @@ const RetrospectInWorkspace = (e) => {
     const filteredWorkspaces = workspaceData.find(
         (workspace) => workspace.id == workspaceId
     );
-    // console.log("RetrospectData Data", retrospectData);
+    console.log("RetrospectData Data", retrospectData);
     return (
         <div>
             {/*Div for retrospectList height=833*/}
-            <AddArea
-                to={`/RetrospectCreate?userId=${e.userId}&workspaceId=${e.workspaceId}`}
-            >
-                <Img width="44px" height="44px" src={PlusBold} />
-                <WordDiv>회고생성</WordDiv>
-            </AddArea>
-            {retrospectData.length >= 1 &&
+
+            {filteredWorkspaces
+                ? filteredWorkspaces.role != "TEAM_MEMBER" && (
+                      <AddArea
+                          to={`/RetrospectCreate?userId=${e.userId}&workspaceId=${e.workspaceId}`}
+                      >
+                          <Img width="44px" height="44px" src={PlusBold} />
+                          <WordDiv>회고생성</WordDiv>
+                      </AddArea>
+                  )
+                : console.log("filteredWorkspaces is undefined")}
+            {console.log("초기값", retrospectData)}
+            {retrospectData &&
+                retrospectData.length >= 1 &&
                 retrospectData
                     .slice()
                     .reverse()
@@ -118,42 +125,33 @@ const RetrospectInWorkspace = (e) => {
                                 {/*Div for 3 chip, 조회버튼*/}
                                 <RightSide>
                                     {/* {console.log("retrospectData", data.questionList.answerResponse)} */}
-                                    {data.questionList ? (
-                                        data.questionList[0].subQuestionList ? (
-                                            data.questionList[0]
-                                                .subQuestionList[0]
-                                                .answerResponse ? (
-                                                <WriteCompleteButton
-                                                    onClick={
-                                                        openWriteButtonModal
-                                                    }
-                                                >
-                                                    완료
-                                                    <Img
-                                                        width="2.6vh"
-                                                        height="2.6vh"
-                                                        src={Arrow}
-                                                    />
-                                                </WriteCompleteButton>
-                                            ) : (
-                                                <ViewButton
-                                                    to={`/RetrospectWrite?userId=${userInfo.appUser.id}&workspaceId=${workspaceId}&retrospectId=${data.id}`}
-                                                    // to={`/RetrospectWrite?userId=${userInfo.appUser.id}&workspaceId=${workspaceId}&retrospectId=${data.id}`}
-                                                >
-                                                    작성
-                                                    <Img
-                                                        width="2.6vh"
-                                                        height="2.6vh"
-                                                        src={ArrowPink}
-                                                    />
-                                                </ViewButton>
-                                            )
-                                        ) : null
-                                    ) : null}
+                                    {/* {console.log("data!!", data.isWritedList[0])}; */}
+                                    {
+                                        data.isWritedList &&
+                                        data.isWritedList[index] == 2 ? (
+                                            <WriteCompleteButton
+                                                onClick={openWriteButtonModal}
+                                            >
+                                                작성 완료
+                                                {/* <Img width="2.6vh" height="2.6vh" src={Arrow}/> */}
+                                            </WriteCompleteButton>
+                                        ) : (
+                                            <ViewButton
+                                                to={`/RetrospectWrite?userId=${userInfo.appUser.id}&workspaceId=${workspaceId}&retrospectId=${data.id}`}
+                                            >
+                                                작성
+                                                <Img
+                                                    width="2.6vh"
+                                                    height="2.6vh"
+                                                    src={ArrowPink}
+                                                />
+                                            </ViewButton>
+                                        )
+                                        // : null
+                                    }
 
                                     <WriteButton
-                                        to={`/RetrospectWrite?userId=${userInfo.appUser.id}&workspaceId=${workspaceId}&retrospectId=${data.id}`}
-                                        // to={`/RetrospectView?userId=${userInfo.appUser.id}&workspaceId=${workspaceId}&retrospectId=${data.id}`}
+                                        to={`/RetrospectView?userId=${userInfo.appUser.id}&workspaceId=${workspaceId}&retrospectId=${data.id}`}
                                     >
                                         조회
                                         <Img

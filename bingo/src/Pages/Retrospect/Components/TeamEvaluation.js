@@ -175,7 +175,8 @@ const TeamEvaluation = (e) => {
                                         chipData: finalChipData,
                                         setChipData: setChipData,
                                     },
-                                    navigate
+                                    navigate,
+                                    set
                                 );
                         }}
                         // onClick={postRetrospect({ workspaceId: e.workspaceId, userId: e.userId, retrospectId: e.retrospectId, retrospectQuestionsList : retrospectQuestionsList})}
