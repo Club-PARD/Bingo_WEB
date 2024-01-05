@@ -53,11 +53,7 @@ export const getAllRetrospect = async (e, navigate) => {
     console.log("E", e);
     try {
         const response = await axios.get(
-<<<<<<< HEAD
             `${process.env.REACT_APP_URL}retrospect/project/${e.projectId}/template/${e.templateId}`,
-=======
-            `${process.env.REACT_APP_URL}template/user/${e.userid}/project/${e.projectId}`,
->>>>>>> ca6cef68e515e7ed0c1c442edc5d623bfe0ab9ab
             {
                 headers: {
                     Authorization: "Bearer " + localStorage.getItem("email"),
@@ -74,10 +70,6 @@ export const getAllRetrospect = async (e, navigate) => {
     }
 };
 
-<<<<<<< HEAD
-
-=======
->>>>>>> ca6cef68e515e7ed0c1c442edc5d623bfe0ab9ab
 export const getRetrospect = async (e) => {
     try {
         const response = await axios.get(

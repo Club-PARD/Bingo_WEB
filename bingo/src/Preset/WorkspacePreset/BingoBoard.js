@@ -12,13 +12,8 @@ import "../../font.css";
 function BingoBoard({ modalIsOpen, retrolen, tagList }) {
     const [chipData, setChipData] = useRecoilState(ChipData);
     const [usrList, setUserList] = useRecoilState(UserList);
-<<<<<<< HEAD
-    const IsRetrospect = false;
-    // console.log("ChipData", chipData);
-=======
     const IsRetrospect = retrolen === 0 ? false : true;
     console.log("ChipData", tagList);
->>>>>>> ca6cef68e515e7ed0c1c442edc5d623bfe0ab9ab
     /*
   const [items, setItems] = useState([
     { text: '존중하는', flag: true },
