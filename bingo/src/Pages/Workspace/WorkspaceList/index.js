@@ -21,7 +21,7 @@ import Upward from "../../../assets/Img/WorkspaceList/arrow_upward.png";
 import Close from "../../../assets/Img/WorkspaceList/close.png";
 import { joinProject } from "../../../Api/Workspace.js";
 
-import Logo_Circle from "../../..//assets/Img/WorkspaceList/Logo_Circle.png"
+import Logo_Circle from "../../../assets/Img/WorkspaceList/Logo_Circle.png";
 
 const TextDescDiv = styled.div`
     color: #9c9c9c;
@@ -62,7 +62,11 @@ const WorkspaceList = () => {
             setFile(selectedFile);
         } else {
             // Set a default file if no file is selected
-            const defaultFile = new File([{ Logo_Circle }], "bingo_default_file.png", { type: "impage/png" });
+            const defaultFile = new File(
+                [{ Logo_Circle }],
+                "bingo_default_file.png",
+                { type: "impage/png" }
+            );
             setFile(defaultFile);
         }
     };
@@ -250,70 +254,70 @@ const WorkspaceList = () => {
                 </InnerHeader>
 
                 {/* 워크스페이스 카드 부분 */}
-                <Div 
-                display="flex"
-                justifyContent="start"
-                flexDirection="row"
-                alignItems="top"
-                height="96%"
-                width="77vw"
-                flexWrap="wrap"
-                overflow="auto"
-                boxSizing="border-box"
-                margin="0 auto">
                 <Div
                     display="flex"
                     justifyContent="start"
                     flexDirection="row"
                     alignItems="top"
                     height="96%"
-                    width="75vw"
+                    width="77vw"
                     flexWrap="wrap"
-                    
+                    overflow="auto"
                     boxSizing="border-box"
                     margin="0 auto"
                 >
-                    {/* 워크스페이스 생성버튼 */}
                     <Div
-                        margin="2vh 0 0 0"
-                        flexDirection="column"
-                        border="1px solid transparent"
-                        borderRadius="32px"
-                        width="24vw"
-                        height="21vh"
-                        backgroundColor="#EDEDED"
-                        onClick={openModal}
-                        alignItems="center"
-                        justifyContent="center"
-                        cursor="pointer"
-                        fontSize="20px"
+                        display="flex"
+                        justifyContent="start"
+                        flexDirection="row"
+                        alignItems="top"
+                        height="96%"
+                        width="75vw"
+                        flexWrap="wrap"
+                        boxSizing="border-box"
+                        margin="0 auto"
                     >
-                        <Img width="4vh" height="4vh" src={Add} />
-                        <CreateTextDiv
-                            style={{ marginTop: "1vh", color: "#B3b3b3" }}
+                        {/* 워크스페이스 생성버튼 */}
+                        <Div
+                            margin="2vh 0 0 0"
+                            flexDirection="column"
+                            border="1px solid transparent"
+                            borderRadius="32px"
+                            width="24vw"
+                            height="21vh"
+                            backgroundColor="#EDEDED"
+                            onClick={openModal}
+                            alignItems="center"
+                            justifyContent="center"
+                            cursor="pointer"
+                            fontSize="20px"
                         >
-                            프로젝트 생성
-                        </CreateTextDiv>
+                            <Img width="4vh" height="4vh" src={Add} />
+                            <CreateTextDiv
+                                style={{ marginTop: "1vh", color: "#B3b3b3" }}
+                            >
+                                프로젝트 생성
+                            </CreateTextDiv>
+                        </Div>
+                        {/* 현재는 더미값이지만 장기적으로는 워크스페이스 데이터 기반으로 카드 출력  */}
+                        {/* {console.log("워크스페이스 정보 : ", workspaceData)} */}
+                        {workspaceData.length >= 1 &&
+                            workspaceData
+                                .slice()
+                                .reverse()
+                                .map((workspace, index) => (
+                                    <WorkspaceCard
+                                        number={index}
+                                        workspaceId={workspace.id}
+                                        name={workspace.name}
+                                        desc={workspace.description}
+                                        picture={workspace.picture}
+                                        code={workspace.code}
+                                        period={workspace.period}
+                                        total={workspaceData.length}
+                                    />
+                                ))}
                     </Div>
-                    {/* 현재는 더미값이지만 장기적으로는 워크스페이스 데이터 기반으로 카드 출력  */}
-                    {/* {console.log("워크스페이스 정보 : ", workspaceData)} */}
-                    {workspaceData.length >= 1 &&
-                        workspaceData
-                            .slice()
-                            .reverse()
-                            .map((workspace, index) => (
-                                <WorkspaceCard
-                                    number={index}
-                                    workspaceId={workspace.id}
-                                    name={workspace.name}
-                                    desc={workspace.description}
-                                    picture={workspace.picture}
-                                    code={workspace.code}
-                                    period={workspace.period}
-                                    total={workspaceData.length}
-                                />
-                            ))}
-                </Div>
                 </Div>
             </Div>
             {/* (모달) 모달창 전체 */}
@@ -515,7 +519,7 @@ const WorkspaceList = () => {
                                 } else if (!desc.trim()) {
                                     alert("프로젝트 설명을 작성하세요");
                                     setDescEmpty(true);
-                                // } else if (!file) {
+                                    // } else if (!file) {
                                     // alert("프로젝트 사진을 넣으세요");
                                     // setDescEmpty(true);
                                 } else {
@@ -713,7 +717,10 @@ const InviteModal = (e) => {
             >
                 <ModalInfo>
                     초대 코드 입력하기
-                    <CodeDiv type="text" onChange={(e) => setInviteCode(e.target.value)} />
+                    <CodeDiv
+                        type="text"
+                        onChange={(e) => setInviteCode(e.target.value)}
+                    />
                 </ModalInfo>
                 <CodeDiv type="text" />
                 <Div
