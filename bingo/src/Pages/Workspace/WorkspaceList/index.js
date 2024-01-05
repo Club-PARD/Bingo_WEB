@@ -88,7 +88,7 @@ const WorkspaceList = () => {
   // 워크스페이스 생성 후 페이지 새로고침
   useEffect(() => {
     if (isCreate) {
-      // refreshPage();
+      refreshPage();
     }
   }, [isCreate]);
 

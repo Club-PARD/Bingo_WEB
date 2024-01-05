@@ -1,28 +1,49 @@
+/* eslint-disable */
+
 import React from "react";
-import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
+// import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
 import { getUserData, login } from "../../Api/AuthApi";
 import { jwtDecode } from "jwt-decode";
 import { loginUserState } from "../../Contexts/Atom";
 import { useRecoilState, useSetRecoilState } from "recoil";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { dbService } from "../../fbase";
 
 const LoginDummy = [
-    {
-        email: "",
-        email_verified: "",
-        name: "",
-        // jti: "",
-        // picture: "",
-    },
+  {
+    email: "",
+    email_verified: "",
+    name: "",
+    // jti: "",
+    // picture: "",
+  },
 ];
 
 const GoogleLoginButton = () => {
-    const navigate = useNavigate();
-    const [userInfo, setUserInfo] = useRecoilState(loginUserState);
+  const navigate = useNavigate();
+  const [userInfo, setUserInfo] = useRecoilState(loginUserState);
 
-    return (
-        <>
-            <GoogleOAuthProvider
+  const handleGoogleLogin = async () => {
+    try {
+      const auth = getAuth();
+      const provider = new GoogleAuthProvider(); // provider를 구글로 설정
+      await signInWithPopup(auth, provider); // popup을 이용한 signup
+      const user = auth.currentUser;
+      console.log("유저정보:  ", user);
+
+      login(user);
+
+      return user;
+    } catch (error) {
+      console.error("Google 로그인 에러:", error);
+    }
+  };
+
+  return (
+    <>
+      <button onClick={handleGoogleLogin}>구글 로그인</button>
+      {/* <GoogleOAuthProvider
                 clientId={process.env.REACT_APP_GOOGLE_AUTH_CLIENT_ID}
             >
                 <GoogleLogin
@@ -65,9 +86,9 @@ const GoogleLoginButton = () => {
                         navigate("/");
                     }}
                 />
-            </GoogleOAuthProvider>
-        </>
-    );
+            </GoogleOAuthProvider> */}
+    </>
+  );
 };
 
 export default GoogleLoginButton;

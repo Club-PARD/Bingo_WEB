@@ -4,12 +4,12 @@ import { Login } from "@mui/icons-material";
 import axios from "axios";
 
 // 로그인 API
-export const login = async (decodedToken) => {
+export const login = async (user) => {
     const data = {
-        name: decodedToken.name,
-        email: decodedToken.email,
-        picture: decodedToken.picture,
-        emailVerified: decodedToken.email_verified,
+        name: user.displayName,
+        email: user.email,
+        picture: user.photoURL,
+        emailVerified: user.emailVerified,
     };
 
     try {
