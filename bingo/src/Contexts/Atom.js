@@ -7,21 +7,43 @@ import { recoilPersist } from "recoil-persist";
 const { persistAtom } = recoilPersist();
 
 // test
-export const countState = atom({ key: "counter", default: 0 });
-export const titleState = atom({ key: "title", default: "" });
-export const contentState = atom({ key: "content", default: "" });
+export const countState = atom({
+    key: "counter",
+    default: 0,
+    effects_UNSTABLE: [persistAtom],
+});
+export const titleState = atom({
+    key: "title",
+    default: "",
+    effects_UNSTABLE: [persistAtom],
+});
+export const contentState = atom({
+    key: "content",
+    default: "",
+    effects_UNSTABLE: [persistAtom],
+});
 
 // projectList(현재 이름 WorkspaceList)
-export const ProjectTitleState = atom({ key: "projectTitle", default: "" });
-export const ProjectDescState = atom({ key: "projectDesc", default: "" });
+export const ProjectTitleState = atom({
+    key: "projectTitle",
+    default: "",
+    effects_UNSTABLE: [persistAtom],
+});
+export const ProjectDescState = atom({
+    key: "projectDesc",
+    default: "",
+    effects_UNSTABLE: [persistAtom],
+});
 export const ProjectSelectedFileState = atom({
     key: "projectSelectedFile",
     default: "",
+    effects_UNSTABLE: [persistAtom],
 });
 
 export const retrospectQuestionsListState = atom({
     key: "retrospectQuestionsList",
     default: null,
+    effects_UNSTABLE: [persistAtom],
 });
 
 export const loginUserState = atom({
@@ -31,7 +53,7 @@ export const loginUserState = atom({
         appUser: {
             email: "",
             name: "",
-            picture : "",
+            picture: "",
             token: "",
             id: "",
             answerList: [],
@@ -114,6 +136,7 @@ export const UserList = atom({
             chipData: ChipData,
         },
     ],
+    effects_UNSTABLE: [persistAtom],
 });
 
 // 회고 생성과 관련된 정보를 저장하는 atom
@@ -145,6 +168,7 @@ export const retrospectiveState = atom({
             },
         ], // 각 섹션의 질문 내용
     },
+    effects_UNSTABLE: [persistAtom],
 });
 
 // workspace 생성할 때 사용되는 list
@@ -159,6 +183,7 @@ export const WorkspaceData = atom({
             role: "",
         },
     ],
+    effects_UNSTABLE: [persistAtom],
 });
 
 export const RetrospectData = atom({
@@ -181,14 +206,17 @@ export const RetrospectData = atom({
             ],
         },
     ],
+    effects_UNSTABLE: [persistAtom],
 });
 
 export const WorkspaceInfo = atom({
     key: "workspaceInfo",
     default: [],
+    effects_UNSTABLE: [persistAtom],
 });
 
 export const UrlInfo = atom({
     key: "urlInfo",
     default: [],
+    effects_UNSTABLE: [persistAtom],
 });
