@@ -186,7 +186,7 @@ const TitleDiv = styled.div`
     width: auto;
     height: 4vh;
     color: var(--sec_grey, #222);
-    font-family: WefontGothic(OTF);
+    font-family: "160";
     font-size: 28px;
     font-style: normal;
     font-weight: 400;
@@ -226,7 +226,7 @@ const DivOurTeam = styled.div`
     height: 100%;
     color: var(--sec_grey, #222);
     text-align: center;
-    font-family: WefontGothic(OTF);
+    font-family: "140";
     font-size: 28px;
     font-style: normal;
     font-weight: 400;
@@ -254,7 +254,7 @@ const SpanValue = styled.div`
     display: inline;
     height: 3.3vh;
     text-align: center;
-    font-family: WefontGothic(OTF);
+    font-family: "160";
     font-size: 24px;
     font-style: normal;
     font-weight: 400;
@@ -271,7 +271,7 @@ const DivLabel = styled.div`
     border-radius: 40px;
     background-color: #f8f0ef;
     color: rgba(22, 22, 22, 0.3);
-    font-family: WefontGothic(OTF);
+    font-family: "180";
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
@@ -303,7 +303,7 @@ const StepInitial = styled.div`
     height: 100%;
     width: 2.1vw;
     color: var(--main_red, #ea4336);
-    font-family: WefontGothic(OTF);
+    font-family: "160";
     font-size: 60px;
     font-style: normal;
     font-weight: 400;
@@ -312,7 +312,7 @@ const StepFullWord = styled.div`
     height: 100%;
     width: 30%;
     color: var(--main_red, #ea4336);
-    font-family: WefontGothic(OTF);
+    font-family: "160";
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
@@ -333,7 +333,7 @@ const QuestionDiv = styled.div`
     width: auto;
     height: 2.7vh;
     color: #222;
-    font-family: WefontGothic(OTF);
+    font-family: "160";
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
@@ -361,7 +361,7 @@ const AnswerText = styled.div`
     align-items: center;
     padding: 3.1vh 2.1vw;
     color: #222;
-    font-family: WefontGothic(OTF);
+    font-family: "140";
     font-size: 20px;
     font-style: normal;
     font-weight: 400;
@@ -407,7 +407,7 @@ const UserName = styled.div`
     height: 2.4vh;
     color: var(--sec_grey, #222);
     text-align: center;
-    font-family: WefontGothic(OTF);
+    font-family: "140";
     font-size: 16px;
     font-style: normal;
     font-weight: 400;

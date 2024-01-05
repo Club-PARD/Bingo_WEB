@@ -39,16 +39,19 @@ const ImgBox = styled.div`
 `;
 const TextBox = styled.div`
     width: 9vw;
-    height: 100%;
+    height: 85%;
     /* border : 1px solid blue; */
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: top;
     align-items: center;
+    box-sizing: border-box;
+    padding-top: 4vh;
+    overflow: scroll;
 `;
 const TextSet = styled.div`
     width: 90%;
-    height: 40%;
+    height: auto;
     /* border : 1px solid green; */
     display: flex;
     flex-direction: column;
@@ -72,6 +75,7 @@ const Title = styled.div`
     font-style: normal;
     font-weight: 400;
     line-height: 150%; /* 36px */
+    margin-bottom: 1vh;
 `;
 const Desc = styled.div`
     color: #787474;
@@ -88,7 +92,6 @@ const CardImg = styled.img`
     flex-direction: column;
     border-radius: 50%;
     background-color: #f8f0ef;
-    border: 1px solid black;
 `;
 
 const WorkspaceCard = ({

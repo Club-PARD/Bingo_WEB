@@ -131,11 +131,13 @@ export const Section1 = (e) => {
                     <RCP.EclipseDiv
                         style={{
                             marginRight: "0.8vw",
+                            backgroundColor: "#ea4336",
                         }}
                     />
                     <RCP.EclipseDiv
                         style={{
                             marginRight: "1.8vw",
+                            backgroundColor: "#e1e1e1",
                         }}
                     />
                     <StepButton
@@ -168,24 +170,14 @@ export const Section1 = (e) => {
                 {/* 회고 타이틀 Section */}
                 <Div flexDirection="column" width="100%" height="20%">
                     {/* Title */}
-                    <P
-                        styled={{
-                            color: "rgba(34, 34, 34, 0.60)",
-                            fontFamily: "WefontGothic(OTF)",
-                            fontSize: "16px",
-                            fontStyle: "normal",
-                            fontWeight: "400",
-                            lineHeight: "150%",
-                            /* 24px */
-                        }}
-                    >
+                    <RetroTitleDiv style={{ marginBottom: "1vh" }}>
                         회고 타이틀
-                    </P>
+                    </RetroTitleDiv>
 
                     {/* Input */}
-                    <Input
+                    <TitleInput
                         placeholder="1차 회고"
-                        style={RCP.InputStyle}
+                        type="text"
                         value={e.retrospectData.name}
                         onChange={(k) => {
                             // 깊은 복사를 통해 새로운 객체 생성
@@ -208,19 +200,7 @@ export const Section1 = (e) => {
                 >
                     {/* Title */}
                     <Div height="6.5%" margin="1vh 0 0 0">
-                        <P
-                            styled={{
-                                color: "rgba(34, 34, 34, 0.60)",
-                                fontFamily: "WefontGothic(OTF)",
-                                fontSize: "16px",
-                                fontStyle: "normal",
-                                fontWeight: "400",
-                                lineHeight: "150%",
-                                /* 24px */
-                            }}
-                        >
-                            템플릿 선택
-                        </P>
+                        <RetroTitleDiv>템플릿 선택</RetroTitleDiv>
                     </Div>
 
                     {/* 템플릿 선택 */}
@@ -488,6 +468,29 @@ export const Section1 = (e) => {
     );
 };
 
+const RetroTitleDiv = styled.div`
+    color: rgba(34, 34, 34, 0.6);
+    font-family: "140";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+`;
+const TitleInput = styled(Input)`
+    padding: 1.7vh 1.4vw 1.7vh 1.4vw;
+    width: 100%;
+    height: 6.5vh;
+    border-radius: 24px;
+    background-color: #ebebeb;
+    color: #222;
+    font-family: "140";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 160%;
+    letter-spacing: -0.2px;
+    margin-bottom: 1.5vh;
+`;
 // Section2 영역
 export const Section2 = (e) => {
     const [workspaceInfo, setWorkspaceInfo] = useRecoilState(WorkspaceInfo);
@@ -516,34 +519,23 @@ export const Section2 = (e) => {
                         alignItems="center"
                         padding="1.2vw"
                     >
-                        <Div
-                            width="66.3vw"
-                            height="4vh"
-                            display="flex"
-                            justifyContent="center"
-                            alignItems="center"
-                            backgroundColor="#F9F9F9"
-                            color="rgba(22, 22, 22, 0.3)"
-                            fontFamily="WefontGothic(OTF)"
-                            fontSize="18px"
-                            fontStyle="normal"
-                            fontWeight="400"
-                        >
-                            {way}
-                        </Div>
+                        <WayDiv>{way}</WayDiv>
                         {/* Title */}
                         <Div width="66.3vw" height="8.3vh" alignItems="end">
-                            <Label fontSize="60px" color="rgb(234, 67, 52)">
+                            <RetroCreaateInitialLabel
+                                fontSize="60px"
+                                color="rgb(234, 67, 52)"
+                            >
                                 {label[0]}
-                            </Label>
-                            <Label
+                            </RetroCreaateInitialLabel>
+                            <RetroCreaateLabel
                                 fontSize="20px"
                                 color="rgba(234, 67, 52, 0.4)"
                                 width="20%"
                                 margin="0 0 0.4vh 0.2vw"
                             >
                                 {label}
-                            </Label>
+                            </RetroCreaateLabel>
                         </Div>
                         {/* 질문 모음 */}
 
@@ -560,10 +552,9 @@ export const Section2 = (e) => {
                                 (_, contentIndex) => (
                                     InputCounts++,
                                     (
-                                        <Input
+                                        <TitleInput
                                             type="text"
                                             placeholder={`세부 질문을 입력하세요.`}
-                                            style={RCP.InputStyle}
                                             value={
                                                 e.retrospectData
                                                     .questionRequestList[index]
@@ -618,11 +609,13 @@ export const Section2 = (e) => {
                     <RCP.EclipseDiv
                         style={{
                             marginRight: "0.8vw",
+                            backgroundColor: "#e1e1e1",
                         }}
                     />
                     <RCP.EclipseDiv
                         style={{
                             marginRight: "1.8vw",
+                            backgroundColor: "#ea4336",
                         }}
                     />
                     <StepButton
@@ -733,19 +726,54 @@ const RadioCard = (e) => {
                     />
                 </RCP.DotDiv>
                 {/* 템플릿 설명 */}
-                <Div
-                    width="100%"
-                    height="5vh"
-                    color="black"
-                    fontSize="16px"
-                    textAlign="justify"
-                >
-                    {e.description}
-                </Div>
+                <RadioDesc>{e.description}</RadioDesc>
             </Div>
         </Div>
     );
 };
+const WayDiv = styled(Div)`
+    width: 66.3vw;
+    height: 4vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f9f9f9;
+    color: rgba(22, 22, 22, 0.3);
+    font-family: "160";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+`;
+const RetroCreaateInitialLabel = styled(Div)`
+    color: var(--main_red, #ea4336);
+    font-family: "160";
+    font-size: 60px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 90px */
+    letter-spacing: -0.6px;
+`;
+const RetroCreaateLabel = styled(Div)`
+    color: rgba(234, 67, 52, 0.4);
+    font-family: "160";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 30px */
+    letter-spacing: -0.2px;
+    width: 20%;
+    margin: 0 0 1.3vh 0.6vw;
+`;
+const RadioDesc = styled(Div)`
+    width: 100%;
+    height: 5vh;
+    color: var(--sec_grey, #222);
+    font-family: "140";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 24px */
+`;
 
 // handleMakeThreeSection : lable에 맞춰서 질문을 생성해주는 핸들러 handleMakeThreeSection 함수
 // 수정
@@ -755,16 +783,7 @@ const StepButton = (e) => {
     return (
         <a href={e.targetPage}>
             <StepBtn
-                width="5.5vw"
-                height="5vh"
-                borderRadius="40px"
-                fontSize="18px"
-                fontWeight="400"
                 onClick={e.onClick}
-                justifyContent="center"
-                alignItems="center"
-                margin=" 0 0 0 .8vw"
-                border="2px solid var(--main_red, #EA4336)"
                 backgroundColor={e.backgroundColor}
                 color={e.color}
             >

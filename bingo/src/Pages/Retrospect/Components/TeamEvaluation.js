@@ -50,7 +50,7 @@ const TitleDiv = styled.div`
     width: auto;
     height: 4vh;
     color: var(--sec_grey, #222);
-    font-family: WefontGothic(OTF);
+    font-family: "160";
     font-size: 28px;
     font-style: normal;
     font-weight: 400;
@@ -80,7 +80,7 @@ const Body = styled.div`
 `;
 const Title = styled.div`
     color: var(--sec_grey, #222);
-    font-family: WefontGothic(OTF);
+    font-family: "160";
     font-size: 24px;
     font-style: normal;
     font-weight: 400;
@@ -100,7 +100,9 @@ const TeamEvaluation = (e) => {
     console.log("정보 보자잇", retrospectQuestionsList.tagList[0]);
     const navigate = useNavigate();
     const handleBeforeClick = () => {
-        navigate(`/RetrospectWrite?userId=${userId}&workspaceId=${workspaceId}&retrospectId=${retrospectId}`);
+        navigate(
+            `/RetrospectWrite?userId=${userId}&workspaceId=${workspaceId}&retrospectId=${retrospectId}`
+        );
     };
     const [isFilled, setIsFilled] = useState(false);
     const handleNextButtonClick = () => {
@@ -121,7 +123,7 @@ const TeamEvaluation = (e) => {
     const [finalChipData, setFinalChipData] = useState();
     useEffect(() => {
         setUpdatedChipData(chipData);
-    }, chipData)
+    }, chipData);
 
     const changeData = () => {
         const tempChipData = [...chipData]; // 배열로 변경
@@ -129,14 +131,16 @@ const TeamEvaluation = (e) => {
         console.log("Before tempChipData", tempChipData);
 
         const modifiedData = tempChipData.map(({ key, flag }) => ({
-            id : retrospectQuestionsList.tagList[key].id ? retrospectQuestionsList.tagList[key].id : null,
-            selected: flag === true ? 2 : flag === false ? 1 : flag
+            id: retrospectQuestionsList.tagList[key].id
+                ? retrospectQuestionsList.tagList[key].id
+                : null,
+            selected: flag === true ? 2 : flag === false ? 1 : flag,
         }));
 
         console.log("After tempChipData", modifiedData);
         setFinalChipData(modifiedData);
         // 여기서 modifiedData를 사용하거나 필요한 처리를 추가하세요.
-    }
+    };
 
     // console.log("Again Check : " + workspaceId + ", " + userId + ", " + retrospectId);
     return (
@@ -169,16 +173,15 @@ const TeamEvaluation = (e) => {
                                         retrospectQuestionsList:
                                             retrospectQuestionsList,
                                         chipData: finalChipData,
-                                        setChipData : setChipData,
+                                        setChipData: setChipData,
                                     },
                                     navigate
-                                )
+                                );
                         }}
                         // onClick={postRetrospect({ workspaceId: e.workspaceId, userId: e.userId, retrospectId: e.retrospectId, retrospectQuestionsList : retrospectQuestionsList})}
                         backgroundColor={
                             isFilled ? "#EA4336" : "rgba(234, 67, 54, 0.4)"
                         }
-                        
                         color="#F9F9F9"
                     />
                 </RightHead>
