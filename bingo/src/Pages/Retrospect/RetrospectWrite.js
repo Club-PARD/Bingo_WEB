@@ -5,7 +5,7 @@ import { DialerSip } from "@mui/icons-material";
 import { Div } from "../../Components/NormalComponents/Section";
 import { useState, useEffect } from "react";
 import { useLocation } from "react-router";
-import { getRetrospect } from "../../Api/Retrospace";
+import { getRetrospect, getTemplate } from "../../Api/Retrospace";
 import { retrospectQuestionsListState } from "../../Contexts/Atom";
 import { useRecoilState } from "recoil";
 
@@ -34,7 +34,7 @@ function RetrospectWrite() {
     useEffect(() => {
         const retrospectResult = async () => {
             try {
-                const retrospectDataForWrite = await getRetrospect({
+                const retrospectDataForWrite = await getTemplate({
                     workspaceId: workspaceId,
                     retrospectId: retrospectId,
                 });

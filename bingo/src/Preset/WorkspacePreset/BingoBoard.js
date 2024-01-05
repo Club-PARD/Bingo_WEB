@@ -13,7 +13,7 @@ function BingoBoard({ modalIsOpen }) {
     const [chipData, setChipData] = useRecoilState(ChipData);
     const [usrList, setUserList] = useRecoilState(UserList);
     const IsRetrospect = false;
-    console.log("ChipData", chipData);
+    // console.log("ChipData", chipData);
     /*
   const [items, setItems] = useState([
     { text: '존중하는', flag: true },

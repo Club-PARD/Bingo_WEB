@@ -5,7 +5,7 @@ import Modal from "react-modal";
 import {Link, useLocation, useNavigate} from "react-router-dom";
 import styled from "styled-components";
 import {useRecoilState} from "recoil";
-import {RetrospectData, loginUserState} from "../../../Contexts/Atom";
+import {RetrospectData, WorkspaceData, loginUserState} from "../../../Contexts/Atom";
 import ArrowPink from "../../../assets/Img/WorkspaceView/arrowPink.png";
 import Arrow from "../../../assets/Img/WorkspaceView/arrow_forward.png";
 import PlusBold from "../../../assets/Img/WorkspaceView/ph_plus-bold.png";
@@ -37,103 +37,109 @@ const RetrospectInWorkspace = (e) => {
     const closeWriteButtonModal = () => {
         setWriteButtonModalIsOpen(false);
     };
-    // console.log("RetrospectData Data", retrospectData);
+
+    const [workspaceData, setWorkspaceData] = useRecoilState(WorkspaceData);
+    const filteredWorkspaces = workspaceData.find(
+        (workspace) => workspace.id == workspaceId
+    );
+    console.log("RetrospectData Data", retrospectData);
     return (
         <div>
             {/*Div for retrospectList height=833*/}
-
-            <AddArea
-                to={`/RetrospectCreate?userId=${e.userId}&workspaceId=${e.workspaceId}`}>
-                <Img width="44px" height="44px" src={PlusBold}/>
-                <WordDiv>회고생성</WordDiv>
-            </AddArea>
+            
             {
-                retrospectData.length >= 1 && retrospectData
-                    .slice()
-                    .reverse()
-                    .map((data, index) => (
-                        <RetrospectListDiv key={data.id}>
-                            <Div
-                                width="100%"
-                                height="100%"
-                                display="flex"
-                                justifyContent="space-between"
-                                alignItems="center"
-                                flexDirection="row">
-                                {/*회고 list의 상단, 몇차회고 작성버튼*/}
-                                <LeftSide>
-                                    {
-                                        /*hasEvaluated*/
-                                        state
-                                            ? (
-                                                // TeamEvaluation이 완료된 경우
-                                                <div>
-                                                    <NameIsValueDiv>
-                                                        {data.name}
-                                                    </NameIsValueDiv>
-                                                    <TwoResultChip>
-                                                        “서로에 대한 존중과 신뢰가 있는”
-                                                    </TwoResultChip>
-                                                    <TwoResultChip>
-                                                        “열정 있는”
-                                                    </TwoResultChip>
-                                                </div>
-                                            )
-                                            : (
-                                                // TeamEvaluation이 완료되지 않은 경우
-                                                <div>
-                                                    <NameIsNotDiv>
-                                                        {data.name}
-                                                    </NameIsNotDiv>
-                                                    <SubIsNotValue>
-                                                        이번 프로젝트는 어땠나요?
-                                                    </SubIsNotValue>
-                                                    <Div width="auto" height="2.7vh">
-                                                        <EmptyValue>“</EmptyValue>
-                                                        <Div width="6.9vw" height="100%" borderBottom="2px solid #575757"></Div>
-                                                        <EmptyValue>
-                                                            한 팀”
-                                                        </EmptyValue>
-                                                    </Div>
-                                                </div>
-                                            )
-                                    }
-                                </LeftSide>
-                                {/*Div for 3 chip, 조회버튼*/}
-                                <RightSide>
+                filteredWorkspaces ? 
+                    filteredWorkspaces.role != "TEAM_MEMBER" &&
+                    <AddArea
+                    to={`/RetrospectCreate?userId=${e.userId}&workspaceId=${e.workspaceId}`}>
+                        <Img width="44px" height="44px" src={PlusBold}/>
+                        <WordDiv>회고생성</WordDiv>
+                    </AddArea>
+                    : console.log("filteredWorkspaces is undefined")
+            }
+            {console.log("초기값", retrospectData)}
+            {
+                retrospectData && 
+                    retrospectData.length >= 1 && retrospectData
+                        .slice()
+                        .reverse()
+                        .map((data, index) => (
+                            <RetrospectListDiv key={data.id}>
+                                <Div
+                                    width="100%"
+                                    height="100%"
+                                    display="flex"
+                                    justifyContent="space-between"
+                                    alignItems="center"
+                                    flexDirection="row">
+                                    {/*회고 list의 상단, 몇차회고 작성버튼*/}
+                                    <LeftSide>
+                                        {
+                                            /*hasEvaluated*/
+                                            state
+                                                ? (
+                                                    // TeamEvaluation이 완료된 경우
+                                                    <div>
+                                                        <NameIsValueDiv>
+                                                            {data.name}
+                                                        </NameIsValueDiv>
+                                                        <TwoResultChip>
+                                                            “서로에 대한 존중과 신뢰가 있는”
+                                                        </TwoResultChip>
+                                                        <TwoResultChip>
+                                                            “열정 있는”
+                                                        </TwoResultChip>
+                                                    </div>
+                                                )
+                                                : (
+                                                    // TeamEvaluation이 완료되지 않은 경우
+                                                    <div>
+                                                        <NameIsNotDiv>
+                                                            {data.name}
+                                                        </NameIsNotDiv>
+                                                        <SubIsNotValue>
+                                                            이번 프로젝트는 어땠나요?
+                                                        </SubIsNotValue>
+                                                        <Div width="auto" height="2.7vh">
+                                                            <EmptyValue>“</EmptyValue>
+                                                            <Div width="6.9vw" height="100%" borderBottom="2px solid #575757"></Div>
+                                                            <EmptyValue>
+                                                                한 팀”
+                                                            </EmptyValue>
+                                                        </Div>
+                                                    </div>
+                                                )
+                                        }
+                                    </LeftSide>
+                                    {/*Div for 3 chip, 조회버튼*/}
+                                    <RightSide>
 
-                                    {/* {console.log("retrospectData", data.questionList.answerResponse)} */}
-                                    {
-                                        data.questionList
-                                            ? data
-                                                .questionList[0]
-                                                .subQuestionList
-                                                    ? data
-                                                        .questionList[0]
-                                                        .subQuestionList[0]
-                                                        .answerResponse
-                                                            ? <WriteCompleteButton onClick={openWriteButtonModal}>
-                                                                    완료
-                                                                    <Img width="2.6vh" height="2.6vh" src={Arrow}/>
-                                                                </WriteCompleteButton>
-                                                            : <ViewButton
-                                                                    to={`/RetrospectWrite?userId=${userInfo.appUser.id}&workspaceId=${workspaceId}&retrospectId=${data.id}`}>
-                                                                    작성
-                                                                    <Img width="2.6vh" height="2.6vh" src={ArrowPink}/>
-                                                                </ViewButton>
-                                                    : null
-                                            : null
-                                    }
+                                        {/* {console.log("retrospectData", data.questionList.answerResponse)} */}
+                                        {/* {console.log("data!!", data.isWritedList[0])}; */}
+                                        {
+                                            data.isWritedList && data.isWritedList[index] == 2
+                                                                    ? <WriteCompleteButton onClick={openWriteButtonModal}>
+                                                                            작성 완료
+                                                                            {/* <Img width="2.6vh" height="2.6vh" src={Arrow}/> */}
+                                                                        </WriteCompleteButton>
+                                                            :
+                                                            <ViewButton
+                                                                            to={`/RetrospectWrite?userId=${userInfo.appUser.id}&workspaceId=${workspaceId}&retrospectId=${data.id}`}>
+                                                                            작성
+                                                                            <Img width="2.6vh" height="2.6vh" src={ArrowPink}/>
+                                                                        </ViewButton>
+                                                // : null
+                                        }
 
-                                    <WriteButton
-                                        to={`/RetrospectView?userId=${userInfo.appUser.id}&workspaceId=${workspaceId}&retrospectId=${data.id}`}>
-                                        조회
-                                        <Img width="2.6vh" height="2.6vh" src={ArrowPink}/>
-                                    </WriteButton>
-                                </RightSide>
-                            </Div>
-                        </RetrospectListDiv>
-                    ))
+                                        <WriteButton
+                                            to={`/RetrospectView?userId=${userInfo.appUser.id}&workspaceId=${workspaceId}&retrospectId=${data.id}`}>
+                                            조회
+                                            <Img width="2.6vh" height="2.6vh" src={ArrowPink}/>
+                                        </WriteButton>
+                                    </RightSide>
+                                </Div>
+                            </RetrospectListDiv>
+                        ))
             }
             <WriteButtonModal
                 WriteButtonModalIsOpen={WriteButtonModalIsOpen}

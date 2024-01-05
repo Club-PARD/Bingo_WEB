@@ -4,11 +4,55 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { ChipData } from "../Contexts/Atom";
 
+
+// 리턴 된 값이 list 형태이므로 이걸로 map을 받는 컴포넌트들 만들기
+export const getAllTemplate = async (e, navigate) => {
+    try {
+        console.log(e);
+        const response = await axios.get(
+            `${process.env.REACT_APP_URL}template/user/${e.userid}/project/${e.projectId}`,
+            {
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem("email"),
+                },
+            }
+        );
+        console.log("getAllTemplate", response.data);
+
+        return response.data;
+    } catch (error) {
+        // alert("회고 리스트 조회 중 오류 발생했습니다"); navigate("/");
+
+        throw error;
+    }
+};
+
+
+export const getTemplate = async (e) => {
+    try {
+        const response = await axios.get(
+            `${process.env.REACT_APP_URL}template/project/${e.workspaceId}/template/${e.retrospectId}`,
+            {
+                headers: {
+                    Authorization: "Bearer " + localStorage.getItem("email"),
+                },
+            }
+        );
+        console.log("axios getTemplate", response.data);
+        return response.data;
+    } catch (error) {
+        alert("템플릿 상세 조회 중 오류 발생했습니다");
+
+        throw error;
+    }
+};
+
+
 // 리턴 된 값이 list 형태이므로 이걸로 map을 받는 컴포넌트들 만들기
 export const getAllRetrospect = async (e, navigate) => {
     try {
         const response = await axios.get(
-            `${process.env.REACT_APP_URL}template/project/${e.projectId}`,
+            `${process.env.REACT_APP_URL}retrospect/project/${e.projectId}/template/${e.templateId}`,
             {
                 headers: {
                     Authorization: "Bearer " + localStorage.getItem("email"),
@@ -26,18 +70,17 @@ export const getAllRetrospect = async (e, navigate) => {
 };
 
 
-
 export const getRetrospect = async (e) => {
     try {
         const response = await axios.get(
-            `${process.env.REACT_APP_URL}template/project/${e.workspaceId}/template/${e.retrospectId}`,
+            `${process.env.REACT_APP_URL}retrospect/project/${e.projectId}/template/${e.templateId}`,
             {
                 headers: {
                     Authorization: "Bearer " + localStorage.getItem("email"),
                 },
             }
         );
-        console.log("axios", response.data);
+        console.log("axios getRetrospect", response.data);
         return response.data;
     } catch (error) {
         alert("회고 상세 조회 중 오류 발생했습니다");
@@ -186,7 +229,8 @@ export const postRetrospect = async (e, navigate) => {
             });
             e.setChipData(chipInit);
             alert("회고 작성이 완료되었습니다.");
-            navigate(`/WorkspaceList`);
+            // navigate(`/WorkspaceList`);
+            navigate(`/WorkspaceView?workspaceId=${e.projectId}`);
         } catch (error) {
             throw "postRetrospect Error > " + error;
         }

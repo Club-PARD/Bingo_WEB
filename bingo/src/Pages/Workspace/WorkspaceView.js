@@ -17,7 +17,7 @@ import {
     loginUserState,
     RetrospectData,
 } from "../../Contexts/Atom.js";
-import { getAllRetrospect } from "../../Api/Retrospace.js";
+import { getAllRetrospect, getAllTemplate } from "../../Api/Retrospace.js";
 import Copy from "../../assets/Img/WorkspaceView/content_copy.png";
 
 // workspace에 들어오면 보이는 화면 아직 와이어 프레임 안나와서 정확한건 미정 빙고페이지로 이동 가능 회고생성페이지로 이동 가능
@@ -38,7 +38,8 @@ function WorkspaceView() {
     const filteredWorkspaces = workspaceData.find(
         (workspace) => workspace.id == workspaceId
     );
-    // console.log("file : ", filteredWorkspaces);
+
+    console.log("filtered : ", filteredWorkspaces);
     // console.log("목요일2", filteredWorkspaces);
     const openModal1 = () => {
         setModalIsOpen1(true);
@@ -52,15 +53,15 @@ function WorkspaceView() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const allRetrospect = await getAllRetrospect(
+                const allRetrospect = await getAllTemplate(
                     { userid: userInfo.appUser.id, projectId: workspaceId },
                     navigate
                 );
-                // console.log("temp Data", allRetrospect);
+                console.log("temp Data", allRetrospect);
                 setRetrospectData(allRetrospect); // allRetrospect.data로 설정
             } catch (error) {
                 // 에러 핸들링
-                console.error("Error fetching projects:", error);
+                console.error("Error getting all template:", error);
             }
         };
 
@@ -96,14 +97,14 @@ function WorkspaceView() {
                             {/* Title : 빙고판 타이틀 */}
                             <TitleAndButton>
                                 {/* <Title>{filteredWorkspaces ? filteredWorkspaces.name : "프로젝트 이름이 없습니다."}</Title> */}
-                                <Title>{filteredWorkspaces.name}</Title>
+                                <Title>{filteredWorkspaces?filteredWorkspaces.name : null}</Title>
                                 <InviteButton onClick={openModal1}>
                                     팀원 초대하기
                                 </InviteButton>
                             </TitleAndButton>
                             <TeamDesc>
                                 {/* {filteredWorkspaces ? filteredWorkspaces.description : "프로젝트 설명이 없습니다."} */}
-                                {filteredWorkspaces.description}
+                                {filteredWorkspaces ? filteredWorkspaces.description : null}
                             </TeamDesc>
                             <BingoDesc>
                                 <BingoDescText>
@@ -146,7 +147,7 @@ function WorkspaceView() {
             <InviteModal
                 modalIsOpen1={modalIsOpen1}
                 closeModal={closeModal}
-                value={filteredWorkspaces.code}
+                value={filteredWorkspaces ?filteredWorkspaces.code : null}
             />
         </>
     );

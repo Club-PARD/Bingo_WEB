@@ -54,7 +54,8 @@ function RetrospectView() {
         const getData = async () => {
             try {
                 const allRetrospect = await getAllRetrospect({
-                    projectId: workspaceId
+                    projectId: workspaceId,
+                    templateId: retrospectId
                 },);
                 setRetrospective(allRetrospect);
             } catch (error) {
@@ -67,8 +68,8 @@ function RetrospectView() {
             try {
                 const oneRetrospect = await getRetrospect({
                     userId: userId,
-                    workspaceId: workspaceId,
-                    retrospectId: retrospectId
+                    projectId: workspaceId,
+                    templateId: retrospectId
                 },);
                 setOneRetrospect(oneRetrospect);
             } catch (error) {
@@ -77,8 +78,11 @@ function RetrospectView() {
         }
         getData();
         getOneData();
-        { console.log("(UseEffect) retrospective 현황", retrospective) }
-        { console.log("(UseEffect) oneRetrospect 현황", oneRetrospect) }
+        {
+            console.log("(UseEffect) retrospective 현황", retrospective)
+        } {
+            console.log("(UseEffect) oneRetrospect 현황", oneRetrospect)
+        }
     }, [workspaceId]);
 
     //
@@ -86,13 +90,13 @@ function RetrospectView() {
     return (
         <Whole>
             {console.log("return retrospective", retrospective)}
-            { console.log("(UseEffect) oneRetrospect 현황", oneRetrospect) }
+            {console.log("(UseEffect) oneRetrospect 현황", oneRetrospect)}
             {/* 상단바 */}
             <Header>
                 <LeftHead>
                     <TitleDiv>{
                             retrospective
-                                ? oneRetrospect.name
+                                ? retrospective.name
                                 : "조회 불가"
                         }</TitleDiv>
                     {/* Breadcrumb은 현재 위치에 따라 달라진다 / 현위치 : 3 (회고 조회하기) */}
@@ -144,43 +148,66 @@ function RetrospectView() {
                     </DivColumn>
                     <DivOurTeam>팀이에요!</DivOurTeam>
                 </TeamValue>
+                {console.log("pangil", retrospective)}
                 {
                     retrospective
                         ? <div>
                                 <Div display="flex" alignItems="center" flexDirection="column">
                                     {
-                                        retrospective.map((template, index) => {
-                                            return (
-                                                template.id == oneRetrospect.id ? 
-                                                    <div>
-                                                        <DivLabel>
-                                                            {template.templateType}
-                                                        </DivLabel>
-                                                        {
-                                                            template
-                                                                .questionList
-                                                                .map((data, index2) => {
-                                                                    // console.log("data", data);
-                                                                    return (
-                                                                        <Mother key={index2}>
-                                                                            <StepDiv>
-                                                                                <StepInitial>
-                                                                                    {data.mainQuestion[0]}
-                                                                                </StepInitial>
-                                                                                <StepFullWord>
-                                                                                    {data.mainQuestion}
-                                                                                </StepFullWord>
-                                                                            </StepDiv>
-                                                                            {
-                                                                                data
-                                                                                    .subQuestionList
-                                                                                    .map((question, index) => {
-                                                                                        // console.log(question);
-                                                                                        return (
-                                                                                            <InnerDiv>
-                                                                                                <QuestionDiv>
-                                                                                                    {question.subQuestion}
-                                                                                                </QuestionDiv>
+                                        <div>
+                                                <DivLabel>
+                                                    {
+                                                        retrospective.templateType
+                                                            ? retrospective.templateType
+                                                            : "방식이 없습니다. 이거 고쳐야 함"
+                                                    }
+                                                </DivLabel>
+                                                {
+                                                    retrospective
+                                                        .template
+                                                        .questionList
+                                                        .map((data, index2) => {
+                                                            // console.log("data", data);
+                                                            return (
+                                                                <Mother key={index2}>
+                                                                    <StepDiv>
+                                                                        <StepInitial>
+                                                                            {data.mainQuestion[0]}
+                                                                        </StepInitial>
+                                                                        <StepFullWord>
+                                                                            {data.mainQuestion}
+                                                                        </StepFullWord>
+                                                                    </StepDiv>
+                                                                    {
+                                                                        data
+                                                                            .subQuestionList
+                                                                            .map((question, index) => {
+                                                                                // console.log(question);
+                                                                                return (
+                                                                                    <InnerDiv>
+                                                                                        <QuestionDiv>
+                                                                                            {question.subQuestion}
+                                                                                        </QuestionDiv>
+                                                                                        {
+                                                                                            question.answerResponse.length < 2
+                                                                                                ? 
+                                                                                                    question.answerResponse.map((data, index)  => {
+                                                                                                        return (
+                                                                                                            <OuterAnswer>
+                                                                                                                <ProfileDiv>
+                                                                                                                    <Eclipse/>
+                                                                                                                    <UserName>박정규</UserName>
+                                                                                                                </ProfileDiv>
+                                                                                                                <AnswerDiv>
+                                                                                                                    <AnswerText>
+                                                                                                                        {/* {console.log("답변", question.answerResponse.ams)} */}
+                                                                                                                        {data.ams}
+                                                                                                                    </AnswerText>
+                                                                                                                </AnswerDiv>
+                                                                                                            </OuterAnswer>
+                                                                                                        );
+                                                                                                    })
+                                                                                                : 
                                                                                                 <OuterAnswer>
                                                                                                     <ProfileDiv>
                                                                                                         <Eclipse/>
@@ -193,42 +220,22 @@ function RetrospectView() {
                                                                                                         </AnswerText>
                                                                                                     </AnswerDiv>
                                                                                                 </OuterAnswer>
-                                                                                            </InnerDiv>
-                                                                                        )
-                                                                                    })
-                                                                            }
-                                                                        </Mother>
-                                                                    )
-                                                                })
-                                                        }
+                                                                                        }
 
-                                                    </div>
-                                                : null
-                                            );
-                                        })
+                                                                                    </InnerDiv>
+                                                                                )
+                                                                            })
+                                                                    }
+                                                                </Mother>
+                                                            )
+                                                        })
+                                                }
+
+                                            </div>
                                     }
                                 </Div>
                             </div>
-                        // <h1>데이터가 있습니다.</h1> retrospective     .questionList     .map((data, index) =>
-                        // data.mainQuestion && (         <Div>hello</Div> <Div display="flex"
-                        // alignItems="center" flexDirection="column">              <DivLabel>
-                        // {retrospective.selectedWays}              </DivLabel> <Mother key={index}>
-                        // <StepDiv>         <StepInitial>             {data.title[0]}
-                        // </StepInitial>         <StepFullWord>             {
-                        // retrospective                     .questions[0]                     .title
-                        // }         </StepFullWord>     </StepDiv>     {         data
-                        // .content             .map((data, index) => (                 <InnerDiv>
-                        // <QuestionDiv>                         당신의 하루는 어땠나요?
-                        // </QuestionDiv>                     <OuterAnswer>
-                        // <ProfileDiv>                             <Eclipse/>
-                        // <UserName>박정규</UserName>                         </ProfileDiv>
-                        // <AnswerDiv>                             <AnswerText>
-                        // 롱커톤 2주차를 돌아봤을 때, 나는 전체적인 UXUI 디자인을 맡아 기획부터 완성까지 책임졌다. 기획서 작성, UXUI 디자인 및
-                        // 와이어프레임                                 제작, 개발자 및 기획팀과의 원활한 소통, 그리고 GUI의 완성까지
-                        // 맡아 수행했다. 또한, 프로젝트를 시각적으로 대표하는 PPT 및 굿즈                                 디자인도
-                        // 진행했다.                             </AnswerText>
-                        // </AnswerDiv>                     </OuterAnswer>                 </InnerDiv>
-                        // ))     } </Mother>          </Div>     ))
+
                         : <h1>데이터가 없습니다.</h1>
                 }
             </Body>
