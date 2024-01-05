@@ -1,21 +1,23 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
+import { getStorage } from "firebase/storage";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: "AIzaSyDAr3znaaa2POCxF3pTa1OLhFQxHjGZr2g",
-    authDomain: "bingo-1c642.firebaseapp.com",
-    projectId: "bingo-1c642",
-    storageBucket: "bingo-1c642.appspot.com",
-    messagingSenderId: "852368892676",
-    appId: "1:852368892676:web:7b6a3934bf645ce9d5a651",
-    measurementId: "G-SQQLKRX8QL",
+    apiKey: process.env.REACT_APP_FB_API_KEY,
+    authDomain: process.env.REACT_APP_FB_AUTH_DOMAIN,
+    projectId: process.env.REACT_APP_FB_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_FB_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_FB_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_FB_API_ID,
+    measurementId: REACT_APP_FB_MEASUREMENT_ID,
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+const app = initializeApp(firebaseConfig); // firebase 초기화
+const auth = getAuth(app); // firebase auth => user 정보를 관리한다.
+const dbService = getFirestore(app); //  firebase DB => DB를 관리
+const storage = getStorage(app); //storage => 파일이나 사진등의 text가 아닌 저장 내용들
+
+export { app, auth, dbService, storage };
