@@ -20,6 +20,8 @@ import { useRecoilValue } from "recoil";
 import Upward from "../../../assets/Img/WorkspaceList/arrow_upward.png";
 import Close from "../../../assets/Img/WorkspaceList/close.png";
 
+import Logo_Circle from "../../..//assets/Img/WorkspaceList/Logo_Circle.png"
+
 const TextDescDiv = styled.div`
     color: #9c9c9c;
     height: 3%;
@@ -52,7 +54,16 @@ const WorkspaceList = () => {
     const [file, setFile] = useState(null);
 
     const handleFileChange = (event) => {
-        setFile(event.target.files[0]);
+        const selectedFile = event.target.files[0];
+
+        // Check if a file is selected
+        if (selectedFile) {
+            setFile(selectedFile);
+        } else {
+            // Set a default file if no file is selected
+            const defaultFile = new File([{ Logo_Circle }], "bingo_default_file.png", { type: "impage/png" });
+            setFile(defaultFile);
+        }
     };
 
     const keepUserId = useRecoilValue(loginUserState);
@@ -491,9 +502,9 @@ const WorkspaceList = () => {
                                 } else if (!desc.trim()) {
                                     alert("프로젝트 설명을 작성하세요");
                                     setDescEmpty(true);
-                                } else if (!file) {
-                                    alert("프로젝트 사진을 넣으세요");
-                                    setDescEmpty(true);
+                                // } else if (!file) {
+                                    // alert("프로젝트 사진을 넣으세요");
+                                    // setDescEmpty(true);
                                 } else {
                                     onButtonClick(handleUpload);
                                 }
