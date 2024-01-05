@@ -9,14 +9,14 @@ export const getAllRetrospect = async (e, navigate) => {
     console.log("E", e);
     try {
         const response = await axios.get(
-            `${process.env.REACT_APP_URL}template/project/${e.projectId}`,
+            `${process.env.REACT_APP_URL}template/user/${e.userid}/project/${e.projectId}`,
             {
                 headers: {
                     Authorization: "Bearer " + localStorage.getItem("email"),
                 },
             }
         );
-        // console.log("Result", response.data);
+        console.log("Result", response.data);
 
         return response.data;
     } catch (error) {

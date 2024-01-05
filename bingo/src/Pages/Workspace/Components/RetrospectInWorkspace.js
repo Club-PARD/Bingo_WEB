@@ -50,14 +50,12 @@ const RetrospectInWorkspace = (e) => {
     return (
         <div>
             {/*Div for retrospectList height=833*/}
-            {filteredWorkspaces.role != "TEAM_MEMBER" && (
-                <AddArea
-                    to={`/RetrospectCreate?userId=${e.userId}&workspaceId=${e.workspaceId}`}
-                >
-                    <Img width="44px" height="44px" src={PlusBold} />
-                    <WordDiv>회고생성</WordDiv>
-                </AddArea>
-            )}
+            <AddArea
+                to={`/RetrospectCreate?userId=${e.userId}&workspaceId=${e.workspaceId}`}
+            >
+                <Img width="44px" height="44px" src={PlusBold} />
+                <WordDiv>회고생성</WordDiv>
+            </AddArea>
             {retrospectData.length >= 1 &&
                 retrospectData
                     .slice()
@@ -288,6 +286,7 @@ const NameIsValueDiv = styled(Div)`
     text-align: center;
     align-items: center;
     margin: 0 0 3.8vh 0;
+    background-color: aliceblue;
 `;
 const SubIsNotValue = styled(Div)`
     margin: 0 0 4.5vh 0;
@@ -311,6 +310,7 @@ const NameIsNotDiv = styled(Div)`
     text-align: center;
     align-items: center;
     margin: 0 0 0.7vh 0;
+    background-color: aliceblue;
 `;
 const EmptyValue = styled(Div)`
     color: #575757;
