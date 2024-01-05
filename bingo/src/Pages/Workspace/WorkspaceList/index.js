@@ -645,6 +645,7 @@ const StyleModal = {
         zIndex: "2",
         display: "flex",
         flexDirection: "column",
+        justifyContent: "center",
         top: "50%",
         left: "50%",
         right: "auto",
@@ -672,19 +673,18 @@ const InviteModal = (e) => {
         >
             {/* 팀원 코드 section */}
             <Div
-                justifyContent="space-around"
+                justifyContent="center"
                 alignItems="center"
                 width="100%"
                 height="100%"
                 flexDirection="column"
             >
-                <ModalInfo>
-                    초대 코드 입력하기
-                    <CodeDiv
-                        type="text"
-                        onChange={(e) => setInviteCode(e.target.value)}
-                    />
-                </ModalInfo>
+                <ModalInfo>초대 코드 입력하기</ModalInfo>
+                <CodeDiv
+                    type="text"
+                    onChange={(e) => setInviteCode(e.target.value)}
+                />
+
                 <Div
                     width="25vw"
                     height="4.7vh"
@@ -696,7 +696,7 @@ const InviteModal = (e) => {
                         color="#F9F9F9"
                         onClick={() => {
                             e.closeInviteModal();
-                            joinProject(inviteCode, addId); 
+                            joinProject(inviteCode, addId);
                             navigate("/workspaceList", { replace: true });
                             window.location.reload();
                         }}
@@ -726,7 +726,6 @@ const ModalInfo = styled.div`
     font-style: normal;
     font-weight: 400;
     line-height: 150%; /* 30px */
-    margin-bottom: -0.5vh;
     margin-left: 1.5vw;
 `;
 const CodeDiv = styled.input`
@@ -746,6 +745,7 @@ const CodeDiv = styled.input`
     font-style: normal;
     font-weight: 400;
     line-height: 150%; /* 36px */
+    margin-bottom: 4vh;
 
     &:focus {
         border: 2px solid var(--main_red, #ea4336);
