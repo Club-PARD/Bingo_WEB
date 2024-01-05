@@ -197,26 +197,34 @@ const RetrospectWriteText = (e) => {
     console.log("filteredWorkspaces Data", filteredWorkspaces);
 
     const [isFilled, setIsFilled] = useState(false);
+
     const checkIfAllFilled = () => {
-        for (let data of retrospectQuestionsList.questionList) {
-            for (let retro of data.subQuestionList) {
-                if (retro.answerResponse == null) {
-                    setIsFilled(false);
-                    return;
+        if (retrospectQuestionsList && retrospectQuestionsList.questionList) {
+            for (let data of retrospectQuestionsList.questionList) {
+                for (let retro of data.subQuestionList) {
+                    if (
+                        retro.answerResponse == null ||
+                        retro.answerResponse.trim() === ""
+                    ) {
+                        return false;
+                    }
                 }
             }
+            return true;
         }
-        setIsFilled(true);
+        return false;
     };
+
+    const handleInputChange = () => {
+        const allFilled = checkIfAllFilled();
+        setIsFilled(allFilled);
+    };
+
     const handleNextButtonClick = () => {
-        checkIfAllFilled();
         if (isFilled) {
-            // isFilled가 true일 경우에만 다음 페이지로 이동
             navigate(
                 `/TeamEvaluation?userId=${e.userId}&workspaceId=${e.workspaceId}&retrospectId=${e.retrospectId}`
             );
-        } else {
-            alert("빈 항목이 있는지 확인해주세요!");
         }
     };
 
@@ -224,6 +232,21 @@ const RetrospectWriteText = (e) => {
         event.target.style.height = "15.6vh"; // 초기 높이로 재설정
         event.target.style.height = `${event.target.scrollHeight}px`;
     };
+    const handleRetroTextChange = (event, dataIndex, subQuestionIndex) => {
+        const updatedValue = event.target.value;
+        console.log(dataIndex + ", " + subQuestionIndex + ", " + updatedValue);
+
+        const tempList = cloneDeep(retrospectQuestionsList);
+        tempList.questionList[dataIndex].subQuestionList[
+            subQuestionIndex
+        ].answerResponse = updatedValue;
+
+        // console.log("temp : ", tempList.questionList[dataIndex].subQuestionList[subQuestionIndex]);
+        setRetrospectQuestionsList(tempList);
+    };
+    useEffect(() => {
+        handleInputChange();
+    }, [retrospectQuestionsList]);
     //CancleModal관련
     const [modalCancleIsOpen, setModalCancleIsOpen] = useState(false); // Modal 창의 open 여부를 저장하는 변수
     const openModalCancle = () => {
@@ -236,19 +259,6 @@ const RetrospectWriteText = (e) => {
     const [temp, setTemp] = useState();
     const handlerSetTemp = (e) => {
         setTemp(e.target.value);
-    };
-
-    const handleRetroTextChange = (event, dataIndex, subQuestionIndex) => {
-        const updatedValue = event.target.value;
-        console.log(dataIndex + ", " + subQuestionIndex + ", " + updatedValue);
-
-        const tempList = cloneDeep(retrospectQuestionsList);
-        tempList.questionList[dataIndex].subQuestionList[
-            subQuestionIndex
-        ].answerResponse = updatedValue;
-
-        // console.log("temp : ", tempList.questionList[dataIndex].subQuestionList[subQuestionIndex]);
-        setRetrospectQuestionsList(tempList);
     };
 
     return (

@@ -17,6 +17,8 @@ import { createWorkspace, handleUpload } from "../../../Api/Workspace.js";
 import axios from "axios";
 import WorkspaceBanner from "../../../assets/Img/WorkspaceList/Workspace_Banner.png";
 import { useRecoilValue } from "recoil";
+import Upward from "../../../assets/Img/WorkspaceList/arrow_upward.png";
+import Close from "../../../assets/Img/WorkspaceList/close.png";
 
 const TextDescDiv = styled.div`
     color: #9c9c9c;
@@ -325,64 +327,70 @@ const WorkspaceList = () => {
                     },
                 }}
             >
-                {/* 모달 내용 */}
-
                 {/* (모달) 취소버튼 */}
                 <Div
                     width="90%"
                     height="100%"
                     display="flex"
-                    flexDirection="column-reverse"
+                    flexDirection="column"
                     justifyContent="top"
                     alignItems="center"
                     boxSizing="border-box"
                     margin="0 auto"
                 >
-                    <Div
-                        height="24%"
-                        width="100%"
-                        flexDirection="row"
-                        justifyContent="right"
-                        alignItems="center"
-                    >
-                        <ModalCancleBtn onClick={closeModal}>
-                            취소
-                        </ModalCancleBtn>
-
-                        {/* (모달) 완료버튼 */}
-                        <ModalCompleteBtn
-                            onClick={() => {
-                                if (!title.trim() && !desc.trim()) {
-                                    alert("프로젝트 이름과 설명을 작성하세요");
-                                    setTitleEmpty(true);
-                                    setDescEmpty(true);
-                                } else if (!title.trim()) {
-                                    alert("프로젝트 이름을 작성하세요");
-                                    setTitleEmpty(true);
-                                } else if (!desc.trim()) {
-                                    alert("프로젝트 설명을 작성하세요");
-                                    setDescEmpty(true);
-                                } else if (!file) {
-                                    alert("프로젝트 사진을 넣으세요");
-                                    setDescEmpty(true);
-                                } else {
-                                    onButtonClick(handleUpload);
-                                }
-                            }}
-                        >
-                            프로젝트 생성
-                        </ModalCompleteBtn>
-                    </Div>
+                    {/* 모달 내용 */}
 
                     {/* (모달) 프로젝트 배너 이미지 */}
                     <Div
                         alignItems="left"
-                        flexDirection=" column-reverse"
+                        flexDirection=" column"
                         justifyContent="space-between"
                         width="100%"
                         height="68%"
                         borderRadius="50%"
+                        margin="3vh 0 0 0"
                     >
+                        <ModalHeader onClick={handleUpload}>
+                            프로젝트 생성
+                        </ModalHeader>
+                        {/* (모달) 프로젝트 이름 */}
+                        <ModalTitle>
+                            <ModalLabel>프로젝트 이름</ModalLabel>
+                            <CustomInput
+                                placeholder="빙고"
+                                type="text"
+                                height="6.5vh"
+                                value={title}
+                                onChange={onChangeTitle}
+                                style={
+                                    titleEmpty
+                                        ? {
+                                              border: "1px solid red",
+                                          }
+                                        : {}
+                                }
+                            />
+                        </ModalTitle>
+                        {/* (모달) 프로젝트 설명 */}
+                        <Div flexDirection="column">
+                            <ModalLabel>
+                                프로젝트 설명 (30자 이내로 작성해 주세요)
+                            </ModalLabel>
+                            <CustomInput
+                                placeholder="우리팀은 그냥 최고지"
+                                type="text"
+                                height="6.5vh"
+                                value={desc}
+                                onChange={onChangeIntroduce}
+                                style={
+                                    descEmpty
+                                        ? {
+                                              border: "1px solid red",
+                                          }
+                                        : {}
+                                }
+                            />
+                        </Div>
                         <Div flexDirection="column">
                             <ModalLabel>프로젝트 사진</ModalLabel>
                             <Input
@@ -403,7 +411,7 @@ const WorkspaceList = () => {
                                         <FileInputText>
                                             {file.name}
                                         </FileInputText>
-                                        <FileInputImg src="img\WorkspaceList\close.png" />
+                                        <FileInputImg src={Close} />
                                     </FileInputButton>
                                 ) : (
                                     <FileInputButton
@@ -411,7 +419,7 @@ const WorkspaceList = () => {
                                             fileInputRef.current.click()
                                         }
                                     >
-                                        <FileInputImg src="img\WorkspaceList\arrow_upward.png" />
+                                        <FileInputImg src={Upward} />
                                         <FileInputText>
                                             파일 업로드
                                         </FileInputText>
@@ -461,49 +469,41 @@ const WorkspaceList = () => {
                                 </FileInputButton>
                             </Div>
                         </Div> */}
+                    </Div>
 
-                        {/* (모달) 프로젝트 설명 */}
-                        <Div flexDirection="column">
-                            <ModalLabel>
-                                프로젝트 설명 (30자 이내로 작성해 주세요)
-                            </ModalLabel>
-                            <CustomInput
-                                placeholder="우리팀은 그냥 최고지"
-                                type="text"
-                                height="6.5vh"
-                                value={desc}
-                                onChange={onChangeIntroduce}
-                                style={
-                                    descEmpty
-                                        ? {
-                                              border: "1px solid red",
-                                          }
-                                        : {}
+                    <Div
+                        height="24%"
+                        width="100%"
+                        flexDirection="row-reverse"
+                        justifyContent="right"
+                        alignItems="center"
+                    >
+                        {/* (모달) 완료버튼 */}
+                        <ModalCompleteBtn
+                            onClick={() => {
+                                if (!title.trim() && !desc.trim()) {
+                                    alert("프로젝트 이름과 설명을 작성하세요");
+                                    setTitleEmpty(true);
+                                    setDescEmpty(true);
+                                } else if (!title.trim()) {
+                                    alert("프로젝트 이름을 작성하세요");
+                                    setTitleEmpty(true);
+                                } else if (!desc.trim()) {
+                                    alert("프로젝트 설명을 작성하세요");
+                                    setDescEmpty(true);
+                                } else if (!file) {
+                                    alert("프로젝트 사진을 넣으세요");
+                                    setDescEmpty(true);
+                                } else {
+                                    onButtonClick(handleUpload);
                                 }
-                            />
-                        </Div>
-
-                        {/* (모달) 프로젝트 이름 */}
-                        <ModalTitle>
-                            <ModalLabel>프로젝트 이름</ModalLabel>
-                            <CustomInput
-                                placeholder="빙고"
-                                type="text"
-                                height="6.5vh"
-                                value={title}
-                                onChange={onChangeTitle}
-                                style={
-                                    titleEmpty
-                                        ? {
-                                              border: "1px solid red",
-                                          }
-                                        : {}
-                                }
-                            />
-                        </ModalTitle>
-                        <ModalHeader onClick={handleUpload}>
+                            }}
+                        >
                             프로젝트 생성
-                        </ModalHeader>
+                        </ModalCompleteBtn>
+                        <ModalCancleBtn onClick={closeModal}>
+                            취소
+                        </ModalCancleBtn>
                     </Div>
                 </Div>
             </Modal>

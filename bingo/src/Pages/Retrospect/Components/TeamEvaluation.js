@@ -202,22 +202,25 @@ export default TeamEvaluation;
 const StepButton = (e) => {
     return (
         <a href={e.targetPage}>
-            <Button
-                width="5.5vw"
-                height="5vh"
-                borderRadius="40px"
-                fontSize="18px"
-                fontWeight="400"
+            <StepBtn
                 onClick={e.onClick}
-                justifyContent="center"
-                alignItems="center"
-                margin=" 0 0 0 .8vw"
-                border="2px solid var(--main_red, #EA4336)"
                 backgroundColor={e.backgroundColor}
                 color={e.color}
             >
                 {e.targetLabel}
-            </Button>
+            </StepBtn>
         </a>
     );
 };
+const StepBtn = styled(Button)`
+    width: 5.5vw;
+    height: 5vh;
+    border-radius: 40px;
+    font-size: 18px;
+    font-weight: 400;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0 0 0.8vw;
+    border: 2px solid var(--main_red, #ea4336);
+    font-family: "160";
+`;

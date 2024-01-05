@@ -13,6 +13,7 @@ function BingoBoard({ modalIsOpen }) {
     const [chipData, setChipData] = useRecoilState(ChipData);
     const [usrList, setUserList] = useRecoilState(UserList);
     const IsRetrospect = false;
+    console.log("ChipData", chipData);
     /*
   const [items, setItems] = useState([
     { text: '존중하는', flag: true },
@@ -26,13 +27,6 @@ function BingoBoard({ modalIsOpen }) {
     { text: '칭찬하는', flag: false },
   ]);
 */
-    const handleItemClick = (index) => {
-        setChipData(
-            chipData.map((item, i) =>
-                i === index ? { ...item, flag: !item.flag } : item
-            )
-        );
-    };
     // console.log("modal: " + modalIsOpen);
     // console.log("Retro: " + IsRetrospect);
     return (
