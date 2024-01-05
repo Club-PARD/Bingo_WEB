@@ -75,17 +75,18 @@ export const getProject = async (e) => {
     // alert("WID", e.workspaceId);
     try {
         const response = await axios.get(
-            `${process.env.REACT_APP_URL}user/${e.userid}/projects/${e.workspaceId}`,
+            `${process.env.REACT_APP_URL}project/user/${e.userid}/projects/${e.workspaceId}`,
             {
                 headers: {
                     Authorization: "Bearer " + localStorage.getItem("email"),
                 },
             }
         );
-        alert("WDATA : ", response.data);
+        // alert("WDATA : ", response.data);
         return response.data;
     } catch (error) {
-        alert("프로젝트 상세 조회 중 오류 발생했습니다");
+        // alert("프로젝트 상세 조회 중 오류 발생했습니다");
+        console.log(error);
 
         throw error;
     }

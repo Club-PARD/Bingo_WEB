@@ -9,11 +9,11 @@ import "../../font.css";
 //Bingopage에 띄울 빙고판 생성 component
 //배열에 들어있는 text는 추후 기획에게 받을 예정
 //9개의 형용사가 회고 때 체크되면 체크된 형용사의 flag가 True로 변함
-function BingoBoard({ modalIsOpen, retrolen }) {
+function BingoBoard({ modalIsOpen, retrolen, tagList }) {
     const [chipData, setChipData] = useRecoilState(ChipData);
     const [usrList, setUserList] = useRecoilState(UserList);
     const IsRetrospect = retrolen === 0 ? false : true;
-    console.log("ChipData", chipData);
+    console.log("ChipData", tagList);
     /*
   const [items, setItems] = useState([
     { text: '존중하는', flag: true },
@@ -32,16 +32,16 @@ function BingoBoard({ modalIsOpen, retrolen }) {
     return (
         <>
             <ParentDiv isRetrospect={IsRetrospect} modalIsOpen={modalIsOpen}>
-                {chipData.map((item, index) =>
-                    item.flag ? (
-                        <ChildDivFlagTrue key={item.label}>
-                            {item.label.split("\n").map((line, i) => (
+                {tagList?.map((item, index) =>
+                    item.count > 0 ? (
+                        <ChildDivFlagTrue key={item.id}>
+                            {item.name.split("\n").map((line, i) => (
                                 <div key={i}>{line}</div>
                             ))}
                         </ChildDivFlagTrue>
                     ) : (
-                        <ChildDiv key={item.label}>
-                            {item.label.split("\n").map((line, i) => (
+                        <ChildDiv key={item.id}>
+                            {item.name.split("\n").map((line, i) => (
                                 <div key={i}>{line}</div>
                             ))}
                         </ChildDiv>
