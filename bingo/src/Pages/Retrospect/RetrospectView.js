@@ -91,7 +91,7 @@ function RetrospectView() {
                 <LeftHead>
                     <TitleDiv>{
                             retrospective
-                                ? retrospective.name
+                                ? retrospective.template.name
                                 : "조회 불가"
                         }</TitleDiv>
                     {/* Breadcrumb은 현재 위치에 따라 달라진다 / 현위치 : 3 (회고 조회하기) */}
@@ -186,9 +186,9 @@ function RetrospectView() {
                                                                                             {question.subQuestion}
                                                                                         </QuestionDiv>
                                                                                         {
-                                                                                            question.answerResponse.length < 2
-                                                                                                ? 
-                                                                                                    question.answerResponse.map((data, index)  => {
+                                                                                            question.answerResponses.length  > 1 ?
+                                                                                                
+                                                                                                    question.answerResponses.map((data, index)  => {
                                                                                                         return (
                                                                                                             <OuterAnswer>
                                                                                                                 <ProfileDiv>
