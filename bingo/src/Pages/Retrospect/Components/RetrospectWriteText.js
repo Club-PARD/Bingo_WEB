@@ -199,20 +199,21 @@ const RetrospectWriteText = (e) => {
     const [isFilled, setIsFilled] = useState(false);
 
     const checkIfAllFilled = () => {
-        // if (retrospectQuestionsList && retrospectQuestionsList.questionList) {
-        //     for (let data of retrospectQuestionsList.questionList) {
-        //         for (let retro of data.subQuestionList) {
-        //             if (
-        //                 retro.answerResponse == null ||
-        //                 retro.answerResponse.trim() === ""
-        //             ) {
-        //                 return false;
-        //             }
-        //         }
-        //     }
-        //     return true;
-        // }
-        // return false;
+        if (retrospectQuestionsList && retrospectQuestionsList.questionList) {
+            for (let data of retrospectQuestionsList.questionList) {
+                for (let retro of data.subQuestions) {
+                    if (
+                        !retro.answerResponse ||
+                        (typeof retro.answerResponse === "string" &&
+                            retro.answerResponse.trim() === "")
+                    ) {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+        return false;
     };
 
     const handleInputChange = () => {
@@ -221,11 +222,11 @@ const RetrospectWriteText = (e) => {
     };
 
     const handleNextButtonClick = () => {
-        // if (isFilled) {
+        if (isFilled) {
             navigate(
                 `/TeamEvaluation?userId=${e.userId}&workspaceId=${e.workspaceId}&retrospectId=${e.retrospectId}`
             );
-        // }
+        }
     };
 
     const resizeTextarea = (event) => {
@@ -296,7 +297,10 @@ const RetrospectWriteText = (e) => {
                             {retrospectQuestionsList.templateType}
                         </TemplateTypeDiv>
 
-                        {console.log("pangil love you ", retrospectQuestionsList.questionList)}
+                        {console.log(
+                            "pangil love you ",
+                            retrospectQuestionsList.questionList
+                        )}
                         {retrospectQuestionsList.questionList.map(
                             (data, index) => (
                                 // data.title &&
@@ -310,35 +314,36 @@ const RetrospectWriteText = (e) => {
                                         </RetroLabel>
                                     </RetroType>
                                     {console.log("제발", data)}
-                                    {data.subQuestions && data.subQuestions.map(
-                                        (retro, index2) => (
-                                            // retro.dataQ &&
-                                            <div key={index2}>
-                                                <RetroData>
-                                                    {retro.subQuestion}
-                                                </RetroData>
-                                                <RetroText
-                                                    placeholder="답변을 입력하세요..."
-                                                    onInput={resizeTextarea}
-                                                    value={
-                                                        retro.answerResponse ==
-                                                        null
-                                                            ? ""
-                                                            : retro
-                                                                .answerResponse
-                                                                .ams
-                                                    }
-                                                    onChange={(f) =>
-                                                        handleRetroTextChange(
-                                                            f,
-                                                            index,
-                                                            index2
-                                                        )
-                                                    }
-                                                />
-                                            </div>
-                                        )
-                                    )}
+                                    {data.subQuestions &&
+                                        data.subQuestions.map(
+                                            (retro, index2) => (
+                                                // retro.dataQ &&
+                                                <div key={index2}>
+                                                    <RetroData>
+                                                        {retro.subQuestion}
+                                                    </RetroData>
+                                                    <RetroText
+                                                        placeholder="답변을 입력하세요..."
+                                                        onInput={resizeTextarea}
+                                                        value={
+                                                            retro.answerResponse ==
+                                                            null
+                                                                ? ""
+                                                                : retro
+                                                                      .answerResponse
+                                                                      .ams
+                                                        }
+                                                        onChange={(f) =>
+                                                            handleRetroTextChange(
+                                                                f,
+                                                                index,
+                                                                index2
+                                                            )
+                                                        }
+                                                    />
+                                                </div>
+                                            )
+                                        )}
                                 </Border>
                             )
                         )}

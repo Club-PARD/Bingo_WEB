@@ -134,7 +134,7 @@ const TeamEvaluation = (e) => {
             id: retrospectQuestionsList.tagList[key].id
                 ? retrospectQuestionsList.tagList[key].id
                 : null,
-            selected: flag === true ? 2 : flag === false ? 1 : flag,
+            selected: flag === true ? 1 : flag === false ? 2 : flag,
         }));
 
         console.log("After tempChipData", modifiedData);
