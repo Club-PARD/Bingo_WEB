@@ -37,7 +37,7 @@ function WorkspaceView() {
     const filteredWorkspaces = workspaceData.find(
         (workspace) => workspace.id == workspaceId
     );
-    console.log("file~~: ", filteredWorkspaces);
+    console.log("file : ", filteredWorkspaces);
     // console.log("목요일2", filteredWorkspaces);
     const openModal1 = () => {
         setModalIsOpen1(true);
@@ -140,7 +140,7 @@ function WorkspaceView() {
             <InviteModal
                 modalIsOpen1={modalIsOpen1}
                 closeModal={closeModal}
-                value={value}
+                value={filteredWorkspaces.code}
             />
         </>
     );

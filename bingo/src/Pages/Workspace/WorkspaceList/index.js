@@ -55,8 +55,6 @@ const WorkspaceList = () => {
 
     const keepUserId = useRecoilValue(loginUserState);
     const keepuserId = keepUserId.appUser.id;
-    console.log("KUID", keepuserId);
-
     const [userInfo, setUserInfo] = useRecoilState(loginUserState);
     const [titleEmpty, setTitleEmpty] = useState(false);
     const [descEmpty, setDescEmpty] = useState(false);
