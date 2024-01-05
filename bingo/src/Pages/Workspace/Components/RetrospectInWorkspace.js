@@ -5,7 +5,7 @@ import Modal from "react-modal";
 import {Link, useLocation, useNavigate} from "react-router-dom";
 import styled from "styled-components";
 import {useRecoilState} from "recoil";
-import {RetrospectData, loginUserState} from "../../../Contexts/Atom";
+import {RetrospectData, WorkspaceData, loginUserState} from "../../../Contexts/Atom";
 import ArrowPink from "../../../assets/Img/WorkspaceView/arrowPink.png";
 import Arrow from "../../../assets/Img/WorkspaceView/arrow_forward.png";
 import PlusBold from "../../../assets/Img/WorkspaceView/ph_plus-bold.png";
@@ -16,7 +16,7 @@ import { ButtonDiv, ModalInfo } from "../../Workspace/WorkspaceView";
 const RetrospectInWorkspace = (e) => {
     const [userInfo, setUserInfo] = useRecoilState(loginUserState);
     const [retrospectData, setRetrospectData] = useRecoilState(RetrospectData);
-    const state = false;
+    const state = true;
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
     const workspaceId = searchParams.get("workspaceId");
@@ -37,16 +37,22 @@ const RetrospectInWorkspace = (e) => {
     const closeWriteButtonModal = () => {
         setWriteButtonModalIsOpen(false);
     };
+
+    const [workspaceData, setWorkspaceData] = useRecoilState(WorkspaceData);
+    const filteredWorkspaces = workspaceData.find(
+        (workspace) => workspace.id == workspaceId
+    );
     // console.log("RetrospectData Data", retrospectData);
     return (
         <div>
             {/*Div for retrospectList height=833*/}
-
-            <AddArea
+            {filteredWorkspaces.role != "TEAM_MEMBER" &&
+                <AddArea
                 to={`/RetrospectCreate?userId=${e.userId}&workspaceId=${e.workspaceId}`}>
-                <Img width="44px" height="44px" src={PlusBold}/>
-                <WordDiv>회고생성</WordDiv>
-            </AddArea>
+                    <Img width="44px" height="44px" src={PlusBold}/>
+                    <WordDiv>회고생성</WordDiv>
+                </AddArea>
+            }
             {
                 retrospectData.length >= 1 && retrospectData
                     .slice()

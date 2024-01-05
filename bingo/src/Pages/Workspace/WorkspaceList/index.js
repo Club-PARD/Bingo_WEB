@@ -715,7 +715,6 @@ const InviteModal = (e) => {
                     초대 코드 입력하기
                     <CodeDiv type="text" onChange={(e) => setInviteCode(e.target.value)} />
                 </ModalInfo>
-                <CodeDiv type="text" />
                 <Div
                     width="25vw"
                     height="4.7vh"
