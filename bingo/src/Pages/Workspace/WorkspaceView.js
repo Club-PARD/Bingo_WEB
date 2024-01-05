@@ -19,6 +19,7 @@ import {
 } from "../../Contexts/Atom.js";
 import { getAllRetrospect, getAllTemplate } from "../../Api/Retrospace.js";
 import Copy from "../../assets/Img/WorkspaceView/content_copy.png";
+import { getProject } from "../../Api/Workspace";
 
 // workspace에 들어오면 보이는 화면 아직 와이어 프레임 안나와서 정확한건 미정 빙고페이지로 이동 가능 회고생성페이지로 이동 가능
 // RetrospectInWorkspace component출력 회고결과 출력(이것도 디자인이 완성되고 백엔드가 연결되어야 가능하다)
@@ -30,10 +31,10 @@ function WorkspaceView() {
     const workspaceId = searchParams.get("workspaceId");
     const [modalIsOpen1, setModalIsOpen1] = useState(false);
     const [value, setValue] = useState("12345678");
+    const [tagCount, setTagCount] = useState();
     const [workspaceData, setWorkspaceData] = useRecoilState(WorkspaceData);
     const [retrospectData, setRetrospectData] = useRecoilState(RetrospectData);
     console.log("retrospectData", retrospectData);
-
 
     const filteredWorkspaces = workspaceData.find(
         (workspace) => workspace.id == workspaceId
@@ -65,12 +66,23 @@ function WorkspaceView() {
             }
         };
 
+        const fetchTagCount = async () => {
+            try {
+                const allTagCount = await getProject({
+                    userid: userInfo.appUser.id,
+                    workspaceId: workspaceId,
+                });
+                setTagCount(allTagCount);
+            } catch (error) {
+                console.error("Error Tag Count:", error);
+            }
+        };
+        fetchTagCount();
         fetchData();
     }, [userInfo.appUser.id, workspaceId, setRetrospectData, navigate]);
-
     const [WriteButtonModalIsOpen, setWriteButtonModalIsOpen] = useState(false);
 
-
+    console.log("fetchData", tagCount);
     return (
         <>
             <Div
@@ -97,15 +109,21 @@ function WorkspaceView() {
                             {/* Title : 빙고판 타이틀 */}
                             <TitleAndButton>
                                 {/* <Title>{filteredWorkspaces ? filteredWorkspaces.name : "프로젝트 이름이 없습니다."}</Title> */}
-                                <Title>{filteredWorkspaces?filteredWorkspaces.name : null}</Title>
+
+                                <Div width="13vw" height="4vh" overflow="auto">
+                                    <Title>{filteredWorkspaces?filteredWorkspaces.name : null}</Title>
+                                </Div>
                                 <InviteButton onClick={openModal1}>
                                     팀원 초대하기
                                 </InviteButton>
                             </TitleAndButton>
-                            <TeamDesc>
-                                {/* {filteredWorkspaces ? filteredWorkspaces.description : "프로젝트 설명이 없습니다."} */}
-                                {filteredWorkspaces ? filteredWorkspaces.description : null}
-                            </TeamDesc>
+
+                            <Div width="20vw" height="3vh" overflow="auto">
+                                <TeamDesc>
+                                    {/* {filteredWorkspaces ? filteredWorkspaces.description : "프로젝트 설명이 없습니다."} */}
+                                    {filteredWorkspaces ? filteredWorkspaces.description : null}
+                                </TeamDesc>
+                            </Div>
                             <BingoDesc>
                                 <BingoDescText>
                                     좋은 팀을 위한 9가지 가치 빙고판
@@ -114,7 +132,11 @@ function WorkspaceView() {
 
                             {/* Content : 빙고판 */}
                             <Section_Bingo_Content>
-                                <BingoBoard modalIsOpen={modalIsOpen1} />
+                                <BingoBoard
+                                    modalIsOpen={modalIsOpen1}
+                                    tagList={tagCount?.tagList}
+                                    retrolen={retrospectData?.length}
+                                />
                             </Section_Bingo_Content>
                         </Section_Bingo>
                     </SectionLeft>
@@ -136,7 +158,9 @@ function WorkspaceView() {
                         <Section_Retrospect_Content>
                             <RetrospectInWorkspace
                                 WriteButtonModalIsOpen={WriteButtonModalIsOpen}
-                                setWriteButtonModalIsOpen = {setWriteButtonModalIsOpen}
+                                setWriteButtonModalIsOpen={
+                                    setWriteButtonModalIsOpen
+                                }
                                 userId={userInfo.appUser.id}
                                 workspaceId={workspaceId}
                             />

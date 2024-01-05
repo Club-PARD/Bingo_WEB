@@ -1,15 +1,15 @@
 import Breadcrumb from "../../Layout/Breadcrumb";
 import styled from "styled-components";
-import {useState, useEffect} from "react";
-import {useRecoilState} from "recoil";
-import {retrospectiveState} from "../../Contexts/Atom";
-import {Link} from "react-router-dom";
-import {useLocation, useNavigate} from "react-router";
-import {Button} from "../../Components/NormalComponents/Form";
-import {Div} from "../../Components/NormalComponents/Section";
+import { useState, useEffect } from "react";
+import { useRecoilState } from "recoil";
+import { retrospectiveState } from "../../Contexts/Atom";
+import { Link } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router";
+import { Button } from "../../Components/NormalComponents/Form";
+import { Div } from "../../Components/NormalComponents/Section";
 import LeftDD from "../../assets/Img/Retrospect/DDL.png";
 import RightDD from "../../assets/Img/Retrospect/DDR.png";
-import {getAllRetrospect, getRetrospect} from "../../Api/Retrospace";
+import { getAllRetrospect, getRetrospect } from "../../Api/Retrospace";
 
 function RetrospectView() {
     const [retrospective, setRetrospective] = useState();
@@ -22,13 +22,9 @@ function RetrospectView() {
         /*회고 종류와 각단계의 이름에 대한 리스트*/
     }
     const retrospectiveCategories = {
-        KPT: [
-            "Keep", "Problem", "Try"
-        ],
-        "4L": [
-            "Liked", "Learned", "Lacked", "Longed for"
-        ],
-        "5F": ["Feel", "Find", "Finish", "Future", "Feedback"]
+        KPT: ["Keep", "Problem", "Try"],
+        "4L": ["Liked", "Learned", "Lacked", "Longed for"],
+        "5F": ["Feel", "Find", "Finish", "Future", "Feedback"],
     };
     const [retrospectTitle, setRetrospectTitle] = useState("4L");
     const [titleArray, setTitleArray] = useState([]);
@@ -63,7 +59,6 @@ function RetrospectView() {
                 console.error("Error getting all projects(workspaces):", error);
             }
         };
-
         const getOneData = async () => {
             try {
                 const oneRetrospect = await getRetrospect({
@@ -75,7 +70,7 @@ function RetrospectView() {
             } catch (error) {
                 console.error("Error getting one projects(workspaces):", error);
             }
-        }
+        };
         getData();
         getOneData();
         {
@@ -100,14 +95,15 @@ function RetrospectView() {
                                 : "조회 불가"
                         }</TitleDiv>
                     {/* Breadcrumb은 현재 위치에 따라 달라진다 / 현위치 : 3 (회고 조회하기) */}
-                    <Breadcrumb activeKey={3}/>
+                    <Breadcrumb activeKey={3} />
                 </LeftHead>
                 <RightHead>
                     <StepButton
                         onClick={handleExitClick}
                         targetLabel="나가기"
                         backgroundColor="#F9F9F9"
-                        color="#EA4336"/>
+                        color="#EA4336"
+                    />
                 </RightHead>
             </Header>
             <Body>
@@ -119,8 +115,7 @@ function RetrospectView() {
                     2-1 첫번째 div는 생성자가 작성한 질문을 bold처리해서 출력
                     2-2 이후의 n개의 div는 또 쪼개짐 2개
                         2-2-1
-                */
-                }
+                */}
                 <DivLabel>팀 가치</DivLabel>
                 <TeamValue>
                     <DivOurTeam>우리 팀은</DivOurTeam>
@@ -129,9 +124,10 @@ function RetrospectView() {
                             style={{
                                 width: "1.6vw",
                                 height: "1.6vw",
-                                marginBottom: "15vh"
+                                marginBottom: "15vh",
                             }}
-                            src={LeftDD}/>
+                            src={LeftDD}
+                        />
                     </DivColumn>
                     <DivValue>
                         <SpanValue>서로에 대한 존중과 신뢰가 있는</SpanValue>
@@ -142,9 +138,10 @@ function RetrospectView() {
                             style={{
                                 width: "1.6vw",
                                 height: "1.6vw",
-                                marginBottom: "14vh"
+                                marginBottom: "14vh",
                             }}
-                            src={RightDD}/>
+                            src={RightDD}
+                        />
                     </DivColumn>
                     <DivOurTeam>팀이에요!</DivOurTeam>
                 </TeamValue>
@@ -245,7 +242,7 @@ function RetrospectView() {
 
 export default RetrospectView;
 
-const Whole = styled.div `
+const Whole = styled.div`
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -256,7 +253,7 @@ const Whole = styled.div `
 `;
 
 // breadcrumb가 들어가는 부분
-const Header = styled.div `
+const Header = styled.div`
     box-sizing: border-box;
     height: 18.4vh;
     width: 66.4vw;
@@ -266,7 +263,7 @@ const Header = styled.div `
     align-items: end;
     justify-content: space-between;
 `;
-const LeftHead = styled.div `
+const LeftHead = styled.div`
     padding-bottom: 1.5vh;
     box-sizing: border-box;
     width: auto;
@@ -275,7 +272,7 @@ const LeftHead = styled.div `
     flex-direction: column;
     justify-content: end;
 `;
-const TitleDiv = styled.div `
+const TitleDiv = styled.div`
     width: auto;
     height: 4vh;
     color: var(--sec_grey, #222);
@@ -284,7 +281,7 @@ const TitleDiv = styled.div `
     font-style: normal;
     font-weight: 400;
 `;
-const RightHead = styled.div `
+const RightHead = styled.div`
     width: 30%; //330px
     height: 24%; //59px
     display: flex;
@@ -293,7 +290,7 @@ const RightHead = styled.div `
     align-items: end;
     margin-bottom: 1.5vh;
 `;
-const Body = styled.div `
+const Body = styled.div`
     width: 100vw;
     height: 75.5vh;
     overflow: auto;
@@ -303,7 +300,7 @@ const Body = styled.div `
     align-items: center;
     border-radius: 40px;
 `;
-const TeamValue = styled.div `
+const TeamValue = styled.div`
     width: 70.4vw;
     height: 27.4vh;
     display: flex;
@@ -314,7 +311,7 @@ const TeamValue = styled.div `
     align-items: center;
     margin-bottom: 3.3vh;
 `;
-const DivOurTeam = styled.div `
+const DivOurTeam = styled.div`
     width: 6.3vw;
     height: 100%;
     color: var(--sec_grey, #222);
@@ -327,14 +324,14 @@ const DivOurTeam = styled.div `
     display: flex;
     align-items: center;
 `;
-const DivColumn = styled.div `
+const DivColumn = styled.div`
     width: 7.3vw;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
 `;
-const DivValue = styled.div `
+const DivValue = styled.div`
     width: auto;
     height: 100%;
     box-sizing: border-box;
@@ -343,7 +340,7 @@ const DivValue = styled.div `
     padding: 9.1vh 0 9.1vh 0;
     justify-content: space-between;
 `;
-const SpanValue = styled.div `
+const SpanValue = styled.div`
     display: inline;
     height: 3.3vh;
     text-align: center;
@@ -355,7 +352,7 @@ const SpanValue = styled.div `
     background: rgba(234, 67, 54, 0.15);
     color: #000000;
 `;
-const DivLabel = styled.div `
+const DivLabel = styled.div`
     width: 70.4vw;
     height: 4.2vh;
     display: flex;
@@ -371,7 +368,7 @@ const DivLabel = styled.div `
     flex-shrink: 0;
     margin-bottom: 1vh;
 `;
-const Mother = styled.div `
+const Mother = styled.div`
     width: 70.4vw;
     height: auto;
     border-radius: 40px;
@@ -385,14 +382,14 @@ const Mother = styled.div `
     padding-bottom: 3.7vh;
 `;
 //회고내부의 단계(ex.K,P,T)를 나타내는 div
-const StepDiv = styled.div `
+const StepDiv = styled.div`
     height: 18%;
     width: 66.3vw;
     display: flex;
     flex-direction: row;
-    margin: 0 auto;
+    margin-bottom: 1.5vh;
 `;
-const StepInitial = styled.div `
+const StepInitial = styled.div`
     height: 100%;
     width: 2.1vw;
     color: var(--main_red, #ea4336);
@@ -401,7 +398,7 @@ const StepInitial = styled.div `
     font-style: normal;
     font-weight: 400;
 `;
-const StepFullWord = styled.div `
+const StepFullWord = styled.div`
     height: 100%;
     width: 30%;
     color: var(--main_red, #ea4336);
@@ -415,14 +412,14 @@ const StepFullWord = styled.div `
     margin-left: 0.5vw;
 `;
 //질문과 답변을 감싸주는 div
-const InnerDiv = styled.div `
+const InnerDiv = styled.div`
     width: 66.3vw;
     height: auto;
     /* margin-top: 4%; */
     display: flex;
     flex-direction: column;
 `;
-const QuestionDiv = styled.div `
+const QuestionDiv = styled.div`
     width: auto;
     height: 2.7vh;
     color: #222;
@@ -432,7 +429,7 @@ const QuestionDiv = styled.div `
     font-weight: 400;
     letter-spacing: -0.2px;
 `;
-const OuterAnswer = styled.div `
+const OuterAnswer = styled.div`
     width: 100%;
     height: 130%;
     display: flex;
@@ -440,13 +437,13 @@ const OuterAnswer = styled.div `
     align-items: top;
     margin-top: 1%;
 `;
-const AnswerDiv = styled.div `
+const AnswerDiv = styled.div`
     width: 86%;
     height: auto;
     display: flex;
     flex-direction: row;
 `;
-const AnswerText = styled.div `
+const AnswerText = styled.div`
     width: 62.2vw;
     height: auto;
     font-size: 36px;
@@ -463,14 +460,14 @@ const AnswerText = styled.div `
     border-radius: 24px;
     background: rgba(234, 67, 54, 0.04);
 `;
-const AnswerDate = styled.div `
+const AnswerDate = styled.div`
     width: 34%;
     height: auto;
     font-size: 25px;
     color: #c9c9c9;
     margin-left: 1%;
 `;
-const Eclipse = styled.div `
+const Eclipse = styled.div`
     width: 4.4vh;
     height: 4.4vh;
     background-color: #eaeaea;
@@ -490,12 +487,12 @@ const BtnLink = styled(Link)`
     justify-content: center;
     color: #000;
 `;
-const ProfileDiv = styled.div `
+const ProfileDiv = styled.div`
     width: 4.4vh;
     height: 5.6vh;
     margin-right: 2%;
 `;
-const UserName = styled.div `
+const UserName = styled.div`
     width: 4.4vh;
     height: 2.4vh;
     color: var(--sec_grey, #222);
@@ -511,21 +508,25 @@ const UserName = styled.div `
 const StepButton = (e) => {
     return (
         <a href={e.targetPage}>
-            <Button
-                width="5.5vw"
-                height="5vh"
-                borderRadius="40px"
-                fontSize="18px"
-                fontWeight="400"
+            <StepBtn
                 onClick={e.onClick}
-                justifyContent="center"
-                alignItems="center"
-                margin=" 0 0 0 .8vw"
-                border="2px solid var(--main_red, #EA4336)"
                 backgroundColor={e.backgroundColor}
-                color={e.color}>
+                color={e.color}
+            >
                 {e.targetLabel}
-            </Button>
+            </StepBtn>
         </a>
     );
 };
+const StepBtn = styled(Button)`
+    width: 5.5vw;
+    height: 5vh;
+    border-radius: 40px;
+    font-size: 18px;
+    font-weight: 400;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0 0 0.8vw;
+    border: 2px solid var(--main_red, #ea4336);
+    font-family: "160";
+`;

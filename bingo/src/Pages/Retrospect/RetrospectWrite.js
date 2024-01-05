@@ -38,7 +38,12 @@ function RetrospectWrite() {
                     workspaceId: workspaceId,
                     retrospectId: retrospectId,
                 });
-                {console.log("!!retrospectDataForWrite Result!!", retrospectDataForWrite)}
+                {
+                    console.log(
+                        "!!retrospectDataForWrite Result!!",
+                        retrospectDataForWrite
+                    );
+                }
                 setRetrospectQuestionsList(retrospectDataForWrite);
                 // 왜 계속 렌더링이 계속 될까?
             } catch (error) {

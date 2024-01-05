@@ -1,8 +1,8 @@
-import {useState} from "react";
-import {Div} from "../../../Components/NormalComponents/Section";
-import {Img} from "../../../Components/NormalComponents/Etc";
+import { useState } from "react";
+import { Div } from "../../../Components/NormalComponents/Section";
+import { Img } from "../../../Components/NormalComponents/Etc";
 import Modal from "react-modal";
-import {Link, useLocation, useNavigate} from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import {useRecoilState} from "recoil";
 import {RetrospectData, WorkspaceData, loginUserState} from "../../../Contexts/Atom";
@@ -25,11 +25,11 @@ const RetrospectInWorkspace = (e) => {
     const openModal2 = () => {
         setModalIsOpen2(true);
     };
-    
+
     const closeModal2 = () => {
         setModalIsOpen2(false);
     };
-    
+
     const [WriteButtonModalIsOpen, setWriteButtonModalIsOpen] = useState(false);
     const openWriteButtonModal = () => {
         setWriteButtonModalIsOpen(true);
@@ -162,7 +162,7 @@ const AddArea = styled(Link)`
     flex-direction: column;
     text-decoration: none;
 `;
-const WordDiv = styled.div `
+const WordDiv = styled.div`
     width: auto;
     height: 2.2vh;
     color: #6f6f6f;
@@ -173,7 +173,7 @@ const WordDiv = styled.div `
     font-weight: 400;
     line-height: 150%; /* 24px */
 `;
-const RetrospectListDiv = styled.div `
+const RetrospectListDiv = styled.div`
     height: 15.5vh;
     width: 100%;
     background-color: rgba(234, 67, 54, 0.05);
@@ -184,7 +184,7 @@ const RetrospectListDiv = styled.div `
     padding: 0 1.4vw;
     box-sizing: border-box;
 `;
-const LinkToRetrospectCreate2 = styled.div `
+const LinkToRetrospectCreate2 = styled.div`
     height: 50%;
     width: 100%;
     display: flex;
@@ -194,11 +194,11 @@ const LinkToRetrospectCreate2 = styled.div `
     box-sizing: border-box;
     padding: 2.3vh 2.5vh;
 `;
-const LeftSide = styled.div `
+const LeftSide = styled.div`
     height: 11.4vh;
     width: auto;
 `;
-const TwoResultChip = styled.div `
+const TwoResultChip = styled.div`
     width: auto;
     height: 2.6vh;
     color: #575757;
@@ -208,7 +208,7 @@ const TwoResultChip = styled.div `
     font-weight: 400;
     line-height: normal;
 `;
-const RightSide = styled.div `
+const RightSide = styled.div`
     height: 11vh;
     width: 5.5vw;
     display: flex;
@@ -296,7 +296,7 @@ const EmptyValue = styled(Div)`
     line-height: normal;
 `;
 
-const WriteCompleteButton = styled.button `
+const WriteCompleteButton = styled.button`
     height: 4.8vh;
     width: 5.5vw;
     border-radius: 40px;
@@ -305,17 +305,14 @@ const WriteCompleteButton = styled.button `
     text-align: center;
     justify-content: center;
     display: flex;
-    color : white;
+    color: white;
     font-family: "160";
     font-size: 18px;
     font-style: normal;
     font-weight: 400;
     text-decoration: none;
-    border : none;
-`
-
-
-
+    border: none;
+`;
 
 const WriteButtonModal = (e) => {
     const navigate = useNavigate(); // useNavigate 훅을 사용하여 navigate 함수를 가져옵니다.
@@ -342,7 +339,9 @@ const WriteButtonModal = (e) => {
                     flexDirection="row-reverse"
                     margin="0"
                 >
-                    <ButtonDiv onClick={e.closeWriteButtonModal}>닫기</ButtonDiv>
+                    <ButtonDiv onClick={e.closeWriteButtonModal}>
+                        닫기
+                    </ButtonDiv>
                 </Div>
             </Div>
         </Modal>
