@@ -130,7 +130,6 @@
 <img width="1920" alt="워크스페이스 추가" src="https://github.com/Club-PARD/Bingo_WEB/assets/90203932/8c5bbec8-6b65-4aeb-b830-8e25a612aaad">
 <img width="1920" alt="워크스페이스 추가 직후" src="https://github.com/Club-PARD/Bingo_WEB/assets/90203932/3a7dc24b-696e-48f6-b996-879f70209e16">
 <img width="1920" alt="워크스페이스 내부" src="https://github.com/Club-PARD/Bingo_WEB/assets/90203932/863e6d97-8918-40bb-9f2b-07dbc4001722">
-b985dd334d8d1b0b6d527ff9f24ceed28c78ec5
 
 ### 회고 생성
  - 회고 생성 화면입니다. 이름과 회고 템플릿 선택 후 질문을 작성하는 것으로 회고를 생성합니다.
