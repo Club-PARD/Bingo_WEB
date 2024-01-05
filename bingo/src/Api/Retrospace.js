@@ -17,7 +17,7 @@ export const getAllTemplate = async (e, navigate) => {
                 },
             }
         );
-        console.log("getAllTemplate", response.data);
+        console.log("axios getAllTemplate", response.data);
 
         return response.data;
     } catch (error) {
@@ -60,7 +60,7 @@ export const getAllRetrospect = async (e, navigate) => {
                 },
             }
         );
-        console.log("Result", response.data);
+        console.log("axios getAllRetrospect", response.data);
 
         return response.data;
     } catch (error) {

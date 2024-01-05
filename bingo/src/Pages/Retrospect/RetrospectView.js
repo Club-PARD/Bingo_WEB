@@ -179,11 +179,11 @@ function RetrospectView() {
                                                                         data
                                                                             .subQuestionList
                                                                             .map((question, index) => {
-                                                                                // console.log(question);
+                                                                                 // console.log(question);
                                                                                 return (
                                                                                     <InnerDiv>
                                                                                         <QuestionDiv>
-                                                                                            {question.subQuestion && question.subQuestion}
+                                                                                            {question.subQuestion}
                                                                                         </QuestionDiv>
                                                                                         {
                                                                                             question.answerResponse.length < 2
