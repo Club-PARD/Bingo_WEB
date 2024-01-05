@@ -12,7 +12,7 @@ import "../../font.css";
 function BingoBoard({ modalIsOpen }) {
     const [chipData, setChipData] = useRecoilState(ChipData);
     const [usrList, setUserList] = useRecoilState(UserList);
-    const IsRetrospect = true;
+    const IsRetrospect = false;
     console.log("ChipData", chipData);
     /*
   const [items, setItems] = useState([
