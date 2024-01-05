@@ -25,11 +25,9 @@ export const getAllRetrospect = async (e, navigate) => {
     }
 };
 
+
+
 export const getRetrospect = async (e) => {
-    const getData = {
-        userId: 1,
-        projectId: 1,
-    };
     try {
         const response = await axios.get(
             `${process.env.REACT_APP_URL}template/project/${e.workspaceId}/template/${e.retrospectId}`,
