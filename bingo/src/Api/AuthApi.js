@@ -24,7 +24,7 @@ export const login = async (decodedToken) => {
         // if(response.data.isSigned == 1) {
         //     window.location.href = "/UserApprove";
         // }
-        window.location.href = "/WorkspaceList"
+        window.location.href = "/WorkspaceList";
         return response.data;
     } catch (error) {
         alert("로그인 과정에서 문제가 발생했습니다");

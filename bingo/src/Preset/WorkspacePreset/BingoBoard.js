@@ -9,10 +9,10 @@ import "../../font.css";
 //Bingopage에 띄울 빙고판 생성 component
 //배열에 들어있는 text는 추후 기획에게 받을 예정
 //9개의 형용사가 회고 때 체크되면 체크된 형용사의 flag가 True로 변함
-function BingoBoard({ modalIsOpen }) {
+function BingoBoard({ modalIsOpen, retrolen }) {
     const [chipData, setChipData] = useRecoilState(ChipData);
     const [usrList, setUserList] = useRecoilState(UserList);
-    const IsRetrospect = false;
+    const IsRetrospect = retrolen === 0 ? false : true;
     console.log("ChipData", chipData);
     /*
   const [items, setItems] = useState([
