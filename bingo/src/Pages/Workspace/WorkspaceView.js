@@ -31,13 +31,14 @@ function WorkspaceView() {
     const [modalIsOpen1, setModalIsOpen1] = useState(false);
     const [value, setValue] = useState("12345678");
     const [workspaceData, setWorkspaceData] = useRecoilState(WorkspaceData);
-    // console.log("목요일1", workspaceData);
     const [retrospectData, setRetrospectData] = useRecoilState(RetrospectData);
+    console.log("retrospectData", retrospectData);
+
 
     const filteredWorkspaces = workspaceData.find(
         (workspace) => workspace.id == workspaceId
     );
-    console.log("file : ", filteredWorkspaces);
+    // console.log("file : ", filteredWorkspaces);
     // console.log("목요일2", filteredWorkspaces);
     const openModal1 = () => {
         setModalIsOpen1(true);
@@ -65,6 +66,9 @@ function WorkspaceView() {
 
         fetchData();
     }, [userInfo.appUser.id, workspaceId, setRetrospectData, navigate]);
+
+    const [WriteButtonModalIsOpen, setWriteButtonModalIsOpen] = useState(false);
+
 
     return (
         <>
@@ -130,6 +134,8 @@ function WorkspaceView() {
                         {/* Content : 회고 리스트 */}
                         <Section_Retrospect_Content>
                             <RetrospectInWorkspace
+                                WriteButtonModalIsOpen={WriteButtonModalIsOpen}
+                                setWriteButtonModalIsOpen = {setWriteButtonModalIsOpen}
                                 userId={userInfo.appUser.id}
                                 workspaceId={workspaceId}
                             />
@@ -350,7 +356,7 @@ const InviteModal = (e) => {
     );
 };
 
-const ModalInfo = styled.div`
+export const ModalInfo = styled.div`
     width: 25vw;
     height: 6.6vh;
     border: none;
@@ -383,7 +389,7 @@ const Code = styled.div`
     font-weight: 400;
     line-height: 150%; /* 36px */
 `;
-const ButtonDiv = styled.div`
+export const ButtonDiv = styled.div`
     width: 4.7vw;
     height: 4.7vh;
     display: flex;
