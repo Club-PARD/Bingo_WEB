@@ -183,7 +183,7 @@ function RetrospectView() {
                                                                                 return (
                                                                                     <InnerDiv>
                                                                                         <QuestionDiv>
-                                                                                            {question.subQuestion}
+                                                                                            {question.subQuestion && question.subQuestion}
                                                                                         </QuestionDiv>
                                                                                         {
                                                                                             question.answerResponse.length < 2

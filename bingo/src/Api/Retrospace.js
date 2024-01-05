@@ -140,7 +140,7 @@ export const postRetrospect = async (e, navigate) => {
     const answerList = [];
 
     e.retrospectQuestionsList.questionList.forEach((mainQuestion) => {
-        mainQuestion.subQuestionList.forEach((subQuestion, index) => {
+        mainQuestion.subQuestions.forEach((subQuestion, index) => {
             if (subQuestion.answerResponse) {
                 answerList.push({
                     id: 0, // 이 부분은 적절한 값을 넣어주셔야 합니다.
@@ -235,7 +235,7 @@ export const postRetrospect = async (e, navigate) => {
             e.setChipData(chipInit);
             alert("회고 작성이 완료되었습니다.");
             // navigate(`/WorkspaceList`);
-            navigate(`/WorkspaceView?workspaceId=${e.projectId}`);
+            navigate(`/WorkspaceView?workspaceId=${e.workspaceId}`);
         } catch (error) {
             throw "postRetrospect Error > " + error;
         }
