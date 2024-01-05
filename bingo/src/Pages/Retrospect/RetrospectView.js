@@ -147,7 +147,6 @@ function RetrospectView() {
                 {
                     retrospective
                         ? <div>
-                                <h1>데이터가 있습니다.</h1>
                                 <Div display="flex" alignItems="center" flexDirection="column">
                                     {
                                         retrospective.map((template, index) => {
