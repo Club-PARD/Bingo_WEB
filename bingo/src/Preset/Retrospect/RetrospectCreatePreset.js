@@ -511,7 +511,7 @@ export const Section2 = (e) => {
                         backgroundColor="#F3F3F3"
                         width="100%"
                         height="47vh"
-                        margin={index === 0 ? "0% 0px" : "2% 0px"}
+                        margin={index === 0 ? "0% 0px" : "2% 0px 0 0"}
                         boxSizing="border-box"
                         borderRadius="40px"
                         display="flex"

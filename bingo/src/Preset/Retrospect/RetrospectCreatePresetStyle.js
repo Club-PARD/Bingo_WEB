@@ -211,6 +211,7 @@ export const DivKPTText = styled.div`
     line-height: 150%; /* 24px */
     width: 15.4vw;
     margin: 2.6vh auto;
+    align-items: center;
 `;
 export const Div4LSText = styled.div`
     color: var(--main_white, #f9f9f9);
