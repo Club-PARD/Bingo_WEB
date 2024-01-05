@@ -152,15 +152,35 @@ export const handleUpload = async (file) => {
     }
 };
 
-// 워크스페이스 조인하기 (새로 만든 것 -> 이거 사용하면 된다) export const joinProject = async (data)
-// => {     const postData = {       name: data.title,       description:
-// data.desc,       code: data.code,     };     try {       const response =
-// await axios.post(         `${process.env.REACT_APP_URL}api/v1/project`,
-// postData       );       console.log(response.data);       const joinData = {
-// userId: 7,         projectId: 19,         code: "",         role:
-// "TEAM_LEADER",       };       try {         const response = await
-// axios.post(           `${process.env.REACT_APP_URL}api/v1/enrollment`,
-// joinData         );         console.log(response.data);       } catch (error)
-// {         alert("팀원 직위 추가(ver2_2) 중 오류가 발생했습니다");       }       return
-// response.data;     } catch (error) {       alert("생성 중 오류 발생했습니다");
-// throw error;     }   };
+// 워크스페이스 조인하기 (새로 만든 것 -> 이거 사용하면 된다) 
+export const joinProject = async (data) => {     
+    const postData = {       
+        name: data.title,       
+        description:data.desc,       
+        code: data.code,     
+    };     
+    try {       
+        const response = await axios.post(         
+            `${process.env.REACT_APP_URL}api/v1/project`, postData       
+            );       
+            console.log(response.data);       
+            const joinData = {
+                userId: 7,         
+                projectId: 19,         
+                code: "",         
+                role: "TEAM_MEMBER",       
+            };       
+            try {         
+                const response = await axios.post(           
+                    `${process.env.REACT_APP_URL}enrollment`, joinData         
+                    );         console.log(response.data);       } 
+                    catch (error) {         
+                        alert("팀원 직위 추가(ver2_2) 중 오류가 발생했습니다");       
+                    }       
+                    return response.data;     
+    } 
+    catch (error) {       
+        alert("생성 중 오류 발생했습니다");
+        throw error;     
+    }   
+};
