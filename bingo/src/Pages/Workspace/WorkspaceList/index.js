@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { useState, React, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import { Div } from "../../../Components/NormalComponents/Section.js";
 import WorkspaceCard from "./Components/WorkspaceCard.js";
@@ -17,6 +17,7 @@ import { createWorkspace, handleUpload } from "../../../Api/Workspace.js";
 import axios from "axios";
 import WorkspaceBanner from "../../../assets/Img/WorkspaceList/Workspace_Banner.png";
 import { useRecoilValue } from "recoil";
+import { joinProject } from "../../../Api/Workspace.js";
 
 const TextDescDiv = styled.div`
     color: #9c9c9c;
@@ -668,6 +669,8 @@ const StyleModal = {
     },
 };
 
+// const [inviteCode, setInviteCode] = useState("");
+
 const InviteModal = (e) => {
     const navigate = useNavigate(); // useNavigate 훅을 사용하여 navigate 함수를 가져옵니다.
 
@@ -685,7 +688,10 @@ const InviteModal = (e) => {
                 height="100%"
                 flexDirection="column"
             >
-                <ModalInfo>초대 코드 입력하기</ModalInfo>
+                <ModalInfo>
+                    초대 코드 입력하기
+                    <CodeDiv type="text" onChange={(e) => setInviteCode(e.target.value)} />
+                </ModalInfo>
                 <CodeDiv type="text" />
                 <Div
                     width="25vw"
@@ -696,8 +702,10 @@ const InviteModal = (e) => {
                     <ButtonDiv
                         background="var(--main_red, #EA4336)"
                         color="#F9F9F9"
-                        onClick={() => navigate("/workspaceView")}
-                        // '/workspaceView'는 원하는 경로로 변경해주세요.
+                        onClick={() => {
+                            joinProject(inviteCode); // inviteCode를 파라미터로 전달
+                            navigate("/workspaceView");
+                        }}
                     >
                         완료
                     </ButtonDiv>
