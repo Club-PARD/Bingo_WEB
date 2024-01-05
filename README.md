@@ -1,6 +1,6 @@
 # Bingo_WEB
 
-### PARD 2기 롱커톤 [3!4!] 프론트 (통합)
+### PARD 2기 롱커톤 [3!4!] 
 [백엔드] (https://github.com/Club-PARD/Bingo_SERVER)
 
 ## 팀 회고 서비스, BINGO
