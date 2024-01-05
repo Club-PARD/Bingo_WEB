@@ -5,9 +5,25 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { Div } from "../Components/NormalComponents/Section";
 import Logo from "../assets/Img/TopMenuBar/Logo.png";
+import { useRecoilValue } from "recoil";
+import { useRecoilState } from "recoil";
+import { loginUserState } from "../Contexts/Atom";
+import { Logout } from "../Api/AuthApi";
 import "../font.css";
 
 function TopMenuBar() {
+    const asd = localStorage.getItem("recoil-persist")
+    const storedData = JSON.parse(asd);
+    const userId = storedData.uniqueLoginUserKey.appUser.id;
+    console.log("사용자 ID:", userId);
+
+
+    const handleLogout =  () => {
+        // console.log("LO",userId);
+        localStorage.removeItem("email");
+        window.location.href = "/";
+      };
+
     const location = useLocation();
     const canGoToWorkspaceView = () => {
         return location.pathname !== "/" && location.pathname !== "/Login";
@@ -33,7 +49,7 @@ function TopMenuBar() {
                     location.pathname === "/Login" ? (
                         <LogoutLink to="/Login">로그인</LogoutLink>
                     ) : (
-                        <LogoutLink to="/">로그아웃</LogoutLink>
+                        <LogoutLink onClick={handleLogout}>로그아웃</LogoutLink>
                     )}
                 </Header>
             </header>
