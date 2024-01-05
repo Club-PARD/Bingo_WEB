@@ -12,6 +12,7 @@ const firebaseConfig = {
     storageBucket: process.env.REACT_APP_FB_STORAGE_BUCKET,
     messagingSenderId: process.env.REACT_APP_FB_MESSAGING_SENDER_ID,
     appId: process.env.REACT_APP_FB_API_ID,
+    s,
 };
 
 const app = initializeApp(firebaseConfig); // firebase 초기화
