@@ -193,7 +193,7 @@ function RetrospectView() {
                                                                                                             <OuterAnswer>
                                                                                                                 <ProfileDiv>
                                                                                                                     <Eclipse/>
-                                                                                                                    <UserName>박정규</UserName>
+                                                                                                                    <UserName>{data.writer}</UserName>
                                                                                                                 </ProfileDiv>
                                                                                                                 <AnswerDiv>
                                                                                                                     <AnswerText>
@@ -208,12 +208,12 @@ function RetrospectView() {
                                                                                                 <OuterAnswer>
                                                                                                     <ProfileDiv>
                                                                                                         <Eclipse/>
-                                                                                                        <UserName>박정규</UserName>
+                                                                                                        <UserName>{ question.answerResponses[0].writer}</UserName>
                                                                                                     </ProfileDiv>
                                                                                                     <AnswerDiv>
                                                                                                         <AnswerText>
-                                                                                                            {/* {console.log("답변", question.answerResponse.ams)} */}
-                                                                                                            {question.answerResponse.ams}
+                                                                                                            {console.log("답변", question.answerResponses[0].ams)}
+                                                                                                            {question.answerResponses[0].ams}
                                                                                                         </AnswerText>
                                                                                                     </AnswerDiv>
                                                                                                 </OuterAnswer>

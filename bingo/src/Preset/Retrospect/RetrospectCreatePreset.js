@@ -300,7 +300,7 @@ export const Section1 = (e) => {
                         >
                             <RadioCard
                                 value="Ls4"
-                                label="Ls4"
+                                label="4L"
                                 description={
                                     <>
                                         팀의 과정을 돌아보고 <br /> 목표를
@@ -382,7 +382,7 @@ export const Section1 = (e) => {
                         >
                             <RadioCard
                                 value="F5"
-                                label="F5"
+                                label="5F"
                                 description={
                                     <>
                                         팀의 중요한 사건들을 <br /> 꼼꼼히

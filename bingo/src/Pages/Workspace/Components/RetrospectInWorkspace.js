@@ -79,48 +79,52 @@ const RetrospectInWorkspace = (e) => {
                             >
                                 {/*회고 list의 상단, 몇차회고 작성버튼*/}
                                 <LeftSide>
+                                    <NameIsValueDiv>{data.name}</NameIsValueDiv>
+                                    <TwoResultChip>{
+                                        data.templateType == 'Ls4' ? "4L" : data.templateType == 'F5' ? "5F" : "KPT"
+                                    }</TwoResultChip>
                                     {
                                         /*hasEvaluated*/
-                                        data.isWritedList &&
-                                        data.isWritedList[index] == 2 ? (
-                                            // TeamEvaluation이 완료된 경우
-                                            <div>
-                                                <NameIsValueDiv>
-                                                    {data.name}
-                                                </NameIsValueDiv>
-                                                <TwoResultChip>
-                                                    “서로에 대한 존중과 신뢰가
-                                                    있는”
-                                                </TwoResultChip>
-                                                <TwoResultChip>
-                                                    “열정 있는”
-                                                </TwoResultChip>
-                                            </div>
-                                        ) : (
-                                            // TeamEvaluation이 완료되지 않은 경우
-                                            <div>
-                                                <NameIsNotDiv>
-                                                    {data.name}
-                                                </NameIsNotDiv>
-                                                <SubIsNotValue>
-                                                    이번 프로젝트는 어땠나요?
-                                                </SubIsNotValue>
-                                                <Div
-                                                    width="auto"
-                                                    height="2.7vh"
-                                                >
-                                                    <EmptyValue>“</EmptyValue>
-                                                    <Div
-                                                        width="6.9vw"
-                                                        height="100%"
-                                                        borderBottom="2px solid #575757"
-                                                    ></Div>
-                                                    <EmptyValue>
-                                                        한 팀”
-                                                    </EmptyValue>
-                                                </Div>
-                                            </div>
-                                        )
+                                        // data.isWritedList &&
+                                        // data.isWritedList[index] == 2 ? (
+                                        //     // TeamEvaluation이 완료된 경우
+                                        //     <div>
+                                        //         <NameIsValueDiv>
+                                        //             {data.name}
+                                        //         </NameIsValueDiv>
+                                        //         <TwoResultChip>
+                                        //             “서로에 대한 존중과 신뢰가
+                                        //             있는”
+                                        //         </TwoResultChip>
+                                        //         <TwoResultChip>
+                                        //             “열정 있는”
+                                        //         </TwoResultChip>
+                                        //     </div>
+                                        // ) : (
+                                        //     // TeamEvaluation이 완료되지 않은 경우
+                                        //     <div>
+                                        //         <NameIsNotDiv>
+                                        //             {data.name}
+                                        //         </NameIsNotDiv>
+                                        //         <SubIsNotValue>
+                                        //             이번 프로젝트는 어땠나요?
+                                        //         </SubIsNotValue>
+                                        //         <Div
+                                        //             width="auto"
+                                        //             height="2.7vh"
+                                        //         >
+                                        //             <EmptyValue>“</EmptyValue>
+                                        //             <Div
+                                        //                 width="6.9vw"
+                                        //                 height="100%"
+                                        //                 borderBottom="2px solid #575757"
+                                        //             ></Div>
+                                        //             <EmptyValue>
+                                        //                 한 팀”
+                                        //             </EmptyValue>
+                                        //         </Div>
+                                        //     </div>
+                                        // )
                                     }
                                 </LeftSide>
                                 {/*Div for 3 chip, 조회버튼*/}
@@ -221,6 +225,9 @@ const LinkToRetrospectCreate2 = styled.div`
 const LeftSide = styled.div`
     height: 11.4vh;
     width: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 `;
 const TwoResultChip = styled.div`
     width: auto;
