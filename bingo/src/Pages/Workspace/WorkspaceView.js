@@ -36,6 +36,9 @@ function WorkspaceView() {
     const [retrospectData, setRetrospectData] = useRecoilState(RetrospectData);
     console.log("retrospectData", retrospectData);
 
+    console.log("tagCount", tagCount);
+
+
     const filteredWorkspaces = workspaceData.find(
         (workspace) => workspace.id == workspaceId
     );
@@ -79,10 +82,34 @@ function WorkspaceView() {
         };
         fetchTagCount();
         fetchData();
+        // handlerSortChipData();
     }, [userInfo.appUser.id, workspaceId, setRetrospectData, navigate]);
+
+
+
     const [WriteButtonModalIsOpen, setWriteButtonModalIsOpen] = useState(false);
 
-    console.log("fetchData", tagCount);
+    // console.log("fetchData", tagCount);
+
+    useEffect(() => {
+        handlerSortChipData();
+    }, [tagCount])
+
+    const handlerSortChipData = () => {
+        if (!tagCount || !tagCount.tagList) {
+            console.error("tagCount 또는 tagCount.tagList가 비어 있습니다.");
+            return;
+        }
+
+        const copyChipData = { ...tagCount, tagList: [...tagCount.tagList] };
+        const sortedTagList = copyChipData.tagList.sort((a, b) => b.count - a.count);
+
+        console.log("sortedTagList", sortedTagList);
+
+        console.log("1위 : ", sortedTagList[0].name);
+        console.log("2위 : ", sortedTagList[1].name);
+    }
+
     return (
         <>
             <Div
