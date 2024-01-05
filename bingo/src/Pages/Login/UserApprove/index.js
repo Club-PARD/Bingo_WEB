@@ -90,9 +90,10 @@ const CheckBox = ({ handleChange, isChecked }) => (
 const UserApprove = () => {
     // Atom에서 가져온 유저 정보를 저장할 객체 user
     const user = useRecoilValue(loginUserState);
+    // 객체에서 유저 이름과 이미지를 변수로 저장
     const userImage = user.appUser.picture;
-    console.log("IMAGE",userImage);
     const userName = user.appUser.name;
+    
     // 체크박스가 체크되었는지 확인
     const [isChecked, setIsChecked] = React.useState(false);
     // 바뀌었는지 확인하는 handler
