@@ -92,7 +92,7 @@ function RetrospectView() {
                 <LeftHead>
                     <TitleDiv>{
                             retrospective
-                                ? retrospective[0].name
+                                ? oneRetrospect.name
                                 : "조회 불가"
                         }</TitleDiv>
                     {/* Breadcrumb은 현재 위치에 따라 달라진다 / 현위치 : 3 (회고 조회하기) */}
@@ -147,63 +147,63 @@ function RetrospectView() {
                 {
                     retrospective
                         ? <div>
-                                <h1>데이터가 있습니다.</h1>
                                 <Div display="flex" alignItems="center" flexDirection="column">
                                     {
                                         retrospective.map((template, index) => {
-                                            // console.log(template.templateType);
                                             return (
-                                                <div>
-                                                    <DivLabel>
-                                                        {template.templateType}
-                                                    </DivLabel>
-                                                    {
-                                                        template
-                                                            .questionList
-                                                            .map((data, index2) => {
-                                                                // console.log("data", data);
-                                                                return (
-                                                                    <Mother key={index2}>
-                                                                        <StepDiv>
-                                                                            <StepInitial>
-                                                                                {data.mainQuestion[0]}
-                                                                            </StepInitial>
-                                                                            <StepFullWord>
-                                                                                {data.mainQuestion}
-                                                                            </StepFullWord>
-                                                                        </StepDiv>
-                                                                        {
-                                                                            data
-                                                                                .subQuestionList
-                                                                                .map((question, index) => {
-                                                                                    // console.log(question);
-                                                                                    return (
-                                                                                        <InnerDiv>
-                                                                                            <QuestionDiv>
-                                                                                                {question.subQuestion}
-                                                                                            </QuestionDiv>
-                                                                                            <OuterAnswer>
-                                                                                                <ProfileDiv>
-                                                                                                    <Eclipse/>
-                                                                                                    <UserName>박정규</UserName>
-                                                                                                </ProfileDiv>
-                                                                                                <AnswerDiv>
-                                                                                                    <AnswerText>
-                                                                                                        {/* {console.log("답변", question.answerResponse.ams)} */}
-                                                                                                        {question.answerResponse.ams}
-                                                                                                    </AnswerText>
-                                                                                                </AnswerDiv>
-                                                                                            </OuterAnswer>
-                                                                                        </InnerDiv>
-                                                                                    )
-                                                                                })
-                                                                        }
-                                                                    </Mother>
-                                                                )
-                                                            })
-                                                    }
+                                                template.id == oneRetrospect.id ? 
+                                                    <div>
+                                                        <DivLabel>
+                                                            {template.templateType}
+                                                        </DivLabel>
+                                                        {
+                                                            template
+                                                                .questionList
+                                                                .map((data, index2) => {
+                                                                    // console.log("data", data);
+                                                                    return (
+                                                                        <Mother key={index2}>
+                                                                            <StepDiv>
+                                                                                <StepInitial>
+                                                                                    {data.mainQuestion[0]}
+                                                                                </StepInitial>
+                                                                                <StepFullWord>
+                                                                                    {data.mainQuestion}
+                                                                                </StepFullWord>
+                                                                            </StepDiv>
+                                                                            {
+                                                                                data
+                                                                                    .subQuestionList
+                                                                                    .map((question, index) => {
+                                                                                        // console.log(question);
+                                                                                        return (
+                                                                                            <InnerDiv>
+                                                                                                <QuestionDiv>
+                                                                                                    {question.subQuestion}
+                                                                                                </QuestionDiv>
+                                                                                                <OuterAnswer>
+                                                                                                    <ProfileDiv>
+                                                                                                        <Eclipse/>
+                                                                                                        <UserName>박정규</UserName>
+                                                                                                    </ProfileDiv>
+                                                                                                    <AnswerDiv>
+                                                                                                        <AnswerText>
+                                                                                                            {/* {console.log("답변", question.answerResponse.ams)} */}
+                                                                                                            {question.answerResponse.ams}
+                                                                                                        </AnswerText>
+                                                                                                    </AnswerDiv>
+                                                                                                </OuterAnswer>
+                                                                                            </InnerDiv>
+                                                                                        )
+                                                                                    })
+                                                                            }
+                                                                        </Mother>
+                                                                    )
+                                                                })
+                                                        }
 
-                                                </div>
+                                                    </div>
+                                                : null
                                             );
                                         })
                                     }
