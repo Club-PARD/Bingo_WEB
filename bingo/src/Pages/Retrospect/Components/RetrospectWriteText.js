@@ -199,17 +199,20 @@ const RetrospectWriteText = (e) => {
     const [isFilled, setIsFilled] = useState(false);
 
     const checkIfAllFilled = () => {
-        for (let data of retrospectQuestionsList.questionList) {
-            for (let retro of data.subQuestionList) {
-                if (
-                    retro.answerResponse == null ||
-                    retro.answerResponse.trim() === ""
-                ) {
-                    return false;
+        if (retrospectQuestionsList && retrospectQuestionsList.questionList) {
+            for (let data of retrospectQuestionsList.questionList) {
+                for (let retro of data.subQuestionList) {
+                    if (
+                        retro.answerResponse == null ||
+                        retro.answerResponse.trim() === ""
+                    ) {
+                        return false;
+                    }
                 }
             }
+            return true;
         }
-        return true;
+        return false;
     };
 
     const handleInputChange = () => {
@@ -244,7 +247,6 @@ const RetrospectWriteText = (e) => {
     useEffect(() => {
         handleInputChange();
     }, [retrospectQuestionsList]);
-
     //CancleModal관련
     const [modalCancleIsOpen, setModalCancleIsOpen] = useState(false); // Modal 창의 open 여부를 저장하는 변수
     const openModalCancle = () => {
