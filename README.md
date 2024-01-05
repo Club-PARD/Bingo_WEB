@@ -130,18 +130,33 @@
 <img width="1920" alt="워크스페이스 추가" src="https://github.com/Club-PARD/Bingo_WEB/assets/90203932/8c5bbec8-6b65-4aeb-b830-8e25a612aaad">
 <img width="1920" alt="워크스페이스 추가 직후" src="https://github.com/Club-PARD/Bingo_WEB/assets/90203932/3a7dc24b-696e-48f6-b996-879f70209e16">
 
-### 회고 템플릿 생성
- - 회고 템플릿 생성 화면입니다. 이름과 종류 선택 후 회고를 생성합니다.
+### 회고 생성
+ - 회고 생성 화면입니다. 이름과 회고 템플릿 선택 후 질문을 작성하는 것으로 회고를 생성합니다.
 
 <img width="1920" alt="회고 템플릿 만들기" src="https://github.com/Club-PARD/Bingo_WEB/assets/90203932/846d3a35-e371-488d-98eb-74ac36cf0fdd">
+<img width="1920" alt="회고 만들기" src="https://github.com/Club-PARD/Bingo_WEB/assets/90203932/fb89c5aa-a246-447b-a5f8-a61252b3664c">
 <img width="1920" alt="회고 템플릿 만든 직후" src="https://github.com/Club-PARD/Bingo_WEB/assets/90203932/edb7353a-20be-4bf0-a3a6-e0b539482dd5">
 
 ### 초대 코드 확인
- - 프로젝트 세부 화면의 버튼을 통해 다른 사용자를 초대할 수 있는 코드를 확인하고, 클립보드에 복사할 수 있습니다.
+ - 프로젝트 세부 화면의 버튼을 통해 다른 사용자를 초대할 수 있는 코드를 확인하고, 클립보드에 복사해 사용할 수 있습니다.
 
 <img width="1920" alt="초대코드 복사" src="https://github.com/Club-PARD/Bingo_WEB/assets/90203932/bf6f5780-977f-4eed-ab80-3087e629fa4d">
 
+### 초대 코드 사용
+ - 프로젝트 리스트 화면의 초대 코드 입력창을 통해 새 프로젝트에 참여할 수 있습니다. 이 경우 회고 생성 기능은 제한됩니다.
 
+<img width="1920" alt="초대코드 입력" src="https://github.com/Club-PARD/Bingo_WEB/assets/90203932/0f0a96f3-fa5e-4201-a8d1-b527e596c70c">
+
+### 회고 작성
+ - 이전에 생성한 질문을 바탕으로 회고 답변을 적고, 팀 평가를 9개의 선택지 중 하나를 고르는 것으로 회고 작성합니다.
+
+<img width="1920" alt="회고 내용 작성" src="https://github.com/Club-PARD/Bingo_WEB/assets/90203932/4bccdfbd-1be6-4246-be42-2120a6ca5e18">
+<img width="1920" alt="팀 평가 작성" src="https://github.com/Club-PARD/Bingo_WEB/assets/90203932/cce4c587-5847-4626-92d6-12338d80772c">
+
+### 회고 작성 여부 확인
+ - 프로젝트 내부에 존재하는 회고들 중, 유저가 작성하지 않은 회고가 있다면 작성 버튼을 강조해 확인할 수 있습니다.
+
+<img width="1920" alt="획고를 만든 후" src="https://github.com/Club-PARD/Bingo_WEB/assets/90203932/966a68ee-49bb-4e5b-bf2f-243e89237abe">
 
 ## Built With
 
