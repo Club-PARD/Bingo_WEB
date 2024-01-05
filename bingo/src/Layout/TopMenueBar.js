@@ -17,17 +17,13 @@ function TopMenuBar() {
     if (asd != null) {
         const userId = storedData.uniqueLoginUserKey.appUser.id;
         console.log("사용자 ID:", userId);
-
+    }
+    
     const handleLogout =  () => {
         // console.log("LO",userId);
         localStorage.removeItem("email");
         window.location.href = "/";
     };
-    }
-    
-
-
-    
 
     const location = useLocation();
     const canGoToWorkspaceView = () => {
