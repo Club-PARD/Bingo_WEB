@@ -16,7 +16,7 @@ import { ButtonDiv, ModalInfo } from "../../Workspace/WorkspaceView";
 const RetrospectInWorkspace = (e) => {
     const [userInfo, setUserInfo] = useRecoilState(loginUserState);
     const [retrospectData, setRetrospectData] = useRecoilState(RetrospectData);
-    const state = true;
+    const state = false;
     const location = useLocation();
     const searchParams = new URLSearchParams(location.search);
     const workspaceId = searchParams.get("workspaceId");
