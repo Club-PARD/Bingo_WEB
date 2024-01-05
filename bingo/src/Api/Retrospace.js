@@ -6,6 +6,7 @@ import { ChipData } from "../Contexts/Atom";
 
 // 리턴 된 값이 list 형태이므로 이걸로 map을 받는 컴포넌트들 만들기
 export const getAllRetrospect = async (e, navigate) => {
+    console.log("E", e);
     try {
         const response = await axios.get(
             `${process.env.REACT_APP_URL}template/project/${e.projectId}`,
@@ -24,8 +25,6 @@ export const getAllRetrospect = async (e, navigate) => {
         throw error;
     }
 };
-
-
 
 export const getRetrospect = async (e) => {
     try {
@@ -111,7 +110,7 @@ export const postRetrospect = async (e, navigate) => {
     const userId = parseInt(e.userId, 10);
     const projectId = parseInt(e.workspaceId, 10);
     const retrospectId = parseInt(e.retrospectId, 10);
-    
+
     const data = {
         appUserId: userId,
         projectId: projectId,
@@ -173,17 +172,22 @@ export const postRetrospect = async (e, navigate) => {
             label: "일과 삶의\n균형이 있는",
             flag: false,
         },
-    ]
+    ];
     console.log("Result!!", data);
     console.log("chip Data", data.tagList);
     if (data.tagList != undefined) {
         console.log("data 체크 ", data);
         try {
-            await axios.post(`${process.env.REACT_APP_URL}retrospect/write`, data, {
-                headers: {
-                    Authorization: "Bearer " + localStorage.getItem("email"),
-                },
-            });
+            await axios.post(
+                `${process.env.REACT_APP_URL}retrospect/write`,
+                data,
+                {
+                    headers: {
+                        Authorization:
+                            "Bearer " + localStorage.getItem("email"),
+                    },
+                }
+            );
             e.setChipData(chipInit);
             alert("회고 작성이 완료되었습니다.");
             navigate(`/WorkspaceList`);

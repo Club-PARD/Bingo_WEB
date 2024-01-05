@@ -64,7 +64,7 @@ function WorkspaceView() {
                 console.error("Error fetching projects:", error);
             }
         };
-        console.log("Ids", userInfo.appUser.id, workspaceId);
+        console.log("Ids : ", userInfo.appUser.id, workspaceId);
         const fetchTagCount = async () => {
             try {
                 const allTagCount = await getProject({

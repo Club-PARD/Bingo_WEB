@@ -71,8 +71,8 @@ export const getAllProjects = async (e, navigate) => {
 };
 
 export const getProject = async (e) => {
-    alert("UID", e.userId);
-    alert("WID", e.workspaceId);
+    console.log("UID", e);
+    // alert("WID", e.workspaceId);
     try {
         const response = await axios.get(
             `${process.env.REACT_APP_URL}user/${e.userid}/projects/${e.workspaceId}`,
@@ -150,10 +150,10 @@ export const handleUpload = async (file) => {
     }
 };
 
-export const joinProject = async (data1, data2) => {
+export const joinProject = async (data) => {
     const joinData = {
-        userId: data2,
-        code: data1,
+        userId: data.userId,
+        code: data.code,
         role: "TEAM_MEMBER",
     };
     try {
