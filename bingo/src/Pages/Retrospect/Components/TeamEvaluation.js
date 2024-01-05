@@ -123,6 +123,7 @@ const TeamEvaluation = (e) => {
     const [finalChipData, setFinalChipData] = useState();
     useEffect(() => {
         setUpdatedChipData(chipData);
+        changeData();
     }, chipData);
 
     const changeData = () => {
@@ -162,9 +163,8 @@ const TeamEvaluation = (e) => {
                     <StepButton
                         targetLabel="완료"
                         onClick={() => {
-                            console.log("updatedChipData", updatedChipData),
+                            if (isFilled) {
                                 changeData();
-                            console.log("updatedChipData Again", finalChipData),
                                 postRetrospect(
                                     {
                                         workspaceId: workspaceId,
@@ -177,6 +177,7 @@ const TeamEvaluation = (e) => {
                                     },
                                     navigate
                                 );
+                            }
                         }}
                         // onClick={postRetrospect({ workspaceId: e.workspaceId, userId: e.userId, retrospectId: e.retrospectId, retrospectQuestionsList : retrospectQuestionsList})}
                         backgroundColor={

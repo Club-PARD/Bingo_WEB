@@ -154,9 +154,11 @@ function RetrospectView() {
                                         <div>
                                                 <DivLabel>
                                                     {
-                                                        retrospective.templateType
-                                                            ? retrospective.templateType
-                                                            : "방식이 없습니다. 이거 고쳐야 함"
+                                                        // retrospective.templateType
+                                                        //     ? retrospective.templateType
+                                                //     : "방식이 없습니다. 이거 고쳐야 함"
+                                                // console.log("length : ", retrospective.template.questionList.length)
+                                                    retrospective.template.questionList.length == 3 ? "KPT" : retrospective.template.questionList.length == 4 ? "4L" : retrospective.template.questionList.length == 5 ? "5F" : "회고 방식"
                                                     }
                                                 </DivLabel>
                                                 {
@@ -192,8 +194,8 @@ function RetrospectView() {
                                                                                                         return (
                                                                                                             <OuterAnswer>
                                                                                                                 <ProfileDiv>
-                                                                                                                    <Eclipse/>
-                                                                                                                    <UserName>{data.writer}</UserName>
+                                                                                                                    <Eclipse src={data.appUserAnsResponse.picture} />
+                                                                                                                    <UserName>{data.appUserAnsResponse.name}</UserName>
                                                                                                                 </ProfileDiv>
                                                                                                                 <AnswerDiv>
                                                                                                                     <AnswerText>
@@ -208,11 +210,12 @@ function RetrospectView() {
                                                                                                 <OuterAnswer>
                                                                                                     <ProfileDiv>
                                                                                                         <Eclipse/>
-                                                                                                        <UserName>{ question.answerResponses[0].writer}</UserName>
+                                                                                                        {/* {console.log("성현아", question.answerResponses[0].appUserAnsResponse.name)}; */}
+                                                                                                        <UserName>{question.answerResponses[0].appUserAnsResponse.name}</UserName>
                                                                                                     </ProfileDiv>
                                                                                                     <AnswerDiv>
                                                                                                         <AnswerText>
-                                                                                                            {console.log("답변", question.answerResponses[0].ams)}
+                                                                                                            {/* {console.log("답변", question.answerResponses[0].ams)} */}
                                                                                                             {question.answerResponses[0].ams}
                                                                                                         </AnswerText>
                                                                                                     </AnswerDiv>
@@ -467,7 +470,7 @@ const AnswerDate = styled.div`
     color: #c9c9c9;
     margin-left: 1%;
 `;
-const Eclipse = styled.div`
+const Eclipse = styled.img`
     width: 4.4vh;
     height: 4.4vh;
     background-color: #eaeaea;
