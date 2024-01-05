@@ -64,7 +64,7 @@ function WorkspaceView() {
                 console.error("Error fetching projects:", error);
             }
         };
-        console.log("Ids : ", userInfo.appUser.id, workspaceId);
+
         const fetchTagCount = async () => {
             try {
                 const allTagCount = await getProject({
@@ -72,7 +72,6 @@ function WorkspaceView() {
                     workspaceId: workspaceId,
                 });
                 setTagCount(allTagCount);
-                console.log("fetchData", allTagCount);
             } catch (error) {
                 console.error("Error Tag Count:", error);
             }
@@ -82,6 +81,7 @@ function WorkspaceView() {
     }, [userInfo.appUser.id, workspaceId, setRetrospectData, navigate]);
     const [WriteButtonModalIsOpen, setWriteButtonModalIsOpen] = useState(false);
 
+    console.log("fetchData", tagCount);
     return (
         <>
             <Div
@@ -108,15 +108,19 @@ function WorkspaceView() {
                             {/* Title : 빙고판 타이틀 */}
                             <TitleAndButton>
                                 {/* <Title>{filteredWorkspaces ? filteredWorkspaces.name : "프로젝트 이름이 없습니다."}</Title> */}
-                                <Title>{filteredWorkspaces.name}</Title>
+                                <Div width="13vw" height="4vh" overflow="auto">
+                                    <Title>{filteredWorkspaces?.name}</Title>
+                                </Div>
                                 <InviteButton onClick={openModal1}>
                                     팀원 초대하기
                                 </InviteButton>
                             </TitleAndButton>
-                            <TeamDesc>
-                                {/* {filteredWorkspaces ? filteredWorkspaces.description : "프로젝트 설명이 없습니다."} */}
-                                {filteredWorkspaces.description}
-                            </TeamDesc>
+                            <Div width="20vw" height="3vh" overflow="auto">
+                                <TeamDesc>
+                                    {/* {filteredWorkspaces ? filteredWorkspaces.description : "프로젝트 설명이 없습니다."} */}
+                                    {filteredWorkspaces?.description}
+                                </TeamDesc>
+                            </Div>
                             <BingoDesc>
                                 <BingoDescText>
                                     좋은 팀을 위한 9가지 가치 빙고판
@@ -125,7 +129,11 @@ function WorkspaceView() {
 
                             {/* Content : 빙고판 */}
                             <Section_Bingo_Content>
-                                <BingoBoard modalIsOpen={modalIsOpen1} />
+                                <BingoBoard
+                                    modalIsOpen={modalIsOpen1}
+                                    tagList={tagCount?.tagList}
+                                    retrolen={retrospectData?.length}
+                                />
                             </Section_Bingo_Content>
                         </Section_Bingo>
                     </SectionLeft>
@@ -160,7 +168,7 @@ function WorkspaceView() {
             <InviteModal
                 modalIsOpen1={modalIsOpen1}
                 closeModal={closeModal}
-                value={filteredWorkspaces.code}
+                value={filteredWorkspaces?.code}
             />
         </>
     );

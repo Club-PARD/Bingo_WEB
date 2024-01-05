@@ -50,14 +50,12 @@ const RetrospectInWorkspace = (e) => {
     return (
         <div>
             {/*Div for retrospectList height=833*/}
-            {filteredWorkspaces.role != "TEAM_MEMBER" && (
-                <AddArea
-                    to={`/RetrospectCreate?userId=${e.userId}&workspaceId=${e.workspaceId}`}
-                >
-                    <Img width="44px" height="44px" src={PlusBold} />
-                    <WordDiv>회고생성</WordDiv>
-                </AddArea>
-            )}
+            <AddArea
+                to={`/RetrospectCreate?userId=${e.userId}&workspaceId=${e.workspaceId}`}
+            >
+                <Img width="44px" height="44px" src={PlusBold} />
+                <WordDiv>회고생성</WordDiv>
+            </AddArea>
             {retrospectData.length >= 1 &&
                 retrospectData
                     .slice()

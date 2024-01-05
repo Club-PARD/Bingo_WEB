@@ -16,7 +16,7 @@ export const getAllRetrospect = async (e, navigate) => {
                 },
             }
         );
-        // console.log("Result", response.data);
+        console.log("Result", response.data);
 
         return response.data;
     } catch (error) {
