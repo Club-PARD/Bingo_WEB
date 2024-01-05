@@ -286,7 +286,6 @@ const NameIsValueDiv = styled(Div)`
     text-align: center;
     align-items: center;
     margin: 0 0 3.8vh 0;
-    background-color: aliceblue;
 `;
 const SubIsNotValue = styled(Div)`
     margin: 0 0 4.5vh 0;
@@ -310,7 +309,6 @@ const NameIsNotDiv = styled(Div)`
     text-align: center;
     align-items: center;
     margin: 0 0 0.7vh 0;
-    background-color: aliceblue;
 `;
 const EmptyValue = styled(Div)`
     color: #575757;
