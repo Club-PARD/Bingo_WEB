@@ -21,9 +21,9 @@ export const login = async (decodedToken) => {
         console.log("API 성공!");
         console.log("LOGIN DATAS", response.data);
         localStorage.setItem("email", response.data.token);
-        if (response.data.isSigned == 1) {
-            window.location.href = "/UserApprove";
-        }
+        // if(response.data.isSigned == 1) {
+        //     window.location.href = "/UserApprove";
+        // }
         window.location.href = "/WorkspaceList";
         return response.data;
     } catch (error) {

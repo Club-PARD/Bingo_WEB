@@ -455,48 +455,6 @@ const WorkspaceList = () => {
                                 )}
                             </Div>
                         </Div>
-                        {/* <Div flexDirection="column">
-                            <ModalLabel>프로젝트 사진</ModalLabel>
-                            <Input
-                                type="file"
-                                style={
-                                    {
-                                        // display: "",
-                                    }
-                                }
-                                ref={fileInputRef}
-                                accept="image/*"
-                                onChange={handleFileChange}
-                            />
-                            <Div alignItems="center">
-                                <FileInputButton>
-                                    {file ? (
-                                        <>
-                                            {" "}
-                                            <FileInputText>
-                                                {" "}
-                                                {file.name}
-                                            </FileInputText>{" "}
-                                            <FileInputImg
-                                                src="img\WorkspaceList\close.png"
-                                                onClick={(e) => {
-                                                    e.stopPropagation();
-                                                    setFile(null);
-                                                }}
-                                            />{" "}
-                                        </>
-                                    ) : (
-                                        <>
-                                            {" "}
-                                            <FileInputImg src="img\WorkspaceList\arrow_upward.png" />{" "}
-                                            <FileInputText>
-                                                파일 업로드
-                                            </FileInputText>
-                                        </>
-                                    )}
-                                </FileInputButton>
-                            </Div>
-                        </Div> */}
                     </Div>
 
                     <Div
@@ -696,9 +654,14 @@ const StyleModal = {
     },
 };
 
-// const [inviteCode, setInviteCode] = useState("");
-
 const InviteModal = (e) => {
+    const [adduserInfo, addsetUserInfo] = useRecoilState(loginUserState);
+    const addId = adduserInfo.appUser.id;
+
+    // const addUserId = useRecoilValue(loginUserState);
+    // const adduserId = addUserId.appUser.id;
+    const [inviteCode, setInviteCode] = useState("");
+
     const navigate = useNavigate(); // useNavigate 훅을 사용하여 navigate 함수를 가져옵니다.
 
     return (
@@ -722,7 +685,6 @@ const InviteModal = (e) => {
                         onChange={(e) => setInviteCode(e.target.value)}
                     />
                 </ModalInfo>
-                <CodeDiv type="text" />
                 <Div
                     width="25vw"
                     height="4.7vh"
@@ -733,8 +695,10 @@ const InviteModal = (e) => {
                         background="var(--main_red, #EA4336)"
                         color="#F9F9F9"
                         onClick={() => {
-                            joinProject(inviteCode); // inviteCode를 파라미터로 전달
-                            navigate("/workspaceView");
+                            e.closeInviteModal();
+                            joinProject(inviteCode, addId); 
+                            navigate("/workspaceList", { replace: true });
+                            window.location.reload();
                         }}
                     >
                         완료

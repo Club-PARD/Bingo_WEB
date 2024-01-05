@@ -1,0 +1,7 @@
+/Users/cocomong_98/IdeaProjects/React/PARD/Longcuton/Bingo_WEB
+├── README.md
+├── Rule.md
+└── bingo
+
+directory: 1 file: 2
+
