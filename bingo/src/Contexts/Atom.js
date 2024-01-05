@@ -4,7 +4,7 @@
 import { atom } from "recoil";
 import { recoilPersist } from "recoil-persist";
 
-const {persistAtom} = recoilPersist();
+const { persistAtom } = recoilPersist();
 
 // test
 export const countState = atom({ key: "counter", default: 0 });
@@ -92,6 +92,7 @@ export const ChipData = atom({
             flag: false,
         },
     ],
+    effects_UNSTABLE: [persistAtom],
 });
 
 export const UserList = atom({
@@ -188,6 +189,6 @@ export const WorkspaceInfo = atom({
 });
 
 export const UrlInfo = atom({
-    key: 'urlInfo',
-    default : [],
-})
+    key: "urlInfo",
+    default: [],
+});
