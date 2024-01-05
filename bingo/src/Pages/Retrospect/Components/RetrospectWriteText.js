@@ -221,11 +221,11 @@ const RetrospectWriteText = (e) => {
     };
 
     const handleNextButtonClick = () => {
-        if (isFilled) {
+        // if (isFilled) {
             navigate(
                 `/TeamEvaluation?userId=${e.userId}&workspaceId=${e.workspaceId}&retrospectId=${e.retrospectId}`
             );
-        }
+        // }
     };
 
     const resizeTextarea = (event) => {
@@ -237,7 +237,7 @@ const RetrospectWriteText = (e) => {
         console.log(dataIndex + ", " + subQuestionIndex + ", " + updatedValue);
 
         const tempList = cloneDeep(retrospectQuestionsList);
-        tempList.questionList[dataIndex].subQuestionList[
+        tempList.questionList[dataIndex].subQuestions[
             subQuestionIndex
         ].answerResponse = updatedValue;
 
@@ -296,6 +296,7 @@ const RetrospectWriteText = (e) => {
                             {retrospectQuestionsList.templateType}
                         </TemplateTypeDiv>
 
+                        {console.log("pangil love you ", retrospectQuestionsList.questionList)}
                         {retrospectQuestionsList.questionList.map(
                             (data, index) => (
                                 // data.title &&
@@ -308,14 +309,11 @@ const RetrospectWriteText = (e) => {
                                             {data.mainQuestion}
                                         </RetroLabel>
                                     </RetroType>
-                                    {data.subQuestionList.map(
+                                    {console.log("제발", data)}
+                                    {data.subQuestions && data.subQuestions.map(
                                         (retro, index2) => (
                                             // retro.dataQ &&
                                             <div key={index2}>
-                                                {console.log(
-                                                    "정보",
-                                                    data.subQuestionList[index2]
-                                                )}
                                                 <RetroData>
                                                     {retro.subQuestion}
                                                 </RetroData>
@@ -327,8 +325,8 @@ const RetrospectWriteText = (e) => {
                                                         null
                                                             ? ""
                                                             : retro
-                                                                  .answerResponse
-                                                                  .ams
+                                                                .answerResponse
+                                                                .ams
                                                     }
                                                     onChange={(f) =>
                                                         handleRetroTextChange(
