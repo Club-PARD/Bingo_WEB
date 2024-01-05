@@ -31,6 +31,7 @@ export const loginUserState = atom({
         appUser: {
             email: "",
             name: "",
+            image : "",
             token: "",
             id: "",
             answerList: [],
