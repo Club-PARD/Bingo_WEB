@@ -1,17 +1,7 @@
 # Bingo_WEB
 
 ### PARD 2기 롱커톤 [3!4!] 프론트
-
-
-## 팀 회고 서비스, BINGO
-
-‘빙고’는 팀의 발전과 성장을 위한 회고 아카이빙 웹사이트입니다.
-
-회고 방법론 추천과 세부 질문 설정 기능을 포함한 가이드라인을 제공하여 팀원들이 보다 쉽고 구체적으로 프로젝트를 돌아보며 회고 답변을 작성할 수 있도록 합니다.
-
-팀원들의 답변을 한 페이지에 취합하고, 답변을 바탕으로 키워드를 추출하여 보다 객관적이고 직관적인 회고 결과를 얻을 수 있도록 합니다.
-
-워크 스페이스 기능을 통해 프로젝트의 회고 기록을 아카이빙 하여 팀원들이 원하는 시기에 원하는 회고 결과를 찾아볼 수 있도록 합니다. 
+ 
 
 ## 팀 회고 서비스, BINGO
 
@@ -169,6 +159,144 @@ b985dd334d8d1b0b6d527ff9f24ceed28c78ec5
  - 프로젝트 내부에 존재하는 회고들 중, 유저가 작성하지 않은 회고가 있다면 작성 버튼을 강조해 확인할 수 있습니다.
 
 <img width="1920" alt="획고를 만든 후" src="https://github.com/Club-PARD/Bingo_WEB/assets/90203932/966a68ee-49bb-4e5b-bf2f-243e89237abe">
+
+## 파일 구조
+
+``` bash
+src
+ ┣ Api
+ ┃ ┣ AuthApi.js
+ ┃ ┣ BingoBoard.js
+ ┃ ┣ Evaluation.js
+ ┃ ┣ Retrospace.js
+ ┃ ┗ Workspace.js
+ ┣ Components
+ ┃ ┣ NormalComponents
+ ┃ ┃ ┣ Etc.js
+ ┃ ┃ ┣ Form.js
+ ┃ ┃ ┣ Section.js
+ ┃ ┃ ┗ Text.js
+ ┃ ┣ PageMovements
+ ┃ ┃ ┣ Drawer.js
+ ┃ ┃ ┗ Sidebar.js
+ ┃ ┗ test
+ ┃ ┃ ┗ testThemePage.js
+ ┣ Contexts
+ ┃ ┣ Atom.js
+ ┃ ┗ EditorContext.js
+ ┣ ETC
+ ┃ ┗ DrawerBtn.js
+ ┣ Layout
+ ┃ ┣ Breadcrumb.js
+ ┃ ┣ Header.js
+ ┃ ┗ TopMenueBar.js
+ ┣ Pages
+ ┃ ┣ Login
+ ┃ ┃ ┣ Intro
+ ┃ ┃ ┃ ┗ index.js
+ ┃ ┃ ┣ UserApprove
+ ┃ ┃ ┃ ┣ RadioBtn.js
+ ┃ ┃ ┃ ┗ index.js
+ ┃ ┃ ┣ GoogleLogin.js
+ ┃ ┃ ┗ LoginPage.js
+ ┃ ┣ Retrospect
+ ┃ ┃ ┣ Components
+ ┃ ┃ ┃ ┣ Chips.js
+ ┃ ┃ ┃ ┣ Editor.js
+ ┃ ┃ ┃ ┣ RetroWrite.js
+ ┃ ┃ ┃ ┣ RetrospectViewer.js
+ ┃ ┃ ┃ ┣ RetrospectWriteText.js
+ ┃ ┃ ┃ ┗ TeamEvaluation.js
+ ┃ ┃ ┣ RetrospectCreate.js
+ ┃ ┃ ┣ RetrospectList.js
+ ┃ ┃ ┣ RetrospectView.js
+ ┃ ┃ ┣ RetrospectViewerPage.js
+ ┃ ┃ ┗ RetrospectWrite.js
+ ┃ ┣ Test
+ ┃ ┃ ┣ CrudAdd.js
+ ┃ ┃ ┣ CrudList.js
+ ┃ ┃ ┣ CrudUpdate.js
+ ┃ ┃ ┣ CrudView.js
+ ┃ ┃ ┣ PI_Test.js
+ ┃ ┃ ┗ PI_Test2.js
+ ┃ ┗ Workspace
+ ┃ ┃ ┣ Components
+ ┃ ┃ ┃ ┗ RetrospectInWorkspace.js
+ ┃ ┃ ┣ WorkspaceList
+ ┃ ┃ ┃ ┣ Components
+ ┃ ┃ ┃ ┃ ┗ WorkspaceCard.js
+ ┃ ┃ ┃ ┗ index.js
+ ┃ ┃ ┣ WorkspaceCreate.js
+ ┃ ┃ ┗ WorkspaceView.js
+ ┣ Preset
+ ┃ ┣ Retrospect
+ ┃ ┃ ┣ RetrospectCreatePreset.js
+ ┃ ┃ ┣ RetrospectCreatePresetStyle.js
+ ┃ ┃ ┗ tempCodeRunnerFile.js
+ ┃ ┣ WorkspacePreset
+ ┃ ┃ ┣ BingoBoard.js
+ ┃ ┃ ┗ WorkspaceCreatePreset.js
+ ┃ ┗ LoginPreset.js
+ ┣ Theme
+ ┃ ┗ testTheme.js
+ ┣ assets
+ ┃ ┗ Img
+ ┃ ┃ ┣ Home
+ ┃ ┃ ┃ ┣ close.png
+ ┃ ┃ ┃ ┣ homeimg.png
+ ┃ ┃ ┃ ┗ logo.jpg
+ ┃ ┃ ┣ Login
+ ┃ ┃ ┃ ┣ Intro.png
+ ┃ ┃ ┃ ┣ IntroBtn.png
+ ┃ ┃ ┃ ┣ Onboard.png
+ ┃ ┃ ┃ ┗ Reddot.png
+ ┃ ┃ ┣ Retrospect
+ ┃ ┃ ┃ ┣ DDL.png
+ ┃ ┃ ┃ ┗ DDR.png
+ ┃ ┃ ┣ Sidebar
+ ┃ ┃ ┃ ┣ account_circle.png
+ ┃ ┃ ┃ ┗ material-symbols_home-outline.png
+ ┃ ┃ ┣ TopMenuBar
+ ┃ ┃ ┃ ┗ Logo.png
+ ┃ ┃ ┣ UserApprove
+ ┃ ┃ ┃ ┣ LogoCircle.png
+ ┃ ┃ ┃ ┗ LogoUserApprove.png
+ ┃ ┃ ┣ WorkspaceList
+ ┃ ┃ ┃ ┣ FileUpload.png
+ ┃ ┃ ┃ ┣ Logo_Circle.png
+ ┃ ┃ ┃ ┣ Workspace_Banner.png
+ ┃ ┃ ┃ ┣ add.png
+ ┃ ┃ ┃ ┣ arrow_upward.png
+ ┃ ┃ ┃ ┣ close.png
+ ┃ ┃ ┃ ┗ post3.jpg
+ ┃ ┃ ┣ WorkspaceView
+ ┃ ┃ ┃ ┣ arrowPink.png
+ ┃ ┃ ┃ ┣ arrowRed.png
+ ┃ ┃ ┃ ┣ arrow_forward.png
+ ┃ ┃ ┃ ┣ content_copy.png
+ ┃ ┃ ┃ ┗ ph_plus-bold.png
+ ┃ ┃ ┣ IntroBackground.jpeg
+ ┃ ┃ ┗ test1.png
+ ┣ fonts
+ ┃ ┣ _____(OTF) 100.otf
+ ┃ ┣ _____(OTF) 110.otf
+ ┃ ┣ _____(OTF) 120.otf
+ ┃ ┣ _____(OTF) 140.otf
+ ┃ ┣ _____(OTF) 160.otf
+ ┃ ┗ _____(OTF) 180.otf
+ ┣ App.css
+ ┣ App.js
+ ┣ App.test.js
+ ┣ Router.js
+ ┣ Sidebar.js
+ ┣ fbase.js
+ ┣ font.css
+ ┣ index.css
+ ┣ index.js
+ ┣ logo.svg
+ ┣ reportWebVitals.js
+ ┗ setupTests.js
+```
 
 ## Built With
 
