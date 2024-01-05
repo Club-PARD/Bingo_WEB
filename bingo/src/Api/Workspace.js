@@ -150,10 +150,10 @@ export const handleUpload = async (file) => {
     }
 };
 
-export const joinProject = async (data) => {
+export const joinProject = async (data1, data2) => {
     const joinData = {
-        userId: data.userId,
-        code: data.code,
+        userId: data2,
+        code: data1,
         role: "TEAM_MEMBER",
     };
     try {
