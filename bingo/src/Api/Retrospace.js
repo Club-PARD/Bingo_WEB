@@ -17,7 +17,7 @@ export const getAllTemplate = async (e, navigate) => {
                 },
             }
         );
-        console.log("getAllTemplate", response.data);
+        console.log("axios getAllTemplate", response.data);
 
         return response.data;
     } catch (error) {
@@ -60,7 +60,7 @@ export const getAllRetrospect = async (e, navigate) => {
                 },
             }
         );
-        console.log("Result", response.data);
+        console.log("axios getAllRetrospect", response.data);
 
         return response.data;
     } catch (error) {
@@ -221,6 +221,7 @@ export const postRetrospect = async (e, navigate) => {
     console.log("chip Data", data.tagList);
     if (data.tagList != undefined) {
         console.log("data 체크 ", data);
+        
         try {
             await axios.post(
                 `${process.env.REACT_APP_URL}retrospect/write`,
@@ -237,7 +238,8 @@ export const postRetrospect = async (e, navigate) => {
             // navigate(`/WorkspaceList`);
             navigate(`/WorkspaceView?workspaceId=${e.workspaceId}`);
         } catch (error) {
-            throw "postRetrospect Error > " + error;
+            alert("아쉽지만 빙고~")
+            console.log("postRetrospect Error > " + error);
         }
     }
 };

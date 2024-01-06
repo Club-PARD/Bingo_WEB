@@ -17,15 +17,15 @@ export default function RetrospectCreate() {
             {
                 templateId: null,
                 mainQuestion: "Keep",
-                subQuestionRequest: {questionId : null, question : ["", "", ""]}
+                subQuestionRequest: {questionId : null,  question: ["", null, null],}
             },{
                 templateId: null,
                 mainQuestion: "Problem",
-                subQuestionRequest: {questionId : null, question : ["", "", ""]}
+                subQuestionRequest: {questionId : null,  question: ["", null, null],}
             }    ,{
                 templateId: null,
                 mainQuestion: "Try",
-                subQuestionRequest: {questionId : null, question : ["", "", ""]}
+                subQuestionRequest: {questionId : null,  question: ["", null, null],}
             }    
                 
         ]

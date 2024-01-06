@@ -38,20 +38,31 @@ function RetrospectWrite() {
                     workspaceId: workspaceId,
                     retrospectId: retrospectId,
                 });
-                {
-                    console.log(
-                        "!!retrospectDataForWrite Result!!",
-                        retrospectDataForWrite
-                    );
+
+                if (retrospectDataForWrite && retrospectDataForWrite.questionList) {
+                    const modifiedData = {
+                        ...retrospectDataForWrite,
+                        questionList: retrospectDataForWrite.questionList.map((question) => {
+                            if (!question.subQuestions || question.subQuestions.length === 0) {
+                                // subQuestions가 없는 경우, 더미(sub-question) 추가
+                                return {
+                                    ...question,
+                                    subQuestions: [{ subQuestion: "", answerResponse: "" }],
+                                };
+                            }
+                            return question;
+                        }),
+                    };
+
+                    setRetrospectQuestionsList(modifiedData);
                 }
-                setRetrospectQuestionsList(retrospectDataForWrite);
-                // 왜 계속 렌더링이 계속 될까?
             } catch (error) {
                 console.error("Error fetching retrospectWrite:", error);
             }
         };
+
         retrospectResult();
-    }, [userId, workspaceId, retrospectId]); // 의존성 배열 추가
+    }, [userId, workspaceId, retrospectId]);
 
     // console.log("RetrospectWrite 페이지 : retrospectQuestionsList Data", retrospectQuestionsList);
 

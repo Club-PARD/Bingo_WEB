@@ -91,7 +91,7 @@ function RetrospectView() {
                 <LeftHead>
                     <TitleDiv>{
                             retrospective
-                                ? retrospective.name
+                                ? retrospective.template.name
                                 : "조회 불가"
                         }</TitleDiv>
                     {/* Breadcrumb은 현재 위치에 따라 달라진다 / 현위치 : 3 (회고 조회하기) */}
@@ -154,9 +154,11 @@ function RetrospectView() {
                                         <div>
                                                 <DivLabel>
                                                     {
-                                                        retrospective.templateType
-                                                            ? retrospective.templateType
-                                                            : "방식이 없습니다. 이거 고쳐야 함"
+                                                        // retrospective.templateType
+                                                        //     ? retrospective.templateType
+                                                //     : "방식이 없습니다. 이거 고쳐야 함"
+                                                // console.log("length : ", retrospective.template.questionList.length)
+                                                    retrospective.template.questionList.length == 3 ? "KPT" : retrospective.template.questionList.length == 4 ? "4L" : retrospective.template.questionList.length == 5 ? "5F" : "회고 방식"
                                                     }
                                                 </DivLabel>
                                                 {
@@ -179,21 +181,21 @@ function RetrospectView() {
                                                                         data
                                                                             .subQuestionList
                                                                             .map((question, index) => {
-                                                                                // console.log(question);
+                                                                                 // console.log(question);
                                                                                 return (
                                                                                     <InnerDiv>
                                                                                         <QuestionDiv>
-                                                                                            {question.subQuestion && question.subQuestion}
+                                                                                            {question.subQuestion}
                                                                                         </QuestionDiv>
                                                                                         {
-                                                                                            question.answerResponse.length < 2
-                                                                                                ? 
-                                                                                                    question.answerResponse.map((data, index)  => {
+                                                                                            question.answerResponses.length  > 1 ?
+                                                                                                
+                                                                                                    question.answerResponses.map((data, index)  => {
                                                                                                         return (
                                                                                                             <OuterAnswer>
                                                                                                                 <ProfileDiv>
-                                                                                                                    <Eclipse/>
-                                                                                                                    <UserName>박정규</UserName>
+                                                                                                                    <Eclipse src={data.appUserAnsResponse.picture} />
+                                                                                                                    <UserName>{data.appUserAnsResponse.name}</UserName>
                                                                                                                 </ProfileDiv>
                                                                                                                 <AnswerDiv>
                                                                                                                     <AnswerText>
@@ -208,12 +210,13 @@ function RetrospectView() {
                                                                                                 <OuterAnswer>
                                                                                                     <ProfileDiv>
                                                                                                         <Eclipse/>
-                                                                                                        <UserName>박정규</UserName>
+                                                                                                        {/* {console.log("성현아", question.answerResponses[0].appUserAnsResponse.name)}; */}
+                                                                                                        <UserName>{question.answerResponses[0].appUserAnsResponse.name}</UserName>
                                                                                                     </ProfileDiv>
                                                                                                     <AnswerDiv>
                                                                                                         <AnswerText>
-                                                                                                            {/* {console.log("답변", question.answerResponse.ams)} */}
-                                                                                                            {question.answerResponse.ams}
+                                                                                                            {/* {console.log("답변", question.answerResponses[0].ams)} */}
+                                                                                                            {question.answerResponses[0].ams}
                                                                                                         </AnswerText>
                                                                                                     </AnswerDiv>
                                                                                                 </OuterAnswer>
@@ -467,7 +470,7 @@ const AnswerDate = styled.div`
     color: #c9c9c9;
     margin-left: 1%;
 `;
-const Eclipse = styled.div`
+const Eclipse = styled.img`
     width: 4.4vh;
     height: 4.4vh;
     background-color: #eaeaea;
