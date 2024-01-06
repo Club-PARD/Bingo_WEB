@@ -248,7 +248,7 @@ export const Section1 = (e) => {
                                             mainQuestion: "Keep",
                                             subQuestionRequest: {
                                                 questionId: null,
-                                                question: ["", "", ""],
+                                                question: ["", null, null],
                                             },
                                         },
                                         {
@@ -256,7 +256,7 @@ export const Section1 = (e) => {
                                             mainQuestion: "Problem",
                                             subQuestionRequest: {
                                                 questionId: null,
-                                                question: ["", "", ""],
+                                                question: ["", null, null],
                                             },
                                         },
                                         {
@@ -264,7 +264,7 @@ export const Section1 = (e) => {
                                             mainQuestion: "Try",
                                             subQuestionRequest: {
                                                 questionId: null,
-                                                question: ["", "", ""],
+                                                question: ["", null, null],
                                             },
                                         },
                                     ];
@@ -322,7 +322,7 @@ export const Section1 = (e) => {
                                             mainQuestion: "Liked",
                                             subQuestionRequest: {
                                                 questionId: null,
-                                                question: ["", "", ""],
+                                                question: ["", null, null],
                                             },
                                         },
                                         {
@@ -330,7 +330,7 @@ export const Section1 = (e) => {
                                             mainQuestion: "Learned",
                                             subQuestionRequest: {
                                                 questionId: null,
-                                                question: ["", "", ""],
+                                                question: ["", null, null],
                                             },
                                         },
                                         {
@@ -338,7 +338,7 @@ export const Section1 = (e) => {
                                             mainQuestion: "Lacked",
                                             subQuestionRequest: {
                                                 questionId: null,
-                                                question: ["", "", ""],
+                                                question: ["", null, null],
                                             },
                                         },
                                         {
@@ -346,7 +346,7 @@ export const Section1 = (e) => {
                                             mainQuestion: "Longed for",
                                             subQuestionRequest: {
                                                 questionId: null,
-                                                question: ["", "", ""],
+                                                question: ["", null, null],
                                             },
                                         },
                                     ];
@@ -404,7 +404,7 @@ export const Section1 = (e) => {
                                             mainQuestion: "Feel",
                                             subQuestionRequest: {
                                                 questionId: null,
-                                                question: ["", "", ""],
+                                                question: ["", null, null],
                                             },
                                         },
                                         {
@@ -412,7 +412,7 @@ export const Section1 = (e) => {
                                             mainQuestion: "Find",
                                             subQuestionRequest: {
                                                 questionId: null,
-                                                question: ["", "", ""],
+                                                question: ["", null, null],
                                             },
                                         },
                                         {
@@ -420,7 +420,7 @@ export const Section1 = (e) => {
                                             mainQuestion: "Finish",
                                             subQuestionRequest: {
                                                 questionId: null,
-                                                question: ["", "", ""],
+                                                question: ["", null, null],
                                             },
                                         },
                                         {
@@ -428,7 +428,7 @@ export const Section1 = (e) => {
                                             mainQuestion: "Future",
                                             subQuestionRequest: {
                                                 questionId: null,
-                                                question: ["", "", ""],
+                                                question: ["", null, null],
                                             },
                                         },
                                         {
@@ -436,7 +436,7 @@ export const Section1 = (e) => {
                                             mainQuestion: "Feedback",
                                             subQuestionRequest: {
                                                 questionId: null,
-                                                question: ["", "", ""],
+                                                question: ["", null, null],
                                             },
                                         },
                                     ];
@@ -545,9 +545,6 @@ export const Section2 = (e) => {
                             height="22.4vh"
                             justifyContent="end"
                         >
-                            {
-                                // console.log(e.retrospectData.questionsList[index])
-                            }
                             {Array.from({ length: 3 }).map(
                                 (_, contentIndex) => (
                                     InputCounts++,
@@ -571,9 +568,11 @@ export const Section2 = (e) => {
                                                 ].subQuestionRequest.question[
                                                     contentIndex
                                                 ] = f.target.value;
-                                                e.setRetrospectData(
-                                                    InputTempValue
-                                                );
+                                                if (f.target.value != null) {
+                                                    e.setRetrospectData(
+                                                        InputTempValue
+                                                    );
+                                                }
                                             }}
                                         />
                                     )

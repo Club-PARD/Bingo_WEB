@@ -222,29 +222,41 @@ const RetrospectWriteText = (e) => {
     };
 
     const handleNextButtonClick = () => {
-        if (isFilled) {
+        // if (isFilled) {
             navigate(
                 `/TeamEvaluation?userId=${e.userId}&workspaceId=${e.workspaceId}&retrospectId=${e.retrospectId}`
             );
-        }
+        // }
     };
 
     const resizeTextarea = (event) => {
         event.target.style.height = "15.6vh"; // 초기 높이로 재설정
         event.target.style.height = `${event.target.scrollHeight}px`;
     };
-    const handleRetroTextChange = (event, dataIndex, subQuestionIndex) => {
-        const updatedValue = event.target.value;
-        console.log(dataIndex + ", " + subQuestionIndex + ", " + updatedValue);
+const handleRetroTextChange = (event, dataIndex, subQuestionIndex) => {
+    const updatedValue = event.target.value;
+    console.log(dataIndex + ", " + subQuestionIndex + ", " + updatedValue);
 
-        const tempList = cloneDeep(retrospectQuestionsList);
-        tempList.questionList[dataIndex].subQuestions[
-            subQuestionIndex
-        ].answerResponse = updatedValue;
+    const tempList = cloneDeep(retrospectQuestionsList);
+    const currentQuestion = tempList.questionList[dataIndex];
 
-        // console.log("temp : ", tempList.questionList[dataIndex].subQuestionList[subQuestionIndex]);
-        setRetrospectQuestionsList(tempList);
-    };
+    if (currentQuestion.subQuestions && currentQuestion.subQuestions.length > 0) {
+        const currentSubQuestion = currentQuestion.subQuestions[subQuestionIndex];
+        if (currentSubQuestion) {
+            currentSubQuestion.answerResponse = updatedValue;
+        }
+    } else {
+        // 문제가 발생할 수 있는 부분입니다.
+        // currentQuestion에 subQuestions가 없으면 새로운 배열을 할당하는데, 이 부분이 문제를 일으킬 수 있습니다.
+        // 새로운 배열을 할당하는 것이 아니라, 객체에 바로 answerResponse를 설정하는 방식으로 수정해야 합니다.
+        // currentQuestion.subQuestions = [{ answerResponse: updatedValue }];
+        
+        // 수정된 부분
+        currentQuestion.subQuestions = [{ subQuestion: "", answerResponse: updatedValue }];
+    }
+
+    setRetrospectQuestionsList(tempList);
+};
     useEffect(() => {
         handleInputChange();
     }, [retrospectQuestionsList]);
@@ -314,36 +326,115 @@ const RetrospectWriteText = (e) => {
                                         </RetroLabel>
                                     </RetroType>
                                     {console.log("제발", data)}
-                                    {data.subQuestions &&
-                                        data.subQuestions.map(
-                                            (retro, index2) => (
-                                                // retro.dataQ &&
-                                                <div key={index2}>
+                                    {
+                                        // data.subQuestions[0].subQuestion == null && data.subQuestions[1].subQuestion == null && data.subQuestions[2].subQuestion == null
+                                        // ? <div>
+                                        //     <RetroData>
+                                        //                 "자유롭게 작성해주세요."
+                                        //                 </RetroData>
+                                        //                 <RetroText
+                                        //                     placeholder="답변을 입력하세요..."
+                                        //                     onInput={resizeTextarea}
+                                        //                     value={
+                                        //                         data.subQuestions[0].answerResponse ==
+                                        //                         null
+                                        //                             ? ""
+                                        //                             : data
+                                        //                                 .subQuestions[0]
+                                        //                                 .ams
+                                        //                     }
+                                        //                     onChange={(f) =>
+                                        //                         handleRetroTextChange(
+                                        //                             f,
+                                        //                             index,
+                                        //                             0
+                                        //                         )
+                                        //                     }
+                                        //                 />
+                                        // </div>
+                                        // :
+                                        // data.subQuestions &&
+                                            // data.subQuestions.map(
+                                            //     (retro, index2) => (
+                                            //         retro.subQuestion != '' ?
+                                            //         <div key={index2}>
+                                            //             <RetroData>
+                                            //                 {retro.subQuestion}
+                                            //             </RetroData>
+                                            //             <RetroText
+                                            //                 placeholder="답변을 입력하세요..."
+                                            //                 onInput={resizeTextarea}
+                                            //                 value={
+                                            //                     retro.answerResponse ==
+                                            //                     null
+                                            //                         ? ""
+                                            //                         : retro
+                                            //                             .answerResponse
+                                            //                             .ams
+                                            //                 }
+                                            //                 onChange={(f) =>
+                                            //                     handleRetroTextChange(
+                                            //                         f,
+                                            //                         index,
+                                            //                         index2
+                                            //                     )
+                                            //                 }
+                                            //             />
+                                            //             </div>
+                                            //             :
+                                            //             <div key={index2}>
+
+                                            //             <RetroText
+                                            //                 placeholder="답변을 입력하세요..."
+                                            //                 onInput={resizeTextarea}
+                                            //                 value={
+                                            //                     ""
+                                            //                 }
+                                            //             />
+                                            //             </div>
+                                            // )
+                                        // )
+                                        data.subQuestions[0].subQuestion == '' 
+                                        ? <div key={index}>
                                                     <RetroData>
-                                                        {retro.subQuestion}
+                                                        "자유롭게 답변을 남겨주세요."
                                                     </RetroData>
                                                     <RetroText
                                                         placeholder="답변을 입력하세요..."
                                                         onInput={resizeTextarea}
                                                         value={
-                                                            retro.answerResponse ==
-                                                            null
-                                                                ? ""
-                                                                : retro
-                                                                      .answerResponse
-                                                                      .ams
+                                                            data.subQuestions.answerResponse // 서브질문의 첫 번째 값에 대한 처리
+
                                                         }
                                                         onChange={(f) =>
-                                                            handleRetroTextChange(
-                                                                f,
-                                                                index,
-                                                                index2
-                                                            )
+                                                            handleRetroTextChange(f, index,  data.subQuestions[0].subQuestion == ''  ? 0 : index2)
                                                         }
                                                     />
                                                 </div>
-                                            )
-                                        )}
+                                        : data.subQuestions.map((retro, index2) => {
+                                            const subQuestionArray = retro.subQuestion !== '' ? [retro.subQuestion] : [''];  // 서브질문이 비어있는 경우에도 하나의 값을 갖는 배열로 만듦
+
+                                            return subQuestionArray.map((subQ, subIndex) => (
+                                                <div key={index2 + subIndex}>
+                                                    <RetroData>
+                                                        {subQ}
+                                                    </RetroData>
+                                                    <RetroText
+                                                        placeholder="답변을 입력하세요..."
+                                                        onInput={resizeTextarea}
+                                                        value={
+                                                            subIndex === 0 ? retro.answerResponse || "" : ""  // 서브질문의 첫 번째 값에 대한 처리
+                                                        }
+                                                        onChange={(f) =>
+                                                            handleRetroTextChange(f, index, index2)
+                                                        }
+                                                    />
+                                                </div>
+                                            ));
+                                        })
+                                        
+                                        }
+                                    
                                 </Border>
                             )
                         )}

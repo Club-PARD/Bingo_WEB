@@ -165,18 +165,22 @@ const TeamEvaluation = (e) => {
                         onClick={() => {
                             if (isFilled) {
                                 changeData();
-                                postRetrospect(
-                                    {
-                                        workspaceId: workspaceId,
-                                        userId: userId,
-                                        retrospectId: retrospectId,
-                                        retrospectQuestionsList:
-                                            retrospectQuestionsList,
-                                        chipData: finalChipData,
-                                        setChipData: setChipData,
-                                    },
-                                    navigate
-                                );
+                                try {
+                                    postRetrospect(
+                                        {
+                                            workspaceId: workspaceId,
+                                            userId: userId,
+                                            retrospectId: retrospectId,
+                                            retrospectQuestionsList:
+                                                retrospectQuestionsList,
+                                            chipData: finalChipData,
+                                            setChipData: setChipData,
+                                        },
+                                        navigate
+                                    );
+                                } catch (error) {
+                                    alert("에러 발생");
+                                }
                             }
                         }}
                         // onClick={postRetrospect({ workspaceId: e.workspaceId, userId: e.userId, retrospectId: e.retrospectId, retrospectQuestionsList : retrospectQuestionsList})}
