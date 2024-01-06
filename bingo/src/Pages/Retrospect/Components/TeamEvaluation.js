@@ -2,20 +2,16 @@
 import styled from "styled-components";
 import Breadcrumb from "../../../Layout/Breadcrumb";
 import Chips from "./Chips";
-import { Link } from "react-router-dom";
-import {
-    ChipData,
-    retrospectQuestionsListState,
-    retrospectiveState,
-} from "../../../Contexts/Atom";
-import { useRecoilState } from "recoil";
-import { useEffect, useState } from "react";
-import { Button } from "../../../Components/NormalComponents/Form";
-import { useLocation, useNavigate } from "react-router";
-import { postRetrospect } from "../../../Api/Retrospace";
+import {Link} from "react-router-dom";
+import {ChipData, retrospectQuestionsListState, retrospectiveState} from "../../../Contexts/Atom";
+import {useRecoilState} from "recoil";
+import {useEffect, useState} from "react";
+import {Button} from "../../../Components/NormalComponents/Form";
+import {useLocation, useNavigate} from "react-router";
+import {postRetrospect} from "../../../Api/Retrospace";
 
 // 전체를 감싸는 div, 이 아래에 Header / Body / Footer로 나뉘어 있음
-const Whole = styled.div`
+const Whole = styled.div `
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -27,7 +23,7 @@ const Whole = styled.div`
 `;
 
 // breadcrumb가 들어가는 부분
-const Header = styled.div`
+const Header = styled.div `
     box-sizing: border-box;
     height: 18.4vh;
     width: 66.4vw;
@@ -37,7 +33,7 @@ const Header = styled.div`
     align-items: end;
     justify-content: space-between;
 `;
-const LeftHead = styled.div`
+const LeftHead = styled.div `
     padding-bottom: 1.5vh;
     box-sizing: border-box;
     width: auto;
@@ -46,7 +42,7 @@ const LeftHead = styled.div`
     flex-direction: column;
     justify-content: end;
 `;
-const TitleDiv = styled.div`
+const TitleDiv = styled.div `
     width: auto;
     height: 4vh;
     color: var(--sec_grey, #222);
@@ -55,7 +51,7 @@ const TitleDiv = styled.div`
     font-style: normal;
     font-weight: 400;
 `;
-const RightHead = styled.div`
+const RightHead = styled.div `
     width: 30%; //330px
     height: 24%; //59px
     display: flex;
@@ -65,7 +61,7 @@ const RightHead = styled.div`
     margin-bottom: 1.5vh;
 `;
 // 회고 종류와 작성 창이 들어가는 부분
-const Body = styled.div`
+const Body = styled.div `
     width: 70.4vw;
     height: 67.5vh;
     overflow: auto;
@@ -78,7 +74,7 @@ const Body = styled.div`
     background-color: #f3f3f3;
     margin-bottom: 7vh;
 `;
-const Title = styled.div`
+const Title = styled.div `
     color: var(--sec_grey, #222);
     font-family: "160";
     font-size: 24px;
@@ -88,15 +84,16 @@ const Title = styled.div`
     margin-top: 17.5vh;
     margin-bottom: 9vh;
 `;
-const ChipDiv = styled.div`
+const ChipDiv = styled.div `
     height: 19.4vh;
     width: 48vw;
 `;
 
 const TeamEvaluation = (e) => {
     // const [retrospective, setRetrospective] = useRecoilState(retrospectiveState);
-    const [retrospectQuestionsList, setRetrospectQuestionsList] =
-        useRecoilState(retrospectQuestionsListState);
+    const [retrospectQuestionsList, setRetrospectQuestionsList] = useRecoilState(
+        retrospectQuestionsListState
+    );
     console.log("정보 보자잇", retrospectQuestionsList.tagList[0]);
     const navigate = useNavigate();
     const handleBeforeClick = () => {
@@ -131,11 +128,19 @@ const TeamEvaluation = (e) => {
 
         console.log("Before tempChipData", tempChipData);
 
-        const modifiedData = tempChipData.map(({ key, flag }) => ({
-            id: retrospectQuestionsList.tagList[key].id
-                ? retrospectQuestionsList.tagList[key].id
-                : null,
-            selected: flag === true ? 1 : flag === false ? 2 : flag,
+        const modifiedData = tempChipData.map(({key, flag}) => ({
+            id: retrospectQuestionsList
+                .tagList[key]
+                .id
+                    ? retrospectQuestionsList
+                        .tagList[key]
+                        .id
+                    : null,
+            selected: flag === true
+                ? 1
+                : flag === false
+                    ? 2
+                    : flag
         }));
 
         console.log("After tempChipData", modifiedData);
@@ -143,7 +148,8 @@ const TeamEvaluation = (e) => {
         // 여기서 modifiedData를 사용하거나 필요한 처리를 추가하세요.
     };
 
-    // console.log("Again Check : " + workspaceId + ", " + userId + ", " + retrospectId);
+    // console.log("Again Check : " + workspaceId + ", " + userId + ", " +
+    // retrospectId);
     return (
         <Whole>
             {/* 상단바 */}
@@ -151,51 +157,41 @@ const TeamEvaluation = (e) => {
                 <LeftHead>
                     <TitleDiv>{retrospectQuestionsList.name}</TitleDiv>
                     {/* Breadcrumb은 현재 위치에 따라 달라진다 / 현위치 : 1 (회고 작성하기) */}
-                    <Breadcrumb activeKey={2} />
+                    <Breadcrumb activeKey={2}/>
                 </LeftHead>
                 <RightHead>
                     <StepButton
                         onClick={handleBeforeClick}
                         targetLabel="이전"
                         backgroundColor="#F9F9F9"
-                        color="#EA4336"
-                    />
-                    <StepButton
-                        targetLabel="완료"
-                        onClick={() => {
+                        color="#EA4336"/>
+                    <StepButton targetLabel="완료" onClick={() => {
                             if (isFilled) {
                                 changeData();
-                                try {
-                                    postRetrospect(
-                                        {
-                                            workspaceId: workspaceId,
-                                            userId: userId,
-                                            retrospectId: retrospectId,
-                                            retrospectQuestionsList:
-                                                retrospectQuestionsList,
-                                            chipData: finalChipData,
-                                            setChipData: setChipData,
-                                        },
-                                        navigate
-                                    );
-                                } catch (error) {
-                                    alert("에러 발생");
-                                }
+
+                                postRetrospect({
+                                    workspaceId: workspaceId,
+                                    userId: userId,
+                                    retrospectId: retrospectId,
+                                    retrospectQuestionsList: retrospectQuestionsList,
+                                    chipData: finalChipData,
+                                    setChipData: setChipData
+                                }, navigate);
+
                             }
                         }}
                         // onClick={postRetrospect({ workspaceId: e.workspaceId, userId: e.userId, retrospectId: e.retrospectId, retrospectQuestionsList : retrospectQuestionsList})}
-                        backgroundColor={
-                            isFilled ? "#EA4336" : "rgba(234, 67, 54, 0.4)"
-                        }
-                        color="#F9F9F9"
-                    />
+                        backgroundColor={isFilled
+                            ? "#EA4336"
+                            : "rgba(234, 67, 54, 0.4)"
+} color="#F9F9F9"/>
                 </RightHead>
             </Header>
             {/* 회고 작성 창 */}
             <Body>
                 <Title>우리 팀에게 가장 알맞은 형용사를 골라주세요.</Title>
                 <ChipDiv>
-                    <Chips isFilled={isFilled} setIsFilled={setIsFilled} />
+                    <Chips isFilled={isFilled} setIsFilled={setIsFilled}/>
                 </ChipDiv>
             </Body>
         </Whole>
@@ -210,8 +206,7 @@ const StepButton = (e) => {
             <StepBtn
                 onClick={e.onClick}
                 backgroundColor={e.backgroundColor}
-                color={e.color}
-            >
+                color={e.color}>
                 {e.targetLabel}
             </StepBtn>
         </a>

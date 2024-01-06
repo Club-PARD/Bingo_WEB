@@ -69,7 +69,7 @@ const RightHead = styled.div`
 `;
 // 회고 종류와 작성 창이 들어가는 부분
 const BodyMom = styled.div`
-    width: 70.4vw;
+    width: 71.1vw;
     height: 75.6vh;
     overflow: auto;
 `;
