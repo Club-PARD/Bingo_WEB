@@ -139,7 +139,7 @@
 <img width="1920" alt="회고 템플릿 만든 직후" src="https://github.com/Club-PARD/Bingo_WEB/assets/90203932/edb7353a-20be-4bf0-a3a6-e0b539482dd5">
 
 ### 초대 코드 확인
- - 프로젝트 세부 화면의 버튼을 통해 다른 사용자를 초대할 수 있는 코드를 확인하고, 클립보드에 복사해 사용할 수 있습니다.
+ - 프로젝트 세부 화면의 버튼을 통해 다른 사용자를 초대할 수 있는 코드(난수)를 확인하고, 클립보드에 복사해 사용할 수 있습니다.
 
 <img width="1920" alt="초대코드 복사" src="https://github.com/Club-PARD/Bingo_WEB/assets/90203932/bf6f5780-977f-4eed-ab80-3087e629fa4d">
 
