@@ -20,6 +20,8 @@ function TopMenuBar() {
         console.log("사용자 ID:", userId);
     }
 
+    const [userInfo, setUserInfo] = useRecoilState(loginUserState);
+
     const handleLogout = () => {
         // console.log("LO",userId);
         localStorage.removeItem("email");
@@ -30,6 +32,13 @@ function TopMenuBar() {
     const canGoToWorkspaceView = () => {
         return location.pathname !== "/" && location.pathname !== "/Login";
     };
+
+    // const handleGoogleLogin2 = async () => {
+    //     const [userInfo, setUserInfo] = useRecoilState(loginUserState);
+    //     return (
+    //         setUserInfo(handleGoogleLogin())
+    //     );
+    // }
     return (
         <>
             <header>
@@ -50,7 +59,14 @@ function TopMenuBar() {
                     {location.pathname === "/" ||
                     location.pathname === "/Login" ? (
                         // <LogoutLink to="/Login">로그인</LogoutLink>
-                        <LogoutLink onClick={handleGoogleLogin}>로그인</LogoutLink>
+                            <LogoutLink onClick={async () => {
+                                
+                                const data = await handleGoogleLogin();
+                                console.log("please", data);
+                                console.log("userData", userInfo);
+                                setUserInfo(data);
+                            }
+                            }>로그인</LogoutLink>
                     ) : (
                         <LogoutLink onClick={handleLogout}>로그아웃</LogoutLink>
                     )}

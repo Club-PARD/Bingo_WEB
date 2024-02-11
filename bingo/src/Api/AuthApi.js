@@ -4,23 +4,30 @@ import { Login } from "@mui/icons-material";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
 import axios from "axios";
+import { useRecoilState } from "recoil";
+import { loginUserState } from "../Contexts/Atom";
 
-export const handleGoogleLogin = async () => {
+export const handleGoogleLogin = async (e) => {
     try {
         const auth = getAuth();
         const provider = new GoogleAuthProvider(); // provider를 구글로 설정
         await signInWithPopup(auth, provider); // popup을 이용한 signup
         const user = auth.currentUser;
         console.log("유저정보:  ", user);
+        
+        // console.log("test 여기인가?");
+        const korea = await login(user);
+        console.log("data 여기인가요?", korea);
+        // e.setUserInfo(korea);
+        console.log(e);
 
-        login(user);
-
-        return user;
+        return korea;
     } catch (error) {
         console.error("Google 로그인 에러:", error);
     }
 };
 
+// const [userInfo, setUserInfo] = useRecoilState(loginUserState);
 
 // 로그인 API
 export const login = async (user) => {
@@ -30,8 +37,8 @@ export const login = async (user) => {
         picture: user.photoURL,
         emailVerified: user.emailVerified,
     };
-
     try {
+        window.localStorage.clear();
         const response = await axios.post(
             `${process.env.REACT_APP_URL}auth/signIn`,
             data
@@ -39,7 +46,8 @@ export const login = async (user) => {
 
         console.log("API 성공!");
         console.log("LOGIN DATAS", response.data);
-        localStorage.setItem("email", response.data.token);;
+        localStorage.setItem("email", response.data.token);
+
         if (response.data.isSigned === 1) {
             window.location.href = "/UserApprove";
         }
