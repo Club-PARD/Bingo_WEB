@@ -9,7 +9,7 @@ import { loginUserState } from "../../Contexts/Atom";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { dbService, auth } from "../../fbase";
-import { auth } from "./firebase";
+
 
 const LoginDummy = [
     {
