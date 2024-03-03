@@ -3,7 +3,7 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Sidebar from './Sidebar';
-import Intro from './Pages/Login/Intro';
+import Intro from './Pages/Login/Intro/IntroPage';
 import {RecoilRoot} from 'recoil';
 import PI_Test from './Pages/Test/PI_Test';
 import PI_Test2 from './Pages/Test/PI_Test2';
@@ -41,7 +41,7 @@ const Routers = () => {
                     {/*<Route path="" element={<Sidebar/>}>*/}
                     <Route path="" element={<TopMenuBar/>}>
                         <Route path='/' element={<Intro />}/>
-                        <Route path='/Login' element={<LoginPage />}/>
+                        {/* <Route path='/Login' element={<LoginPage />}/> */}
                         <Route path='/PI2' element={<PI_Test2 />}/>
                         <Route path='/UserApprove' element={<UserApprove />}/>
                         <Route path='/WorkspaceList' element={<WorkspaceList />}/>

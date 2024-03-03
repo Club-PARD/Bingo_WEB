@@ -14,16 +14,19 @@ import "../font.css";
 
 function TopMenuBar() {
     const asd = localStorage.getItem("recoil-persist");
-    const storedData = JSON.parse(asd);
-    if (asd != null) {
-        const userId = storedData.uniqueLoginUserKey.appUser.id;
-        console.log("사용자 ID:", userId);
+    if (asd !== null) {
+        const storedData = JSON.parse(asd);
+        const userId = storedData.uniqueLoginUserKey?.appUser?.id; // 옵셔널 체이닝 연산자 사용
+        if (userId) {
+            console.log("사용자 ID:", userId);
+        } else {
+            console.log("사용자 ID를 찾을 수 없습니다.");
+        }
     }
 
     const [userInfo, setUserInfo] = useRecoilState(loginUserState);
 
     const handleLogout = () => {
-        // console.log("LO",userId);
         localStorage.removeItem("email");
         window.location.href = "/";
     };
@@ -32,13 +35,6 @@ function TopMenuBar() {
     const canGoToWorkspaceView = () => {
         return location.pathname !== "/" && location.pathname !== "/Login";
     };
-
-    // const handleGoogleLogin2 = async () => {
-    //     const [userInfo, setUserInfo] = useRecoilState(loginUserState);
-    //     return (
-    //         setUserInfo(handleGoogleLogin())
-    //     );
-    // }
     return (
         <>
             <header>
@@ -56,17 +52,13 @@ function TopMenuBar() {
                             <LogoImg src={Logo} width="5vw" height="auto " />
                         </Div>
                     )}
-                    {location.pathname === "/" ||
-                    location.pathname === "/Login" ? (
-                        // <LogoutLink to="/Login">로그인</LogoutLink>
-                            <LogoutLink onClick={async () => {
-                                
-                                const data = await handleGoogleLogin();
-                                console.log("please", data);
-                                console.log("userData", userInfo);
-                                setUserInfo(data);
-                            }
-                            }>로그인</LogoutLink>
+                    {location.pathname === "/" || location.pathname === "/Login" ? (
+                        <LogoutLink onClick={async () => {
+                            const data = await handleGoogleLogin();
+                            console.log("please", data);
+                            console.log("userData", userInfo);
+                            setUserInfo(data);
+                        }}>로그인</LogoutLink>
                     ) : (
                         <LogoutLink onClick={handleLogout}>로그아웃</LogoutLink>
                     )}
@@ -79,7 +71,7 @@ function TopMenuBar() {
     );
 }
 
-export default TopMenuBar;
+
 
 const Header = styled.div`
     width: 100vw;
@@ -115,3 +107,5 @@ const LogoutLink = styled(Link)`
     text-decoration: none;
     margin-right: 12.5vw;
 `;
+
+export default TopMenuBar;
