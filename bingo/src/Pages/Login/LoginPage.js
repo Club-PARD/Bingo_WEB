@@ -5,7 +5,6 @@ import { loginUserState } from "../../Contexts/Atom";
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import GoogleLoginButton from "./GoogleLogin";
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { login } from "../../Api/AuthApi";
 import { handleGoogleLogin } from "../../Api/AuthApi";
 

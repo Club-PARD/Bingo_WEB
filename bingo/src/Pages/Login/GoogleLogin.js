@@ -7,8 +7,6 @@ import { getUserData, login } from "../../Api/AuthApi";
 import { jwtDecode } from "jwt-decode";
 import { loginUserState } from "../../Contexts/Atom";
 import { useRecoilState, useSetRecoilState } from "recoil";
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { dbService, auth } from "../../fbase";
 
 
 const LoginDummy = [
