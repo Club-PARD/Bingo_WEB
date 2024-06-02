@@ -7,6 +7,9 @@ import OnBoard from "../../../assets/Img/Login/Onboard.png";
 import IntroBtn from "../../../assets/Img/Login/IntroBtn.png";
 import { handleGoogleLogin } from "../../../Api/AuthApi";
 import "../../../font.css";
+import { useNavigate } from "react-router";
+import { useRecoilState } from "recoil";
+import { loginUserState } from "../../../Contexts/Atom";
 
 const Introwhole = styled.div`
     width: 100vw;
@@ -74,6 +77,11 @@ const LoginBtn = styled.button`
 `;
 
 const Intro = () => {
+    const navigate = useNavigate();
+    const [loginUserInfo, setLoginUserInfo] = useRecoilState(loginUserState);
+    const onGoogleLogin = async () => {
+        await handleGoogleLogin({loginUserInfo, setLoginUserInfo}, navigate);
+    };
     return (
         <Introwhole>
             <LoginDiv>
@@ -94,7 +102,7 @@ const Intro = () => {
                     마침표를 찍어보세요.
                 </Div3>
                 <Reddot src={Reddotimg} />
-                <LoginBtn onClick={handleGoogleLogin} />
+                <LoginBtn onClick={onGoogleLogin} />
             </LoginDiv>
         </Introwhole>
     );

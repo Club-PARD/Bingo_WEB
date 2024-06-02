@@ -8,20 +8,27 @@ import { loginUserState } from "../Contexts/Atom";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import { auth } from "../firebase-config";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { useNavigate } from "react-router";
 
-export const handleGoogleLogin = async (e) => {
+export const handleGoogleLogin = async(e, navigate) => {
     try {
         // const provider = new GoogleOAuthProvider(); // provider를 구글로 설정
         const provider = new GoogleAuthProvider(); // provider를 구글로 설정
-        signInWithPopup(auth, provider); // popup을 이용한 signup
-        const user = auth.currentUser;
+        // signInWithPopup(auth, provider); // popup을 이용한 signup
+        // const user = auth.currentUser;
+        const result = await signInWithPopup(auth, provider); // popup을 이용한 signup
+        // 구글 사용자 정보 가져오기
+        const user = result.user;
         console.log("유저정보:  ", user);
         
         // console.log("test 여기인가?");
-        const korea = await login(user);
+        const korea = await login(user, navigate);
         console.log("data 여기인가요?", korea);
-        // e.setUserInfo(korea);
-        console.log(e);
+
+        
+        
+        e.setLoginUserInfo(korea);
+        console.log("data login", e.loginUserInfo);
 
         return korea;
     } catch (error) {
@@ -44,7 +51,7 @@ export const handleGoogleLogin = async (e) => {
 
 
 // 로그인 API
-export const login = async (user) => {
+export const login =async (user, navigate) => {
     const data = {
         name: user.displayName,
         email: user.email,
@@ -63,11 +70,15 @@ export const login = async (user) => {
         console.log("LOGIN DATAS", response.data);
         localStorage.setItem("email", response.data.token);
 
+        
+
         if (response.data.isSigned === 1) {
-            window.location.href = "/UserApprove";
+            // window.location.href = "/UserApprove";
+            navigate("/UserApprove");
         }
         if (response.data.isSigned === 2) {
-            window.location.href = "/WorkspaceList";
+            // window.location.href = "/WorkspaceList";
+            navigate("/WorkspaceList");
         }
 
         return response.data;

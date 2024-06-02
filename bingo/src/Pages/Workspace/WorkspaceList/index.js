@@ -72,7 +72,8 @@ const WorkspaceList = () => {
     };
 
     const keepUserId = useRecoilValue(loginUserState);
-    const keepuserId = keepUserId.appUser.id;
+    console.log("data", keepUserId);
+    // const keepuserId = keepUserId.appUser.id;
     const [userInfo, setUserInfo] = useRecoilState(loginUserState);
     const [titleEmpty, setTitleEmpty] = useState(false);
     const [descEmpty, setDescEmpty] = useState(false);
@@ -188,6 +189,7 @@ const WorkspaceList = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
+                console.log("user id ", userInfo.appUser);
                 const projects = await getAllProjects(
                     {
                         userid: userInfo.appUser.id,

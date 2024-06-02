@@ -1,92 +1,92 @@
-/* eslint-disable */
+// /* eslint-disable */
 
-import React from "react";
-// import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
-import { useNavigate } from "react-router-dom";
-import { getUserData, login } from "../../Api/AuthApi";
-import { jwtDecode } from "jwt-decode";
-import { loginUserState } from "../../Contexts/Atom";
-import { useRecoilState, useSetRecoilState } from "recoil";
+// import React from "react";
+// // import { GoogleLogin, GoogleOAuthProvider } from "@react-oauth/google";
+// import { useNavigate } from "react-router-dom";
+// import { getUserData, login } from "../../Api/AuthApi";
+// import { jwtDecode } from "jwt-decode";
+// import { loginUserState } from "../../Contexts/Atom";
+// import { useRecoilState, useSetRecoilState } from "recoil";
 
 
-const LoginDummy = [
-    {
-        email: "",
-        email_verified: "",
-        name: "",
-        // jti: "",
-        // picture: "",
-    },
-];
+// const LoginDummy = [
+//     {
+//         email: "",
+//         email_verified: "",
+//         name: "",
+//         // jti: "",
+//         // picture: "",
+//     },
+// ];
 
-const GoogleLoginButton = () => {
-    const navigate = useNavigate();
-    const [userInfo, setUserInfo] = useRecoilState(loginUserState);
+// const GoogleLoginButton = () => {
+//     const navigate = useNavigate();
+//     const [userInfo, setUserInfo] = useRecoilState(loginUserState);
 
-    const handleGoogleLogin = async () => {
-        try {
-            const provider = new GoogleAuthProvider();
-            await signInWithPopup(auth, provider);
-            const user = auth.currentUser;
-            console.log("유저정보:  ", user);
+//     const handleGoogleLogin = async () => {
+//         try {
+//             const provider = new GoogleAuthProvider();
+//             await signInWithPopup(auth, provider);
+//             const user = auth.currentUser;
+//             console.log("유저정보:  ", user);
 
-            login(user);
+//             login(user);
 
-            return user;
-        } catch (error) {
-            console.error("Google 로그인 에러:", error);
-        }
-    };
+//             return user;
+//         } catch (error) {
+//             console.error("Google 로그인 에러:", error);
+//         }
+//     };
 
-    return (
-        <>
-            <button onClick={handleGoogleLogin}>구글 로그인</button>
-            {/* <GoogleOAuthProvider
-                clientId={process.env.REACT_APP_GOOGLE_AUTH_CLIENT_ID}
-            >
-                <GoogleLogin
-                    onSuccess={async (credentialResponse) => {
-                        const decodedToken = jwtDecode(
-                            credentialResponse.credential
-                        );
+//     return (
+//         <>
+//             <button onClick={handleGoogleLogin}>구글 로그인</button>
+//             {/* <GoogleOAuthProvider
+//                 clientId={process.env.REACT_APP_GOOGLE_AUTH_CLIENT_ID}
+//             >
+//                 <GoogleLogin
+//                     onSuccess={async (credentialResponse) => {
+//                         const decodedToken = jwtDecode(
+//                             credentialResponse.credential
+//                         );
 
-                        // const updatedData = LoginDummy.map(dummy => {
-                        //     return Object.keys(dummy).reduce((acc, key) => {
-                        //         acc[key] = decodedToken[key] || dummy[key];
-                        //         return acc;
-                        //     }, {});
-                        // });
+//                         // const updatedData = LoginDummy.map(dummy => {
+//                         //     return Object.keys(dummy).reduce((acc, key) => {
+//                         //         acc[key] = decodedToken[key] || dummy[key];
+//                         //         return acc;
+//                         //     }, {});
+//                         // });
 
-                        try {
-                            // 로그인 API 호출
-                            const data = await login(decodedToken);
+//                         try {
+//                             // 로그인 API 호출
+//                             const data = await login(decodedToken);
 
-                            // 업데이트된 데이터 확인은 여기에서 이루어져야 합니다.
-                            console.log("로그인 성공?!", data);
+//                             // 업데이트된 데이터 확인은 여기에서 이루어져야 합니다.
+//                             console.log("로그인 성공?!", data);
 
-                            // 상태 업데이트
-                            setUserInfo(data);
-                            console.log("USER DATA", userInfo);
+//                             // 상태 업데이트
+//                             setUserInfo(data);
+//                             console.log("USER DATA", userInfo);
 
-                            // if(data.isSigned == 1) {
-                            //     window.location.href = "/UserApprove";
-                            // }
-                            // alert("isSigned : ",data.isSigned);
-                            window.location.href = "/WorkspaceList"
+//                             // if(data.isSigned == 1) {
+//                             //     window.location.href = "/UserApprove";
+//                             // }
+//                             // alert("isSigned : ",data.isSigned);
+//                             window.location.href = "/WorkspaceList"
 
-                            // navigate("/WorkspaceList");
-                        } catch (error) {
-                            console.error("로그인 에러", error);
-                        }
-                    }}
-                    onError={() => {
-                        console.log("Login Failed");
-                        navigate("/");
-                    }}
-                />
-            </GoogleOAuthProvider> */}
-        </>
-    );
-};
+//                             // navigate("/WorkspaceList");
+//                         } catch (error) {
+//                             console.error("로그인 에러", error);
+//                         }
+//                     }}
+//                     onError={() => {
+//                         console.log("Login Failed");
+//                         navigate("/");
+//                     }}
+//                 />
+//             </GoogleOAuthProvider> */}
+//         </>
+//     );
+// };
 
-export default GoogleLoginButton;
+// export default GoogleLoginButton;
